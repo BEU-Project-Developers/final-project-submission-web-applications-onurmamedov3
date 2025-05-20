@@ -1,0 +1,629 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\TourManagementSystem.bundle.scp.css",
+      "PackagePath": "staticwebassets\\TourManagementSystem.1zmnz8c3kr.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\fonts\\beyond_the_mountains.otf",
+      "PackagePath": "staticwebassets\\fonts\\beyond_the_mountains.otf"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\fonts\\beyond_the_mountains.ttf",
+      "PackagePath": "staticwebassets\\fonts\\beyond_the_mountains.ttf"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\about_background.jpg",
+      "PackagePath": "staticwebassets\\images\\about_background.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\add.jpg",
+      "PackagePath": "staticwebassets\\images\\add.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\backpack.png",
+      "PackagePath": "staticwebassets\\images\\backpack.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\bicycle.png",
+      "PackagePath": "staticwebassets\\images\\bicycle.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\blog_1.jpg",
+      "PackagePath": "staticwebassets\\images\\blog_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\blog_2.jpg",
+      "PackagePath": "staticwebassets\\images\\blog_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\blog_3.jpg",
+      "PackagePath": "staticwebassets\\images\\blog_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\blog_background.jpg",
+      "PackagePath": "staticwebassets\\images\\blog_background.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\bus.png",
+      "PackagePath": "staticwebassets\\images\\bus.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\compass.png",
+      "PackagePath": "staticwebassets\\images\\compass.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\contact.png",
+      "PackagePath": "staticwebassets\\images\\contact.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\contact_background.jpg",
+      "PackagePath": "staticwebassets\\images\\contact_background.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruise.png",
+      "PackagePath": "staticwebassets\\images\\cruise.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cta.jpg",
+      "PackagePath": "staticwebassets\\images\\cta.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\departure.png",
+      "PackagePath": "staticwebassets\\images\\departure.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\diving.png",
+      "PackagePath": "staticwebassets\\images\\diving.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\dropdown.png",
+      "PackagePath": "staticwebassets\\images\\dropdown.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\footer_blog_1.jpg",
+      "PackagePath": "staticwebassets\\images\\footer_blog_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\footer_blog_2.jpg",
+      "PackagePath": "staticwebassets\\images\\footer_blog_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\footer_blog_3.jpg",
+      "PackagePath": "staticwebassets\\images\\footer_blog_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\gallery_1.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\gallery_2.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\gallery_3.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\gallery_4.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery_4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\gallery_5.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery_5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\gallery_6.jpg",
+      "PackagePath": "staticwebassets\\images\\gallery_6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\home_slider_1.jpg",
+      "PackagePath": "staticwebassets\\images\\home_slider_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\home_slider_2.jpg",
+      "PackagePath": "staticwebassets\\images\\home_slider_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\home_slider_3.jpg",
+      "PackagePath": "staticwebassets\\images\\home_slider_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\intro.png",
+      "PackagePath": "staticwebassets\\images\\intro.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\intro_1.jpg",
+      "PackagePath": "staticwebassets\\images\\intro_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\intro_2.jpg",
+      "PackagePath": "staticwebassets\\images\\intro_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\intro_3.jpg",
+      "PackagePath": "staticwebassets\\images\\intro_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\island.png",
+      "PackagePath": "staticwebassets\\images\\island.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\island_t.png",
+      "PackagePath": "staticwebassets\\images\\island_t.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\kayak.png",
+      "PackagePath": "staticwebassets\\images\\kayak.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\latest_1.jpg",
+      "PackagePath": "staticwebassets\\images\\latest_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\latest_2.jpg",
+      "PackagePath": "staticwebassets\\images\\latest_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\latest_3.jpg",
+      "PackagePath": "staticwebassets\\images\\latest_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\latest_4.jpg",
+      "PackagePath": "staticwebassets\\images\\latest_4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_1.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_2.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_3.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_4.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_5.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_6.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_7.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_8.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_9.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_hotel.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_hotel.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_1.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_2.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_3.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_4.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_5.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_6.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_7.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_8.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\listing_thumb_9.jpg",
+      "PackagePath": "staticwebassets\\images\\listing_thumb_9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\man.png",
+      "PackagePath": "staticwebassets\\images\\man.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\message.svg",
+      "PackagePath": "staticwebassets\\images\\message.svg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\milestone_1.png",
+      "PackagePath": "staticwebassets\\images\\milestone_1.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\milestone_2.png",
+      "PackagePath": "staticwebassets\\images\\milestone_2.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\milestone_3.png",
+      "PackagePath": "staticwebassets\\images\\milestone_3.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\milestone_4.png",
+      "PackagePath": "staticwebassets\\images\\milestone_4.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\offer_1.jpg",
+      "PackagePath": "staticwebassets\\images\\offer_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\offer_2.jpg",
+      "PackagePath": "staticwebassets\\images\\offer_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\offer_3.jpg",
+      "PackagePath": "staticwebassets\\images\\offer_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\offer_4.jpg",
+      "PackagePath": "staticwebassets\\images\\offer_4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\offer_5.jpg",
+      "PackagePath": "staticwebassets\\images\\offer_5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\offer_6.jpg",
+      "PackagePath": "staticwebassets\\images\\offer_6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\offer_7.jpg",
+      "PackagePath": "staticwebassets\\images\\offer_7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\offer_8.jpg",
+      "PackagePath": "staticwebassets\\images\\offer_8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\phone-call.svg",
+      "PackagePath": "staticwebassets\\images\\phone-call.svg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\placeholder.svg",
+      "PackagePath": "staticwebassets\\images\\placeholder.svg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\planet-earth.svg",
+      "PackagePath": "staticwebassets\\images\\planet-earth.svg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\post.png",
+      "PackagePath": "staticwebassets\\images\\post.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\review_1.jpg",
+      "PackagePath": "staticwebassets\\images\\review_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\review_2.jpg",
+      "PackagePath": "staticwebassets\\images\\review_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\room_1.jpg",
+      "PackagePath": "staticwebassets\\images\\room_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\room_2.jpg",
+      "PackagePath": "staticwebassets\\images\\room_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\sailboat.png",
+      "PackagePath": "staticwebassets\\images\\sailboat.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\single_background.jpg",
+      "PackagePath": "staticwebassets\\images\\single_background.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\stats_1.png",
+      "PackagePath": "staticwebassets\\images\\stats_1.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\stats_2.png",
+      "PackagePath": "staticwebassets\\images\\stats_2.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\stats_3.png",
+      "PackagePath": "staticwebassets\\images\\stats_3.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\stats_4.png",
+      "PackagePath": "staticwebassets\\images\\stats_4.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\suitcase.png",
+      "PackagePath": "staticwebassets\\images\\suitcase.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\test_1.jpg",
+      "PackagePath": "staticwebassets\\images\\test_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\test_2.jpg",
+      "PackagePath": "staticwebassets\\images\\test_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\test_3.jpg",
+      "PackagePath": "staticwebassets\\images\\test_3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_1.png",
+      "PackagePath": "staticwebassets\\images\\trend_1.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_2.png",
+      "PackagePath": "staticwebassets\\images\\trend_2.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_3.png",
+      "PackagePath": "staticwebassets\\images\\trend_3.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_4.png",
+      "PackagePath": "staticwebassets\\images\\trend_4.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_5.png",
+      "PackagePath": "staticwebassets\\images\\trend_5.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_6.png",
+      "PackagePath": "staticwebassets\\images\\trend_6.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_7.png",
+      "PackagePath": "staticwebassets\\images\\trend_7.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_8.png",
+      "PackagePath": "staticwebassets\\images\\trend_8.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\about_custom.js",
+      "PackagePath": "staticwebassets\\js\\about_custom.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\blog_custom.js",
+      "PackagePath": "staticwebassets\\js\\blog_custom.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\contact_custom.js",
+      "PackagePath": "staticwebassets\\js\\contact_custom.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\custom.js",
+      "PackagePath": "staticwebassets\\js\\custom.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\jquery-3.2.1.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.2.1.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\offers_custom.js",
+      "PackagePath": "staticwebassets\\js\\offers_custom.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\single_listing_custom.js",
+      "PackagePath": "staticwebassets\\js\\single_listing_custom.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\Isotope\\isotope.pkgd.min.js",
+      "PackagePath": "staticwebassets\\plugins\\Isotope\\isotope.pkgd.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\animate.css",
+      "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\animate.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.css",
+      "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.js",
+      "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.theme.default.css",
+      "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\owl.theme.default.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.video.play.png",
+      "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\owl.video.play.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\colorbox\\colorbox.css",
+      "PackagePath": "staticwebassets\\plugins\\colorbox\\colorbox.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\colorbox\\images\\border.png",
+      "PackagePath": "staticwebassets\\plugins\\colorbox\\images\\border.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\colorbox\\images\\controls.png",
+      "PackagePath": "staticwebassets\\plugins\\colorbox\\images\\controls.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\colorbox\\images\\loading.gif",
+      "PackagePath": "staticwebassets\\plugins\\colorbox\\images\\loading.gif"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\colorbox\\images\\loading_background.png",
+      "PackagePath": "staticwebassets\\plugins\\colorbox\\images\\loading_background.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\colorbox\\jquery.colorbox-min.js",
+      "PackagePath": "staticwebassets\\plugins\\colorbox\\jquery.colorbox-min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\easing\\easing.js",
+      "PackagePath": "staticwebassets\\plugins\\easing\\easing.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\font-awesome-4.7.0\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.eot",
+      "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.eot"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.svg",
+      "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.svg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.ttf",
+      "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.ttf"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.woff",
+      "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.woff"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.woff2",
+      "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont3e6e.woff2"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfontd41d.eot",
+      "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfontd41d.eot"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\greensock\\ScrollToPlugin.min.js",
+      "PackagePath": "staticwebassets\\plugins\\greensock\\ScrollToPlugin.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\greensock\\TimelineMax.min.js",
+      "PackagePath": "staticwebassets\\plugins\\greensock\\TimelineMax.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\greensock\\TweenMax.min.js",
+      "PackagePath": "staticwebassets\\plugins\\greensock\\TweenMax.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\greensock\\animation.gsap.min.js",
+      "PackagePath": "staticwebassets\\plugins\\greensock\\animation.gsap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\parallax-js-master\\parallax.min.js",
+      "PackagePath": "staticwebassets\\plugins\\parallax-js-master\\parallax.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\plugins\\scrollmagic\\ScrollMagic.min.js",
+      "PackagePath": "staticwebassets\\plugins\\scrollmagic\\ScrollMagic.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\about_responsive.css",
+      "PackagePath": "staticwebassets\\styles\\about_responsive.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\about_styles.css",
+      "PackagePath": "staticwebassets\\styles\\about_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\blog_responsive.css",
+      "PackagePath": "staticwebassets\\styles\\blog_responsive.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\blog_styles.css",
+      "PackagePath": "staticwebassets\\styles\\blog_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\bootstrap4\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\styles\\bootstrap4\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\bootstrap4\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\styles\\bootstrap4\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\bootstrap4\\popper.js",
+      "PackagePath": "staticwebassets\\styles\\bootstrap4\\popper.js"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\contact_responsive.css",
+      "PackagePath": "staticwebassets\\styles\\contact_responsive.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\contact_styles.css",
+      "PackagePath": "staticwebassets\\styles\\contact_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\main_styles.css",
+      "PackagePath": "staticwebassets\\styles\\main_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\offers_responsive.css",
+      "PackagePath": "staticwebassets\\styles\\offers_responsive.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\offers_styles.css",
+      "PackagePath": "staticwebassets\\styles\\offers_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\responsive.css",
+      "PackagePath": "staticwebassets\\styles\\responsive.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\single_listing_responsive.css",
+      "PackagePath": "staticwebassets\\styles\\single_listing_responsive.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\single_listing_styles.css",
+      "PackagePath": "staticwebassets\\styles\\single_listing_styles.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TourManagementSystem.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TourManagementSystem.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.TourManagementSystem.props",
+      "PackagePath": "build\\TourManagementSystem.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.TourManagementSystem.props",
+      "PackagePath": "buildMultiTargeting\\TourManagementSystem.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.TourManagementSystem.props",
+      "PackagePath": "buildTransitive\\TourManagementSystem.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

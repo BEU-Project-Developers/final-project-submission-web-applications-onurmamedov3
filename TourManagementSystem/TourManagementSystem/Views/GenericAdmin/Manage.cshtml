@@ -1,0 +1,386 @@
+﻿@{
+    ViewData["Title"] = "Admin Management";
+    Layout = "_Layout";
+}
+
+<style>
+    .admin-crud-container {
+        padding-top: 180px;
+        padding-bottom: 50px;
+    }
+    .entity-selector, .action-buttons, .data-table-container, .form-container {
+        margin-bottom: 20px;
+    }
+    .form-container {
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: #f9f9f9;
+        display: none;
+    }
+    #dataTable th, #dataTable td {
+        text-align: left;
+        padding: 8px;
+    }
+    #dataTable th {
+        background-color: #f0f0f0;
+    }
+    .btn-admin {
+        background-color: #fa9e1b;
+        border-color: #fa9e1b;
+        color: white;
+        margin-right: 5px;
+    }
+    .btn-admin:hover {
+        background-color: #e08604;
+        border-color: #e08604;
+        color: white;
+    }
+</style>
+
+<div class="container admin-crud-container">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+
+    <div class="entity-selector form-group">
+        <label for="entityType">Select Entity to Manage:</label>
+        <select id="entityType" class="form-control" style="max-width: 300px;">
+            <option value="">-- Select Type --</option>
+            <option value="Hotels">Hotels</option>
+            <option value="Trips">Trips</option>
+            <option value="Users">Users (UI Only)</option>
+            <option value="Cruises">Cruises</option>
+            <option value="Flights">Flights</option>
+            <option value="Activities">Activities</option>
+            <option value="CarRentals">Car Rentals</option>
+        </select>
+    </div>
+
+    <div class="action-buttons">
+        <button id="btnCreateNew" class="btn btn-admin" disabled>Create New</button>
+    </div>
+
+    <div class="data-table-container">
+        <h3 id="tableTitle"></h3>
+        <table id="dataTable" class="table table-striped table-bordered" style="display: none;">
+            <thead>
+                <tr id="tableHeaderRow"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+        <p id="noDataMessage" style="display: none;">No data available for the selected entity.</p>
+    </div>
+
+    <div id="formContainer" class="form-container">
+        <h3 id="formTitle"></h3>
+        <form id="crudForm">
+            <div id="formFields"></div>
+            <div class="form-group mt-3">
+                <button type="submit" id="btnSave" class="btn btn-admin">Save</button>
+                <button type="button" id="btnCancel" class="btn btn-secondary">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="deleteConfirmModal" style="display:none; border:1px solid red; padding:15px; margin-top:15px; background-color:#ffeeee;">
+        <h4>Confirm Delete</h4>
+        <p>Are you sure you want to delete this item: <strong id="deleteItemName"></strong>?</p>
+        <button id="btnConfirmDelete" class="btn btn-danger">Yes, Delete</button>
+        <button id="btnCancelDelete" class="btn btn-secondary">Cancel</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const mockData = {
+            Hotels: [
+                { Id: 1, Name: "Grand Voyage Hotel", Location: "Paris, France", Rating: 5, PricePerNight: 250.00, ImageUrl: "/images/hotel_1.jpg" },
+                { Id: 2, Name: "Seaside Inn", Location: "Miami, USA", Rating: 4, PricePerNight: 150.00, ImageUrl: "/images/hotel_2.jpg" }
+            ],
+            Trips: [
+                { Id: 101, Name: "Parisian Adventure", Destination: "Paris", DurationDays: 7, Price: 1200.00 },
+                { Id: 102, Name: "Beach Getaway", Destination: "Maldives", DurationDays: 10, Price: 2500.00 }
+            ],
+            Users: [
+                { Id: 201, FullName: "Alice Smith", Email: "alice@example.com", Role: "User" },
+                { Id: 202, FullName: "Bob Johnson", Email: "bob@example.com", Role: "Admin" }
+            ],
+            Cruises: [
+                { Id: 301, Name: "Caribbean Paradise", ShipName: "Ocean Dream", DurationDays: 7, DeparturePort: "Miami", Price: 1800.00 },
+                { Id: 302, Name: "Mediterranean Explorer", ShipName: "Sea Voyager", DurationDays: 10, DeparturePort: "Barcelona", Price: 2500.00 }
+            ],
+            Flights: [
+                { Id: 401, FlightNumber: "FL123", Airline: "Global Airways", Departure: "New York (JFK)", Arrival: "London (LHR)", DepartureTime: "2025-06-15T08:00", Price: 450.00 },
+                { Id: 402, FlightNumber: "FL456", Airline: "Skyline Airlines", Departure: "Los Angeles (LAX)", Arrival: "Tokyo (HND)", DepartureTime: "2025-07-20T14:30", Price: 850.00 }
+            ],
+            Activities: [
+                { Id: 501, Name: "City Tour", Location: "Paris", DurationHours: 4, Price: 60.00, Category: "Sightseeing" },
+                { Id: 502, Name: "Scuba Diving", Location: "Great Barrier Reef", DurationHours: 3, Price: 120.00, Category: "Adventure" }
+            ],
+            CarRentals: [
+                { Id: 601, Model: "Toyota Camry", RentalCompany: "Hertz", PricePerDay: 45.00, Seats: 5, Transmission: "Automatic" },
+                { Id: 602, Model: "Jeep Wrangler", RentalCompany: "Avis", PricePerDay: 75.00, Seats: 4, Transmission: "Manual" }
+            ]
+        };
+
+        const entityDefinitions = {
+            Hotels: {
+                displayName: "Hotel",
+                fields: [
+                    { name: "Name", label: "Hotel Name", type: "text", required: true },
+                    { name: "Location", label: "Location", type: "text", required: true },
+                    { name: "Rating", label: "Rating (1-5)", type: "number", required: false, min: 1, max: 5 },
+                    { name: "PricePerNight", label: "Price Per Night", type: "number", step: "0.01", required: false },
+                    { name: "ImageUrl", label: "Image URL", type: "url", required: false }
+                ],
+                idField: "Id"
+            },
+            Trips: {
+                displayName: "Trip",
+                fields: [
+                    { name: "Name", label: "Trip Name", type: "text", required: true },
+                    { name: "Destination", label: "Destination", type: "text", required: true },
+                    { name: "DurationDays", label: "Duration (Days)", type: "number", required: false },
+                    { name: "Price", label: "Price", type: "number", step: "0.01", required: false }
+                ],
+                idField: "Id"
+            },
+            Users: {
+                displayName: "User",
+                fields: [
+                    { name: "FullName", label: "Full Name", type: "text", required: true },
+                    { name: "Email", label: "Email", type: "email", required: true },
+                    { name: "Role", label: "Role", type: "text", required: false }
+                ],
+                idField: "Id"
+            },
+            Cruises: {
+                displayName: "Cruise",
+                fields: [
+                    { name: "Name", label: "Cruise Name", type: "text", required: true },
+                    { name: "ShipName", label: "Ship Name", type: "text", required: true },
+                    { name: "DurationDays", label: "Duration (Days)", type: "number", required: true },
+                    { name: "DeparturePort", label: "Departure Port", type: "text", required: true },
+                    { name: "Price", label: "Price", type: "number", step: "0.01", required: true }
+                ],
+                idField: "Id"
+            },
+            Flights: {
+                displayName: "Flight",
+                fields: [
+                    { name: "FlightNumber", label: "Flight Number", type: "text", required: true },
+                    { name: "Airline", label: "Airline", type: "text", required: true },
+                    { name: "Departure", label: "Departure Airport", type: "text", required: true },
+                    { name: "Arrival", label: "Arrival Airport", type: "text", required: true },
+                    { name: "DepartureTime", label: "Departure Time", type: "datetime-local", required: true },
+                    { name: "Price", label: "Price", type: "number", step: "0.01", required: true }
+                ],
+                idField: "Id"
+            },
+            Activities: {
+                displayName: "Activity",
+                fields: [
+                    { name: "Name", label: "Activity Name", type: "text", required: true },
+                    { name: "Location", label: "Location", type: "text", required: true },
+                    { name: "DurationHours", label: "Duration (Hours)", type: "number", step: "0.5", required: true },
+                    { name: "Price", label: "Price", type: "number", step: "0.01", required: true },
+                    { name: "Category", label: "Category", type: "text", required: false }
+                ],
+                idField: "Id"
+            },
+            CarRentals: {
+                displayName: "Car Rental",
+                fields: [
+                    { name: "Model", label: "Car Model", type: "text", required: true },
+                    { name: "RentalCompany", label: "Rental Company", type: "text", required: true },
+                    { name: "PricePerDay", label: "Price Per Day", type: "number", step: "0.01", required: true },
+                    { name: "Seats", label: "Seats", type: "number", required: true },
+                    { name: "Transmission", label: "Transmission", type: "text", required: false }
+                ],
+                idField: "Id"
+            }
+        };
+
+        let currentEntityType = null;
+        let currentData = [];
+        let currentFormMode = null;
+        let currentEditItemId = null;
+        let currentDeleteItem = null;
+
+        $(document).ready(function () {
+            $('#entityType').change(function () {
+                currentEntityType = $(this).val();
+                if (currentEntityType && entityDefinitions[currentEntityType]) {
+                    $('#btnCreateNew').prop('disabled', false);
+                    loadDataForEntity(currentEntityType);
+                } else {
+                    $('#btnCreateNew').prop('disabled', true);
+                    clearTableAndForm();
+                }
+            });
+
+            $('#btnCreateNew').click(function () {
+                if (!currentEntityType) return;
+                currentFormMode = "create";
+                currentEditItemId = null;
+                $('#formTitle').text(`Create New ${entityDefinitions[currentEntityType].displayName}`);
+                populateFormFields(entityDefinitions[currentEntityType].fields);
+                $('#formContainer').show();
+                $('#crudForm')[0].reset();
+            });
+
+            $('#crudForm').submit(function (event) {
+                event.preventDefault();
+                if (!currentEntityType) return;
+
+                const formData = {};
+                const entityDef = entityDefinitions[currentEntityType];
+                entityDef.fields.forEach(field => {
+                    formData[field.name] = $(`#field-${field.name}`).val();
+                    if (field.type === 'number') formData[field.name] = parseFloat(formData[field.name]);
+                });
+
+                if (currentFormMode === "create") {
+                    formData[entityDef.idField] = Date.now();
+                    mockData[currentEntityType].push(formData);
+                    alert(`${entityDef.displayName} created (UI Only)!`);
+                } else if (currentFormMode === "edit") {
+                    const itemIndex = mockData[currentEntityType].findIndex(item => item[entityDef.idField] == currentEditItemId);
+                    if (itemIndex > -1) {
+                        mockData[currentEntityType][itemIndex] = { ...mockData[currentEntityType][itemIndex], ...formData };
+                        alert(`${entityDef.displayName} updated (UI Only)!`);
+                    }
+                }
+                loadDataForEntity(currentEntityType);
+                hideForm();
+            });
+
+            $('#btnCancel').click(function () {
+                hideForm();
+            });
+
+            $('#tableBody').on('click', '.btn-edit', function () {
+                const itemId = $(this).data('id');
+                const entityDef = entityDefinitions[currentEntityType];
+                const itemToEdit = mockData[currentEntityType].find(item => item[entityDef.idField] == itemId);
+
+                if (itemToEdit) {
+                    currentFormMode = "edit";
+                    currentEditItemId = itemId;
+                    $('#formTitle').text(`Edit ${entityDef.displayName}: ${itemToEdit[entityDef.fields[0].name]}`);
+                    populateFormFields(entityDef.fields, itemToEdit);
+                    $('#formContainer').show();
+                }
+            });
+
+            $('#tableBody').on('click', '.btn-delete', function () {
+                const itemId = $(this).data('id');
+                const entityDef = entityDefinitions[currentEntityType];
+                currentDeleteItem = mockData[currentEntityType].find(item => item[entityDef.idField] == itemId);
+
+                if (currentDeleteItem) {
+                    $('#deleteItemName').text(currentDeleteItem[entityDef.fields[0].name] || `Item ID: ${itemId}`);
+                    $('#deleteConfirmModal').show();
+                }
+            });
+
+            $('#btnConfirmDelete').click(function() {
+                if (currentDeleteItem && currentEntityType) {
+                    const entityDef = entityDefinitions[currentEntityType];
+                    const itemIndex = mockData[currentEntityType].findIndex(item => item[entityDef.idField] == currentDeleteItem[entityDef.idField]);
+                    if (itemIndex > -1) {
+                        mockData[currentEntityType].splice(itemIndex, 1);
+                        alert(`${entityDef.displayName} deleted (UI Only)!`);
+                        loadDataForEntity(currentEntityType);
+                    }
+                }
+                hideDeleteConfirm();
+            });
+
+            $('#btnCancelDelete').click(function() {
+                hideDeleteConfirm();
+            });
+        });
+
+        function loadDataForEntity(entityType) {
+            clearTableAndForm();
+            currentData = mockData[entityType] || [];
+            const entityDef = entityDefinitions[entityType];
+            $('#tableTitle').text(`Manage ${entityDef.displayName}s`);
+
+            if (currentData.length === 0) {
+                $('#dataTable').hide();
+                $('#noDataMessage').text(`No ${entityDef.displayName.toLowerCase()}s found. Click "Create New" to add one.`).show();
+                return;
+            }
+
+            $('#noDataMessage').hide();
+            $('#dataTable').show();
+
+            const $headerRow = $('#tableHeaderRow');
+            $headerRow.empty();
+            entityDef.fields.forEach(field => {
+                $headerRow.append(`<th>${field.label}</th>`);
+            });
+            $headerRow.append('<th>Actions</th>');
+
+            const $tableBody = $('#tableBody');
+            $tableBody.empty();
+            currentData.forEach(item => {
+                let rowHtml = '<tr>';
+                entityDef.fields.forEach(field => {
+                    rowHtml += `<td>${item[field.name] !== undefined && item[field.name] !== null ? item[field.name] : ''}</td>`;
+                });
+                rowHtml += `<td>
+                                <button class="btn btn-sm btn-outline-secondary btn-edit" data-id="${item[entityDef.idField]}">Edit</button>
+                                <button class="btn btn-sm btn-outline-danger btn-delete" data-id="${item[entityDef.idField]}">Delete</button>
+                            </td>`;
+                rowHtml += '</tr>';
+                $tableBody.append(rowHtml);
+            });
+        }
+
+        function populateFormFields(fields, itemData = null) {
+            const $formFields = $('#formFields');
+            $formFields.empty();
+            fields.forEach(field => {
+                const value = itemData ? (itemData[field.name] || '') : '';
+                let fieldHtml = `<div class="form-group">
+                                    <label for="field-${field.name}">${field.label}</label>`;
+                if (field.type === 'textarea') {
+                     fieldHtml += `<textarea class="form-control" id="field-${field.name}" name="${field.name}" ${field.required ? 'required' : ''}>${value}</textarea>`;
+                } else {
+                     fieldHtml += `<input type="${field.type || 'text'}" class="form-control" id="field-${field.name}" name="${field.name}" value="${value}"
+                                        ${field.required ? 'required' : ''}
+                                        ${field.min !== undefined ? `min="${field.min}"` : ''}
+                                        ${field.max !== undefined ? `max="${field.max}"` : ''}
+                                        ${field.step !== undefined ? `step="${field.step}"` : ''} />`;
+                }
+                fieldHtml += `<span class="text-danger field-validation-error" data-valmsg-for="${field.name}"></span>`;
+                fieldHtml += `</div>`;
+                $formFields.append(fieldHtml);
+            });
+        }
+
+        function clearTableAndForm() {
+            $('#tableTitle').text('');
+            $('#tableHeaderRow').empty();
+            $('#tableBody').empty();
+            $('#dataTable').hide();
+            $('#noDataMessage').hide();
+            hideForm();
+            hideDeleteConfirm();
+        }
+
+        function hideForm() {
+            $('#formContainer').hide();
+            $('#crudForm')[0].reset();
+            currentFormMode = null;
+            currentEditItemId = null;
+        }
+
+        function hideDeleteConfirm() {
+            $('#deleteConfirmModal').hide();
+            currentDeleteItem = null;
+        }
+    </script>
+}
