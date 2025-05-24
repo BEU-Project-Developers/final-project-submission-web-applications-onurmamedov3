@@ -20,6 +20,8 @@ namespace TourManagementSystem.Data
         public DbSet<Trip> Trips { get; set; } // Assuming Trip model exists
         public DbSet<Activity> Activities { get; set; } // Assuming Activity model exists
 
+        public DbSet<ContactMessage> ContactMessages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Important if using Identity
@@ -69,6 +71,13 @@ namespace TourManagementSystem.Data
             modelBuilder.Entity<Activity>(entity =>
             {
                 entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+            });
+
+            modelBuilder.Entity<ContactMessage>(entity =>
+            {
+                // You can add configurations here if needed, e.g., max length for Message
+                // entity.Property(e => e.Message).HasMaxLength(4000); // Example
+                entity.HasIndex(e => e.SubmittedDate); // Good for sorting by date
             });
 
             // Example Seed Data (Optional, requires a new migration if added/changed)

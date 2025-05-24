@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // 2. Register your custom services for Dependency Injection
 builder.Services.AddScoped<IHotelService, HotelService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 // builder.Services.AddScoped<IUserService, UserService>(); // If you have a UserService
 // Add other services (ICarRentalService, IFlightService, etc.) here
 
