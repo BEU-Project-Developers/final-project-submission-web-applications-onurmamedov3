@@ -1,0 +1,266 @@
+﻿@model TourManagementSystem.Models.LoginViewModel  // Replace LoginViewModel with your actual model name and namespace
+@{
+    ViewData["Title"] = "Login - VoyagePro";
+    // If this view uses a layout, specify it here, e.g.:
+    // Layout = "_Layout"; 
+    // If it's a standalone page (header/footer included here), Layout can be null or not set.
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>@ViewData["Title"]</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="VoyagePro Project Login">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="~/styles/bootstrap4/bootstrap.min.css">
+	<link href="~/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="~/styles/main_styles.css">
+	<link rel="stylesheet" type="text/css" href="~/styles/responsive.css">
+	<!-- Custom styles for login/signup pages -->
+	<style>
+		.page_hero {
+			height: 350px;
+			background-size: cover;
+			background-position: center center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+		.page_hero_content h1 {
+			font-size: 48px;
+			color: #FFFFFF;
+			font-weight: 700;
+			text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+		}
+		.form_section {
+			padding-top: 80px;
+			padding-bottom: 80px;
+			background: #f3f6f9; /* Light background for the form area */
+		}
+		.form_container_vp {
+			background: #FFFFFF;
+			padding: 40px;
+			border-radius: 8px;
+			box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+		}
+		.form_container_vp h2 {
+			font-size: 28px;
+			color: #333; /* Darker text color */
+			margin-bottom: 30px;
+			font-weight: 700;
+			text-align: center;
+		}
+		.form_container_vp .form-group label {
+			font-weight: 600;
+			color: #555;
+		}
+		.form_container_vp .form-control {
+			height: 48px;
+			border-radius: 5px;
+			border: 1px solid #ddd;
+			padding: 10px 15px;
+		}
+		.form_container_vp .form-control:focus {
+			border-color: #fa9e1b; /* VoyagePro orange */
+			box-shadow: 0 0 0 0.2rem rgba(250, 158, 27, 0.25);
+		}
+		.form_submit_button_vp {
+			width: 100%;
+			height: 50px;
+			background: #fa9e1b; /* VoyagePro orange */
+			color: #FFFFFF;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			font-weight: 700;
+			text-transform: uppercase;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		.form_submit_button_vp:hover {
+			background: #e08604; /* Darker orange on hover */
+		}
+		.switch_form_link_vp {
+			margin-top: 25px;
+			font-size: 15px;
+			text-align: center;
+		}
+		.switch_form_link_vp a {
+			color: #fa9e1b; /* VoyagePro orange */
+			text-decoration: none;
+			font-weight: 600;
+		}
+		.switch_form_link_vp a:hover {
+			text-decoration: underline;
+		}
+		.text-danger {
+		    color: #dc3545 !important; /* Bootstrap's danger color */
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="super_container">
+
+		<!-- Header -->
+		<header class="header">
+			<!-- Top Bar -->
+			<div class="top_bar">
+				<div class="container">
+					<div class="row">
+						<div class="col d-flex flex-row">
+							<div class="phone">099-999-55-77</div>
+							<div class="social">
+								<ul class="social_list">
+									<li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+									<li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+									<li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+									<li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+							<div class="user_box ml-auto">
+                                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                {
+                                    <div class="user_box_login user_box_link">
+                                        <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="form-inline">
+                                            <button type="submit" class="nav-link btn btn-link text-white p-0" style="text-decoration: none; background: none; border: none; cursor: pointer; display: inline;">Logout (@User.Identity.Name)</button>
+                                        </form>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="user_box_login user_box_link"><a asp-controller="Account" asp-action="Login">login</a></div>
+                                    <div class="user_box_register user_box_link"><a asp-controller="Account" asp-action="Register">register</a></div>
+                                }
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Main Navigation -->
+			<nav class="main_nav">
+				<div class="container">
+					<div class="row">
+						<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+                                <div class="logo"><a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="">VoyagePro</a></div>
+							</div>
+							<div class="main_nav_container ml-auto">
+								<ul class="main_nav_list">
+									<li class="main_nav_item"><a asp-controller="Home" asp-action="Index">home</a></li>
+									<li class="main_nav_item"><a asp-controller="About" asp-action="Index">about us</a></li>
+									<li class="main_nav_item"><a asp-controller="Offers" asp-action="Index">offers</a></li>
+									<li class="main_nav_item"><a asp-controller="News" asp-action="Index">news</a></li>
+									<li class="main_nav_item"><a asp-controller="Contact" asp-action="Index">contact</a></li>
+								</ul>
+							</div>
+							<div class="content_search ml-lg-0 ml-auto">
+								<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									 width="17px" height="17px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+								<g><g><g>
+								<path class="mag_glass" fill="#FFFFFF" d="M78.438,216.78c0,57.906,22.55,112.343,63.493,153.287c40.945,40.944,95.383,63.494,153.287,63.494s112.344-22.55,153.287-63.494C489.451,329.123,512,274.686,512,216.78c0-57.904-22.549-112.342-63.494-153.286C407.563,22.549,353.124,0,295.219,0c-57.904,0-112.342,22.549-153.287,63.494C100.988,104.438,78.439,158.876,78.438,216.78zM119.804,216.78c0-96.725,78.69-175.416,175.415-175.416s175.418,78.691,175.418,175.416c0,96.725-78.691,175.416-175.416,175.416C198.495,392.195,119.804,313.505,119.804,216.78z" />
+								</g></g><g><g>
+								<path class="mag_glass" fill="#FFFFFF" d="M6.057,505.942c4.038,4.039,9.332,6.058,14.625,6.058s10.587-2.019,14.625-6.058L171.268,369.98c8.076-8.076,8.076-21.172,0-29.248c-8.076-8.078-21.172-8.078-29.249,0L6.057,476.693C-2.019,484.77-2.019,497.865,6.057,505.942z" />
+								</g></g></g>
+								</svg>
+							</div>
+							<form id="search_form" class="search_form bez_1">
+								<input type="search" class="search_content_input bez_1">
+							</form>
+							<div class="hamburger">
+								<i class="fa fa-bars trans_200"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<div class="menu trans_500">
+			<div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+				<div class="menu_close_container"><div class="menu_close"></div></div>
+                <div class="logo menu_logo"><a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt=""></a></div>
+				<ul>
+					<li class="menu_item"><a asp-controller="Home" asp-action="Index">home</a></li>
+					<li class="menu_item"><a asp-controller="About" asp-action="Index">about us</a></li>
+					<li class="menu_item"><a asp-controller="Offers" asp-action="Index">offers</a></li>
+					<li class="menu_item"><a asp-controller="News" asp-action="Index">news</a></li>
+					<li class="menu_item"><a asp-controller="Contact" asp-action="Index">contact</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Page Hero -->
+        <div class="page_hero" style="background-image: url(@Url.Content("~/images/cta.jpg"));">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="page_hero_content text-center">
+							<h1>Login</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Login Form Section -->
+		<div class="form_section">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 col-md-8">
+						<div class="form_container_vp">
+							<h2>Welcome Back!</h2>
+							<form asp-controller="Account" asp-action="Login" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+								<div class="form-group">
+									<label asp-for="Email"></label>
+									<input asp-for="Email" class="form-control" placeholder="Enter your email" />
+									<span asp-validation-for="Email" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label asp-for="Password"></label>
+									<input asp-for="Password" class="form-control" placeholder="Enter your password" />
+									<span asp-validation-for="Password" class="text-danger"></span>
+								</div>
+                                @* Optional: Remember Me
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="RememberMe" /> @Html.DisplayNameFor(m => m.RememberMe)
+                                    </label>
+                                </div>
+                                *@
+								<button type="submit" class="form_submit_button_vp">Login</button>
+								<p class="switch_form_link_vp">
+                                    Don't have an account? <a asp-controller="Account" asp-action="Register">Sign Up here</a>
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+	<script src="~/js/jquery-3.2.1.min.js"></script>
+	<script src="~/styles/bootstrap4/popper.js"></script>
+	<script src="~/styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="~/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="~/plugins/easing/easing.js"></script>
+	<script src="~/js/custom.js"></script>
+    
+    @* Section for validation scripts *@
+    @await Html.PartialAsync("_ValidationScriptsPartial") 
+</body>
+</html>

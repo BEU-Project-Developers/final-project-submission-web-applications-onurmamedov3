@@ -1,0 +1,346 @@
+﻿@section Scripts {
+    <script>
+        // const mockData = { ... }; // REMOVE THIS
+        const entityDefinitions = { /* Your existing entityDefinitions object is good */ };
+
+        let currentEntityType = null;
+        // let currentData = []; // Data will be fetched on demand
+        let currentFormMode = null; // "create" or "edit"
+        let currentEditItemId = null;
+        let currentDeleteItem = null; // Store the item object to be deleted
+
+        // --- Helper function to get API base URL for entity ---
+        function getApiUrl(entityType, id = null) {
+            const base = `/api/admin/${entityType.toLowerCase()}`;
+            return id ? `${base}/${id}` : base;
+        }
+
+        // --- Load data from backend ---
+        async function loadDataForEntity(entityType) {
+            clearTableAndForm();
+            const entityDef = entityDefinitions[entityType];
+            if (!entityDef) return;
+
+            $('#tableTitle').text(`Manage ${entityDef.displayName}s`);
+
+            try {
+                const response = await fetch(getApiUrl(entityType));
+                if (!response.ok) {
+                    throw new Error(`Error fetching ${entityDef.displayName}s: ${response.statusText}`);
+                }
+                const data = await response.json();
+                currentData = data; // Store fetched data if needed for local find on edit/delete
+
+                if (data.length === 0) {
+                    $('#dataTable').hide();
+                    $('#noDataMessage').text(`No ${entityDef.displayName.toLowerCase()}s found. Click "Create New" to add one.`).show();
+                    return;
+                }
+
+                $('#noDataMessage').hide();
+                $('#dataTable').show();
+
+                const $headerRow = $('#tableHeaderRow');
+                $headerRow.empty();
+                entityDef.fields.forEach(field => {
+                    $headerRow.append(`<th>${field.label}</th>`);
+                });
+                $headerRow.append('<th>Actions</th>');
+
+                const $tableBody = $('#tableBody');
+                $tableBody.empty();
+                data.forEach(item => {
+                    let rowHtml = '<tr>';
+                    entityDef.fields.forEach(field => {
+                        const displayValue = item[field.name] !== undefined && item[field.name] !== null ? item[field.name] : '';
+                        rowHtml += `<td>${escapeHtml(displayValue.toString())}</td>`; // Escape HTML
+                    });
+                    rowHtml += `<td>
+                                    <button class="btn btn-sm btn-outline-secondary btn-edit" data-id="${item[entityDef.idField]}">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger btn-delete" data-id="${item[entityDef.idField]}">Delete</button>
+                                </td>`;
+                    rowHtml += '</tr>';
+                    $tableBody.append(rowHtml);
+                });
+            } catch (error) {
+                console.error("Failed to load data:", error);
+                $('#dataTable').hide();
+                $('#noDataMessage').text(`Failed to load ${entityDef.displayName.toLowerCase()}s. Check console for errors.`).show();
+            }
+        }
+
+        // --- Handle Form Submission (Create/Update) ---
+        $('#crudForm').submit(async function (event) {
+            event.preventDefault();
+            if (!currentEntityType) return;
+
+            const formData = {};
+            const entityDef = entityDefinitions[currentEntityType];
+            let isValid = true; // Basic client-side flag
+
+            entityDef.fields.forEach(field => {
+                const $field = $(`#field-${field.name}`);
+                let value = $field.val();
+                // Basic client-side required check
+                if (field.required && (value === null || value.trim() === '')) {
+                    $field.next('.field-validation-error').text(`${field.label} is required.`);
+                    isValid = false;
+                } else {
+                     $field.next('.field-validation-error').text('');
+                }
+
+                if (field.type === 'number') value = parseFloat(value);
+                else if (field.type === 'checkbox') value = $field.is(':checked');
+                formData[field.name] = value;
+            });
+
+            if (!isValid) {
+                alert("Please correct the highlighted errors.");
+                return;
+            }
+
+            let url, method;
+
+            if (currentFormMode === "create") {
+                url = getApiUrl(currentEntityType);
+                method = 'POST';
+            } else if (currentFormMode === "edit") {
+                formData[entityDef.idField] = currentEditItemId; // Ensure ID is part of the data for update if needed by backend
+                url = getApiUrl(currentEntityType, currentEditItemId);
+                method = 'PUT';
+            } else {
+                return;
+            }
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Add AntiForgeryToken if your API requires it for POST/PUT/DELETE
+                        // 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json(); // Try to get error details from backend
+                    let errorMessage = `Error ${currentFormMode === 'create' ? 'creating' : 'updating'} ${entityDef.displayName}. Status: ${response.status}`;
+                    if(errorData && errorData.errors) { // ASP.NET Core validation errors
+                        errorMessage += "\nDetails:\n";
+                        for (const key in errorData.errors) {
+                            errorMessage += `${key}: ${errorData.errors[key].join(', ')}\n`;
+                        }
+                    } else if (errorData && errorData.title) { // ASP.NET Core problem details
+                         errorMessage += `\n${errorData.title}`;
+                    }
+                    throw new Error(errorMessage);
+                }
+
+                alert(`${entityDef.displayName} ${currentFormMode === 'create' ? 'created' : 'updated'} successfully!`);
+                loadDataForEntity(currentEntityType);
+                hideForm();
+
+            } catch (error) {
+                console.error(`Failed to ${currentFormMode} ${entityDef.displayName}:`, error);
+                alert(`Failed to ${currentFormMode} ${entityDef.displayName}. ${error.message}`);
+            }
+        });
+
+        // --- Handle Edit Button Click ---
+        $('#tableBody').on('click', '.btn-edit', async function () {
+            const itemId = $(this).data('id');
+            const entityDef = entityDefinitions[currentEntityType];
+
+            // Fetch the specific item to ensure up-to-date data for editing
+            try {
+                const response = await fetch(getApiUrl(currentEntityType, itemId));
+                if (!response.ok) throw new Error("Failed to fetch item details for editing.");
+                const itemToEdit = await response.json();
+
+                if (itemToEdit) {
+                    currentFormMode = "edit";
+                    currentEditItemId = itemId; // or itemToEdit[entityDef.idField]
+                    $('#formTitle').text(`Edit ${entityDef.displayName}: ${itemToEdit[entityDef.fields[0].name] || `ID: ${itemId}`}`);
+                    populateFormFields(entityDef.fields, itemToEdit); // Your existing function
+                    $('#formContainer').show();
+                }
+            } catch (error) {
+                console.error("Error preparing edit form:", error);
+                alert("Could not load item for editing.");
+            }
+        });
+
+        // --- Handle Delete Button Click (Show Confirmation) ---
+         $('#tableBody').on('click', '.btn-delete', function () {
+            const itemId = $(this).data('id');
+            const entityDef = entityDefinitions[currentEntityType];
+            // Find item in locally cached currentData to display its name
+            // For robustness, you might re-fetch item if currentData can be stale
+            const item = currentData.find(i => i[entityDef.idField] == itemId);
+
+
+            if (item) {
+                currentDeleteItem = item; // Store the whole item
+                $('#deleteItemName').text(item[entityDef.fields[0].name] || `Item ID: ${itemId}`);
+                $('#deleteConfirmModal').show();
+            } else {
+                alert("Could not find item to delete. Please refresh the list.");
+            }
+        });
+
+        // --- Handle Confirm Delete ---
+        $('#btnConfirmDelete').click(async function() {
+            if (currentDeleteItem && currentEntityType) {
+                const entityDef = entityDefinitions[currentEntityType];
+                const itemId = currentDeleteItem[entityDef.idField];
+                try {
+                    const response = await fetch(getApiUrl(currentEntityType, itemId), {
+                        method: 'DELETE',
+                        headers: {
+                            // Add AntiForgeryToken if needed
+                            // 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                        }
+                    });
+                    if (!response.ok) {
+                         const errorText = await response.text();
+                        throw new Error(`Error deleting ${entityDef.displayName}. Status: ${response.status}. ${errorText}`);
+                    }
+                    alert(`${entityDef.displayName} deleted successfully!`);
+                    loadDataForEntity(currentEntityType); // Refresh table
+                } catch (error) {
+                    console.error(`Failed to delete ${entityDef.displayName}:`, error);
+                    alert(`Failed to delete ${entityDef.displayName}. ${error.message}`);
+                }
+            }
+            hideDeleteConfirm();
+        });
+
+        // Your existing helper functions: populateFormFields, clearTableAndForm, hideForm, hideDeleteConfirm
+        // Make sure populateFormFields correctly handles input types (e.g. checkbox, datetime-local)
+
+        // New helper for escaping HTML to prevent XSS when displaying data
+        function escapeHtml(unsafe) {
+            if (typeof unsafe !== 'string') {
+                 if (unsafe === null || unsafe === undefined) return '';
+                 unsafe = unsafe.toString();
+            }
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Initial setup for entity selection
+        $(document).ready(function () {
+            $('#entityType').change(function () {
+                currentEntityType = $(this).val();
+                if (currentEntityType && entityDefinitions[currentEntityType]) {
+                    $('#btnCreateNew').prop('disabled', false);
+                    loadDataForEntity(currentEntityType);
+                } else {
+                    $('#btnCreateNew').prop('disabled', true);
+                    clearTableAndForm();
+                }
+            });
+
+            $('#btnCreateNew').click(function () {
+                if (!currentEntityType) return;
+                currentFormMode = "create";
+                currentEditItemId = null;
+                const entityDef = entityDefinitions[currentEntityType];
+                $('#formTitle').text(`Create New ${entityDef.displayName}`);
+                populateFormFields(entityDef.fields); // Ensure this resets values
+                $('#formContainer').show();
+                $('#crudForm')[0].reset();
+            });
+
+            $('#btnCancel').click(function () {
+                hideForm();
+            });
+
+            $('#btnCancelDelete').click(function() {
+                hideDeleteConfirm();
+            });
+
+            // Ensure other functions are defined as per your original script
+            // like populateFormFields, clearTableAndForm, hideForm, hideDeleteConfirm
+            // ... (ensure these functions are defined as in your original file or adapt them) ...
+        });
+
+        // Placeholder for your existing helper functions - ensure they are correctly defined
+        function populateFormFields(fields, itemData = null) {
+            const $formFields = $('#formFields');
+            $formFields.empty();
+            fields.forEach(field => {
+                const value = itemData ? (itemData[field.name] !== undefined && itemData[field.name] !== null ? itemData[field.name] : '') : '';
+                // Handle datetime-local which needs YYYY-MM-DDTHH:mm format
+                let formattedValue = value;
+                if (field.type === 'datetime-local' && value) {
+                    // Assuming backend sends ISO 8601 or similar that Date can parse
+                    // We need to format it to what datetime-local input expects
+                    try {
+                        const dateObj = new Date(value);
+                        //toISOString gives Z, slice it off and potentially adjust for local timezone if needed,
+                        //but usually browsers handle it well if the string is mostly standard.
+                        // For simplicity, ensure backend sends a string datetime-local can parse, or format here.
+                        // Example: "2025-06-15T08:00" is what it wants. If value is "2025-06-15T08:00:00", it's fine.
+                        // If it's a full ISO string like "2025-06-15T08:00:00.000Z", it might need formatting.
+                        // For now, let's assume the 'value' from backend is directly usable or simple enough.
+                        // For a robust solution, use a date library like Moment.js or date-fns to format.
+                         if (value.includes("T") && value.length > 16) { // Basic check for ISO-like string
+                            formattedValue = value.substring(0, 16); // YYYY-MM-DDTHH:mm
+                        }
+
+                    } catch (e) { console.error("Error parsing date for field:", field.name, value, e); formattedValue = '';}
+                }
+
+
+                let fieldHtml = `<div class="form-group">
+                                    <label for="field-${field.name}">${field.label}</label>`;
+                if (field.type === 'textarea') {
+                    fieldHtml += `<textarea class="form-control" id="field-${field.name}" name="${field.name}" ${field.required ? 'required' : ''}>${escapeHtml(formattedValue)}</textarea>`;
+                } else if (field.type === 'checkbox') {
+                    fieldHtml += `<input type="checkbox" class="form-check-input" id="field-${field.name}" name="${field.name}" ${value ? 'checked' : ''} />`;
+                }
+                else {
+                    fieldHtml += `<input type="${field.type || 'text'}" class="form-control" id="field-${field.name}" name="${field.name}" value="${escapeHtml(formattedValue)}"
+                                        ${field.required ? 'required' : ''}
+                                        ${field.min !== undefined ? `min="${field.min}"` : ''}
+                                        ${field.max !== undefined ? `max="${field.max}"` : ''}
+                                        ${field.step !== undefined ? `step="${field.step}"` : ''} />`;
+                }
+                fieldHtml += `<span class="text-danger field-validation-error" data-valmsg-for="${field.name}"></span>`;
+                fieldHtml += `</div>`;
+                $formFields.append(fieldHtml);
+            });
+        }
+
+        function clearTableAndForm() {
+            $('#tableTitle').text('');
+            $('#tableHeaderRow').empty();
+            $('#tableBody').empty();
+            $('#dataTable').hide();
+            $('#noDataMessage').hide();
+            hideForm();
+            hideDeleteConfirm();
+        }
+
+        function hideForm() {
+            $('#formContainer').hide();
+            $('#crudForm')[0].reset();
+            // Clear any previous validation messages
+            $('.field-validation-error').text('');
+            currentFormMode = null;
+            currentEditItemId = null;
+        }
+
+        function hideDeleteConfirm() {
+            $('#deleteConfirmModal').hide();
+            currentDeleteItem = null;
+        }
+
+    </script>
+}

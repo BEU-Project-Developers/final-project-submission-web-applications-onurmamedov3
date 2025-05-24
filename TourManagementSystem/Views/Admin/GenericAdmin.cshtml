@@ -1,0 +1,286 @@
+﻿@{
+    ViewData["Title"] = "Admin Management";
+    Layout = "_Layout"; // This correctly references your main layout file
+}
+
+<style>
+    .admin-crud-container {
+        padding-top: 180px; /* Adjust as needed based on your header height */
+        padding-bottom: 50px;
+    }
+
+    .entity-selector, .action-buttons, .data-table-container, .form-container {
+        margin-bottom: 20px;
+    }
+
+    .form-container {
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: #f9f9f9;
+        display: none; /* Initially hidden, shown by JavaScript */
+    }
+
+    #dataTable th, #dataTable td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    #dataTable th {
+        background-color: #f0f0f0;
+    }
+
+    .btn-admin {
+        background-color: #fa9e1b;
+        border-color: #fa9e1b;
+        color: white;
+        margin-right: 5px;
+    }
+
+        .btn-admin:hover {
+            background-color: #e08604;
+            border-color: #e08604;
+            color: white;
+        }
+    /* Add other styles if needed */
+</style>
+
+<div class="container admin-crud-container">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+
+    <div class="entity-selector form-group">
+        <label for="entityType">Select Entity to Manage:</label>
+        <select id="entityType" class="form-control" style="max-width: 300px;">
+            <option value="">-- Select Type --</option>
+            <option value="Hotels">Hotels</option>
+            <option value="Trips">Trips</option>
+            <option value="Users">Users</option>
+            <option value="Cruises">Cruises</option>
+            <option value="Flights">Flights</option>
+            <option value="Activities">Activities</option>
+            <option value="CarRentals">Car Rentals</option>
+        </select>
+    </div>
+
+    <div class="action-buttons">
+        <button id="btnCreateNew" class="btn btn-admin" disabled>Create New</button>
+    </div>
+
+    <div class="data-table-container">
+        <h3 id="tableTitle"></h3>
+        <table id="dataTable" class="table table-striped table-bordered" style="display: none;">
+            <thead>
+                <tr id="tableHeaderRow"></tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+        <p id="noDataMessage" style="display: none;">No data available for the selected entity.</p>
+    </div>
+
+    <div id="formContainer" class="form-container">
+        <h3 id="formTitle"></h3>
+        <form id="crudForm">
+            <div id="formFields">
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" id="btnSave" class="btn btn-admin">Save</button>
+                <button type="button" id="btnCancel" class="btn btn-secondary">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="deleteConfirmModal" style="display:none; border:1px solid red; padding:15px; margin-top:15px; background-color:#ffeeee;">
+        <h4>Confirm Delete</h4>
+        <p>Are you sure you want to delete this item: <strong id="deleteItemName"></strong>?</p>
+        <button id="btnConfirmDelete" class="btn btn-danger">Yes, Delete</button>
+        <button id="btnCancelDelete" class="btn btn-secondary">Cancel</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Your JavaScript code (const entityDefinitions, functions, $(document).ready, etc.)
+        // goes here, exactly as you provided it.
+        // For brevity, I'm not repeating the entire script here.
+        // Make sure this is the script that starts with:
+        // const entityDefinitions = { /* ... */ };
+        // ... and ends with your helper functions like hideDeleteConfirm() ...
+
+        const entityDefinitions = {
+            Hotels: {
+                displayName: "Hotel",
+                fields: [
+                    { name: "Name", label: "Hotel Name", type: "text", required: true },
+                    { name: "Location", label: "Location", type: "text", required: true },
+                    { name: "Rating", label: "Rating (1-5)", type: "number", required: false, min: 1, max: 5 },
+                    { name: "PricePerNight", label: "Price Per Night", type: "number", step: "0.01", required: false },
+                    { name: "ImageUrl", label: "Image URL", type: "url", required: false }
+                ],
+                idField: "Id" // Assuming 'Id' is the primary key for Hotel model
+            },
+            Trips: { /* ... definition ... */ },
+            Users: { /* ... definition ... */ },
+            Cruises: { /* ... definition ... */ },
+            Flights: { /* ... definition ... */ },
+            Activities: { /* ... definition ... */ },
+            CarRentals: { /* ... definition ... */ }
+            // Ensure all entity definitions used in your dropdown are defined here
+        };
+
+        let currentEntityType = null;
+        let currentData = []; // Will store fetched data
+        let currentFormMode = null; // "create" or "edit"
+        let currentEditItemId = null;
+        let currentDeleteItem = null;
+
+        function getApiUrl(entityType, id = null) {
+            const base = `/api/admin/${entityType.toLowerCase()}`; // Ensure this matches your AdminApiController routes
+            return id ? `${base}/${id}` : base;
+        }
+
+        async function loadDataForEntity(entityType) {
+            clearTableAndForm();
+            const entityDef = entityDefinitions[entityType];
+            if (!entityDef) {
+                console.error("Entity definition not found for:", entityType);
+                return;
+            }
+
+            $('#tableTitle').text(`Manage ${entityDef.displayName}s`);
+
+            try {
+                const response = await fetch(getApiUrl(entityType));
+                if (!response.ok) {
+                    throw new Error(`Error fetching ${entityDef.displayName}s: ${response.status} ${response.statusText}`);
+                }
+                const data = await response.json();
+                currentData = data;
+
+                if (!data || data.length === 0) { // Check for null or empty data
+                    $('#dataTable').hide();
+                    $('#noDataMessage').text(`No ${entityDef.displayName.toLowerCase()}s found. Click "Create New" to add one.`).show();
+                    return;
+                }
+
+                $('#noDataMessage').hide();
+                $('#dataTable').show();
+
+                const $headerRow = $('#tableHeaderRow');
+                $headerRow.empty();
+                entityDef.fields.forEach(field => {
+                    $headerRow.append(`<th>${field.label}</th>`);
+                });
+                $headerRow.append('<th>Actions</th>');
+
+                const $tableBody = $('#tableBody');
+                $tableBody.empty();
+                data.forEach(item => {
+                    let rowHtml = '<tr>';
+                    entityDef.fields.forEach(field => {
+                        const displayValue = item[field.name.toLowerCase()] !== undefined && item[field.name.toLowerCase()] !== null ? item[field.name.toLowerCase()] : (item[field.name] !== undefined && item[field.name] !== null ? item[field.name] : '');
+                        rowHtml += `<td>${escapeHtml(displayValue.toString())}</td>`;
+                    });
+                    rowHtml += `<td>
+                                    <button class="btn btn-sm btn-outline-secondary btn-edit" data-id="${item[entityDef.idField.toLowerCase()] || item[entityDef.idField]}">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger btn-delete" data-id="${item[entityDef.idField.toLowerCase()] || item[entityDef.idField]}">Delete</button>
+                                </td>`;
+                    rowHtml += '</tr>';
+                    $tableBody.append(rowHtml);
+                });
+            } catch (error) {
+                console.error("Failed to load data for " + entityType + ":", error);
+                $('#dataTable').hide();
+                $('#noDataMessage').text(`Failed to load ${entityDef.displayName.toLowerCase()}s. Error: ${error.message}. Check console for more details.`).show();
+            }
+        }
+
+        // ... (rest of your JavaScript functions: populateFormFields, crudForm submit, edit, delete handlers, escapeHtml, etc.)
+        // Ensure all functions you had in your original script are included here.
+        // For brevity, I'm assuming they are the same as the ones we discussed previously.
+        // Make sure your $(document).ready function is also here.
+
+        $(document).ready(function () {
+            $('#entityType').change(function () {
+                currentEntityType = $(this).val();
+                if (currentEntityType && entityDefinitions[currentEntityType]) {
+                    $('#btnCreateNew').prop('disabled', false);
+                    loadDataForEntity(currentEntityType);
+                } else {
+                    $('#btnCreateNew').prop('disabled', true);
+                    clearTableAndForm();
+                }
+            });
+
+            $('#btnCreateNew').click(function () {
+                if (!currentEntityType) return;
+                currentFormMode = "create";
+                currentEditItemId = null;
+                const entityDef = entityDefinitions[currentEntityType];
+                $('#formTitle').text(`Create New ${entityDef.displayName}`);
+                populateFormFields(entityDef.fields);
+                $('#formContainer').show();
+                $('#crudForm')[0].reset();
+            });
+
+            $('#crudForm').submit(async function (event) { /* ... your existing submit logic ... */ });
+            $('#tableBody').on('click', '.btn-edit', async function () { /* ... your existing edit logic ... */ });
+            $('#tableBody').on('click', '.btn-delete', function () { /* ... your existing delete show modal logic ... */ });
+            $('#btnConfirmDelete').click(async function() { /* ... your existing confirm delete logic ... */ });
+            $('#btnCancel').click(function () { hideForm(); });
+            $('#btnCancelDelete').click(function() { hideDeleteConfirm(); });
+        });
+
+        function populateFormFields(fields, itemData = null) {
+            const $formFields = $('#formFields');
+            $formFields.empty();
+            fields.forEach(field => {
+                // Make sure field names used to access itemData (e.g., itemData[field.name.toLowerCase()])
+                // match the casing of properties returned by your API.
+                // JavaScript is case-sensitive. APIs often return camelCase (e.g., "hotelName").
+                const dataKey = field.name.charAt(0).toLowerCase() + field.name.slice(1); // Example: "Name" -> "name"
+                const value = itemData ? (itemData[dataKey] !== undefined && itemData[dataKey] !== null ? itemData[dataKey] : (itemData[field.name] !== undefined && itemData[field.name] !== null ? itemData[field.name] : '')) : '';
+
+                let formattedValue = value;
+                if (field.type === 'datetime-local' && value) {
+                    try {
+                        if (value.includes("T") && value.length > 16) {
+                            formattedValue = value.substring(0, 16);
+                        } else if (!value.includes("T")) { // If only date part is there from backend
+                            const dateOnly = new Date(value);
+                            if (!isNaN(dateOnly.valueOf())) {
+                                formattedValue = dateOnly.getFullYear() + '-' +
+                                                 ('0' + (dateOnly.getMonth() + 1)).slice(-2) + '-' +
+                                                 ('0' + dateOnly.getDate()).slice(-2) + 'T00:00';
+                            }
+                        }
+                    } catch (e) { console.error("Error parsing date for field:", field.name, value, e); formattedValue = '';}
+                }
+
+
+                let fieldHtml = `<div class="form-group">
+                                    <label for="field-${field.name}">${field.label}</label>`;
+                if (field.type === 'textarea') {
+                    fieldHtml += `<textarea class="form-control" id="field-${field.name}" name="${field.name}" ${field.required ? 'required' : ''}>${escapeHtml(formattedValue)}</textarea>`;
+                } else if (field.type === 'checkbox') {
+                    fieldHtml += `<input type="checkbox" class="form-check-input" id="field-${field.name}" name="${field.name}" ${value ? 'checked' : ''} />`;
+                }
+                else {
+                    fieldHtml += `<input type="${field.type || 'text'}" class="form-control" id="field-${field.name}" name="${field.name}" value="${escapeHtml(formattedValue)}"
+                                        ${field.required ? 'required' : ''}
+                                        ${field.min !== undefined ? `min="${field.min}"` : ''}
+                                        ${field.max !== undefined ? `max="${field.max}"` : ''}
+                                        ${field.step !== undefined ? `step="${field.step}"` : ''} />`;
+                }
+                fieldHtml += `<span class="text-danger field-validation-error" data-valmsg-for="${field.name}"></span>`;
+                fieldHtml += `</div>`;
+                $formFields.append(fieldHtml);
+            });
+        }
+
+        function clearTableAndForm() { /* ... your existing function ... */ }
+        function hideForm() { /* ... your existing function ... */ }
+        function hideDeleteConfirm() { /* ... your existing function ... */ }
+        function escapeHtml(unsafe) { /* ... your existing function ... */ }
+
+    </script>
+}

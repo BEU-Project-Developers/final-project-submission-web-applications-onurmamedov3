@@ -1,0 +1,44 @@
+﻿@* File: TourManagementSystem/Views/Offers/Details_Placeholder.cshtml *@
+@model TourManagementSystem.Models.HotelViewModel
+
+@{
+    ViewData["Title"] = Model?.Name ?? "Offer Details";
+}
+
+<div class="container" style="padding-top: 150px; padding-bottom: 50px;">
+    @if (Model != null)
+    {
+        <h1>@Model.Name</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                @if (!string.IsNullOrEmpty(Model.PrimaryImageUrl))
+                {
+                    <img src="@Url.Content(Model.PrimaryImageUrl)" alt="@Model.Name" class="img-fluid" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/images/default_offer_large.jpg")" alt="Default Image" class="img-fluid" />
+                }
+            </div>
+            <div class="col-md-6">
+                <p><strong>Destination:</strong> @Model.Destination</p>
+                <p><strong>Price:</strong> @Model.PricePerNight.ToString("C") per night</p>
+                <p><strong>Rating:</strong> @Model.Rating / 5</p>
+                <p><strong>Available Rooms:</strong> @Model.AvailableRooms</p>
+                <p><strong>Address:</strong> @Model.Address</p>
+                <div>
+                    <strong>Description:</strong>
+                    <p>@Html.Raw(Model.Description?.Replace("\n", "<br />"))</p>
+                </div>
+                <a asp-controller="Booking" asp-action="Create" asp-route-offerId="@Model.Id" asp-route-offerType="Hotel" class="btn btn-primary">Book Now</a>
+                <a asp-action="Index" class="btn btn-secondary">Back to Offers</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>Offer details not found.</p>
+        <a asp-action="Index" class="btn btn-secondary">Back to Offers</a>
+    }
+</div>
