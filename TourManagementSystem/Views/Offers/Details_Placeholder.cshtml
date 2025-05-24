@@ -5,40 +5,96 @@
     ViewData["Title"] = Model?.Name ?? "Offer Details";
 }
 
-<div class="container" style="padding-top: 150px; padding-bottom: 50px;">
+@* Add a section for page-specific styles if you need more complex CSS later *@
+@section Styles {
+    <style>
+        .offer-details-container {
+            /* Increased top padding to ensure content is below the navbar */
+            padding-top: 180px; /* Start with a larger value, adjust as needed */
+            padding-bottom: 60px;
+            min-height: calc(100vh - 120px); /* Example: ensure it takes at least viewport height minus header/footer */
+        }
+
+            .offer-details-container h1 {
+                margin-bottom: 20px; /* Space below the title */
+            }
+
+            .offer-details-container .img-fluid {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px; /* Optional: rounded corners for the image */
+                margin-bottom: 20px; /* Space below image on small screens */
+            }
+
+            .offer-details-container .btn {
+                margin-top: 15px;
+                margin-right: 10px;
+            }
+
+            .offer-details-container p,
+            .offer-details-container div > strong {
+                margin-bottom: 0.75rem;
+                line-height: 1.6;
+            }
+    </style>
+}
+
+<div class="container offer-details-container">
+    @* Added a class and increased padding-top *@
     @if (Model != null)
     {
-        <h1>@Model.Name</h1>
-        <hr />
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-12">
+                @* Title spans full width initially *@
+                <h1>@Model.Name</h1>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-lg-6">
+                @* Give image a bit more space or adjust as needed *@
                 @if (!string.IsNullOrEmpty(Model.PrimaryImageUrl))
                 {
                     <img src="@Url.Content(Model.PrimaryImageUrl)" alt="@Model.Name" class="img-fluid" />
                 }
                 else
                 {
-                    <img src="@Url.Content("~/images/default_offer_large.jpg")" alt="Default Image" class="img-fluid" />
+                    @* Ensure this default image exists in wwwroot/images/ *@
+                    <img src="@Url.Content("~/images/default_offer_large.jpg")" alt="Default Offer Image" class="img-fluid" />
                 }
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5 col-lg-6">
                 <p><strong>Destination:</strong> @Model.Destination</p>
                 <p><strong>Price:</strong> @Model.PricePerNight.ToString("C") per night</p>
-                <p><strong>Rating:</strong> @Model.Rating / 5</p>
+                <p>
+                    <strong>Rating:</strong>
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <i class="fa @(i < Model.Rating ? "fa-star" : "fa-star-o")" style="color: #FFD700;"></i> @* Example gold color for stars *@
+                    }
+                    (@Model.Rating / 5.0)
+                </p>
                 <p><strong>Available Rooms:</strong> @Model.AvailableRooms</p>
-                <p><strong>Address:</strong> @Model.Address</p>
+                @if (!string.IsNullOrWhiteSpace(Model.Address))
+                {
+                    <p><strong>Address:</strong> @Model.Address</p>
+                }
                 <div>
                     <strong>Description:</strong>
                     <p>@Html.Raw(Model.Description?.Replace("\n", "<br />"))</p>
                 </div>
                 <a asp-controller="Booking" asp-action="Create" asp-route-offerId="@Model.Id" asp-route-offerType="Hotel" class="btn btn-primary">Book Now</a>
-                <a asp-action="Index" class="btn btn-secondary">Back to Offers</a>
+                <a asp-action="Index" asp-controller="Offers" class="btn btn-outline-secondary">Back to Offers</a> @* Changed to outline for secondary action *@
             </div>
         </div>
     }
     else
     {
-        <p>Offer details not found.</p>
-        <a asp-action="Index" class="btn btn-secondary">Back to Offers</a>
+        <div class="text-center">
+            @* Center the "not found" message *@
+            <h2>Offer Not Found</h2>
+            <p>The offer you are looking for is not available.</p>
+            <a asp-action="Index" asp-controller="Offers" class="btn btn-primary">Back to Offers</a>
+        </div>
     }
 </div>

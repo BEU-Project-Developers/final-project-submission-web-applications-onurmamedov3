@@ -1,8 +1,8 @@
 // File: TourManagementSystem/Program.cs
 using Microsoft.EntityFrameworkCore;
 using TourManagementSystem.Data;
-using TourManagementSystem.Services;
-// using Microsoft.AspNetCore.Identity; // If using Identity
+using TourManagementSystem.Services; // Ensure this using directive is present
+// using Microsoft.AspNetCore.Identity; // Uncomment if you plan to use ASP.NET Core Identity features
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,30 +10,46 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
-// Add .LogTo(Console.WriteLine, LogLevel.Information) to see EF Core queries in console
+// .LogTo(Console.WriteLine, LogLevel.Information) // Uncomment to see EF Core queries in console during development
 );
 
 // 2. Register your custom services for Dependency Injection
 builder.Services.AddScoped<IHotelService, HotelService>();
 builder.Services.AddScoped<IContactService, ContactService>();
-// builder.Services.AddScoped<IUserService, UserService>(); // If you have a UserService
-// Add other services (ICarRentalService, IFlightService, etc.) here
+builder.Services.AddScoped<IUserService, UserService>(); // <<< THIS LINE IS NOW UNCOMMENTED
+// Add other services (ICarRentalService, IFlightService, etc.) here as you create them
 
 // 3. Add Identity services if you're using ASP.NET Core Identity
-// builder.Services.AddIdentity<User, IdentityRole>() // Or your custom User and Role classes
+//    If your AccountController relies on UserManager<User> or SignInManager<User>,
+//    you MUST configure Identity here.
+//
+//    Example (ensure your User model inherits from IdentityUser if you use this):
+//    using TourManagementSystem.Models; // Assuming User model is here
+//    using Microsoft.AspNetCore.Identity;
+//
+//    builder.Services.AddIdentity<User, IdentityRole>(options => {
+//        options.SignIn.RequireConfirmedAccount = false; // Adjust as needed
+//        options.Password.RequireDigit = true;
+//        options.Password.RequireLowercase = true;
+//        options.Password.RequireUppercase = true;
+//        options.Password.RequireNonAlphanumeric = false;
+//        options.Password.RequiredLength = 6;
+//    })
 //    .AddEntityFrameworkStores<ApplicationDbContext>()
 //    .AddDefaultTokenProviders();
-
-// builder.Services.ConfigureApplicationCookie(options =>
-// {
-//    options.LoginPath = "/Account/Login";
-//    options.AccessDeniedPath = "/Account/AccessDenied";
-// });
+//
+//    builder.Services.ConfigureApplicationCookie(options =>
+//    {
+//        options.LoginPath = "/Account/Login";       // Your login page
+//        options.LogoutPath = "/Account/Logout";      // Your logout action
+//        options.AccessDeniedPath = "/Account/AccessDenied"; // Your access denied page
+//        options.SlidingExpiration = true;
+//    });
 
 
 // 4. Add MVC services
 builder.Services.AddControllersWithViews();
-// builder.Services.AddRazorPages(); // If you use Razor Pages alongside MVC
+// builder.Services.AddRazorPages(); // If you use Razor Pages
 
 var app = builder.Build();
 
@@ -41,20 +57,23 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    app.UseHsts(); // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
 else
 {
-    app.UseDeveloperExceptionPage(); // More detailed errors in development
+    app.UseDeveloperExceptionPage();
+
+
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); // Enables serving static files from wwwroot
+app.UseStaticFiles();
 
 app.UseRouting();
 
-// app.UseAuthentication(); // Must come before UseAuthorization
-// app.UseAuthorization();
+// If you configured ASP.NET Core Identity, you need these:
+// app.UseAuthentication(); // Crucial: Verifies the user's identity
+// app.UseAuthorization();  // Crucial: Checks if the authenticated user has permission
 
 app.MapControllerRoute(
     name: "default",
