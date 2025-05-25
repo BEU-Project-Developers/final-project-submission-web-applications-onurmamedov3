@@ -9,11 +9,14 @@ wwwroot\images\blog_2.jpg
 wwwroot\images\blog_3.jpg
 wwwroot\images\blog_background.jpg
 wwwroot\images\bus.png
+wwwroot\images\carImage.png
 wwwroot\images\compass.png
 wwwroot\images\contact.png
 wwwroot\images\contact_background.jpg
 wwwroot\images\cruise.png
 wwwroot\images\cta.jpg
+wwwroot\images\default_activity.png
+wwwroot\images\default_cruise.png
 wwwroot\images\departure.png
 wwwroot\images\diving.png
 wwwroot\images\dropdown.png
@@ -30,6 +33,7 @@ wwwroot\images\home_slider_1.jpg
 wwwroot\images\home_slider_2.jpg
 wwwroot\images\home_slider_3.jpg
 wwwroot\images\hotelImage.png
+wwwroot\images\imagePlane.png
 wwwroot\images\intro.png
 wwwroot\images\intro_1.jpg
 wwwroot\images\intro_2.jpg
@@ -149,3 +153,4 @@ wwwroot\styles\offers_styles.css
 wwwroot\styles\responsive.css
 wwwroot\styles\single_listing_responsive.css
 wwwroot\styles\single_listing_styles.css
+wwwroot\styles\validation_animations.css

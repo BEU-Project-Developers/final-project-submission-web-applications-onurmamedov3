@@ -1,62 +1,171 @@
 ﻿@* File: TourManagementSystem/Views/Offers/Index.cshtml *@
-@model IEnumerable<TourManagementSystem.Models.HotelViewModel>
-@* This model will primarily be for Hotels. If displaying other types, 
-   you'd need a more generic model or a more complex view logic. *@
+@model object
+@using TourManagementSystem.Models // Required for TripType enum and ViewModels
+
 @{
     ViewData["Title"] = "Our Offers";
+    var entityType = ViewData["EntityType"] as string ?? "Hotels";
 
-    var searchTerm = ViewData["SearchTerm"] as string;
-    var checkInDate = ViewData["CheckInDate"] as string; // Keep as string for <input type="date">
-    var checkOutDate = ViewData["CheckOutDate"] as string; // Keep as string
-    var adults = ViewData["Adults"] as int?;
-    var children = ViewData["Children"] as int?;
-    var minRating = ViewData["MinRating"] as int?;
-    var maxPrice = ViewData["MaxPrice"] as decimal?;
-    var entityType = ViewData["EntityType"] as string ?? "Hotels"; // Default to Hotels
-    var selectedAmenities = ViewData["SelectedAmenities"] as List<string> ?? new List<string>();
+    // Cast the model based on entityType
+    IEnumerable<HotelViewModel> hotelOffers = null;
+    IEnumerable<CarRentalViewModel> carRentalOffers = null;
+    IEnumerable<FlightViewModel> flightOffers = null;
+    IEnumerable<CruiseViewModel> cruiseOffers = null;
+    IEnumerable<ActivityViewModel> activityOffers = null;
+    // Add IEnumerable for Trips when implemented
 
-    // Attempt to parse dates for the input type="date" value attribute.
-    // It needs "yyyy-MM-dd" format.
-    string checkInDateValue = string.Empty;
-    if (DateTime.TryParse(checkInDate, out DateTime dtIn))
+    if (entityType == "Hotels" && Model is IEnumerable<HotelViewModel> hotels)
     {
-        checkInDateValue = dtIn.ToString("yyyy-MM-dd");
+        hotelOffers = hotels;
     }
-    else if (!string.IsNullOrEmpty(checkInDate))
-    { // If it was already yyyy-MM-dd
-        checkInDateValue = checkInDate;
+    else if (entityType == "CarRentals" && Model is IEnumerable<CarRentalViewModel> cars)
+    {
+        carRentalOffers = cars;
+    }
+    else if (entityType == "Flights" && Model is IEnumerable<FlightViewModel> flights)
+    {
+        flightOffers = flights;
+    }
+    else if (entityType == "Cruises" && Model is IEnumerable<CruiseViewModel> cruises)
+    {
+        cruiseOffers = cruises;
+    }
+    else if (entityType == "Activities" && Model is IEnumerable<ActivityViewModel> activities)
+    {
+        activityOffers = activities;
     }
 
-    string checkOutDateValue = string.Empty;
-    if (DateTime.TryParse(checkOutDate, out DateTime dtOut))
+    // --- Retrieve search parameters from ViewData for pre-filling forms ---
+    // Hotel
+    var destination_hotel = ViewData["Destination"] as string;
+    var hotelName_hotel = ViewData["HotelName"] as string;
+    var checkInDate_hotel = ViewData["CheckInDate"] as string;
+    var checkOutDate_hotel = ViewData["CheckOutDate"] as string;
+    var adults_hotel = ViewData["Adults"] as int?;
+    var children_hotel = ViewData["Children"] as int?;
+    var minRating_hotel = ViewData["MinRating"] as int?;
+    var maxPrice_hotel = ViewData["MaxPrice"] as decimal?;
+    var selectedAmenities_hotel = ViewData["SelectedAmenities"] as List<string> ?? new List<string>();
+
+    // Car Rental
+    var location_car = ViewData["Location"] as string;
+    var pickupDate_car = ViewData["PickupDate"] as string;
+    var returnDate_car = ViewData["ReturnDate_Car"] as string;
+    var carModelKeyword_car = ViewData["CarModelKeyword"] as string;
+
+    // Flight
+    var origin_flight = ViewData["Origin"] as string;
+    var destination_flight = ViewData["FlightDestination"] as string;
+    var departureDate_flight = ViewData["DepartureDate"] as string;
+    var returnDate_flight = ViewData["ReturnDate_Flight"] as string;
+    var passengers_flight = ViewData["Passengers"] as int? ?? 1;
+    var tripType_flight = (ViewData["TripType"] as TripType?) ?? TripType.RoundTrip;
+
+    // Cruise
+    var destinationRegion_cruise = ViewData["DestinationRegion"] as string;
+    var cruiseDeparturePort_cruise = ViewData["CruiseDeparturePort"] as string;
+    var cruiseLineName_cruise = ViewData["CruiseLineName"] as string;
+    var departureMonth_cruise = ViewData["DepartureMonth"] as string; // yyyy-MM
+
+    // Activity
+    var activitySearchTerm_activity = ViewData["ActivitySearchTerm"] as string;
+    var activityCategory_activity = ViewData["ActivityCategory"] as string;
+    var activityDate_activity = ViewData["ActivityDate"] as string;
+    var participants_activity = ViewData["Participants"] as int?;
+
+
+    string FormatDateForInput(string dateStr)
     {
-        checkOutDateValue = dtOut.ToString("yyyy-MM-dd");
+        if (DateTime.TryParse(dateStr, out DateTime dt)) return dt.ToString("yyyy-MM-dd");
+        if (!string.IsNullOrEmpty(dateStr) && dateStr.Length == 10 && dateStr.IndexOf('-') == 4 && dateStr.LastIndexOf('-') == 7) return dateStr;
+        return string.Empty;
     }
-    else if (!string.IsNullOrEmpty(checkOutDate))
-    {
-        checkOutDateValue = checkOutDate;
-    }
+    var checkInDate_hotelValue = FormatDateForInput(checkInDate_hotel);
+    var checkOutDate_hotelValue = FormatDateForInput(checkOutDate_hotel);
+    var pickupDate_carValue = FormatDateForInput(pickupDate_car);
+    var returnDate_carValue = FormatDateForInput(returnDate_car);
+    var departureDate_flightValue = FormatDateForInput(departureDate_flight);
+    var returnDate_flightValue = FormatDateForInput(returnDate_flight);
+    var activityDate_activityValue = FormatDateForInput(activityDate_activity);
 }
 
 @section Styles {
     <link rel="stylesheet" type="text/css" href="~/styles/offers_styles.css">
     <link rel="stylesheet" type="text/css" href="~/styles/offers_responsive.css">
-            @* Add styles for a jQuery UI Datepicker if you choose to use one over native type="date"
-       <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> *@
+    <style>
+        .search_panel_content .search_item {
+            margin-bottom: 15px;
+            padding-right: 10px;
+        }
+
+            .search_panel_content .search_item:last-of-type {
+                margin-bottom: 15px;
+            }
+
+            .search_panel_content .search_item:last-child {
+                padding-right: 0;
+            }
+
+        .search_panel_content .button.search_button {
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+
+        .search_panel_content.d-flex.flex-lg-row > .search_item {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 150px;
+            min-width: 140px;
+        }
+
+            .search_panel_content.d-flex.flex-lg-row > .search_item.extras {
+                flex-basis: 100%;
+                min-width: auto;
+            }
+
+        .search_panel_content.d-flex.flex-lg-row > .button.search_button {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: auto;
+        }
+
+        .flight_details p {
+            margin-bottom: 0.3rem;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+        .flight_details strong {
+            font-weight: 600;
+        }
+
+        .offers_image_container .offer_name {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 5px 0;
+            font-size: 0.9em;
+        }
+
+            .offers_image_container .offer_name a {
+                color: white;
+            }
+    </style>
 }
 
 <div class="super_container">
-    <!-- Home section for Offers Page (Banner) -->
+    <!-- Home Banner -->
     <div class="home">
         <div class="home_background parallax-window" data-parallax="scroll" data-image-src="@Url.Content("~/images/about_background.jpg")"></div>
-        <div class="home_content">
-            <div class="home_title">our offers</div>
-        </div>
+        <div class="home_content"><div class="home_title">our offers</div></div>
     </div>
 
-    <!-- Offers -->
+    <!-- Offers Search Section -->
     <div class="offers">
-        <!-- Search section on Offers Page -->
         <div class="search">
             <div class="search_inner">
                 <div class="container fill_height no-padding">
@@ -76,225 +185,212 @@
 
                             <!-- Search Panel (Hotels) -->
                             <div class="search_panel @(entityType == "Hotels" ? "active" : "")" id="hotels_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" id="search_form_offers_hotels" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
                                     <input type="hidden" name="entityType" value="Hotels" />
-                                    <div class="search_item">
-                                        <div>destination</div>
-                                        <input type="text" name="searchTerm" class="destination search_input" value="@searchTerm" placeholder="e.g. Paris, London">
-                                    </div>
-                                    <div class="search_item">
-                                        <div>check in</div>
-                                        <input type="date" name="checkInDate" class="check_in search_input" value="@checkInDateValue">
-                                    </div>
-                                    <div class="search_item">
-                                        <div>check out</div>
-                                        <input type="date" name="checkOutDate" class="check_out search_input" value="@checkOutDateValue">
-                                    </div>
-                                    <div class="search_item">
-                                        <div>adults</div>
-                                        <select name="adults" class="dropdown_item_select search_input">
-                                            <option value="1" selected="@(adults == 1)">01</option>
-                                            <option value="2" selected="@(adults == 2)">02</option>
-                                            <option value="3" selected="@(adults == 3)">03</option>
-                                        </select>
-                                    </div>
-                                    <div class="search_item">
-                                        <div>children</div>
-                                        <select name="children" class="dropdown_item_select search_input">
-                                            <option value="0" selected="@(children == 0)">0</option>
-                                            <option value="1" selected="@(children == 1)">01</option>
-                                            <option value="2" selected="@(children == 2)">02</option>
-                                        </select>
-                                    </div>
-                                    <div class="search_item">
-                                        <div>Min Rating</div>
-                                        <select name="minRating" class="dropdown_item_select search_input">
-                                            <option value="">Any</option>
-                                            <option value="1" selected="@(minRating == 1)">1+</option>
-                                            <option value="2" selected="@(minRating == 2)">2+</option>
-                                            <option value="3" selected="@(minRating == 3)">3+</option>
-                                            <option value="4" selected="@(minRating == 4)">4+</option>
-                                            <option value="5" selected="@(minRating == 5)">5</option>
-                                        </select>
-                                    </div>
-                                    <div class="search_item">
-                                        <div>Max Price</div>
-                                        <input type="number" name="maxPrice" class="search_input" value="@maxPrice" placeholder="e.g. 200" step="10.00">
-                                    </div>
-                                    <div class="extras">
+                                    <div class="search_item"><div>Destination</div><input type="text" name="destination" value="@destination_hotel" class="destination search_input" placeholder="e.g. Paris"></div>
+                                    <div class="search_item"><div>Hotel Name</div><input type="text" name="hotelName" value="@hotelName_hotel" class="hotel_name search_input" placeholder="e.g. Grand Hotel"></div>
+                                    <div class="search_item"><div>Check In</div><input type="date" name="checkInDate" value="@checkInDate_hotelValue" class="check_in search_input"></div>
+                                    <div class="search_item"><div>Check Out</div><input type="date" name="checkOutDate" value="@checkOutDate_hotelValue" class="check_out search_input"></div>
+                                    <div class="search_item"><div>Adults</div><select name="adults" class="dropdown_item_select search_input"><option value="1" selected="@(adults_hotel == 1)">01</option><option value="2" selected="@(adults_hotel == 2)">02</option><option value="3" selected="@(adults_hotel == 3)">03+</option></select></div>
+                                    <div class="search_item"><div>Children</div><select name="children" class="dropdown_item_select search_input"><option value="0" selected="@(children_hotel == 0)">0</option><option value="1" selected="@(children_hotel == 1)">01</option><option value="2" selected="@(children_hotel == 2)">02+</option></select></div>
+                                    <div class="search_item"><div>Min Rating</div><select name="minRating" class="dropdown_item_select search_input"><option value="">Any</option><option value="1" selected="@(minRating_hotel == 1)">1+</option><option value="2" selected="@(minRating_hotel == 2)">2+</option><option value="3" selected="@(minRating_hotel == 3)">3+</option><option value="4" selected="@(minRating_hotel == 4)">4+</option><option value="5" selected="@(minRating_hotel == 5)">5</option></select></div>
+                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxPrice" value="@maxPrice_hotel" class="search_input" placeholder="e.g. 200" step="10"></div>
+                                    <div class="search_item extras" style="width:100%; flex-basis:100%;">
                                         <ul class="search_extras clearfix">
-                                            <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="PetFriendly" id="search_extras_1" class="search_extras_cb" checked="@selectedAmenities.Contains("PetFriendly")"><label for="search_extras_1">Pet Friendly</label></div></li>
-                                            <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="CarParking" id="search_extras_2" class="search_extras_cb" checked="@selectedAmenities.Contains("CarParking")"><label for="search_extras_2">Car Parking</label></div></li>
-                                            <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="WirelessInternet" id="search_extras_3" class="search_extras_cb" checked="@selectedAmenities.Contains("WirelessInternet")"><label for="search_extras_3">Wireless Internet</label></div></li>
+                                            <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="PetFriendly" id="search_extras_1" class="search_extras_cb" checked="@selectedAmenities_hotel.Contains("PetFriendly")"><label for="search_extras_1">Pet Friendly</label></div></li>
+                                            <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="CarParking" id="search_extras_2" class="search_extras_cb" checked="@selectedAmenities_hotel.Contains("CarParking")"><label for="search_extras_2">Car Parking</label></div></li>
+                                            <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="WirelessInternet" id="search_extras_3" class="search_extras_cb" checked="@selectedAmenities_hotel.Contains("WirelessInternet")"><label for="search_extras_3">Wireless Internet</label></div></li>
                                         </ul>
                                     </div>
-                                    <button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+                                    <button type="submit" class="button search_button">Search Hotels<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
                             <!-- Search Panel (Car Rentals) -->
                             <div class="search_panel @(entityType == "CarRentals" ? "active" : "")" id="carrentals_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
                                     <input type="hidden" name="entityType" value="CarRentals" />
-                                    <div class="search_item"><div>Pickup Location</div><input type="text" name="searchTerm" class="search_input" value="@(entityType == "CarRentals" ? searchTerm : "")" placeholder="City, Airport"></div>
-                                    <div class="search_item"><div>Pickup Date</div><input type="date" name="pickupDate" class="search_input" value="@(entityType == "CarRentals" ? checkInDateValue : "")"></div>
-                                    <div class="search_item"><div>Return Date</div><input type="date" name="returnDate" class="search_input" value="@(entityType == "CarRentals" ? checkOutDateValue : "")"></div>
-                                    <div class="search_item"><div>Car Type (Optional)</div><input type="text" name="carType" class="search_input" placeholder="e.g. SUV, Sedan"></div>
-                                    <button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+                                    <div class="search_item"><div>Pickup Location</div><input type="text" name="location" value="@location_car" class="destination search_input" placeholder="City, Airport"></div>
+                                    <div class="search_item"><div>Pickup Date</div><input type="date" name="pickupDate" value="@pickupDate_carValue" class="check_in search_input"></div>
+                                    <div class="search_item"><div>Return Date</div><input type="date" name="returnDate" value="@returnDate_carValue" class="check_out search_input"></div>
+                                    <div class="search_item"><div>Car Model/Type</div><input type="text" name="carModelKeyword" value="@carModelKeyword_car" class="search_input" placeholder="e.g. SUV, Economy"></div>
+                                    <button type="submit" class="button search_button">Search Cars<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
                             <!-- Search Panel (Flights) -->
                             <div class="search_panel @(entityType == "Flights" ? "active" : "")" id="flights_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
                                     <input type="hidden" name="entityType" value="Flights" />
-                                    <div class="search_item"><div>From</div><input type="text" name="origin" class="search_input" value="@(entityType == "Flights" && searchTerm?.Contains("to") == true ? searchTerm.Split("to")[0].Trim() : (entityType == "Flights" ? searchTerm : ""))" placeholder="Origin City/Airport"></div>
-                                    <div class="search_item"><div>To</div><input type="text" name="destination" class="search_input" value="@(entityType == "Flights" && searchTerm?.Contains("to") == true ? searchTerm.Split("to")[1].Trim() : "")" placeholder="Destination City/Airport"></div>
-                                    <div class="search_item"><div>Departure Date</div><input type="date" name="departureDate" class="search_input" value="@(entityType == "Flights" ? checkInDateValue : "")"></div>
-                                    <div class="search_item"><div>Return Date (Optional)</div><input type="date" name="returnDate" class="search_input" value="@(entityType == "Flights" ? checkOutDateValue : "")"></div>
-                                    <div class="search_item"><div>Passengers</div><input type="number" name="passengers" class="search_input" value="@(entityType == "Flights" ? adults : 1)" min="1"></div>
-                                    <button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
-                                </form>
-                            </div>
-
-                            <!-- Search Panel (Trips) -->
-                            <div class="search_panel @(entityType == "Trips" ? "active" : "")" id="trips_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-                                    <input type="hidden" name="entityType" value="Trips" />
-                                    <div class="search_item"><div>Destination</div><input type="text" name="searchTerm" class="search_input" value="@(entityType == "Trips" ? searchTerm : "")" placeholder="e.g., Italy, National Parks"></div>
-                                    <div class="search_item"><div>Start Date</div><input type="date" name="startDate" class="search_input" value="@(entityType == "Trips" ? checkInDateValue : "")"></div>
-                                    <div class="search_item"><div>Max Duration (days)</div><input type="number" name="duration" class="search_input" placeholder="e.g. 7"></div>
-                                    <div class="search_item"><div>Travelers</div><input type="number" name="travelers" class="search_input" value="@(entityType == "Trips" ? adults : 1)" min="1"></div>
-                                    <button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+                                    <div class="search_item">
+                                        <div>Trip Type</div>
+                                        <select name="tripType" class="dropdown_item_select search_input">
+                                            <option value="@TripType.RoundTrip" selected="@(tripType_flight == TripType.RoundTrip)">Round Trip</option>
+                                            <option value="@TripType.OneWay" selected="@(tripType_flight == TripType.OneWay)">One Way</option>
+                                        </select>
+                                    </div>
+                                    <div class="search_item"><div>From</div><input type="text" name="origin" value="@origin_flight" class="search_input" placeholder="Origin City/Airport"></div>
+                                    <div class="search_item"><div>To</div><input type="text" name="flightDestination" value="@destination_flight" class="search_input" placeholder="Destination City/Airport"></div>
+                                    <div class="search_item"><div>Departure Date</div><input type="date" name="departureDate" value="@departureDate_flightValue" class="search_input"></div>
+                                    <div class="search_item"><div>Return Date</div><input type="date" name="returnDate" value="@returnDate_flightValue" class="search_input"></div>
+                                    <div class="search_item"><div>Passengers</div><input type="number" name="passengers" value="@passengers_flight" class="search_input" min="1"></div>
+                                    <button type="submit" class="button search_button">Search Flights<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
                             <!-- Search Panel (Cruises) -->
                             <div class="search_panel @(entityType == "Cruises" ? "active" : "")" id="cruises_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
                                     <input type="hidden" name="entityType" value="Cruises" />
-                                    <div class="search_item"><div>Destination Region</div><input type="text" name="searchTerm" class="search_input" value="@(entityType == "Cruises" ? searchTerm : "")" placeholder="e.g., Caribbean, Alaska"></div>
-                                    <div class="search_item"><div>Departure Month</div><input type="month" name="departureMonth" class="search_input" value="@(entityType == "Cruises" && !string.IsNullOrEmpty(checkInDateValue) ? checkInDateValue.Substring(0,7) : "")"></div>
-                                    <div class="search_item"><div>Cruise Line (Optional)</div><input type="text" name="cruiseLine" class="search_input" placeholder="e.g., Royal Caribbean"></div>
-                                    <button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+                                    <div class="search_item"><div>Destination Region</div><input type="text" name="destinationRegion" value="@destinationRegion_cruise" class="search_input" placeholder="e.g., Caribbean"></div>
+                                    <div class="search_item"><div>Departure Port</div><input type="text" name="cruiseDeparturePort" value="@cruiseDeparturePort_cruise" class="search_input" placeholder="e.g., Miami"></div>
+                                    <div class="search_item"><div>Cruise Line</div><input type="text" name="cruiseLineName" value="@cruiseLineName_cruise" class="search_input" placeholder="e.g., Royal Caribbean"></div>
+                                    <div class="search_item"><div>Departure Month</div><input type="month" name="departureMonth" value="@departureMonth_cruise" class="search_input"></div> @* yyyy-MM format *@
+                                    <button type="submit" class="button search_button">Search Cruises<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
                             <!-- Search Panel (Activities) -->
                             <div class="search_panel @(entityType == "Activities" ? "active" : "")" id="activities_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
                                     <input type="hidden" name="entityType" value="Activities" />
-                                    <div class="search_item"><div>Location/Activity</div><input type="text" name="searchTerm" class="search_input" value="@(entityType == "Activities" ? searchTerm : "")" placeholder="e.g., Paris Louvre, Scuba Diving"></div>
-                                    <div class="search_item"><div>Date</div><input type="date" name="activityDate" class="search_input" value="@(entityType == "Activities" ? checkInDateValue : "")"></div>
-                                    <div class="search_item"><div>Participants</div><input type="number" name="participants" class="search_input" value="@(entityType == "Activities" ? adults : 1)" min="1"></div>
-                                    <button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+                                    <div class="search_item"><div>Activity/Location</div><input type="text" name="activitySearchTerm" value="@activitySearchTerm_activity" class="search_input" placeholder="e.g., City Tour, Paris"></div>
+                                    <div class="search_item"><div>Category</div><input type="text" name="activityCategory" value="@activityCategory_activity" class="search_input" placeholder="e.g., Sightseeing"></div>
+                                    <div class="search_item"><div>Date</div><input type="date" name="activityDate" value="@activityDate_activityValue" class="search_input"></div>
+                                    <div class="search_item"><div>Participants</div><input type="number" name="participants" value="@(participants_activity ?? 1)" class="search_input" min="1"></div>
+                                    <button type="submit" class="button search_button">Search Activities<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
+                            <!-- Placeholder for Trips search panel -->
+                            <div class="search_panel @(entityType == "Trips" ? "active" : "")" id="trips_search_panel"> <form class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap"><input type="hidden" name="entityType" value="Trips" /><p class="p-4 text-white w-100">Trips Search - Under Construction</p><button type="submit" class="button search_button" disabled>Search Trips</button></form></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Offers Grid -->
+        <!-- Offers Grid Display Area -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-1 temp_col"></div>
                 <div class="col-lg-11">
-                    <!-- Offers Sorting (client-side via Isotope.js) -->
+                    <!-- Offers Sorting -->
                     <div class="offers_sorting_container">
                         <ul class="offers_sorting">
-                            <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }' data-parent=".price_sorting"><span>show all</span></li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }' data-parent=".price_sorting"><span>ascending</span></li></ul></li>
-                            <li><span class="sorting_text">location/name</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>default</span></li><li class="sort_btn" data-isotope-option='{ "sortBy": "name" }'><span>alphabetical</span></li></ul></li>
                             @if (entityType == "Hotels")
                             {
-                                <li><span class="sorting_text">stars</span><i class="fa fa-chevron-down"></i><ul><li class="filter_btn" data-filter="*"><span>show all</span></li><li class="sort_btn" data-isotope-option='{ "sortBy": "stars" }'><span>ascending</span></li><li class="filter_btn" data-filter=".rating_3"><span>3</span></li><li class="filter_btn" data-filter=".rating_4"><span>4</span></li><li class="filter_btn" data-filter=".rating_5"><span>5</span></li></ul></li>
+                                <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
+                                <li><span class="sorting_text">stars</span><i class="fa fa-chevron-down"></i><ul><li class="filter_btn" data-filter="*">show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "stars" }'>ascending</li><li class="filter_btn" data-filter=".rating_3">3</li><li class="filter_btn" data-filter=".rating_4">4</li><li class="filter_btn" data-filter=".rating_5">5</li></ul></li>
                             }
+                            else if (entityType == "CarRentals")
+                            {
+                                <li><span class="sorting_text">price/day</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
+                            }
+                            else if (entityType == "Flights")
+                            {
+                                <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
+                                <li><span class="sorting_text">departure</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "departure" }'>earliest</li></ul></li>
+                            }
+                            else if (entityType == "Cruises")
+                            {
+                                <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
+                                <li><span class="sorting_text">duration</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "duration" }'>shortest</li></ul></li>
+                            }
+                            else if (entityType == "Activities")
+                            {
+                                <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
+                            }
+                            <li><span class="sorting_text">name/title</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>default</li><li class="sort_btn" data-isotope-option='{ "sortBy": "name" }'>alphabetical</li></ul></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-lg-12">
-                    <!-- Offers Grid Content -->
                     <div class="offers_grid">
-                        @if (entityType == "Hotels")
+                        @if (TempData["InfoMessage"] != null)
                         {
-                            @if (Model != null && Model.Any())
+                            <div class="col-12 text-center" style="padding: 40px; min-height: 150px;"><h4>@TempData["InfoMessage"]</h4></div>
+                        }
+                        else if (entityType == "Hotels" && hotelOffers != null && hotelOffers.Any())
+                        {
+                            foreach (var hotel in hotelOffers) { /* Hotel item HTML */ }
+                        }
+                        else if (entityType == "CarRentals" && carRentalOffers != null && carRentalOffers.Any())
+                        {
+                            foreach (var car in carRentalOffers) { /* Car Rental item HTML */ }
+                        }
+                        else if (entityType == "Flights" && flightOffers != null && flightOffers.Any())
+                        {
+                            foreach (var flight in flightOffers) { /* Flight item HTML */ }
+                        }
+                        else if (entityType == "Cruises" && cruiseOffers != null && cruiseOffers.Any())
+                        {
+                            foreach (var cruise in cruiseOffers)
                             {
-                                foreach (var hotel in Model)
-                                {
-                                    <div class="offers_item rating_@hotel.Rating" data-price="@hotel.PricePerNight" data-stars="@hotel.Rating" data-name="@hotel.Name">
-                                        <div class="row">
-                                            <div class="col-lg-1 temp_col"></div>
-                                            <div class="col-lg-3 col-1680-4">
-                                                <div class="offers_image_container">
-                                                    @{
-                                                        var imageUrl = !string.IsNullOrEmpty(hotel.PrimaryImageUrl) ? Url.Content(hotel.PrimaryImageUrl) : Url.Content("~/images/default_offer.jpg");
-                                                    }
-                                                    <div class="offers_image_background" style="background-image:url('@imageUrl')"></div>
-                                                    <div class="offer_name"><a asp-action="Details" asp-controller="Offers" asp-route-id="@hotel.Id">@hotel.Name</a></div>
-                                                </div>
+                                <div class="offers_item" data-price="@cruise.Price" data-name="@cruise.CruiseLine @cruise.Destination" data-duration="@cruise.DurationDays">
+                                    <div class="row">
+                                        <div class="col-lg-1 temp_col"></div>
+                                        <div class="col-lg-3 col-1680-4">
+                                            <div class="offers_image_container">
+                                                @{
+                                                    var cruiseImgUrl = !string.IsNullOrEmpty(cruise.ImageUrl) ? Url.Content(cruise.ImageUrl) : Url.Content("~/images/default_cruise.jpg");
+                                                }
+                                                <div class="offers_image_background" style="background-image:url('@cruiseImgUrl')"></div>
+                                                <div class="offer_name"><a asp-action="Details" asp-controller="Offers" asp-route-id="@cruise.Id" asp-route-entityType="Cruises">@cruise.ItinerarySummary</a></div>
                                             </div>
-                                            <div class="col-lg-8">
-                                                <div class="offers_content">
-                                                    <div class="offers_price">@hotel.PricePerNight.ToString("C0")<span>per night</span></div>
-                                                    <div class="rating_r rating_r_@hotel.Rating offers_rating" data-rating="@hotel.Rating">
-                                                        @for (int i = 0; i < 5; i++)
-                                                        {
-                                                            <i class="fa @(i < hotel.Rating ? "fa-star" : "fa-star-o")"></i>
-                                                        }
-                                                    </div>
-                                                    <p class="offers_text">@(!string.IsNullOrEmpty(hotel.Description) && hotel.Description.Length > 180 ? hotel.Description.Substring(0, 180) + "..." : hotel.Description ?? "No description available.")</p>
-                                                    <div class="offers_icons">
-                                                        <ul class="offers_icons_list">
-                                                            <li class="offers_icons_item"><img src="~/images/post.png" alt=""></li>
-                                                            <li class="offers_icons_item"><img src="~/images/compass.png" alt=""></li>
-                                                            <li class="offers_icons_item"><img src="~/images/bicycle.png" alt=""></li>
-                                                            <li class="offers_icons_item"><img src="~/images/sailboat.png" alt=""></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="button book_button"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@hotel.Id" asp-route-offerType="Hotel">book<span></span><span></span><span></span></a></div>
-                                                    <div class="offer_reviews">
-                                                        <div class="offer_reviews_content">
-                                                            <div class="offer_reviews_title">@(hotel.Rating >= 4 ? "Very Good" : (hotel.Rating == 3 ? "Good" : "Okay"))</div>
-                                                            <div class="offer_reviews_subtitle">@hotel.AvailableRooms rooms left</div>
-                                                        </div>
-                                                        <div class="offer_reviews_rating text-center">@hotel.Rating.ToString("0.0")</div>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="offers_content">
+                                                <div class="offers_price">@cruise.Price.ToString("C0") <span>total</span></div>
+                                                <p class="offers_text" style="margin-top:10px;">
+                                                    <strong>Cruise Line:</strong> @cruise.CruiseLine<br>
+                                                    <strong>Sails from:</strong> @cruise.DeparturePort<br>
+                                                    <strong>To:</strong> @cruise.Destination<br>
+                                                    <strong>Duration:</strong> @cruise.DurationDays days
+                                                </p>
+                                                <div class="button book_button" style="margin-top:15px;"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@cruise.Id" asp-route-offerType="Cruise">details<span></span><span></span><span></span></a></div>
                                             </div>
                                         </div>
                                     </div>
-                                }
-                            }
-                            else
-                            {
-                                <div class="col-12 text-center" style="padding: 40px; min-height: 200px;">
-                                    @if (TempData["InfoMessage"] != null)
-                                    {
-                                        <h4>@TempData["InfoMessage"]</h4>
-                                    }
-                                    else
-                                    {
-                                        <h4>No hotel offers found.</h4> <p>Try adjusting your search criteria or <a asp-action="Index" asp-controller="Offers" asp-route-entityType="Hotels">view all hotel offers</a>.</p>
-                                    }
                                 </div>
                             }
                         }
-                        else @* Placeholder for other entity types *@
+                        else if (entityType == "Activities" && activityOffers != null && activityOffers.Any())
                         {
-                            <div class="col-12 text-center" style="padding: 40px; min-height: 200px;">
-                                @if (TempData["InfoMessage"] != null)
-                                {
-                                    <h4>@TempData["InfoMessage"]</h4>
-                                }
-                                else
-                                {
-                                    <h4>Offers for @entityType will be displayed here.</h4>
-                                    <p>This feature is under construction. Please check back later or try searching for <a asp-action="Index" asp-controller="Offers" asp-route-entityType="Hotels">Hotels</a>.</p>
-                                }
-                            </div>
+                            foreach (var activity in activityOffers)
+                            {
+                                <div class="offers_item" data-price="@activity.Price" data-name="@activity.Name">
+                                    <div class="row">
+                                        <div class="col-lg-1 temp_col"></div>
+                                        <div class="col-lg-3 col-1680-4">
+                                            <div class="offers_image_container">
+                                                @{
+                                                    var activityImgUrl = !string.IsNullOrEmpty(activity.ImageUrl) ? Url.Content(activity.ImageUrl) : Url.Content("~/images/default_activity.jpg");
+                                                }
+                                                <div class="offers_image_background" style="background-image:url('@activityImgUrl')"></div>
+                                                <div class="offer_name"><a asp-action="Details" asp-controller="Offers" asp-route-id="@activity.Id" asp-route-entityType="Activities">@activity.Name</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="offers_content">
+                                                <div class="offers_price">@activity.Price.ToString("C0") <span>per person</span></div>
+                                                <p class="offers_text" style="margin-top:10px;">
+                                                    <strong>Location:</strong> @activity.Location<br>
+                                                    <strong>Category:</strong> @activity.Category<br>
+                                                    <strong>Duration:</strong> @activity.DurationHours hours
+                                                </p>
+                                                <p class="offers_text">@(!string.IsNullOrEmpty(activity.Description) && activity.Description.Length > 100 ? activity.Description.Substring(0, 100) + "..." : activity.Description)</p>
+                                                <div class="button book_button" style="margin-top:15px;"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@activity.Id" asp-route-offerType="Activity">details<span></span><span></span><span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else if (TempData["InfoMessage"] == null) // If no specific message and no data for current entity type
+                        {
+                            <div class="col-12 text-center" style="padding: 40px; min-height: 150px;"><h4>No @(entityType.ToLower().Replace("rentals", " rental")) offers found.</h4></div>
                         }
                     </div>
                 </div>
@@ -305,13 +401,7 @@
 
 @section Scripts {
     <script src="~/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="~/plugins/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="~/plugins/parallax-js-master/parallax.min.js"></script>
-    @* If using jQuery UI Datepicker
-       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> *@
     <script src="~/js/offers_custom.js"></script>
-    <script>
-        // JavaScript to ensure the correct search panel is active based on the tab clicked,
-        // and to submit the form with the correct entityType if tabs are switched.
-        // This logic is now enhanced in offers_custom.js
-    </script>
 }

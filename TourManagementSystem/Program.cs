@@ -16,8 +16,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // 2. Register your custom services for Dependency Injection
 builder.Services.AddScoped<IHotelService, HotelService>();
 builder.Services.AddScoped<IContactService, ContactService>();
-builder.Services.AddScoped<IUserService, UserService>(); // <<< THIS LINE IS NOW UNCOMMENTED
-// Add other services (ICarRentalService, IFlightService, etc.) here as you create them
+builder.Services.AddScoped<IUserService, UserService>(); 
+
+builder.Services.AddScoped<IHotelService, HotelService>();
+builder.Services.AddScoped<ICarRentalService, CarRentalService>();
+builder.Services.AddScoped<IFlightService, FlightService>();
+builder.Services.AddScoped<ICruiseService, CruiseService>();    
+builder.Services.AddScoped<IActivityService, ActivityService>();
 
 // 3. Add Identity services if you're using ASP.NET Core Identity
 //    If your AccountController relies on UserManager<User> or SignInManager<User>,
@@ -50,6 +55,7 @@ builder.Services.AddScoped<IUserService, UserService>(); // <<< THIS LINE IS NOW
 // 4. Add MVC services
 builder.Services.AddControllersWithViews();
 // builder.Services.AddRazorPages(); // If you use Razor Pages
+
 
 var app = builder.Build();
 

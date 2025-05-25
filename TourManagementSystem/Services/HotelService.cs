@@ -47,20 +47,32 @@ namespace TourManagementSystem.Services
             }
         }
 
+        // Corrected implementation with 9 arguments
         public async Task<IEnumerable<Hotel>> SearchHotelsAsync(
-            string? searchTerm, string? checkInDateStr, string? checkOutDateStr,
-            int? adults, int? children, int? minRating, decimal? maxPrice, List<string>? amenities)
+            string? destination,     // For searching by location
+            string? hotelName,       // For searching by specific hotel name
+            string? checkInDateStr,
+            string? checkOutDateStr,
+            int? adults,
+            int? children,
+            int? minRating,
+            decimal? maxPrice,
+            List<string>? amenities)
         {
             try
             {
                 var query = _context.Hotels.AsQueryable();
 
-                if (!string.IsNullOrWhiteSpace(searchTerm))
+                if (!string.IsNullOrWhiteSpace(destination))
                 {
-                    query = query.Where(h =>
-                        (EF.Functions.Like(h.Name, $"%{searchTerm}%")) ||
-                        (EF.Functions.Like(h.Destination, $"%{searchTerm}%"))
-                    );
+                    // Search in hotel's destination field
+                    query = query.Where(h => h.Destination != null && EF.Functions.Like(h.Destination, $"%{destination}%"));
+                }
+
+                if (!string.IsNullOrWhiteSpace(hotelName))
+                {
+                    // Search in hotel's name field
+                    query = query.Where(h => h.Name != null && EF.Functions.Like(h.Name, $"%{hotelName}%"));
                 }
 
                 if (minRating.HasValue)
@@ -75,29 +87,27 @@ namespace TourManagementSystem.Services
 
                 if (adults.HasValue && adults > 0)
                 {
-                    // Simplified: assumes any room can hold them if available.
-                    // Real logic needs room types, capacities, and date-based availability.
-                    query = query.Where(h => h.AvailableRooms > 0);
+                    query = query.Where(h => h.AvailableRooms > 0); // Simplified
                 }
 
-                // Placeholder for date-based availability and amenity filtering
-                // These require more complex data models and logic.
-                if (!string.IsNullOrEmpty(checkInDateStr) && !string.IsNullOrEmpty(checkOutDateStr))
+                if (DateTime.TryParse(checkInDateStr, out DateTime checkIn) && DateTime.TryParse(checkOutDateStr, out DateTime checkOut))
                 {
-                    _logger.LogInformation("Date range provided: {CheckIn} to {CheckOut}. Complex availability filtering not implemented in this version.", checkInDateStr, checkOutDateStr);
+                    _logger.LogInformation("Date range: {CheckIn} to {CheckOut}. Full availability logic pending.", checkIn, checkOut);
+                    // Actual date-based availability check would go here against a bookings table
                 }
                 if (amenities != null && amenities.Any())
                 {
-                    _logger.LogInformation("Amenities requested: {Amenities}. Amenity filtering not fully implemented.", string.Join(", ", amenities));
-                    // Example: if (amenities.Contains("PetFriendly")) query = query.Where(h => h.IsPetFriendly == true);
+                    _logger.LogInformation("Amenities: {Amenities}. Filtering logic pending.", string.Join(", ", amenities));
+                    // Actual amenity filtering would go here
+                    // Example if Hotel model had boolean flags:
+                    // if (amenities.Contains("PetFriendly")) query = query.Where(h => h.IsPetFriendly == true);
                 }
-
 
                 return await query.AsNoTracking().ToListAsync();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error searching hotels.");
+                _logger.LogError(ex, "Error searching hotels with Destination: {Destination}, Name: {HotelName}", destination, hotelName);
                 return new List<Hotel>();
             }
         }

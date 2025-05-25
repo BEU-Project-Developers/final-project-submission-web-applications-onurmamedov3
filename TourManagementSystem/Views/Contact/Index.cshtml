@@ -162,22 +162,22 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <input asp-for="Name" type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Name" aria-describedby="name-error" />
-                                    <span asp-validation-for="Name" class="field-validation-error" role="alert" id="name-error"></span>
+                                    
                                 </div>
                                 <div class="form-group col-md-6">
                                     <input asp-for="Email" type="email" id="contact_form_email" class="contact_form_email input_field" placeholder="E-mail" aria-describedby="email-error" />
-                                    <span asp-validation-for="Email" class="field-validation-error" role="alert" id="email-error"></span>
+                                   
                                 </div>
                             </div>
 
                             <div class="form-group stacked">
                                 <input asp-for="Subject" type="text" id="contact_form_subject" class="contact_form_subject input_field" placeholder="Subject" aria-describedby="subject-error" />
-                                <span asp-validation-for="Subject" class="field-validation-error" role="alert" id="subject-error"></span>
+                                
                             </div>
 
                             <div class="form-group stacked">
                                 <textarea asp-for="Message" id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" aria-describedby="message-error"></textarea>
-                                <span asp-validation-for="Message" class="field-validation-error" role="alert" id="message-error"></span>
+                               
                             </div>
 
                             <button type="submit" id="form_submit_button" class="form_submit_button button trans_200">Send Message<span></span><span></span><span></span></button>

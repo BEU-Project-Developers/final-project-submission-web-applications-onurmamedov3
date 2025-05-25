@@ -11,7 +11,9 @@ namespace TourManagementSystem.Services
         Task<Hotel?> GetHotelByIdAsync(int id);
 
         Task<IEnumerable<Hotel>> SearchHotelsAsync(
-            string? searchTerm,
+            // Corrected signature to match 9 arguments being passed
+            string? destination,     // For searching by location
+            string? hotelName,       // For searching by specific hotel name
             string? checkInDateStr,
             string? checkOutDateStr,
             int? adults,

@@ -1,7 +1,12 @@
 ﻿@* File: TourManagementSystem/Views/Home/Index.cshtml *@
+@* @model TourManagementSystem.Models.HomePageViewModel (Removed or use dynamic/simplified if needed elsewhere) *@
 @{
 	ViewData["Title"] = "Home Page";
 }
+
+@* Styles section is removed if no other page-specific styles are needed. *@
+@* If validation_animations.css was only for the contact form, remove its link too. *@
+
 
 <!-- Home -->
 <div class="home">
@@ -45,18 +50,18 @@
 
 		<!-- Home Slider Nav - Prev -->
 		<div class="home_slider_nav home_slider_prev">
-			<svg version="1.1" id="Layer_2_prev" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			<svg version="1.1" id="Layer_2_prev_home" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				 width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
-			<defs><linearGradient id='home_grad_prev_dot'><stop offset='0%' stop-color='#fa9e1b' /><stop offset='100%' stop-color='#8d4fff' /></linearGradient></defs>
+			<defs><linearGradient id='home_grad_prev_dot_home'><stop offset='0%' stop-color='#fa9e1b' /><stop offset='100%' stop-color='#8d4fff' /></linearGradient></defs>
 			<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571 C22.545,2,26,5.541,26,9.909V23.091z" />
 			<polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219 11.042,18.219 " />
 			</svg>
 		</div>
 		<!-- Home Slider Nav - Next -->
 		<div class="home_slider_nav home_slider_next">
-			<svg version="1.1" id="Layer_3_next" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			<svg version="1.1" id="Layer_3_next_home" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				 width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
-			<defs><linearGradient id='home_grad_next_dot'><stop offset='0%' stop-color='#fa9e1b' /><stop offset='100%' stop-color='#8d4fff' /></linearGradient></defs>
+			<defs><linearGradient id='home_grad_next_dot_home'><stop offset='0%' stop-color='#fa9e1b' /><stop offset='100%' stop-color='#8d4fff' /></linearGradient></defs>
 			<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571 C22.545,2,26,5.541,26,9.909V23.091z" />
 			<polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554 17.046,15.554 " />
 			</svg>
@@ -80,65 +85,121 @@
 				<!-- Search Tabs -->
 				<div class="search_tabs_container">
 					<div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
-						<div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/suitcase.png" alt=""><span>hotels</span></div>
-						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/bus.png" alt="">car rentals</div>
-						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/departure.png" alt="">flights</div>
-						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/island.png" alt="">trips</div>
-						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/cruise.png" alt="">cruises</div>
-						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/diving.png" alt="">activities</div>
+						<div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/suitcase.png" alt="Hotels"><span>hotels</span></div>
+						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/bus.png" alt="Car Rentals">car rentals</div>
+						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/departure.png" alt="Flights">flights</div>
+						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/island.png" alt="Trips">trips</div>
+						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/cruise.png" alt="Cruises">cruises</div>
+						<div class="search_tab d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="~/images/diving.png" alt="Activities">activities</div>
 					</div>
 				</div>
 
-				<!-- Search Panel (Hotels) -->
+				<!-- Search Panel (Hotels) - REFINED with Separate Name and Destination -->
 				<div class="search_panel active">
-					<form asp-controller="Home" asp-action="SearchOffers" method="get" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+					@*
+                        The class `search_panel_content` already has `d-flex flex-lg-row ... justify-content-lg-between`.
+                        This means on large screens (lg and up), items will try to be in a row.
+                        If there are too many items, they might wrap, or the `justify-content-lg-between`
+                        will space them out.
+                        The width of `search_panel_content` is determined by its parent `.search_panel` and `.col`.
+                        The individual `search_item` divs will try to fit.
+                        We can give `search_item` a flex-basis or min-width if precise control is needed,
+                        or adjust padding/margins.
+                    *@
+					<form asp-controller="Home" asp-action="SearchOffers" method="get" id="search_form_1_home" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 						<input type="hidden" name="entityType" value="Hotels" />
 						<div class="search_item">
-							<div>destination</div>
-							<input type="text" name="searchTerm" class="destination search_input" placeholder="e.g. Paris, London">
+							<div>Destination</div>
+							@* Changed name from searchTerm to destination *@
+							<input type="text" name="destination" class="destination search_input" placeholder="e.g. Paris, London">
 						</div>
 						<div class="search_item">
-							<div>check in</div>
-							<input type="text" name="checkInDate" class="check_in search_input" placeholder="YYYY-MM-DD">
+							<div>Hotel Name (Optional)</div>
+							@* Added new field for hotelName *@
+							<input type="text" name="hotelName" class="hotel_name search_input" placeholder="e.g. Grand Hotel">
 						</div>
 						<div class="search_item">
-							<div>check out</div>
-							<input type="text" name="checkOutDate" class="check_out search_input" placeholder="YYYY-MM-DD">
-						</div>
-						<div class="search_item">
-							<div>adults</div>
-							<select name="adults" id="adults_1" class="dropdown_item_select search_input">
-								<option value="1">01</option>
-								<option value="2">02</option>
-								<option value="3">03</option>
-								<option value="4">04+</option>
+							<div>Min. Rating</div>
+							<select name="minRating" id="minRating_home" class="dropdown_item_select search_input">
+								<option value="">Any</option>
+								<option value="1">1 Star+</option>
+								<option value="2">2 Stars+</option>
+								<option value="3">3 Stars+</option>
+								<option value="4">4 Stars+</option>
+								<option value="5">5 Stars</option>
 							</select>
 						</div>
 						<div class="search_item">
-							<div>children</div>
-							<select name="children" id="children_1" class="dropdown_item_select search_input">
-								<option value="0">0</option>
-								<option value="1">01</option>
-								<option value="2">02</option>
-								<option value="3">03+</option>
-							</select>
+							<div>Max. Price / Night</div>
+							<input type="number" name="maxPrice" class="search_input" placeholder="e.g. 200" min="0" step="10">
 						</div>
 						<button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
 					</form>
 				</div>
 
-				<!-- Search Panel (Car Rentals - Example, submits to Home/SearchOffers with different entityType) -->
+				<!-- Other Search Panels remain as is -->
+				@* ... (Car Rentals, Flights, Trips, Cruises, Activities panels) ... *@
+				<!-- Search Panel (Car Rentals) - UPDATED -->
 				<div class="search_panel">
-					<form asp-controller="Home" asp-action="SearchOffers" method="get" id="search_form_2" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+					<form asp-controller="Home" asp-action="SearchOffers" method="get" id="search_form_2_home" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 						<input type="hidden" name="entityType" value="CarRentals" />
-						<div class="search_item"><div>destination</div><input type="text" name="searchTerm" class="destination search_input" placeholder="e.g. City, Airport"></div>
-						<div class="search_item"><div>pick up</div><input type="text" name="checkInDate" class="check_in search_input" placeholder="YYYY-MM-DD"></div>
-						<div class="search_item"><div>drop off</div><input type="text" name="checkOutDate" class="check_out search_input" placeholder="YYYY-MM-DD"></div>
-						<div class="search_item"><div>driver age</div><input type="number" name="driverAge" class="search_input" placeholder="e.g. 25" min="18"></div>
-						<button class="button search_button">search<span></span><span></span><span></span></button>
+						<div class="search_item">
+							<div>Pickup Location</div>
+							@* Changed name to 'location' for consistency with service/controller *@
+							<input type="text" name="location" class="destination search_input" placeholder="City, Airport, Address">
+						</div>
+						<div class="search_item">
+							<div>Pickup Date</div>
+							@* Changed name to 'pickupDate' *@
+							<input type="date" name="pickupDate" class="check_in search_input">
+						</div>
+						<div class="search_item">
+							<div>Return Date</div>
+							@* Changed name to 'returnDate' *@
+							<input type="date" name="returnDate" class="check_out search_input">
+						</div>
+						<div class="search_item">
+							<div>Car Model/Type (Opt.)</div>
+							@* Added field for carModelKeyword *@
+							<input type="text" name="carModelKeyword" class="search_input" placeholder="e.g. SUV, Toyota">
+						</div>
+						@* Removed driver age for simplicity on home page search for now *@
+						<button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
 					</form>
 				</div>
-				<!-- Add other search panels (flights, trips, etc.) similarly -->
+				<div class="search_panel">
+					<form asp-controller="Home" asp-action="SearchOffers" method="get" id="search_form_3_home" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<input type="hidden" name="entityType" value="Flights" />
+						<div class="search_item"><div>From</div><input type="text" name="origin" class="search_input" placeholder="Origin City/Airport"></div>
+						<div class="search_item"><div>To</div><input type="text" name="destination" class="search_input" placeholder="Destination City/Airport"></div>
+						<div class="search_item"><div>Departure Date</div><input type="date" name="departureDate" class="search_input"></div>
+						<button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+					</form>
+				</div>
+				<div class="search_panel">
+					<form asp-controller="Home" asp-action="SearchOffers" method="get" id="search_form_4_home" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<input type="hidden" name="entityType" value="Trips" />
+						<div class="search_item"><div>Destination</div><input type="text" name="searchTerm" class="search_input" placeholder="e.g., Italy Tour"></div>
+						<div class="search_item"><div>Start Date</div><input type="date" name="startDate" class="search_input"></div>
+						<button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+					</form>
+				</div>
+				<div class="search_panel">
+					<form asp-controller="Home" asp-action="SearchOffers" method="get" id="search_form_5_home" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<input type="hidden" name="entityType" value="Cruises" />
+						<div class="search_item"><div>Destination Region</div><input type="text" name="searchTerm" class="search_input" placeholder="e.g., Caribbean"></div>
+						<div class="search_item"><div>Departure Month</div><input type="month" name="departureMonth" class="search_input"></div>
+						<button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+					</form>
+				</div>
+				<div class="search_panel">
+					<form asp-controller="Home" asp-action="SearchOffers" method="get" id="search_form_6_home" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<input type="hidden" name="entityType" value="Activities" />
+						<div class="search_item"><div>Activity/Location</div><input type="text" name="searchTerm" class="search_input" placeholder="e.g., Louvre Museum Ticket"></div>
+						<div class="search_item"><div>Date</div><input type="date" name="activityDate" class="search_input"></div>
+						<button type="submit" class="button search_button">search<span></span><span></span><span></span></button>
+					</form>
+				</div>
 
 			</div>
 		</div>
@@ -235,9 +296,34 @@
 							<p class="cta_text">Experience paradise with our luxury Maldives package. Enjoy 5-star overwater villas, crystal-clear waters, and exclusive dining options. Includes flights, airport transfers, and a sunset cruise.</p>
 							<div class="button cta_button"><div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="Maldives">Book Now<span></span><span></span><span></span></a></div>
 						</div>
-						<!-- Add more CTA slider items as needed -->
+						<div class="owl-item cta_item text-center">
+							<div class="cta_title">Swiss Alps Adventure</div>
+							<div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
+							<p class="cta_text">Discover the beauty of Switzerland with our guided Alpine adventure. Stay in cozy mountain lodges, explore breathtaking landscapes, and enjoy skiing or hiking experiences tailored to your style.</p>
+							<div class="button cta_button"><div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="Swiss Alps">Book Now<span></span><span></span><span></span></a></div>
+						</div>
+						<div class="owl-item cta_item text-center">
+							<div class="cta_title">Santorini Romantic Getaway</div>
+							<div class="rating_r rating_r_5"><i></i><i></i><i></i><i></i><i></i></div>
+							<p class="cta_text">Escape to the enchanting island of Santorini. Stay in luxurious cliffside suites with sunset views, explore ancient ruins, and enjoy private wine tastings. Perfect for honeymooners or couples seeking romance.</p>
+							<div class="button cta_button"><div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="Santorini">Book Now<span></span><span></span><span></span></a></div>
+						</div>
 					</div>
-					<!-- CTA Slider Nav -->
+					<!-- Navigation for CTA Slider -->
+					<div class="cta_slider_nav cta_slider_prev">
+						<svg version="1.1" id="Layer_4_cta_prev" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
+						<defs><linearGradient id='cta_grad_prev_dot'><stop offset='0%' stop-color='#fa9e1b' /><stop offset='100%' stop-color='#8d4fff' /></linearGradient></defs>
+						<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571 C22.545,2,26,5.541,26,9.909V23.091z" />
+						<polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219 11.042,18.219 " />
+						</svg>
+					</div>
+					<div class="cta_slider_nav cta_slider_next">
+						<svg version="1.1" id="Layer_5_cta_next" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
+						<defs><linearGradient id='cta_grad_next_dot'><stop offset='0%' stop-color='#fa9e1b' /><stop offset='100%' stop-color='#8d4fff' /></linearGradient></defs>
+						<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571 C22.545,2,26,5.541,26,9.909V23.091z" />
+						<polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554 17.046,15.554 " />
+						</svg>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -253,21 +339,21 @@
 			</div>
 		</div>
 		<div class="row offers_items">
-			<!-- Offers Item -->
+			<!-- Offers Item 1 -->
 			<div class="col-lg-6 offers_col">
 				<div class="offers_item">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="offers_image_container">
 								<div class="offers_image_background" style="background-image:url(@Url.Content("~/images/offer_1.jpg"))"></div>
-								<div class="offer_name"><a asp-controller="Offers" asp-action="Details" asp-route-id="1">grand castle</a></div> @* Example ID, link to actual hotel later *@
+								<div class="offer_name"><a asp-controller="Offers" asp-action="Details" asp-route-id="1">grand castle</a></div>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="offers_content">
 								<div class="offers_price">$70<span>per night</span></div>
 								<div class="rating_r rating_r_4 offers_rating"><i></i><i></i><i></i><i></i><i></i></div>
-								<p class="offers_text">Our exclusive travel package offers a luxurious stay at a five-star hotel, complete with spa treatments and gourmet meals...</p>
+								<p class="offers_text">Our exclusive travel package offers a luxurious stay at a five-star hotel, complete with spa treatments and gourmet meals. Embark on a scenic journey...</p>
 								<div class="offers_icons">
 									<ul class="offers_icons_list">
 										<li class="offers_icons_item"><img src="~/images/post.png" alt=""></li>
@@ -282,14 +368,98 @@
 					</div>
 				</div>
 			</div>
-			<!-- Add more offer items from your original home page HTML, updating paths and links -->
+			<!-- Offers Item 2 -->
+			<div class="col-lg-6 offers_col">
+				<div class="offers_item">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="offers_image_container">
+								<div class="offers_image_background" style="background-image:url(@Url.Content("~/images/offer_2.jpg"))"></div>
+								<div class="offer_name"><a asp-controller="Offers" asp-action="Details" asp-route-id="2">turkey hills</a></div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="offers_content">
+								<div class="offers_price">$50<span>per night</span></div>
+								<div class="rating_r rating_r_4 offers_rating"><i></i><i></i><i></i><i></i><i></i></div>
+								<p class="offers_text">Discover the perfect combination of relaxation and adventure with our all-inclusive travel package. Stay at a beachfront resort...</p>
+								<div class="offers_icons">
+									<ul class="offers_icons_list">
+										<li class="offers_icons_item"><img src="~/images/post.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/compass.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/bicycle.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/sailboat.png" alt=""></li>
+									</ul>
+								</div>
+								<div class="offers_link"><a asp-controller="Offers" asp-action="Details" asp-route-id="2">read more</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Offers Item 3 -->
+			<div class="col-lg-6 offers_col">
+				<div class="offers_item">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="offers_image_container">
+								<div class="offers_image_background" style="background-image:url(@Url.Content("~/images/offer_3.jpg"))"></div>
+								<div class="offer_name"><a asp-controller="Offers" asp-action="Details" asp-route-id="3">island dream</a></div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="offers_content">
+								<div class="offers_price">$90<span>per night</span></div>
+								<div class="rating_r rating_r_4 offers_rating"><i></i><i></i><i></i><i></i><i></i></div>
+								<p class="offers_text">Experience the beauty of the mountains with our adventure package. Stay at a cozy mountain lodge, explore hiking trails...</p>
+								<div class="offers_icons">
+									<ul class="offers_icons_list">
+										<li class="offers_icons_item"><img src="~/images/post.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/compass.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/bicycle.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/sailboat.png" alt=""></li>
+									</ul>
+								</div>
+								<div class="offers_link"><a asp-controller="Offers" asp-action="Details" asp-route-id="3">read more</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Offers Item 4 -->
+			<div class="col-lg-6 offers_col">
+				<div class="offers_item">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="offers_image_container">
+								<div class="offers_image_background" style="background-image:url(@Url.Content("~/images/offer_4.jpg"))"></div>
+								<div class="offer_name"><a asp-controller="Offers" asp-action="Details" asp-route-id="4">travel light</a></div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="offers_content">
+								<div class="offers_price">$30<span>per night</span></div>
+								<div class="rating_r rating_r_4 offers_rating"><i></i><i></i><i></i><i></i><i></i></div>
+								<p class="offers_text">Our cultural exploration package takes you on a journey through ancient cities and local heritage sites. Stay in charming boutique hotels...</p>
+								<div class="offers_icons">
+									<ul class="offers_icons_list">
+										<li class="offers_icons_item"><img src="~/images/post.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/compass.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/bicycle.png" alt=""></li>
+										<li class="offers_icons_item"><img src="~/images/sailboat.png" alt=""></li>
+									</ul>
+								</div>
+								<div class="offers_link"><a asp-controller="Offers" asp-action="Details" asp-route-id="4">read more</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
-<!-- Testimonials, Trending, Contact sections follow, update image paths and asp- links -->
 <!-- Testimonials -->
-
 <div class="testimonials">
 	<div class="test_border"></div>
 	<div class="container">
@@ -300,166 +470,73 @@
 		</div>
 		<div class="row">
 			<div class="col">
-
-				<!-- Testimonials Slider -->
-
 				<div class="test_slider_container">
 					<div class="owl-carousel owl-theme test_slider">
-
 						<!-- Testimonial Item -->
 						<div class="owl-item">
 							<div class="test_item">
-								<div class="test_image"><img src="images/test_1.jpg" alt=""></div>
-								<div class="test_icon"><img src="images/backpack.png" alt=""></div>
+								<div class="test_image"><img src="@Url.Content("~/images/test_1.jpg")" alt="Testimonial 1"></div>
+								<div class="test_icon"><img src="@Url.Content("~/images/backpack.png")" alt=""></div>
 								<div class="test_content_container">
 									<div class="test_content">
-										<div class="test_item_info">
-											<div class="test_name">The Johnson Family</div>
-											<div class="test_date">July 12, 2018</div>
-										</div>
-										<div class="test_quote_title">" Best holliday ever "</div>
-										<p class="test_quote_text">An unforgettable experience! The itinerary was perfectly planned, and every destination was breathtaking. Highly recommend!</p>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Testimonial Item -->
-						<div class="owl-item">
-							<div class="test_item">
-								<div class="test_image"><img src="images/test_2.jpg" alt=""></div>
-								<div class="test_icon"><img src="images/island_t.png" alt=""></div>
-								<div class="test_content_container">
-									<div class="test_content">
-										<div class="test_item_info">
-											<div class="test_name"> Lily Smith</div>
-											<div class="test_date">July 7, 2017</div>
-										</div>
-										<div class="test_quote_title">" Full of adventures! "</div>
-										<p class="test_quote_text">Everything was seamless from start to finish. The guides were knowledgeable, and the accommodations were top-notch. Can't wait for my next trip!</p>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Testimonial Item -->
-						<div class="owl-item">
-							<div class="test_item">
-								<div class="test_image"><img src="images/test_3.jpg" alt=""></div>
-								<div class="test_icon"><img src="images/kayak.png" alt=""></div>
-								<div class="test_content_container">
-									<div class="test_content">
-										<div class="test_item_info">
-											<div class="test_name">Daniel Johnson</div>
-											<div class="test_date">May 27, 2019</div>
-										</div>
-										<div class="test_quote_title">" Incredible journey! "</div>
-										<p class="test_quote_text">A truly magical journey! The service was exceptional, and I discovered places I never imagined visiting. A five-star experience!</p>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Testimonial Item -->
-						<div class="owl-item">
-							<div class="test_item">
-								<div class="test_image"><img src="images/test_2.jpg" alt=""></div>
-								<div class="test_icon"><img src="images/island_t.png" alt=""></div>
-								<div class="test_content_container">
-									<div class="test_content">
-										<div class="test_item_info">
-											<div class="test_name"> Lily Smith</div>
-											<div class="test_date">July 7, 2017</div>
-										</div>
-										<div class="test_quote_title">" Full of adventures! "</div>
-										<p class="test_quote_text">Everything was seamless from start to finish. The guides were knowledgeable, and the accommodations were top-notch. Can't wait for my next trip!</p>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Testimonial Item -->
-						<div class="owl-item">
-							<div class="test_item">
-								<div class="test_image"><img src="images/test_1.jpg" alt=""></div>
-								<div class="test_icon"><img src="images/backpack.png" alt=""></div>
-								<div class="test_content_container">
-									<div class="test_content">
-										<div class="test_item_info">
-											<div class="test_name">The Johnson Family</div>
-											<div class="test_date">July 12, 2018</div>
-										</div>
+										<div class="test_item_info"><div class="test_name">The Johnson Family</div><div class="test_date">July 12, 2018</div></div>
 										<div class="test_quote_title">" Best holiday ever "</div>
 										<p class="test_quote_text">An unforgettable experience! The itinerary was perfectly planned, and every destination was breathtaking. Highly recommend!</p>
 									</div>
 								</div>
 							</div>
 						</div>
-
 						<!-- Testimonial Item -->
 						<div class="owl-item">
 							<div class="test_item">
-								<div class="test_image"><img src="images/test_3.jpg" alt=""></div>
-								<div class="test_icon"><img src="images/kayak.png" alt=""></div>
+								<div class="test_image"><img src="@Url.Content("~/images/test_2.jpg")" alt="Testimonial 2"></div>
+								<div class="test_icon"><img src="@Url.Content("~/images/island_t.png")" alt=""></div>
 								<div class="test_content_container">
 									<div class="test_content">
-										<div class="test_item_info">
-											<div class="test_name">Daniel Johnson</div>
-											<div class="test_date">May 27, 2019</div>
-										</div>
+										<div class="test_item_info"><div class="test_name">Lily Smith</div><div class="test_date">July 7, 2017</div></div>
+										<div class="test_quote_title">" Full of adventures! "</div>
+										<p class="test_quote_text">Everything was seamless from start to finish. The guides were knowledgeable, and the accommodations were top-notch. Can't wait for my next trip!</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Testimonial Item -->
+						<div class="owl-item">
+							<div class="test_item">
+								<div class="test_image"><img src="@Url.Content("~/images/test_3.jpg")" alt="Testimonial 3"></div>
+								<div class="test_icon"><img src="@Url.Content("~/images/kayak.png")" alt=""></div>
+								<div class="test_content_container">
+									<div class="test_content">
+										<div class="test_item_info"><div class="test_name">Daniel Johnson</div><div class="test_date">May 27, 2019</div></div>
 										<div class="test_quote_title">" Incredible journey! "</div>
 										<p class="test_quote_text">A truly magical journey! The service was exceptional, and I discovered places I never imagined visiting. A five-star experience!</p>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
-
-					<!-- Testimonials Slider Nav - Prev -->
+					<!-- Navigation for Testimonials Slider -->
 					<div class="test_slider_nav test_slider_prev">
-						<svg version="1.1" id="Layer_6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-							 width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
-						<defs>
-						<linearGradient id='test_grad_prev'>
-						<stop offset='0%' stop-color='#fa9e1b' />
-						<stop offset='100%' stop-color='#8d4fff' />
-									</linearGradient>
-								</defs>
-						<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z
-								M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
-								C22.545,2,26,5.541,26,9.909V23.091z" />
-						<polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219
-								11.042,18.219 " />
-							</svg>
+						<svg version="1.1" id="Layer_6_test_prev" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
+						<defs><linearGradient id='test_grad_prev_dot'><stop offset='0%' stop-color='#fa9e1b' /><stop offset='100%' stop-color='#8d4fff' /></linearGradient></defs>
+						<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571 C22.545,2,26,5.541,26,9.909V23.091z" />
+						<polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219 11.042,18.219 " />
+						</svg>
 					</div>
-
-					<!-- Testimonials Slider Nav - Next -->
 					<div class="test_slider_nav test_slider_next">
-						<svg version="1.1" id="Layer_7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-							 width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
-						<defs>
-						<linearGradient id='test_grad_next'>
-						<stop offset='0%' stop-color='#fa9e1b' />
-						<stop offset='100%' stop-color='#8d4fff' />
-									</linearGradient>
-								</defs>
-						<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z
-							M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
-							C22.545,2,26,5.541,26,9.909V23.091z" />
-						<polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554
-							17.046,15.554 " />
-							</svg>
+						<svg version="1.1" id="Layer_7_test_next" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
+						<defs><linearGradient id='test_grad_next_dot'><stop offset='0%' stop-color='#fa9e1b' /><stop offset='100%' stop-color='#8d4fff' /></linearGradient></defs>
+						<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571 C22.545,2,26,5.541,26,9.909V23.091z" />
+						<polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554 17.046,15.554 " />
+						</svg>
 					</div>
-
 				</div>
-
 			</div>
 		</div>
-
 	</div>
 </div>
 
+<!-- Trending -->
 <div class="trending">
 	<div class="container">
 		<div class="row">
@@ -468,128 +545,121 @@
 			</div>
 		</div>
 		<div class="row trending_container">
-
 			<!-- Trending Item -->
 			<div class="col-lg-3 col-sm-6">
 				<div class="trending_item clearfix">
-					<div class="trending_image"><img src="images/trend_1.png" alt=""></div>
+					<div class="trending_image"><img src="@Url.Content("~/images/trend_1.png")" alt="Trending 1"></div>
 					<div class="trending_content">
-						<div class="trending_title"><a asp-controller="Offers" asp-action="Index">grand hotel</a></div>
+						<div class="trending_title"><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="grand hotel">grand hotel</a></div>
 						<div class="trending_price">From $182</div>
 						<div class="trending_location">madrid, spain</div>
 					</div>
 				</div>
 			</div>
-
 			<!-- Trending Item -->
 			<div class="col-lg-3 col-sm-6">
 				<div class="trending_item clearfix">
-					<div class="trending_image"><img src="images/trend_2.png" alt=""></div>
+					<div class="trending_image"><img src="@Url.Content("~/images/trend_2.png")" alt="Trending 2"></div>
 					<div class="trending_content">
-						<div class="trending_title"><a asp-controller="Offers" asp-action="Index">mars hotel</a></div>
+						<div class="trending_title"><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="mars hotel">mars hotel</a></div>
 						<div class="trending_price">From $182</div>
 						<div class="trending_location">madrid, spain</div>
 					</div>
 				</div>
 			</div>
-
 			<!-- Trending Item -->
 			<div class="col-lg-3 col-sm-6">
 				<div class="trending_item clearfix">
-					<div class="trending_image"><img src="images/trend_3.png" alt=""></div>
+					<div class="trending_image"><img src="@Url.Content("~/images/trend_3.png")" alt="Trending 3"></div>
 					<div class="trending_content">
-						<div class="trending_title"><a asp-controller="Offers" asp-action="Index">queen hotel</a></div>
+						<div class="trending_title"><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="queen hotel">queen hotel</a></div>
 						<div class="trending_price">From $182</div>
 						<div class="trending_location">madrid, spain</div>
 					</div>
 				</div>
 			</div>
-
 			<!-- Trending Item -->
 			<div class="col-lg-3 col-sm-6">
 				<div class="trending_item clearfix">
-					<div class="trending_image"><img src="images/trend_4.png" alt=""></div>
+					<div class="trending_image"><img src="@Url.Content("~/images/trend_4.png")" alt="Trending 4"></div>
 					<div class="trending_content">
-						<div class="trending_title"><a asp-controller="Offers" asp-action="Index">mars hotel</a></div>
+						<div class="trending_title"><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="mars hotel">mars hotel</a></div>
 						<div class="trending_price">From $182</div>
 						<div class="trending_location">madrid, spain</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Trending Item -->
+			<!-- Add more trending items if they exist in your original HTML -->
 			<div class="col-lg-3 col-sm-6">
 				<div class="trending_item clearfix">
-					<div class="trending_image"><img src="images/trend_5.png" alt=""></div>
+					<div class="trending_image"><img src="@Url.Content("~/images/trend_5.png")" alt="Trending 5"></div>
 					<div class="trending_content">
-						<div class="trending_title"><a asp-controller="Offers" asp-action="Index">grand hotel</a></div>
+						<div class="trending_title"><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="grand hotel">grand hotel</a></div>
 						<div class="trending_price">From $182</div>
 						<div class="trending_location">madrid, spain</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Trending Item -->
 			<div class="col-lg-3 col-sm-6">
 				<div class="trending_item clearfix">
-					<div class="trending_image"><img src="images/trend_6.png" alt=""></div>
+					<div class="trending_image"><img src="@Url.Content("~/images/trend_6.png")" alt="Trending 6"></div>
 					<div class="trending_content">
-						<div class="trending_title"><a asp-controller="Offers" asp-action="Index">mars hotel</a></div>
+						<div class="trending_title"><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="mars hotel">mars hotel</a></div>
 						<div class="trending_price">From $182</div>
 						<div class="trending_location">madrid, spain</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Trending Item -->
 			<div class="col-lg-3 col-sm-6">
 				<div class="trending_item clearfix">
-					<div class="trending_image"><img src="images/trend_7.png" alt=""></div>
+					<div class="trending_image"><img src="@Url.Content("~/images/trend_7.png")" alt="Trending 7"></div>
 					<div class="trending_content">
-						<div class="trending_title"><a asp-controller="Offers" asp-action="Index">queen hotel</a></div>
+						<div class="trending_title"><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="queen hotel">queen hotel</a></div>
 						<div class="trending_price">From $182</div>
 						<div class="trending_location">madrid, spain</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Trending Item -->
 			<div class="col-lg-3 col-sm-6">
 				<div class="trending_item clearfix">
-					<div class="trending_image"><img src="images/trend_8.png" alt=""></div>
+					<div class="trending_image"><img src="@Url.Content("~/images/trend_8.png")" alt="Trending 8"></div>
 					<div class="trending_content">
-						<div class="trending_title"><a asp-controller="Offers" asp-action="Index">mars hotel</a></div>
+						<div class="trending_title"><a asp-controller="Offers" asp-action="Index" asp-route-searchTerm="mars hotel">mars hotel</a></div>
 						<div class="trending_price">From $182</div>
 						<div class="trending_location">madrid, spain</div>
 					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>
-
-<div class="contact">
-	<div class="contact_background" style="background-image:url(images/contact.png)"></div>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-5">
-				<div class="contact_image">
-				</div>
-			</div>
-			<div class="col-lg-7">
-				<div class="contact_form_container">
-					<div class="contact_title">get in touch</div>
-					<form action="#" id="contact_form" class="contact_form">
-						<input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Name" required="required" data-error="Name is required.">
-						<input type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="E-mail" required="required" data-error="Email is required.">
-						<input type="text" id="contact_form_subject" class="contact_form_subject input_field" placeholder="Subject" required="required" data-error="Subject is required.">
-						<textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
-						<button type="submit" id="form_submit_button" class="form_submit_button button">send message<span></span><span></span><span></span></button>
-					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<!-- Contact Section REMOVED -->
+@section Scripts {
+	@* _ValidationScriptsPartial is removed as there's no form needing it on this page anymore *@
+	@* Script for scrolling to fragment is removed as there's no contact form to scroll to *@
+	<script>
+		// Any other home-page specific JavaScript can go here if needed.
+		// For example, if custom.js doesn't initialize something or needs help.
+		$(document).ready(function () {
+			// Example: if your main custom.js does not initialize datepickers for the search forms
+			// and you want to use a JS datepicker instead of native type="date"
+			// if ($.fn.datepicker) { // Check if jQuery UI datepicker is loaded
+			//     $('.search_panel input[name="checkInDate"], .search_panel input[name="checkOutDate"], .search_panel input[name*="Date"]').datepicker({
+			//         dateFormat: "yy-mm-dd", // Format for the server
+			//         changeMonth: true,
+			//         changeYear: true
+			//     });
+			//      $('.search_panel input[name="departureMonth"]').datepicker({
+			//         dateFormat: "yy-mm", // For month picker
+			//         changeMonth: true,
+			//         changeYear: true,
+			//         showButtonPanel: true,
+			//         onClose: function(dateText, inst) {
+			//             $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+			//         }
+			//     });
+			// }
+		});
+	</script>
+}

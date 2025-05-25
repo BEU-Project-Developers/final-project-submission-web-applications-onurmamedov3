@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/V7mDtFyOh2rgsZGY+1dCoj1hGErV/15jSi8wec/i5Y=",
+  "Hash": "rZmopQ9+Mnnx1LQlzv4yiNpqpE29+4EsFNDaBwjyTtQ=",
   "Source": "TourManagementSystem",
   "BasePath": "_content/TourManagementSystem",
   "Mode": "Default",
@@ -290,6 +290,27 @@
       "OriginalItemSpec": "wwwroot\\images\\bus.png"
     },
     {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\carImage.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/carImage#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "eew4ggxvfg",
+      "Integrity": "+mJ+R9Y4vYC+wR9Xo6ZUYf9N1WktspP8/gEFOtVxbA8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\carImage.png"
+    },
+    {
       "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\compass.png",
       "SourceId": "TourManagementSystem",
       "SourceType": "Discovered",
@@ -393,6 +414,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\cta.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\default_activity.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/default_activity#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ztb5hqkkjr",
+      "Integrity": "J2SlsK1Y5Fd6V6NTDr65Ppwdr5cxES6BAJCV/XDPZFk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\default_activity.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\default_cruise.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/default_cruise#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "aima9l0sqo",
+      "Integrity": "cq32ZJ/qwvVsgLsyUQmiPEXBKItqxjmFZ2JoSLOVQWo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\default_cruise.png"
     },
     {
       "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\departure.png",
@@ -729,6 +792,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\hotelImage.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\imagePlane.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/imagePlane#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ad1d8v92x",
+      "Integrity": "fXZsp9htMqBHWls+5zN8+RGIDnVvnMnwUwWZBOdiaXQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\imagePlane.png"
     },
     {
       "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\intro.png",
@@ -3223,11 +3307,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "zw0rcyozzk",
-      "Integrity": "nS7g0xPt5EHMHuHS2vn9qPYxr7wQN2OJBuv3zgILDVc=",
+      "Fingerprint": "d8bxa4h5vo",
+      "Integrity": "4x7HGYyAfuvAz4LV0FiMYokH4TPKdslFdTT6KnJP2nQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\styles\\single_listing_styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\validation_animations.css",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "styles/validation_animations#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8dth8sl2hm",
+      "Integrity": "FIlKb54gpE6YwgRBTlvHsF9iWiqjEEPwyqUPp+WTcRE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles\\validation_animations.css"
     }
   ],
   "Endpoints": [
@@ -4134,6 +4239,88 @@
       ]
     },
     {
+      "Route": "images/carImage.eew4ggxvfg.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\carImage.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8647"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+mJ+R9Y4vYC+wR9Xo6ZUYf9N1WktspP8/gEFOtVxbA8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:31:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eew4ggxvfg"
+        },
+        {
+          "Name": "label",
+          "Value": "images/carImage.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+mJ+R9Y4vYC+wR9Xo6ZUYf9N1WktspP8/gEFOtVxbA8="
+        }
+      ]
+    },
+    {
+      "Route": "images/carImage.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\carImage.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8647"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+mJ+R9Y4vYC+wR9Xo6ZUYf9N1WktspP8/gEFOtVxbA8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 12:31:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+mJ+R9Y4vYC+wR9Xo6ZUYf9N1WktspP8/gEFOtVxbA8="
+        }
+      ]
+    },
+    {
       "Route": "images/compass.xicybbmyai.png",
       "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\compass.png",
       "Selectors": [],
@@ -4540,6 +4727,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-iG2T7UH8dpW0TZexsho/VuoHslACdj0bhaZxEcKdCCA="
+        }
+      ]
+    },
+    {
+      "Route": "images/default_activity.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\default_activity.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3226"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"J2SlsK1Y5Fd6V6NTDr65Ppwdr5cxES6BAJCV/XDPZFk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 16:17:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-J2SlsK1Y5Fd6V6NTDr65Ppwdr5cxES6BAJCV/XDPZFk="
+        }
+      ]
+    },
+    {
+      "Route": "images/default_activity.ztb5hqkkjr.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\default_activity.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3226"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"J2SlsK1Y5Fd6V6NTDr65Ppwdr5cxES6BAJCV/XDPZFk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 16:17:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ztb5hqkkjr"
+        },
+        {
+          "Name": "label",
+          "Value": "images/default_activity.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-J2SlsK1Y5Fd6V6NTDr65Ppwdr5cxES6BAJCV/XDPZFk="
+        }
+      ]
+    },
+    {
+      "Route": "images/default_cruise.aima9l0sqo.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\default_cruise.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2851"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cq32ZJ/qwvVsgLsyUQmiPEXBKItqxjmFZ2JoSLOVQWo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 16:16:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "aima9l0sqo"
+        },
+        {
+          "Name": "label",
+          "Value": "images/default_cruise.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cq32ZJ/qwvVsgLsyUQmiPEXBKItqxjmFZ2JoSLOVQWo="
+        }
+      ]
+    },
+    {
+      "Route": "images/default_cruise.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\default_cruise.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2851"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cq32ZJ/qwvVsgLsyUQmiPEXBKItqxjmFZ2JoSLOVQWo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 16:16:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cq32ZJ/qwvVsgLsyUQmiPEXBKItqxjmFZ2JoSLOVQWo="
         }
       ]
     },
@@ -5852,6 +6203,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-DajSoy+0qfIxbaFgFn1/yAgxSPsmH6HJXVtzl7pwZR8="
+        }
+      ]
+    },
+    {
+      "Route": "images/imagePlane.5ad1d8v92x.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\imagePlane.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2454"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fXZsp9htMqBHWls+5zN8+RGIDnVvnMnwUwWZBOdiaXQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 14:30:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ad1d8v92x"
+        },
+        {
+          "Name": "label",
+          "Value": "images/imagePlane.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fXZsp9htMqBHWls+5zN8+RGIDnVvnMnwUwWZBOdiaXQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/imagePlane.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\imagePlane.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2454"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fXZsp9htMqBHWls+5zN8+RGIDnVvnMnwUwWZBOdiaXQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 14:30:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fXZsp9htMqBHWls+5zN8+RGIDnVvnMnwUwWZBOdiaXQ="
         }
       ]
     },
@@ -15542,7 +15975,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "31924"
+          "Value": "31925"
         },
         {
           "Name": "Content-Type",
@@ -15550,11 +15983,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"nS7g0xPt5EHMHuHS2vn9qPYxr7wQN2OJBuv3zgILDVc=\""
+          "Value": "\"4x7HGYyAfuvAz4LV0FiMYokH4TPKdslFdTT6KnJP2nQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 19 Dec 2022 10:17:28 GMT"
+          "Value": "Sun, 25 May 2025 11:57:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15564,12 +15997,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-nS7g0xPt5EHMHuHS2vn9qPYxr7wQN2OJBuv3zgILDVc="
+          "Value": "sha256-4x7HGYyAfuvAz4LV0FiMYokH4TPKdslFdTT6KnJP2nQ="
         }
       ]
     },
     {
-      "Route": "styles/single_listing_styles.zw0rcyozzk.css",
+      "Route": "styles/single_listing_styles.d8bxa4h5vo.css",
       "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\single_listing_styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -15579,7 +16012,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "31924"
+          "Value": "31925"
         },
         {
           "Name": "Content-Type",
@@ -15587,11 +16020,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"nS7g0xPt5EHMHuHS2vn9qPYxr7wQN2OJBuv3zgILDVc=\""
+          "Value": "\"4x7HGYyAfuvAz4LV0FiMYokH4TPKdslFdTT6KnJP2nQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 19 Dec 2022 10:17:28 GMT"
+          "Value": "Sun, 25 May 2025 11:57:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15601,7 +16034,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "zw0rcyozzk"
+          "Value": "d8bxa4h5vo"
         },
         {
           "Name": "label",
@@ -15609,7 +16042,89 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-nS7g0xPt5EHMHuHS2vn9qPYxr7wQN2OJBuv3zgILDVc="
+          "Value": "sha256-4x7HGYyAfuvAz4LV0FiMYokH4TPKdslFdTT6KnJP2nQ="
+        }
+      ]
+    },
+    {
+      "Route": "styles/validation_animations.8dth8sl2hm.css",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\validation_animations.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "362"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FIlKb54gpE6YwgRBTlvHsF9iWiqjEEPwyqUPp+WTcRE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 08:35:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8dth8sl2hm"
+        },
+        {
+          "Name": "label",
+          "Value": "styles/validation_animations.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FIlKb54gpE6YwgRBTlvHsF9iWiqjEEPwyqUPp+WTcRE="
+        }
+      ]
+    },
+    {
+      "Route": "styles/validation_animations.css",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\validation_animations.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "362"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FIlKb54gpE6YwgRBTlvHsF9iWiqjEEPwyqUPp+WTcRE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 25 May 2025 08:35:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FIlKb54gpE6YwgRBTlvHsF9iWiqjEEPwyqUPp+WTcRE="
         }
       ]
     },
@@ -15636,7 +16151,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 24 May 2025 14:09:41 GMT"
+          "Value": "Sun, 25 May 2025 16:20:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15681,7 +16196,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 24 May 2025 14:09:41 GMT"
+          "Value": "Sun, 25 May 2025 16:20:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15726,7 +16241,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 24 May 2025 14:09:41 GMT"
+          "Value": "Sun, 25 May 2025 16:20:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15763,7 +16278,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 24 May 2025 14:09:41 GMT"
+          "Value": "Sun, 25 May 2025 16:20:58 GMT"
         },
         {
           "Name": "Cache-Control",

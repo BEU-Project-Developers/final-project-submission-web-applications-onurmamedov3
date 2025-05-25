@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\images\\bus.png"
     },
     {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\carImage.png",
+      "PackagePath": "staticwebassets\\images\\carImage.png"
+    },
+    {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\compass.png",
       "PackagePath": "staticwebassets\\images\\compass.png"
     },
@@ -67,6 +71,14 @@
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cta.jpg",
       "PackagePath": "staticwebassets\\images\\cta.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\default_activity.png",
+      "PackagePath": "staticwebassets\\images\\default_activity.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\default_cruise.png",
+      "PackagePath": "staticwebassets\\images\\default_cruise.png"
     },
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\departure.png",
@@ -131,6 +143,10 @@
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotelImage.png",
       "PackagePath": "staticwebassets\\images\\hotelImage.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\imagePlane.png",
+      "PackagePath": "staticwebassets\\images\\imagePlane.png"
     },
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\intro.png",
@@ -607,6 +623,10 @@
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\single_listing_styles.css",
       "PackagePath": "staticwebassets\\styles\\single_listing_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\styles\\validation_animations.css",
+      "PackagePath": "staticwebassets\\styles\\validation_animations.css"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TourManagementSystem.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
