@@ -112,6 +112,48 @@ namespace TourManagementSystem.Services
             }
         }
 
+        public async Task<IEnumerable<Hotel>> GetFeaturedHotelsAsync(int count, string? category = null)
+        {
+            try
+            {
+                var query = _context.Hotels.AsNoTracking();
+                // Example: if you add a "Category" string property or "IsFeatured" bool to Hotel model
+                // if (!string.IsNullOrEmpty(category)) {
+                //    query = query.Where(h => h.Category == category);
+                // } else {
+                //    query = query.Where(h => h.IsFeatured == true);
+                // }
+
+                // For now, using high rating and then random for variety
+                return await query.OrderByDescending(h => h.Rating)
+                                  .ThenBy(h => Guid.NewGuid()) // EF Core specific way to randomize
+                                  .Take(count)
+                                  .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching featured hotels for category {Category}.", category);
+                return new List<Hotel>();
+            }
+        }
+
+        public async Task<IEnumerable<Hotel>> GetRandomHotelsAsync(int count)
+        {
+            try
+            {
+                return await _context.Hotels
+                                     .AsNoTracking()
+                                     .OrderBy(h => Guid.NewGuid()) // EF Core specific way to randomize
+                                     .Take(count)
+                                     .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching {Count} random hotels.", count);
+                return new List<Hotel>();
+            }
+        }
+
         public async Task<(bool Success, Hotel? Hotel, string ErrorMessage)> CreateHotelAsync(HotelViewModel model, int creatingUserId)
         {
             var hotel = new Hotel

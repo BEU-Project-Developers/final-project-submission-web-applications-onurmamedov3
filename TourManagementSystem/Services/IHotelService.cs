@@ -26,5 +26,8 @@ namespace TourManagementSystem.Services
         Task<(bool Success, Hotel? Hotel, string ErrorMessage)> CreateHotelAsync(HotelViewModel model, int creatingUserId);
         Task<(bool Success, string ErrorMessage)> UpdateHotelAsync(int id, HotelViewModel model);
         Task<bool> DeleteHotelAsync(int id);
+
+        Task<IEnumerable<Hotel>> GetFeaturedHotelsAsync(int count, string? category = null);
+        Task<IEnumerable<Hotel>> GetRandomHotelsAsync(int count);
     }
 }

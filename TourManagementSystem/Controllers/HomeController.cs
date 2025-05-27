@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using TourManagementSystem.Models;
+using TourManagementSystem.Services;
 using Activity = System.Diagnostics.Activity; // For ErrorViewModel and TripType if used directly
 
 namespace TourManagementSystem.Controllers
@@ -10,17 +11,79 @@ namespace TourManagementSystem.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHotelService _hotelService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHotelService hotelService) // <<< UPDATE CONSTRUCTOR
         {
             _logger = logger;
+            _hotelService = hotelService; // <<< ASSIGN SERVICE
         }
 
+        // MODIFIED Index ACTION TO FETCH DATA
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(); // No specific model needed for the home page view itself for now
+            _logger.LogInformation("Home page requested. Fetching dynamic content.");
+            var viewModel = new HomeViewModel();
+
+            // Fetch data for "Intro Tours"
+            var introToursData = await _hotelService.GetFeaturedHotelsAsync(3, "intro_tour_candidate"); // Get 3 items
+            viewModel.IntroTours = introToursData.Select(h => new HotelViewModel
+            {
+                Id = h.Id,
+                Name = h.Name,
+                Destination = h.Destination,
+                PricePerNight = h.PricePerNight,
+                Rating = h.Rating,
+                PrimaryImageUrl = h.PrimaryImageUrl,
+                Description = h.Description // Include description
+            }).ToList();
+
+            // Fetch data for "CTA Offers" - Call to Action Slider
+            var ctaOffersData = await _hotelService.GetRandomHotelsAsync(3); // Get 3 random items
+            viewModel.CtaOffers = ctaOffersData.Select(h => new HotelViewModel
+            {
+                Id = h.Id,
+                Name = h.Name,
+                Destination = h.Destination,
+                PricePerNight = h.PricePerNight,
+                Rating = h.Rating,
+                PrimaryImageUrl = h.PrimaryImageUrl,
+                Description = h.Description // Include description
+            }).ToList();
+
+            // Fetch data for "Best Offers with Rooms"
+            var bestRoomOffersData = await _hotelService.GetFeaturedHotelsAsync(4, "best_room_deal"); // Get 4 items
+            viewModel.BestRoomOffers = bestRoomOffersData.Select(h => new HotelViewModel
+            {
+                Id = h.Id,
+                Name = h.Name,
+                Destination = h.Destination,
+                PricePerNight = h.PricePerNight,
+                Rating = h.Rating,
+                PrimaryImageUrl = h.PrimaryImageUrl,
+                Description = h.Description // Include description
+            }).ToList();
+
+            // Fetch data for "Trending Now Offers"
+            var trendingOffersData = await _hotelService.GetFeaturedHotelsAsync(8, "trending_now"); // Get 8 items
+            viewModel.TrendingNowOffers = trendingOffersData.Select(h => new HotelViewModel
+            {
+                Id = h.Id,
+                Name = h.Name,
+                Destination = h.Destination,
+                PricePerNight = h.PricePerNight,
+                Rating = h.Rating,
+                PrimaryImageUrl = h.PrimaryImageUrl
+                // Description might not be needed for this smaller display item
+            }).ToList();
+
+            _logger.LogInformation("Dynamic content fetched: IntroTours={IntroCount}, CtaOffers={CtaCount}, BestRoomOffers={BestRoomCount}, TrendingNowOffers={TrendingCount}",
+                viewModel.IntroTours.Count, viewModel.CtaOffers.Count, viewModel.BestRoomOffers.Count, viewModel.TrendingNowOffers.Count);
+
+            return View(viewModel); // Pass the populated ViewModel to the view
         }
+
 
         [HttpGet]
         public IActionResult SearchOffers(

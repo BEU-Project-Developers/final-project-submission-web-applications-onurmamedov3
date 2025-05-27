@@ -56,6 +56,8 @@ builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddControllersWithViews();
 // builder.Services.AddRazorPages(); // If you use Razor Pages
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 var app = builder.Build();
 
