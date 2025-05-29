@@ -1,100 +1,369 @@
-﻿@* File: TourManagementSystem/Views/Offers/Details_Placeholder.cshtml *@
-@model TourManagementSystem.Models.HotelViewModel
-
+﻿@model TourManagementSystem.Models.HotelViewModel
 @{
-    ViewData["Title"] = Model?.Name ?? "Offer Details";
+    ViewData["Title"] = Model?.Name ?? "Hotel Details";
+    var defaultHotelImage = Url.Content("~/images/single_background.jpg");
 }
 
-@* Add a section for page-specific styles if you need more complex CSS later *@
 @section Styles {
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_styles.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_responsive.css" asp-append-version="true">
     <style>
-        .offer-details-container {
-            /* Increased top padding to ensure content is below the navbar */
-            padding-top: 180px; /* Start with a larger value, adjust as needed */
-            padding-bottom: 60px;
-            min-height: calc(100vh - 120px); /* Example: ensure it takes at least viewport height minus header/footer */
+        /* Hero Banner */
+        .home {
+            position: relative;
+            min-height: 500px;
+            overflow: hidden;
         }
 
-            .offer-details-container h1 {
-                margin-bottom: 20px; /* Space below the title */
+        .home_background {
+            background-size: cover;
+            background-position: center;
+        }
+
+            .home_background::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+                z-index: 1;
             }
 
-            .offer-details-container .img-fluid {
-                max-width: 100%;
+        .home_content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .home_title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-transform: capitalize;
+        }
+
+        /* Listing Card */
+        .listing {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+
+        .single_listing {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .hotel_title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .hotel_rating {
+            margin: 10px 0;
+        }
+
+            .hotel_rating i {
+                color: #FFD700;
+                font-size: 18px;
+                transition: transform 0.2s;
+            }
+
+                .hotel_rating i:hover {
+                    transform: scale(1.2);
+                }
+
+        .hotel_location {
+            font-size: 16px;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Hotel Image */
+        .hotel_image {
+            position: relative;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .hotel_image img {
+                width: 100%;
                 height: auto;
-                border-radius: 8px; /* Optional: rounded corners for the image */
-                margin-bottom: 20px; /* Space below image on small screens */
+                max-height: 500px;
+                object-fit: cover;
             }
 
-            .offer-details-container .btn {
-                margin-top: 15px;
-                margin-right: 10px;
+        .hotel_review_container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .hotel_review_title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #721c24;
+        }
+
+        .hotel_review_subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .hotel_review_rating {
+            font-size: 24px;
+            font-weight: 700;
+            color: #721c24;
+        }
+
+        /* Hotel Info Text */
+        .hotel_info_text h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #721c24;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .hotel_info_text p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .hotel_info_text hr {
+            border-color: #ddd;
+            margin: 20px 0;
+        }
+
+        .hotel_info_text strong {
+            color: #333;
+        }
+
+        /* Buttons */
+        .book_button a, .btn {
+            background: #721c24;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+            .book_button a:hover, .btn:hover {
+                background: #a52a2a;
+                transform: scale(1.05);
+                text-decoration: none;
             }
 
-            .offer-details-container p,
-            .offer-details-container div > strong {
-                margin-bottom: 0.75rem;
-                line-height: 1.6;
+        /* Placeholder Sections */
+        .placeholder-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+            .placeholder-section h5 {
+                color: #721c24;
+                font-size: 20px;
+                margin-bottom: 10px;
             }
+
+        /* Responsive */
+        /*         @* @media (max-width: 767px) { */ *@
+        /*     .home_title */
+
+        /* { */
+        /*     font-size: 32px; */
+        /* } */
+
+        /* .hotel_title { */
+        /*     font-size: 24px; */
+        /* } */
+
+        /* .single_listing { */
+        /*     padding: 20px; */
+        /* } */
+
+        /* .hotel_image img { */
+        /*     max-height: 300px; */
+        /* } */
+
+        /* .hotel_review_container { */
+        /*     bottom: 10px; */
+        /*     right: 10px; */
+        /*     padding: 10px; */
+        /* } */
+
+        /* .hotel_review_rating { */
+        /*     font-size: 20px; */
+        /* } */
+
+        /* } */
     </style>
 }
 
-<div class="container offer-details-container">
-    @* Added a class and increased padding-top *@
-    @if (Model != null)
-    {
-        <div class="row">
-            <div class="col-12">
-                @* Title spans full width initially *@
-                <h1>@Model.Name</h1>
-                <hr />
-            </div>
+<div class="super_container">
+    <!-- Hero Banner -->
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="@(!string.IsNullOrEmpty(Model?.PrimaryImageUrl) ? Url.Content(Model.PrimaryImageUrl) : defaultHotelImage)" data-speed="0.8"></div>
+        <div class="home_content">
+            <div class="home_title">@(Model?.Name ?? "Explore Our Hotel")</div>
         </div>
-        <div class="row">
-            <div class="col-md-7 col-lg-6">
-                @* Give image a bit more space or adjust as needed *@
-                @if (!string.IsNullOrEmpty(Model.PrimaryImageUrl))
-                {
-                    <img src="@Url.Content(Model.PrimaryImageUrl)" alt="@Model.Name" class="img-fluid" />
-                }
-                else
-                {
-                    @* Ensure this default image exists in wwwroot/images/ *@
-                    <img src="@Url.Content("~/images/default_offer_large.jpg")" alt="Default Offer Image" class="img-fluid" />
-                }
-            </div>
-            <div class="col-md-5 col-lg-6">
-                <p><strong>Destination:</strong> @Model.Destination</p>
-                <p><strong>Price:</strong> @Model.PricePerNight.ToString("C") per night</p>
-                <p>
-                    <strong>Rating:</strong>
-                    @for (int i = 0; i < 5; i++)
+    </div>
+
+    <!-- Hotel Details -->
+    <div class="listing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    @if (Model != null)
                     {
-                        <i class="fa @(i < Model.Rating ? "fa-star" : "fa-star-o")" style="color: #FFD700;"></i> @* Example gold color for stars *@
+                        <div class="single_listing">
+                            <!-- Hotel Info -->
+                            <div class="hotel_info">
+                                <!-- Title and Booking -->
+                                <div class="hotel_title_container d-flex flex-lg-row flex-column align-items-lg-center">
+                                    <div class="hotel_title_content flex-grow-1">
+                                        <h1 class="hotel_title">@Model.Name</h1>
+                                        <div class="hotel_rating" aria-label="Rating @Model.Rating out of 5 stars">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                <i class="fa @(i < Model.Rating ? "fa-star" : "fa-star-o")" aria-hidden="true"></i>
+                                            }
+                                        </div>
+                                        <div class="hotel_location">@Model.Address, @Model.Destination</div>
+                                    </div>
+                                    <div class="hotel_title_button">
+                                        <div class="book_button">
+                                            <a asp-controller="Booking" asp-action="Create" asp-route-offerId="@Model.Id" asp-route-offerType="Hotel" aria-label="Book @Model.Name">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Main Image -->
+                                <div class="hotel_image">
+                                    <img src="@(!string.IsNullOrEmpty(Model.PrimaryImageUrl) ? Url.Content(Model.PrimaryImageUrl) : defaultHotelImage)" alt="@Model.Name" />
+                                    <div class="hotel_review_container">
+                                        <div class="hotel_review">
+                                            <div class="hotel_review_content">
+                                                <div class="hotel_review_title">@(Model.Rating >= 4 ? "Very Good" : (Model.Rating == 3 ? "Good" : "Okay"))</div>
+                                                <div class="hotel_review_subtitle">Based on @Model.Rating.ToString("0.0") rating</div>
+                                            </div>
+                                            <div class="hotel_review_rating">@Model.Rating.ToString("0.0")</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Hotel Details -->
+                                <div class="hotel_info_text">
+                                    <h4>About @Model.Name</h4>
+                                    <p>@Html.Raw(Model.Description?.Replace("\n", "<br />"))</p>
+                                    <hr />
+                                    <dl class="row">
+                                        <dt class="col-sm-3">Location</dt>
+                                        <dd class="col-sm-9">@Model.Address, @Model.Destination</dd>
+                                        <dt class="col-sm-3">Price</dt>
+                                        <dd class="col-sm-9">@Model.PricePerNight.ToString("C") per night</dd>
+                                        <dt class="col-sm-3">Rating</dt>
+                                        <dd class="col-sm-9">@Model.Rating / 5 stars</dd>
+                                        <dt class="col-sm-3">Rooms Available</dt>
+                                        <dd class="col-sm-9">@Model.AvailableRooms</dd>
+                                    </dl>
+                                </div>
+
+                                <!-- Amenities (Enable if Model has these properties) -->
+                                @*
+                                <div class="hotel_info_tags">
+                                    <h4>Amenities</h4>
+                                    <div class="row">
+                                        @if (Model.HasWiFi)
+                                        {
+                                            <div class="col-6 col-md-3 text-center mb-3">
+                                                <img src="~/images/amenity_wifi.png" alt="WiFi" class="img-fluid" style="max-width: 40px;" />
+                                                <p>WiFi</p>
+                                            </div>
+                                        }
+                                        @if (Model.HasPool)
+                                        {
+                                            <div class="col-6 col-md-3 text-center mb-3">
+                                                <img src="~/images/amenity_pool.png" alt="Pool" class="img-fluid" style="max-width: 40px;" />
+                                                <p>Pool</p>
+                                            </div>
+                                        }
+                                        @if (Model.IsPetFriendly)
+                                        {
+                                            <div class="col-6 col-md-3 text-center mb-3">
+                                                <img src="~/images/amenity_pet.png" alt="Pet Friendly" class="img-fluid" style="max-width: 40px;" />
+                                                <p>Pet Friendly</p>
+                                            </div>
+                                        }
+                                        @if (Model.HasParking)
+                                        {
+                                            <div class="col-6 col-md-3 text-center mb-3">
+                                                <img src="~/images/amenity_parking.png" alt="Parking" class="img-fluid" style="max-width: 40px;" />
+                                                <p>Parking</p>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                *@
+                            </div>
+
+                            <!-- Room Types Placeholder -->
+                            <div class="placeholder-section">
+                                <h5>Available Room Types</h5>
+                                <p>Room type selection is coming soon. Please book directly to choose your room.</p>
+                            </div>
+
+                            <!-- Reviews Placeholder -->
+                            <div class="placeholder-section">
+                                <h5>Guest Reviews</h5>
+                                <p>Guest reviews will be available soon. Stay tuned!</p>
+                            </div>
+
+                            <!-- Navigation -->
+                            <div class="text-center mt-4">
+                                <a asp-controller="Offers" asp-action="Index" asp-route-entityType="Hotels" class="btn">Back to Hotels</a>
+                            </div>
+                        </div>
                     }
-                    (@Model.Rating / 5.0)
-                </p>
-                <p><strong>Available Rooms:</strong> @Model.AvailableRooms</p>
-                @if (!string.IsNullOrWhiteSpace(Model.Address))
-                {
-                    <p><strong>Address:</strong> @Model.Address</p>
-                }
-                <div>
-                    <strong>Description:</strong>
-                    <p>@Html.Raw(Model.Description?.Replace("\n", "<br />"))</p>
+                    else
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            Hotel details could not be found.
+                            <a asp-controller="Offers" asp-action="Index" asp-route-entityType="Hotels" class="alert-link">Return to hotels.</a>
+                        </div>
+                    }
                 </div>
-                <a asp-controller="Booking" asp-action="Create" asp-route-offerId="@Model.Id" asp-route-offerType="Hotel" class="btn btn-primary">Book Now</a>
-                <a asp-action="Index" asp-controller="Offers" class="btn btn-outline-secondary">Back to Offers</a> @* Changed to outline for secondary action *@
             </div>
         </div>
-    }
-    else
-    {
-        <div class="text-center">
-            @* Center the "not found" message *@
-            <h2>Offer Not Found</h2>
-            <p>The offer you are looking for is not available.</p>
-            <a asp-action="Index" asp-controller="Offers" class="btn btn-primary">Back to Offers</a>
-        </div>
-    }
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/plugins/easing/easing.js" asp-append-version="true"></script>
+    <script src="~/plugins/parallax-js-master/parallax.min.js" asp-append-version="true"></script>
+    <script src="~/js/single_listing_custom.js" asp-append-version="true"></script>
+}

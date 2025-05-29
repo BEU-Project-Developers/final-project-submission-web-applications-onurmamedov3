@@ -12,31 +12,17 @@
     IEnumerable<FlightViewModel> flightOffers = null;
     IEnumerable<CruiseViewModel> cruiseOffers = null;
     IEnumerable<ActivityViewModel> activityOffers = null;
-    // Add IEnumerable for Trips when implemented
+    IEnumerable<TripViewModel> tripOffers = null;
 
-    if (entityType == "Hotels" && Model is IEnumerable<HotelViewModel> hotels)
-    {
-        hotelOffers = hotels;
-    }
-    else if (entityType == "CarRentals" && Model is IEnumerable<CarRentalViewModel> cars)
-    {
-        carRentalOffers = cars;
-    }
-    else if (entityType == "Flights" && Model is IEnumerable<FlightViewModel> flights)
-    {
-        flightOffers = flights;
-    }
-    else if (entityType == "Cruises" && Model is IEnumerable<CruiseViewModel> cruises)
-    {
-        cruiseOffers = cruises;
-    }
-    else if (entityType == "Activities" && Model is IEnumerable<ActivityViewModel> activities)
-    {
-        activityOffers = activities;
-    }
+    if (entityType == "Hotels" && Model is IEnumerable<HotelViewModel> hotels) { hotelOffers = hotels; }
+    else if (entityType == "CarRentals" && Model is IEnumerable<CarRentalViewModel> cars) { carRentalOffers = cars; }
+    else if (entityType == "Flights" && Model is IEnumerable<FlightViewModel> flights) { flightOffers = flights; }
+    else if (entityType == "Cruises" && Model is IEnumerable<CruiseViewModel> cruises) { cruiseOffers = cruises; }
+    else if (entityType == "Activities" && Model is IEnumerable<ActivityViewModel> activities) { activityOffers = activities; }
+    else if (entityType == "Trips" && Model is IEnumerable<TripViewModel> trips) { tripOffers = trips; }
+
 
     // --- Retrieve search parameters from ViewData for pre-filling forms ---
-    // Hotel
     var destination_hotel = ViewData["Destination"] as string;
     var hotelName_hotel = ViewData["HotelName"] as string;
     var checkInDate_hotel = ViewData["CheckInDate"] as string;
@@ -47,13 +33,11 @@
     var maxPrice_hotel = ViewData["MaxPrice"] as decimal?;
     var selectedAmenities_hotel = ViewData["SelectedAmenities"] as List<string> ?? new List<string>();
 
-    // Car Rental
     var location_car = ViewData["Location"] as string;
     var pickupDate_car = ViewData["PickupDate"] as string;
     var returnDate_car = ViewData["ReturnDate_Car"] as string;
     var carModelKeyword_car = ViewData["CarModelKeyword"] as string;
 
-    // Flight
     var origin_flight = ViewData["Origin"] as string;
     var destination_flight = ViewData["FlightDestination"] as string;
     var departureDate_flight = ViewData["DepartureDate"] as string;
@@ -61,17 +45,25 @@
     var passengers_flight = ViewData["Passengers"] as int? ?? 1;
     var tripType_flight = (ViewData["TripType"] as TripType?) ?? TripType.RoundTrip;
 
-    // Cruise
     var destinationRegion_cruise = ViewData["DestinationRegion"] as string;
     var cruiseDeparturePort_cruise = ViewData["CruiseDeparturePort"] as string;
     var cruiseLineName_cruise = ViewData["CruiseLineName"] as string;
-    var departureMonth_cruise = ViewData["DepartureMonth"] as string; // yyyy-MM
+    var minCruiseDuration_cruise = ViewData["MinCruiseDuration"] as int?;
+    var maxCruiseDuration_cruise = ViewData["MaxCruiseDuration"] as int?;
+    var maxCruisePrice_cruise = ViewData["MaxCruisePrice"] as decimal?;
+    var departureMonth_cruise = ViewData["DepartureMonth"] as string;
 
-    // Activity
     var activitySearchTerm_activity = ViewData["ActivitySearchTerm"] as string;
     var activityCategory_activity = ViewData["ActivityCategory"] as string;
     var activityDate_activity = ViewData["ActivityDate"] as string;
+    var maxActivityDuration_activity = ViewData["MaxActivityDuration"] as int?;
+    var maxActivityPrice_activity = ViewData["MaxActivityPrice"] as decimal?;
     var participants_activity = ViewData["Participants"] as int?;
+
+    var tripSearchTerm_trip = ViewData["TripSearchTerm"] as string;
+    var startDate_trip = ViewData["StartDate"] as string;
+    var travelers_trip = ViewData["Travelers"] as int?;
+    var maxTripPrice_trip = ViewData["MaxTripPrice"] as decimal?;
 
 
     string FormatDateForInput(string dateStr)
@@ -87,6 +79,7 @@
     var departureDate_flightValue = FormatDateForInput(departureDate_flight);
     var returnDate_flightValue = FormatDateForInput(returnDate_flight);
     var activityDate_activityValue = FormatDateForInput(activityDate_activity);
+    var startDate_tripValue = FormatDateForInput(startDate_trip);
 }
 
 @section Styles {
@@ -101,11 +94,11 @@
             .search_panel_content .search_item:last-of-type {
                 margin-bottom: 15px;
             }
-
+            /* Ensure last item in a row also has margin */
             .search_panel_content .search_item:last-child {
                 padding-right: 0;
             }
-
+        /* No right padding for the absolute last item */
         .search_panel_content .button.search_button {
             margin-top: 10px;
             align-self: flex-end;
@@ -121,21 +114,23 @@
             .search_panel_content.d-flex.flex-lg-row > .search_item.extras {
                 flex-basis: 100%;
                 min-width: auto;
+                margin-top: 10px;
             }
 
         .search_panel_content.d-flex.flex-lg-row > .button.search_button {
             flex-grow: 0;
             flex-shrink: 0;
             flex-basis: auto;
+            margin-left: auto;
         }
 
-        .flight_details p {
+        .flight_details p, .car_details p, .cruise_details p, .activity_details p, .trip_details p {
             margin-bottom: 0.3rem;
             line-height: 1.4;
             font-size: 0.9em;
         }
 
-        .flight_details strong {
+        .flight_details strong, .car_details strong, .cruise_details strong, .activity_details strong, .trip_details strong {
             font-weight: 600;
         }
 
@@ -151,9 +146,14 @@
             font-size: 0.9em;
         }
 
-            .offers_image_container .offer_name a {
-                color: white;
-            }
+        .offers_image_container .offer_name a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .offers_image_container .offer_name a:hover {
+            text-decoration: underline;
+        }
     </style>
 }
 
@@ -191,8 +191,8 @@
                                     <div class="search_item"><div>Hotel Name</div><input type="text" name="hotelName" value="@hotelName_hotel" class="hotel_name search_input" placeholder="e.g. Grand Hotel"></div>
                                     <div class="search_item"><div>Check In</div><input type="date" name="checkInDate" value="@checkInDate_hotelValue" class="check_in search_input"></div>
                                     <div class="search_item"><div>Check Out</div><input type="date" name="checkOutDate" value="@checkOutDate_hotelValue" class="check_out search_input"></div>
-                                    <div class="search_item"><div>Adults</div><select name="adults" class="dropdown_item_select search_input"><option value="1" selected="@(adults_hotel == 1)">01</option><option value="2" selected="@(adults_hotel == 2)">02</option><option value="3" selected="@(adults_hotel == 3)">03+</option></select></div>
-                                    <div class="search_item"><div>Children</div><select name="children" class="dropdown_item_select search_input"><option value="0" selected="@(children_hotel == 0)">0</option><option value="1" selected="@(children_hotel == 1)">01</option><option value="2" selected="@(children_hotel == 2)">02+</option></select></div>
+                                    <div class="search_item"><div>Adults</div><select name="adults" class="dropdown_item_select search_input"><option value="1" selected="@(adults_hotel == 1)">01</option><option value="2" selected="@(adults_hotel == 2)">02</option><option value="3" selected="@(adults_hotel >= 3)">03+</option></select></div>
+                                    <div class="search_item"><div>Children</div><select name="children" class="dropdown_item_select search_input"><option value="0" selected="@(children_hotel == 0)">0</option><option value="1" selected="@(children_hotel == 1)">01</option><option value="2" selected="@(children_hotel >= 2)">02+</option></select></div>
                                     <div class="search_item"><div>Min Rating</div><select name="minRating" class="dropdown_item_select search_input"><option value="">Any</option><option value="1" selected="@(minRating_hotel == 1)">1+</option><option value="2" selected="@(minRating_hotel == 2)">2+</option><option value="3" selected="@(minRating_hotel == 3)">3+</option><option value="4" selected="@(minRating_hotel == 4)">4+</option><option value="5" selected="@(minRating_hotel == 5)">5</option></select></div>
                                     <div class="search_item"><div>Max Price</div><input type="number" name="maxPrice" value="@maxPrice_hotel" class="search_input" placeholder="e.g. 200" step="10"></div>
                                     <div class="search_item extras" style="width:100%; flex-basis:100%;">
@@ -222,19 +222,25 @@
                             <div class="search_panel @(entityType == "Flights" ? "active" : "")" id="flights_search_panel">
                                 <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
                                     <input type="hidden" name="entityType" value="Flights" />
-                                    <div class="search_item">
-                                        <div>Trip Type</div>
-                                        <select name="tripType" class="dropdown_item_select search_input">
-                                            <option value="@TripType.RoundTrip" selected="@(tripType_flight == TripType.RoundTrip)">Round Trip</option>
-                                            <option value="@TripType.OneWay" selected="@(tripType_flight == TripType.OneWay)">One Way</option>
-                                        </select>
-                                    </div>
+                                    <div class="search_item"><div>Trip Type</div><select name="tripType" class="dropdown_item_select search_input"><option value="@TripType.RoundTrip" selected="@(tripType_flight == TripType.RoundTrip)">Round Trip</option><option value="@TripType.OneWay" selected="@(tripType_flight == TripType.OneWay)">One Way</option></select></div>
                                     <div class="search_item"><div>From</div><input type="text" name="origin" value="@origin_flight" class="search_input" placeholder="Origin City/Airport"></div>
                                     <div class="search_item"><div>To</div><input type="text" name="flightDestination" value="@destination_flight" class="search_input" placeholder="Destination City/Airport"></div>
                                     <div class="search_item"><div>Departure Date</div><input type="date" name="departureDate" value="@departureDate_flightValue" class="search_input"></div>
                                     <div class="search_item"><div>Return Date</div><input type="date" name="returnDate" value="@returnDate_flightValue" class="search_input"></div>
                                     <div class="search_item"><div>Passengers</div><input type="number" name="passengers" value="@passengers_flight" class="search_input" min="1"></div>
                                     <button type="submit" class="button search_button">Search Flights<span></span><span></span><span></span></button>
+                                </form>
+                            </div>
+
+                            <!-- Search Panel (Trips) -->
+                            <div class="search_panel @(entityType == "Trips" ? "active" : "")" id="trips_search_panel">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
+                                    <input type="hidden" name="entityType" value="Trips" />
+                                    <div class="search_item"><div>Destination/Keyword</div><input type="text" name="tripSearchTerm" value="@tripSearchTerm_trip" class="search_input" placeholder="e.g., Italy, Adventure Tour"></div>
+                                    <div class="search_item"><div>Start Date (Optional)</div><input type="date" name="startDate" value="@startDate_tripValue" class="search_input"></div>
+                                    <div class="search_item"><div>Travelers</div><input type="number" name="travelers" value="@(travelers_trip ?? 1)" class="search_input" min="1"></div>
+                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxTripPrice" value="@maxTripPrice_trip" class="search_input" placeholder="e.g. 3000" step="100"></div>
+                                    <button type="submit" class="button search_button">Search Trips<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
@@ -245,7 +251,10 @@
                                     <div class="search_item"><div>Destination Region</div><input type="text" name="destinationRegion" value="@destinationRegion_cruise" class="search_input" placeholder="e.g., Caribbean"></div>
                                     <div class="search_item"><div>Departure Port</div><input type="text" name="cruiseDeparturePort" value="@cruiseDeparturePort_cruise" class="search_input" placeholder="e.g., Miami"></div>
                                     <div class="search_item"><div>Cruise Line</div><input type="text" name="cruiseLineName" value="@cruiseLineName_cruise" class="search_input" placeholder="e.g., Royal Caribbean"></div>
-                                    <div class="search_item"><div>Departure Month</div><input type="month" name="departureMonth" value="@departureMonth_cruise" class="search_input"></div> @* yyyy-MM format *@
+                                    <div class="search_item"><div>Departure Month</div><input type="month" name="departureMonth" value="@departureMonth_cruise" class="search_input"></div>
+                                    <div class="search_item"><div>Min Duration</div><input type="number" name="minCruiseDuration" value="@minCruiseDuration_cruise" class="search_input" placeholder="Days"></div>
+                                    <div class="search_item"><div>Max Duration</div><input type="number" name="maxCruiseDuration" value="@maxCruiseDuration_cruise" class="search_input" placeholder="Days"></div>
+                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxCruisePrice" value="@maxCruisePrice_cruise" class="search_input" placeholder="e.g., 2000" step="100"></div>
                                     <button type="submit" class="button search_button">Search Cruises<span></span><span></span><span></span></button>
                                 </form>
                             </div>
@@ -258,12 +267,11 @@
                                     <div class="search_item"><div>Category</div><input type="text" name="activityCategory" value="@activityCategory_activity" class="search_input" placeholder="e.g., Sightseeing"></div>
                                     <div class="search_item"><div>Date</div><input type="date" name="activityDate" value="@activityDate_activityValue" class="search_input"></div>
                                     <div class="search_item"><div>Participants</div><input type="number" name="participants" value="@(participants_activity ?? 1)" class="search_input" min="1"></div>
+                                    <div class="search_item"><div>Max Duration (hrs)</div><input type="number" name="maxActivityDuration" value="@maxActivityDuration_activity" class="search_input" placeholder="e.g., 3"></div>
+                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxActivityPrice" value="@maxActivityPrice_activity" class="search_input" placeholder="e.g., 100" step="10"></div>
                                     <button type="submit" class="button search_button">Search Activities<span></span><span></span><span></span></button>
                                 </form>
                             </div>
-
-                            <!-- Placeholder for Trips search panel -->
-                            <div class="search_panel @(entityType == "Trips" ? "active" : "")" id="trips_search_panel"> <form class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap"><input type="hidden" name="entityType" value="Trips" /><p class="p-4 text-white w-100">Trips Search - Under Construction</p><button type="submit" class="button search_button" disabled>Search Trips</button></form></div>
                         </div>
                     </div>
                 </div>
@@ -283,23 +291,13 @@
                                 <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
                                 <li><span class="sorting_text">stars</span><i class="fa fa-chevron-down"></i><ul><li class="filter_btn" data-filter="*">show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "stars" }'>ascending</li><li class="filter_btn" data-filter=".rating_3">3</li><li class="filter_btn" data-filter=".rating_4">4</li><li class="filter_btn" data-filter=".rating_5">5</li></ul></li>
                             }
-                            else if (entityType == "CarRentals")
-                            {
-                                <li><span class="sorting_text">price/day</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
-                            }
-                            else if (entityType == "Flights")
+                            else if (entityType == "CarRentals" || entityType == "Flights" || entityType == "Cruises" || entityType == "Activities" || entityType == "Trips")
                             {
                                 <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
-                                <li><span class="sorting_text">departure</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "departure" }'>earliest</li></ul></li>
                             }
-                            else if (entityType == "Cruises")
+                            @if (entityType == "Trips" || entityType == "Cruises")
                             {
-                                <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
                                 <li><span class="sorting_text">duration</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "duration" }'>shortest</li></ul></li>
-                            }
-                            else if (entityType == "Activities")
-                            {
-                                <li><span class="sorting_text">price</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>show all</li><li class="sort_btn" data-isotope-option='{ "sortBy": "price" }'>ascending</li></ul></li>
                             }
                             <li><span class="sorting_text">name/title</span><i class="fa fa-chevron-down"></i><ul><li class="sort_btn" data-isotope-option='{ "sortBy": "original-order" }'>default</li><li class="sort_btn" data-isotope-option='{ "sortBy": "name" }'>alphabetical</li></ul></li>
                         </ul>
@@ -314,15 +312,151 @@
                         }
                         else if (entityType == "Hotels" && hotelOffers != null && hotelOffers.Any())
                         {
-                            foreach (var hotel in hotelOffers) { /* Hotel item HTML */ }
+                            foreach (var hotel in hotelOffers)
+                            {
+                                <div class="offers_item rating_@hotel.Rating" data-price="@hotel.PricePerNight" data-stars="@hotel.Rating" data-name="@hotel.Name">
+                                    <div class="row">
+                                        <div class="col-lg-1 temp_col"></div>
+                                        <div class="col-lg-3 col-1680-4">
+                                            <div class="offers_image_container">
+                                                @{
+                                                    var imageUrl = !string.IsNullOrEmpty(hotel.PrimaryImageUrl) ? Url.Content(hotel.PrimaryImageUrl) : Url.Content("~/images/default_offer.jpg");
+                                                }
+                                                <div class="offers_image_background" style="background-image:url('@imageUrl')"></div>
+                                                <div class="offer_name"><a asp-action="Details" asp-controller="Offers" asp-route-id="@hotel.Id" asp-route-entityType="Hotels">@hotel.Name</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="offers_content">
+                                                <div class="offers_price">@hotel.PricePerNight.ToString("C0")<span>per night</span></div>
+                                                <div class="rating_r rating_r_@hotel.Rating offers_rating" data-rating="@hotel.Rating">
+                                                    @for (int i = 0; i < 5; i++)
+                                                    {
+                                                        <i class="fa @(i < hotel.Rating ? "fa-star" : "fa-star-o")"></i>
+                                                    }
+                                                </div>
+                                                <p class="offers_text">@(!string.IsNullOrEmpty(hotel.Description) && hotel.Description.Length > 180 ? hotel.Description.Substring(0, 180) + "..." : hotel.Description ?? "No description available.")</p>
+                                                <div class="offers_icons">
+                                                    <ul class="offers_icons_list">
+                                                        <li class="offers_icons_item"><img src="~/images/post.png" alt=""></li>
+                                                        <li class="offers_icons_item"><img src="~/images/compass.png" alt=""></li>
+                                                        <li class="offers_icons_item"><img src="~/images/bicycle.png" alt=""></li>
+                                                        <li class="offers_icons_item"><img src="~/images/sailboat.png" alt=""></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="button book_button"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@hotel.Id" asp-route-offerType="Hotel">book<span></span><span></span><span></span></a></div>
+                                                <div class="offer_reviews">
+                                                    <div class="offer_reviews_content">
+                                                        <div class="offer_reviews_title">@(hotel.Rating >= 4 ? "Very Good" : (hotel.Rating == 3 ? "Good" : "Okay"))</div>
+                                                        <div class="offer_reviews_subtitle">@hotel.AvailableRooms rooms left</div>
+                                                    </div>
+                                                    <div class="offer_reviews_rating text-center">@hotel.Rating.ToString("0.0")</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                         else if (entityType == "CarRentals" && carRentalOffers != null && carRentalOffers.Any())
                         {
-                            foreach (var car in carRentalOffers) { /* Car Rental item HTML */ }
+                            foreach (var car in carRentalOffers)
+                            {
+                                <div class="offers_item" data-price="@car.PricePerDay" data-name="@car.CarModel">
+                                    <div class="row">
+                                        <div class="col-lg-1 temp_col"></div>
+                                        <div class="col-lg-3 col-1680-4">
+                                            <div class="offers_image_container">
+                                                @{
+                                                    var carImgUrl = !string.IsNullOrEmpty(car.ImageUrl) ? Url.Content(car.ImageUrl) : Url.Content("~/images/default_car.jpg");
+                                                }
+                                                <div class="offers_image_background" style="background-image:url('@carImgUrl')"></div>
+                                                <div class="offer_name"><a asp-action="Details" asp-controller="Offers" asp-route-id="@car.Id" asp-route-entityType="CarRentals">@car.CarModel</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="offers_content car_details">
+                                                <div class="offers_price">@car.PricePerDay.ToString("C0")<span>per day</span></div>
+                                                <p style="margin-top:10px;">
+                                                    <strong>Company:</strong> @car.Company<br>
+                                                    <strong>Location:</strong> @car.Location
+												</p>
+                                                @*
+                                                *if (!string.IsNullOrEmpty(car.Description)
+                                                {
+                                                    <p class="offers_text">@(car.Description.Length > 100 ? car.Description.Substring(0, 100) + "..." : car.Description)</p>
+                                                }
+												) 
+                                                *@
+                                                <div class="button book_button" style="margin-top:15px;"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@car.Id" asp-route-offerType="CarRental">details<span></span><span></span><span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                         else if (entityType == "Flights" && flightOffers != null && flightOffers.Any())
                         {
-                            foreach (var flight in flightOffers) { /* Flight item HTML */ }
+                            foreach (var flight in flightOffers)
+                            {
+                                <div class="offers_item" data-price="@flight.Price" data-name="@flight.Airline to @flight.ArrivalCity" data-departure="@flight.DepartureTime.ToString("s")">
+                                    <div class="row">
+                                        <div class="col-lg-1 temp_col"></div>
+                                        <div class="col-lg-3 col-1680-4">
+                                            <div class="offers_image_container">
+                                                @{
+                                                    var flightImgUrl = !string.IsNullOrEmpty(flight.AirlineLogoUrl) ? Url.Content(flight.AirlineLogoUrl) : Url.Content("~/images/default_flight.png");
+                                                }
+                                                <div class="offers_image_background" style="background-image:url('@flightImgUrl'); background-size: contain; background-repeat:no-repeat; background-position:center;"></div>
+                                                <div class="offer_name"><a asp-action="Details" asp-controller="Offers" asp-route-id="@flight.Id" asp-route-entityType="Flights">@flight.Airline - @flight.FlightNumber</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="offers_content flight_details">
+                                                <div class="offers_price">@flight.Price.ToString("C0") <span>@((flight.SearchedTripType == TripType.RoundTrip ? "round trip" : "one way"))</span></div>
+                                                <p style="margin-top:10px;">
+                                                    <strong>From:</strong> @flight.DepartureCity <strong>To:</strong> @flight.ArrivalCity<br>
+                                                    <strong>Departs:</strong> @flight.DepartureTime.ToString("MMM dd, yyyy HH:mm")<br>
+                                                    <strong>Arrives:</strong> @flight.ArrivalTime.ToString("MMM dd, yyyy HH:mm")<br>
+                                                    <strong>Duration:</strong> @flight.Duration
+                                                </p>
+                                                <div class="button book_button" style="margin-top:15px;"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@flight.Id" asp-route-offerType="Flight">details<span></span><span></span><span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else if (entityType == "Trips" && tripOffers != null && tripOffers.Any())
+                        {
+                            foreach (var trip in tripOffers)
+                            {
+                                <div class="offers_item" data-price="@trip.Price" data-name="@trip.Title" data-duration="@trip.DurationDays">
+                                    <div class="row">
+                                        <div class="col-lg-1 temp_col"></div>
+                                        <div class="col-lg-3 col-1680-4">
+                                            <div class="offers_image_container">
+                                                @{
+                                                    var tripImgUrl = !string.IsNullOrEmpty(trip.ImageUrl) ? Url.Content(trip.ImageUrl) : Url.Content("~/images/default_trip.jpg");
+                                                }
+                                                <div class="offers_image_background" style="background-image:url('@tripImgUrl')"></div>
+                                                <div class="offer_name"><a asp-action="Details" asp-controller="Offers" asp-route-id="@trip.Id" asp-route-entityType="Trips">@trip.Title</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="offers_content trip_details">
+                                                <div class="offers_price">@trip.Price.ToString("C0") <span>total</span></div>
+                                                <p style="margin-top:10px;">
+                                                    <strong>Destination(s):</strong> @trip.Destination<br>
+                                                    <strong>Duration:</strong> @trip.DurationDays days
+                                                </p>
+                                                <p class="offers_text">@(!string.IsNullOrEmpty(trip.Description) && trip.Description.Length > 100 ? trip.Description.Substring(0, 100) + "..." : trip.Description)</p>
+                                                <div class="button book_button" style="margin-top:15px;"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@trip.Id" asp-route-offerType="Trip">details<span></span><span></span><span></span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                         else if (entityType == "Cruises" && cruiseOffers != null && cruiseOffers.Any())
                         {
@@ -341,9 +475,9 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-8">
-                                            <div class="offers_content">
+                                            <div class="offers_content cruise_details">
                                                 <div class="offers_price">@cruise.Price.ToString("C0") <span>total</span></div>
-                                                <p class="offers_text" style="margin-top:10px;">
+                                                <p style="margin-top:10px;">
                                                     <strong>Cruise Line:</strong> @cruise.CruiseLine<br>
                                                     <strong>Sails from:</strong> @cruise.DeparturePort<br>
                                                     <strong>To:</strong> @cruise.Destination<br>
@@ -373,9 +507,9 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-8">
-                                            <div class="offers_content">
+                                            <div class="offers_content activity_details">
                                                 <div class="offers_price">@activity.Price.ToString("C0") <span>per person</span></div>
-                                                <p class="offers_text" style="margin-top:10px;">
+                                                <p style="margin-top:10px;">
                                                     <strong>Location:</strong> @activity.Location<br>
                                                     <strong>Category:</strong> @activity.Category<br>
                                                     <strong>Duration:</strong> @activity.DurationHours hours
@@ -388,7 +522,7 @@
                                 </div>
                             }
                         }
-                        else if (TempData["InfoMessage"] == null) // If no specific message and no data for current entity type
+                        else if (TempData["InfoMessage"] == null)
                         {
                             <div class="col-12 text-center" style="padding: 40px; min-height: 150px;"><h4>No @(entityType.ToLower().Replace("rentals", " rental")) offers found.</h4></div>
                         }

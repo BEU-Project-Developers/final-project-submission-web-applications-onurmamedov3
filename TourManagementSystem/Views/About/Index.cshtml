@@ -1,288 +1,292 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@* File: TourManagementSystem/Views/About/Index.cshtml *@
+@{
+    ViewData["Title"] = "About VoyagePro";
+    // Example: If you were using a ViewModel later
+    // @model TourManagementSystem.Models.AboutUsViewModel
+    var defaultOfferImageUrl = Url.Content("~/images/default_offer.jpg");
+}
 
-<!-- Mirrored from themewagon.github.io/VoyagePro/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Mar 2025 12:26:56 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head>
-	<title>About Us</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="VoyagePro Project">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-	<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-	<link rel="stylesheet" type="text/css" href="styles/about_styles.css">
-	<link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
-</head>
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/styles/about_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/styles/about_responsive.css">
+}
 
-<body>
+<div class="super_container">
 
-	<div class="super_container">
+    <!-- Home Banner -->
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="@Url.Content("~/images/about_background.jpg")"></div>
+        <div class="home_content">
+            <div class="home_title">About VoyagePro</div>
+        </div>
+    </div>
 
-		<!-- Home -->
+    <!-- Intro Section: Our Story & Mission -->
+    <div class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="intro_image"><img src="@Url.Content("~/images/intro.png")" alt="VoyagePro - Our Journey"></div>
+                    @* Using the original intro.png as per your theme *@
+                </div>
+                <div class="col-lg-5">
+                    <div class="intro_content">
+                        <div class="intro_title">Crafting Your Unforgettable Journeys</div>
+                        <p class="intro_text">
+                            Welcome to VoyagePro, where your dream adventures come to life! Founded with a passion for exploration and a commitment to exceptional service,
+                            we specialize in creating personalized travel experiences that go beyond the ordinary. Whether you seek serene beaches, thrilling mountain expeditions,
+                            or rich cultural immersions, our dedicated team is here to meticulously plan every detail.
+                            Our mission is to provide seamless, inspiring, and sustainable travel, ensuring every trip is not just a vacation, but a cherished memory.
+                        </p>
+                        <div class="button intro_button">
+                            <div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index">Explore Our Tours<span></span><span></span><span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-		<div class="home">
-			<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/about_background.jpg"></div>
-			<div class="home_content">
-				<div class="home_title">about us</div>
-			</div>
-		</div>
+    <!-- Stats Section: Our Impact -->
+    <div class="stats">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_title">VoyagePro by the Numbers</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 text-center">
+                    <p class="stats_text">
+                        We're incredibly proud of the thousands of travelers we've guided on their adventures and the positive impact we strive to make.
+                        The numbers reflect our dedication to creating exceptional travel experiences and our growing community of explorers.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="stats_years">
+                        <div class="stats_years_last">@(DateTime.Now.Year - 2)</div>
+                        <div class="stats_years_new float-right">@(DateTime.Now.Year - 1)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="stats_contents">
 
-		<!-- Intro -->
+                        <!-- Stats Item: Clients -->
+                        <div class="stats_item d-flex flex-md-row flex-column clearfix">
+                            <div class="stats_last order-md-1 order-3">
+                                <div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_1.png")" alt="Clients">
+                                </div>
+                                <div class="stats_last_content">
+                                    <div class="stats_number">1642</div> @* Placeholder value *@
+                                    <div class="stats_type">Clients</div>
+                                </div>
+                            </div>
+                            <div class="stats_bar order-md-2 order-2" data-x="1642" data-y="3527" data-color="#31124b">
+                                <div class="stats_bar_perc"><div><div class="stats_bar_value"></div></div></div>
+                            </div>
+                            <div class="stats_new order-md-3 order-1 text-right">
+                                <div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_1.png")" alt="Clients">
+                                </div>
+                                <div class="stats_new_content">
+                                    <div class="stats_number">3527</div> @* Placeholder value *@
+                                    <div class="stats_type">Clients</div>
+                                </div>
+                            </div>
+                        </div>
 
-		<div class="intro">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-7">
-						<div class="intro_image"><img src="images/intro.png" alt=""></div>
-					</div>
-					<div class="col-lg-5">
-						<div class="intro_content">
-							<div class="intro_title">we have the best tours</div>
-							<p class="intro_text">Discover unforgettable journeys with VOYAGEPRO. Our expertly crafted adventures take you to breathtaking destinations with seamless planning. From hidden beaches to cultural gems, every detail is perfected for your dream getaway. Travel confidently with our 24/7 support and sustainable approach. Your extraordinary experience begins here.</p>
-							<div class="button intro_button"><div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index">explore now<span></span><span></span><span></span></a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                        <!-- Stats Item: Returning Clients (originally stats_2.png) -->
+                        <div class="stats_item d-flex flex-md-row flex-column clearfix">
+                            <div class="stats_last order-md-1 order-3">
+                                <div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_2.png")" alt="Returning Clients">
+                                </div>
+                                <div class="stats_last_content">
+                                    <div class="stats_number">768</div> @* Placeholder value *@
+                                    <div class="stats_type">Returning Clients</div>
+                                </div>
+                            </div>
+                            <div class="stats_bar order-md-2 order-2" data-x="768" data-y="1045" data-color="#a95ce4">
+                                @* Adjusted y-value for example *@
+                                <div class="stats_bar_perc"><div><div class="stats_bar_value"></div></div></div>
+                            </div>
+                            <div class="stats_new order-md-3 order-1 text-right">
+                                <div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_2.png")" alt="Returning Clients">
+                                </div>
+                                <div class="stats_new_content">
+                                    <div class="stats_number">1045</div> @* Placeholder value *@
+                                    <div class="stats_type">Returning Clients</div>
+                                </div>
+                            </div>
+                        </div>
 
-		<!-- Stats -->
+                        <!-- Stats Item: Reach (originally stats_3.png) -->
+                        <div class="stats_item d-flex flex-md-row flex-column clearfix">
+                            <div class="stats_last order-md-1 order-3">
+                                <div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_3.png")" alt="Reach">
+                                </div>
+                                <div class="stats_last_content">
+                                    <div class="stats_number">11546</div>@* Placeholder value *@
+                                    <div class="stats_type">Destinations Offered</div> @* Changed from "Reach" to be more specific *@
+                                </div>
+                            </div>
+                            <div class="stats_bar order-md-2 order-2" data-x="11546" data-y="9321" data-color="#fa6f1b">
+                                <div class="stats_bar_perc"><div><div class="stats_bar_value"></div></div></div>
+                            </div>
+                            <div class="stats_new order-md-3 order-1 text-right">
+                                <div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_3.png")" alt="Reach">
+                                </div>
+                                <div class="stats_new_content">
+                                    <div class="stats_number">9321</div>@* Placeholder value *@
+                                    <div class="stats_type">Destinations Offered</div>
+                                </div>
+                            </div>
+                        </div>
 
-		<div class="stats">
-			<div class="container">
-				<div class="row">
-					<div class="col text-center">
-						<div class="section_title">years statistics</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-10 offset-lg-1 text-center">
-						<p class="stats_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis vulputate eros, iaculis consequat nisl. Nunc et suscipit urna. Integer elementum orci eu vehicula pretium. Donec bibendum tristique condimentum. Aenean in lacus ligula. </p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<div class="stats_years">
-							<div class="stats_years_last">2016</div>
-							<div class="stats_years_new float-right">2017</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<div class="stats_contents">
+                        <!-- Stats Item: Items (originally stats_4.png) -->
+                        <div class="stats_item d-flex flex-md-row flex-column clearfix">
+                            <div class="stats_last order-md-1 order-3">
+                                <div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_4.png")" alt="Items">
+                                </div>
+                                <div class="stats_last_content">
+                                    <div class="stats_number">3729</div>@* Placeholder value *@
+                                    <div class="stats_type">Custom Tours</div> @* Changed from "Items" *@
+                                </div>
+                            </div>
+                            <div class="stats_bar order-md-2 order-2" data-x="3729" data-y="1742" data-color="#fa9e1b">
+                                @* Adjusted y-value for example *@
+                                <div class="stats_bar_perc"><div><div class="stats_bar_value"></div></div></div>
+                            </div>
+                            <div class="stats_new order-md-3 order-1 text-right">
+                                <div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_4.png")" alt="Items">
+                                </div>
+                                <div class="stats_new_content">
+                                    <div class="stats_number">1742</div>@* Placeholder value *@
+                                    <div class="stats_type">Custom Tours</div>
+                                </div>
+                            </div>
+                        </div>
 
-							<!-- Stats Item -->
-							<div class="stats_item d-flex flex-md-row flex-column clearfix">
-								<div class="stats_last order-md-1 order-3">
-									<div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
-										<img src="images/stats_1.png" alt="">
-									</div>
-									<div class="stats_last_content">
-										<div class="stats_number">1642</div>
-										<div class="stats_type">Clients</div>
-									</div>
-								</div>
-								<div class="stats_bar order-md-2 order-2" data-x="1642" data-y="3527" data-color="#31124b">
-									<div class="stats_bar_perc">
-										<div>
-											<div class="stats_bar_value"></div>
-										</div>
-									</div>
-								</div>
-								<div class="stats_new order-md-3 order-1 text-right">
-									<div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
-										<img src="images/stats_1.png" alt="">
-									</div>
-									<div class="stats_new_content">
-										<div class="stats_number">3527</div>
-										<div class="stats_type">Clients</div>
-									</div>
-								</div>
-							</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-							<!-- Stats Item -->
-							<div class="stats_item d-flex flex-md-row flex-column clearfix">
-								<div class="stats_last order-md-1 order-3">
-									<div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
-										<img src="images/stats_2.png" alt="">
-									</div>
-									<div class="stats_last_content">
-										<div class="stats_number">768</div>
-										<div class="stats_type">Returning Clients</div>
-									</div>
-								</div>
-								<div class="stats_bar order-md-2 order-2" data-x="768" data-y="145" data-color="#a95ce4">
-									<div class="stats_bar_perc">
-										<div>
-											<div class="stats_bar_value"></div>
-										</div>
-									</div>
-								</div>
-								<div class="stats_new order-md-3 order-1 text-right">
-									<div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
-										<img src="images/stats_2.png" alt="">
-									</div>
-									<div class="stats_new_content">
-										<div class="stats_number">145</div>
-										<div class="stats_type">Returning Clients</div>
-									</div>
-								</div>
-							</div>
+    <!-- Featured Offer Section -->
+    <div class="add">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="add_container">
+                        @{
+                            var featuredOfferName = "Amazing Thailand Adventure"; // Example dynamic data
+                            var featuredOfferPrice = "$999";
+                            var featuredOfferImageUrl = Url.Content("~/images/add.jpg"); // Using original image
+                            var featuredOfferId = 102; // Example ID, link to actual offer later
+                        }
+                        <div class="add_background" style="background-image:url(@featuredOfferImageUrl)"></div>
+                        <div class="add_content">
+                            <h1 class="add_title">@featuredOfferName</h1>
+                            <div class="add_subtitle">From <span>@featuredOfferPrice</span></div>
+                            <div class="button add_button">
+                                <div class="button_bcg"></div>
+                                <a asp-controller="Offers" asp-action="Details" asp-route-id="@featuredOfferId" asp-route-entityType="Hotels">explore now<span></span><span></span><span></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-							<!-- Stats Item -->
-							<div class="stats_item d-flex flex-md-row flex-column clearfix">
-								<div class="stats_last order-md-1 order-3">
-									<div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
-										<img src="images/stats_3.png" alt="">
-									</div>
-									<div class="stats_last_content">
-										<div class="stats_number">11546</div>
-										<div class="stats_type">Reach</div>
-									</div>
-								</div>
-								<div class="stats_bar order-md-2 order-2" data-x="11546" data-y="9321" data-color="#fa6f1b">
-									<div class="stats_bar_perc">
-										<div>
-											<div class="stats_bar_value"></div>
-										</div>
-									</div>
-								</div>
-								<div class="stats_new order-md-3 order-1 text-right">
-									<div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
-										<img src="images/stats_3.png" alt="">
-									</div>
-									<div class="stats_new_content">
-										<div class="stats_number">9321</div>
-										<div class="stats_type">Reach</div>
-									</div>
-								</div>
-							</div>
+    <!-- Milestones Section -->
+    <div class="milestones">
+        <div class="container">
+            <div class="row">
+                @{
+                    var milestonesData = new List<(string Text, int Value, string IconPath)> {
+                ("Clients Satisfied", 2550, "~/images/milestone_1.png"),
+                ("Unique Journeys Crafted", 1176, "~/images/milestone_2.png"),
+                ("Countries Explored", 39, "~/images/milestone_3.png"),
+                ("Years Of Expertise", 12, "~/images/milestone_4.png") // Changed "Coffees" to something more relevant
+                };
+                }
+                @foreach (var milestone in milestonesData)
+                {
+                    <div class="col-lg-3 milestone_col">
+                        <div class="milestone text-center">
+                            <div class="milestone_icon"><img src="@Url.Content(milestone.IconPath)" alt="@milestone.Text icon"></div>
+                            <div class="milestone_counter" data-end-value="@milestone.Value">0</div>
+                            <div class="milestone_text">@milestone.Text</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 
-							<!-- Stats Item -->
-							<div class="stats_item d-flex flex-md-row flex-column clearfix">
-								<div class="stats_last order-md-1 order-3">
-									<div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
-										<img src="images/stats_4.png" alt="">
-									</div>
-									<div class="stats_last_content">
-										<div class="stats_number">3729</div>
-										<div class="stats_type">Items</div>
-									</div>
-								</div>
-								<div class="stats_bar order-md-2 order-2" data-x="3729" data-y="17429" data-color="#fa9e1b">
-									<div class="stats_bar_perc">
-										<div>
-											<div class="stats_bar_value"></div>
-										</div>
-									</div>
-								</div>
-								<div class="stats_new order-md-3 order-1 text-right">
-									<div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
-										<img src="images/stats_4.png" alt="">
-									</div>
-									<div class="stats_new_content">
-										<div class="stats_number">17429</div>
-										<div class="stats_type">More Items</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Add -->
-
-		<div class="add">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="add_container">
-							<div class="add_background" style="background-image:url(images/add.jpg)"></div>
-							<div class="add_content">
-								<h1 class="add_title">thailand</h1>
-								<div class="add_subtitle">From <span>$999</span></div>
-								<div class="button add_button"><div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index">explore now<span></span><span></span><span></span></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Milestones -->
-
-		<div class="milestones">
-			<div class="container">
-				<div class="row">
-
-					<!-- Milestone -->
-					<div class="col-lg-3 milestone_col">
-						<div class="milestone text-center">
-							<div class="milestone_icon"><img src="images/milestone_1.png" alt=""></div>
-							<div class="milestone_counter" data-end-value="255">0</div>
-							<div class="milestone_text">Clients</div>
-						</div>
-					</div>
-
-					<!-- Milestone -->
-					<div class="col-lg-3 milestone_col">
-						<div class="milestone text-center">
-							<div class="milestone_icon"><img src="images/milestone_2.png" alt=""></div>
-							<div class="milestone_counter" data-end-value="1176">0</div>
-							<div class="milestone_text">Projects</div>
-						</div>
-					</div>
-
-					<!-- Milestone -->
-					<div class="col-lg-3 milestone_col">
-						<div class="milestone text-center">
-							<div class="milestone_icon"><img src="images/milestone_3.png" alt=""></div>
-							<div class="milestone_counter" data-end-value="39">0</div>
-							<div class="milestone_text">Countries</div>
-						</div>
-					</div>
-
-					<!-- Milestone -->
-					<div class="col-lg-3 milestone_col">
-						<div class="milestone text-center">
-							<div class="milestone_icon"><img src="images/milestone_4.png" alt=""></div>
-							<div class="milestone_counter" data-end-value="127">0</div>
-							<div class="milestone_text">Coffees</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-
-
-	</div>
-
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="styles/bootstrap4/popper.js"></script>
-	<script src="styles/bootstrap4/bootstrap.min.js"></script>
-	<script src="plugins/greensock/TweenMax.min.js"></script>
-	<script src="plugins/greensock/TimelineMax.min.js"></script>
-	<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-	<script src="plugins/greensock/animation.gsap.min.js"></script>
-	<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-	<script src="plugins/easing/easing.js"></script>
-	<script src="plugins/parallax-js-master/parallax.min.js"></script>
-	<script src="js/about_custom.js"></script>
-
-</body>
+    <!-- Our Team Section (Example Structure) -->
+    <div class="team_section intro" style="padding-top: 80px; padding-bottom: 80px; background: #f3f6f9;">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_title">Meet Our Travel Experts</div>
+                    <p class="stats_text" style="margin-top: 20px;">Our passionate team brings years of travel experience and local knowledge to craft your perfect trip.</p>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 50px;">
+                <!-- Team Member 1 -->
+                <div class="col-lg-4 col-md-6 text-center team_member">
+                    <div class="team_image_container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px auto; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+                        <img src="@Url.Content("~/images/team_member_1.jpg")" alt="Team Member Jane Doe" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h4>Jane Doe</h4>
+                    <p><em>Founder & Lead Explorer</em></p>
+                    <p class="small">Jane's love for adventure led her to create VoyagePro, ensuring every client experiences the magic of travel.</p>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="col-lg-4 col-md-6 text-center team_member">
+                    <div class="team_image_container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px auto; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+                        <img src="@Url.Content("~/images/team_member_2.jpg")" alt="Team Member John Smith" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h4>John Smith</h4>
+                    <p><em>Senior Travel Consultant</em></p>
+                    <p class="small">With expertise in Asian and European destinations, John crafts itineraries that are both exciting and culturally rich.</p>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="col-lg-4 col-md-6 text-center team_member">
+                    <div class="team_image_container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px auto; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+                        <img src="@Url.Content("~/images/team_member_3.jpg")" alt="Team Member Alex Lee" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h4>Alex Lee</h4>
+                    <p><em>Adventure Specialist</em></p>
+                    <p class="small">Alex curates our most thrilling adventures, from mountain treks to wildlife safaris.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<!-- Mirrored from themewagon.github.io/VoyagePro/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Mar 2025 12:27:01 GMT -->
-</html>
+</div> @* super_container *@
+
+@section Scripts {
+    <script src="~/plugins/greensock/TweenMax.min.js"></script>
+    <script src="~/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="~/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="~/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="~/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="~/plugins/easing/easing.js"></script>
+    <script src="~/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="~/js/about_custom.js"></script>
+}

@@ -1,0 +1,2 @@
+C:\Users\onurm\source\repos\TourManagementSystem\TourManagementSystem\wwwroot\images\trips\europe_whirl.jpeg
+C:\Users\onurm\source\repos\TourManagementSystem\TourManagementSystem\wwwroot\images\trips\usa_parks.jpg

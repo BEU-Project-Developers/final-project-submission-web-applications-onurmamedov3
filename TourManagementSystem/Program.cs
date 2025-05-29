@@ -23,6 +23,7 @@ builder.Services.AddScoped<ICarRentalService, CarRentalService>();
 builder.Services.AddScoped<IFlightService, FlightService>();
 builder.Services.AddScoped<ICruiseService, CruiseService>();    
 builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<ITripService, TripService>();
 
 // 3. Add Identity services if you're using ASP.NET Core Identity
 //    If your AccountController relies on UserManager<User> or SignInManager<User>,

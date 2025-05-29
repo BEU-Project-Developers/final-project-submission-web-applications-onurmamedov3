@@ -145,6 +145,46 @@
       "PackagePath": "staticwebassets\\images\\hotelImage.png"
     },
     {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\aegean_resort.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\aegean_resort.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\baku_flame_towers_hotel.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\baku_flame_towers_hotel.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\cappadocia_dream_cave_resort.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\cappadocia_dream_cave_resort.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\caspian_resort.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\caspian_resort.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\grand_baku_hotel.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\grand_baku_hotel.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\grand_castle_hotel.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\grand_castle_hotel.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\lux-le-morne-mauritius-timbuktu-travel.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\lux-le-morne-mauritius-timbuktu-travel.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\royal_scotsman_journey.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\royal_scotsman_journey.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\samaxi-palace-platinum.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\samaxi-palace-platinum.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\urban_retreat_paris.png",
+      "PackagePath": "staticwebassets\\images\\hotels\\urban_retreat_paris.png"
+    },
+    {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\imagePlane.png",
       "PackagePath": "staticwebassets\\images\\imagePlane.png"
     },
@@ -431,6 +471,22 @@
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trend_8.png",
       "PackagePath": "staticwebassets\\images\\trend_8.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\bali_paradise.jpg",
+      "PackagePath": "staticwebassets\\images\\trips\\bali_paradise.jpg"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\europe_whirl.png",
+      "PackagePath": "staticwebassets\\images\\trips\\europe_whirl.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\japan_culture.png",
+      "PackagePath": "staticwebassets\\images\\trips\\japan_culture.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\usa_parks.png",
+      "PackagePath": "staticwebassets\\images\\trips\\usa_parks.png"
     },
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\about_custom.js",

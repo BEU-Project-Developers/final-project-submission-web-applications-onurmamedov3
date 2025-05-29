@@ -1,0 +1,276 @@
+﻿@model TourManagementSystem.Models.BookingSubmissionViewModel
+@{
+    ViewData["Title"] = $"Book Your {ViewData["OfferType"]}";
+    var offerId = ViewData["OfferId"];
+    var offerType = ViewData["OfferType"];
+    var defaultImage = Url.Content("~/images/about_background.jpg");
+    var offerImage = ViewBag.OfferDetails?.ImageUrl != null ? Url.Content(ViewBag.OfferDetails.ImageUrl) : Url.Content("~/images/default_offer.jpg");
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_styles.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_responsive.css" asp-append-version="true">
+    <style>
+        /* Hero Banner */
+        .home {
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .home_background {
+            background-size: cover;
+            background-position: center;
+        }
+
+            .home_background::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+                z-index: 1;
+            }
+
+        .home_content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .home_title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-transform: capitalize;
+        }
+
+        /* Booking Section */
+        .booking_section {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+
+        .booking_card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+            .booking_card h2 {
+                font-size: 28px;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 20px;
+                border-bottom: 2px solid #721c24;
+                padding-bottom: 10px;
+            }
+
+            .booking_card h4 {
+                font-size: 20px;
+                color: #721c24;
+                margin-bottom: 15px;
+            }
+
+            .booking_card p {
+                font-size: 16px;
+                color: #555;
+                margin-bottom: 10px;
+            }
+
+            .booking_card .offer_image {
+                width: 100%;
+                height: 200px;
+                background-size: cover;
+                background-position: center;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .text-danger {
+            font-size: 14px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-primary {
+            background: #721c24;
+            border: none;
+            color: #fff;
+        }
+
+            .btn-primary:hover {
+                background: #a52a2a;
+                transform: scale(1.05);
+            }
+
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+            color: #fff;
+        }
+
+            .btn-secondary:hover {
+                background: #5a6268;
+                transform: scale(1.05);
+            }
+
+        /* Responsive */
+               
+    </style>
+}
+
+<div class="super_container">
+    <!-- Hero Banner -->
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="@defaultImage" data-speed="0.8"></div>
+        <div class="home_content">
+            <div class="home_title">Book Your @offerType</div>
+        </div>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="booking_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="booking_card">
+                        <h2>Offer Details</h2>
+                        <div class="offer_image" style="background-image: url('@offerImage')"></div>
+                        <h4>@offerType ID: @offerId</h4>
+                        @if (ViewBag.OfferDetails != null)
+                        {
+                            @switch (offerType)
+                            {
+                                case "CarRental":
+                                    <p><strong>Car Model:</strong> @ViewBag.OfferDetails.CarModel</p>
+                                    <p><strong>Company:</strong> @ViewBag.OfferDetails.Company</p>
+                                    <p><strong>Price:</strong> @ViewBag.OfferDetails.PricePerDay.ToString("C0") per day</p>
+                                    <p><strong>Location:</strong> @ViewBag.OfferDetails.Location</p>
+                                    break;
+
+                                case "Cruise":
+                                    <p><strong>Cruise Line:</strong> @ViewBag.OfferDetails.CruiseLine</p>
+                                    <p><strong>Destination:</strong> @ViewBag.OfferDetails.Destination</p>
+                                    <p><strong>Departure Port:</strong> @ViewBag.OfferDetails.DeparturePort</p>
+                                    <p><strong>Duration:</strong> @ViewBag.OfferDetails.DurationDays days</p>
+                                    <p><strong>Price:</strong> @ViewBag.OfferDetails.Price.ToString("C0") total</p>
+                                    break;
+
+                                case "Hotel":
+                                    <p><strong>Hotel Name:</strong> @ViewBag.OfferDetails.Name</p>
+                                    <p><strong>Price:</strong> @ViewBag.OfferDetails.PricePerNight.ToString("C0") per night</p>
+                                    <p><strong>Rating:</strong> @ViewBag.OfferDetails.Rating stars</p>
+                                    <p><strong>Description:</strong> @(ViewBag.OfferDetails.Description?.Length > 100 ? ViewBag.OfferDetails.Description.Substring(0, 100) + "..." : ViewBag.OfferDetails.Description)</p>
+                                    break;
+
+                                case "Flight":
+                                    <p><strong>Airline:</strong> @ViewBag.OfferDetails.Airline</p>
+                                    <p><strong>Flight Number:</strong> @ViewBag.OfferDetails.FlightNumber</p>
+                                    <p><strong>Route:</strong> @ViewBag.OfferDetails.DepartureCity to @ViewBag.OfferDetails.ArrivalCity</p>
+                                    <p><strong>Price:</strong> @ViewBag.OfferDetails.Price.ToString("C0")</p>
+                                    break;
+
+                                case "Activity":
+                                    <p><strong>Activity:</strong> @ViewBag.OfferDetails.Name</p>
+                                    <p><strong>Location:</strong> @ViewBag.OfferDetails.Location</p>
+                                    <p><strong>Category:</strong> @ViewBag.OfferDetails.Category</p>
+                                    <p><strong>Duration:</strong> @ViewBag.OfferDetails.DurationHours hours</p>
+                                    <p><strong>Price:</strong> @ViewBag.OfferDetails.Price.ToString("C0") per person</p>
+                                    break;
+
+                                case "Trip":
+                                    <p><strong>Trip:</strong> @ViewBag.OfferDetails.Title</p>
+                                    <p><strong>Destination:</strong> @ViewBag.OfferDetails.Destination</p>
+                                    <p><strong>Duration:</strong> @ViewBag.OfferDetails.DurationDays days</p>
+                                    <p><strong>Price:</strong> @ViewBag.OfferDetails.Price.ToString("C0") total</p>
+                                    break;
+
+                                default:
+                                    <p><strong>Details unavailable.</strong></p>
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            <p><strong>Details for this @offerType are unavailable.</strong></p>
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="booking_card">
+                        <h2>Booking Information</h2>
+                        <form asp-action="Create" asp-controller="Booking" method="post">
+                            @Html.AntiForgeryToken()
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <input type="hidden" asp-for="OfferId" value="@offerId" />
+                            <input type="hidden" asp-for="OfferType" value="@offerType" />
+
+                            <div class="form-group">
+                                <label asp-for="CustomerName" class="control-label"></label>
+                                <input asp-for="CustomerName" class="form-control" placeholder="Enter full name" />
+                                <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CustomerEmail" class="control-label"></label>
+                                <input asp-for="CustomerEmail" class="form-control" placeholder="Enter email address" />
+                                <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NumberOfAdults" class="control-label"></label>
+                                <input asp-for="NumberOfAdults" class="form-control" type="number" min="1" value="1" />
+                                <span asp-validation-for="NumberOfAdults" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NumberOfChildren" class="control-label"></label>
+                                <input asp-for="NumberOfChildren" class="form-control" type="number" min="0" value="0" />
+                                <span asp-validation-for="NumberOfChildren" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary" aria-label="Confirm booking for @offerType">Confirm Booking</button>
+                                <a asp-controller="Offers" asp-action="Index" asp-route-entityType="@offerType" class="btn btn-secondary" aria-label="Cancel booking">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/plugins/easing/easing.js" asp-append-version="true"></script>
+    <script src="~/plugins/parallax-js-master/parallax.min.js" asp-append-version="true"></script>
+    <script src="~/js/single_listing_custom.js" asp-append-version="true"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

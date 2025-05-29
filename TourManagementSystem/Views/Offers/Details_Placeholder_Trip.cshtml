@@ -1,0 +1,80 @@
+﻿@* File: Views/Offers/Details_Placeholder_Trip.cshtml *@
+@model TourManagementSystem.Models.TripViewModel
+@{
+    ViewData["Title"] = Model?.Title ?? "Trip Details";
+    var defaultTripImage = Url.Content("~/images/default_trip.jpg");
+}
+
+@section Styles {
+    @* You can share single_listing_styles or create specific ones *@
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_responsive.css">
+}
+
+<div class="super_container">
+    <!-- Home Banner -->
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="@(!string.IsNullOrEmpty(Model?.ImageUrl) ? Url.Content(Model.ImageUrl) : defaultTripImage)" data-speed="0.8"></div>
+        <div class="home_content">
+            <div class="home_title">@(Model?.Title ?? "Trip Details")</div>
+        </div>
+    </div>
+
+    <!-- Single Listing Content for Trip -->
+    <div class="listing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    @if (Model != null)
+                    {
+                        <div class="single_listing">
+                            <div class="hotel_info">
+                                @* Reusing some theme classes, can be renamed if needed *@
+                                <!-- Title -->
+                                <div class="hotel_title_container d-flex flex-lg-row flex-column">
+                                    <div class="hotel_title_content">
+                                        <h1 class="hotel_title">@Model.Title</h1>
+                                        <div class="hotel_location">Destination(s): @Model.Destination</div>
+                                    </div>
+                                    <div class="hotel_title_button ml-lg-auto text-lg-right">
+                                        <div class="button book_button trans_200"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@Model.Id" asp-route-offerType="Trip">Book This Trip<span></span><span></span><span></span></a></div>
+                                    </div>
+                                </div>
+
+                                <!-- Listing Image -->
+                                <div class="hotel_image">
+                                    <img src="@(!string.IsNullOrEmpty(Model.ImageUrl) ? Url.Content(Model.ImageUrl) : defaultTripImage)" alt="@Model.Title">
+                                </div>
+
+                                <!-- Trip Info Text -->
+                                <div class="hotel_info_text">
+                                    <h4>About This Trip</h4>
+                                    <p><strong>Duration:</strong> @Model.DurationDays days</p>
+                                    <p><strong>Price:</strong> @Model.Price.ToString("C")</p>
+                                    <p>@Html.Raw(Model.Description?.Replace("\n", "<br />"))</p>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4 mb-4">
+                                <a asp-controller="Offers" asp-action="Index" asp-route-entityType="Trips" class="btn btn-outline-secondary">Back to Trip Offers</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            Trip details could not be found.
+                            <a asp-controller="Offers" asp-action="Index" asp-route-entityType="Trips" class="alert-link">Return to offers.</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/plugins/easing/easing.js"></script>
+    <script src="~/plugins/parallax-js-master/parallax.min.js"></script>
+    @* No OwlCarousel or Colorbox needed for this simpler Trip detail page unless you add a gallery *@
+    <script src="~/js/single_listing_custom.js"></script> @* For parallax and any common single listing JS *@
+}

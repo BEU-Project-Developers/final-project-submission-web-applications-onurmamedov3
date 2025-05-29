@@ -33,6 +33,16 @@ wwwroot\images\home_slider_1.jpg
 wwwroot\images\home_slider_2.jpg
 wwwroot\images\home_slider_3.jpg
 wwwroot\images\hotelImage.png
+wwwroot\images\hotels\aegean_resort.png
+wwwroot\images\hotels\baku_flame_towers_hotel.png
+wwwroot\images\hotels\cappadocia_dream_cave_resort.png
+wwwroot\images\hotels\caspian_resort.png
+wwwroot\images\hotels\grand_baku_hotel.png
+wwwroot\images\hotels\grand_castle_hotel.png
+wwwroot\images\hotels\lux-le-morne-mauritius-timbuktu-travel.png
+wwwroot\images\hotels\royal_scotsman_journey.png
+wwwroot\images\hotels\samaxi-palace-platinum.png
+wwwroot\images\hotels\urban_retreat_paris.png
 wwwroot\images\imagePlane.png
 wwwroot\images\intro.png
 wwwroot\images\intro_1.jpg
@@ -105,6 +115,10 @@ wwwroot\images\trend_5.png
 wwwroot\images\trend_6.png
 wwwroot\images\trend_7.png
 wwwroot\images\trend_8.png
+wwwroot\images\trips\bali_paradise.jpg
+wwwroot\images\trips\europe_whirl.png
+wwwroot\images\trips\japan_culture.png
+wwwroot\images\trips\usa_parks.png
 wwwroot\js\about_custom.js
 wwwroot\js\blog_custom.js
 wwwroot\js\contact_custom.js

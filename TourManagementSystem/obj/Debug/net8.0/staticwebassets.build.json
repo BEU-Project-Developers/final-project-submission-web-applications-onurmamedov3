@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rZmopQ9+Mnnx1LQlzv4yiNpqpE29+4EsFNDaBwjyTtQ=",
+  "Hash": "45vTQCw0JpYBqniILDKDGdBSikg2TJ2VwCJmqowfPh4=",
   "Source": "TourManagementSystem",
   "BasePath": "_content/TourManagementSystem",
   "Mode": "Default",
@@ -792,6 +792,216 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\hotelImage.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\aegean_resort.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/aegean_resort#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "n2n5a4d2p3",
+      "Integrity": "Dy5EE0D5ybdFjEuhhmhZ7IFW97K069qywchDr4SrA9I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\aegean_resort.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\baku_flame_towers_hotel.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/baku_flame_towers_hotel#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "uptn4bc9pp",
+      "Integrity": "MoYuEiy0Qe5fMHpMGXegsx3jIklpuGh39zZvSweIZ0c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\baku_flame_towers_hotel.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\cappadocia_dream_cave_resort.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/cappadocia_dream_cave_resort#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "po5s0uw2s0",
+      "Integrity": "NzwSlCggo3nRbsU4x8/faPFIUSKEx0E1VOiFCvrW05M=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\cappadocia_dream_cave_resort.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\caspian_resort.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/caspian_resort#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "79hbxa8fmj",
+      "Integrity": "G5UA01vYREFiE/smpzLOccbQ40agJwfcELRgwtDZZQs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\caspian_resort.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\grand_baku_hotel.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/grand_baku_hotel#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "l3qk2r6ywc",
+      "Integrity": "IS+wPqJ5Ov11DYqw0ZLEj/b9/PBxjdMbdPKlhtKfn4I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\grand_baku_hotel.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\grand_castle_hotel.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/grand_castle_hotel#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "e5gy4z87tu",
+      "Integrity": "vkmrqde53NXDcsuMOagN6WjW9tBTOPUnI/0Biybg4Ds=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\grand_castle_hotel.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\lux-le-morne-mauritius-timbuktu-travel.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/lux-le-morne-mauritius-timbuktu-travel#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "s56gt5h3go",
+      "Integrity": "MMTCWVce6mEuNtBcS9wZMOQSZz2F8wvrzB5bHLNuiHQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\lux-le-morne-mauritius-timbuktu-travel.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\royal_scotsman_journey.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/royal_scotsman_journey#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9kznlmvp72",
+      "Integrity": "yZBL/blkp1trqde11piABWAa8WvDhPs+1US999PZlYc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\royal_scotsman_journey.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\samaxi-palace-platinum.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/samaxi-palace-platinum#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "twols131gg",
+      "Integrity": "o9784XfTwHbkjoWfZ1GdcoJCXkuHj+KqAKEMTxctnQw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\samaxi-palace-platinum.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\urban_retreat_paris.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/hotels/urban_retreat_paris#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "l0mr7ay75n",
+      "Integrity": "y6jJVuVJEZCzJIz9esOECx6e4wnd0JKpjgUPoQ8RLJA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hotels\\urban_retreat_paris.png"
     },
     {
       "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\imagePlane.png",
@@ -2304,6 +2514,90 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\trend_8.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\bali_paradise.jpg",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/trips/bali_paradise#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "d46jza1lze",
+      "Integrity": "Q5+RyslVB9jcUaax5fgC6UAWd7cOLnp4HSoQuwriUpw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\trips\\bali_paradise.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\europe_whirl.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/trips/europe_whirl#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "s2hc5nrwv7",
+      "Integrity": "dHIng8XTEaMY50/suRdKuV1hhTrNer5jqC2ZNCMrMeM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\trips\\europe_whirl.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\japan_culture.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/trips/japan_culture#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "e3f434ggf4",
+      "Integrity": "apiuq9DzJm4VS7PAmMjJ1sv8vEJ29j3qwvsh8CWnzIw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\trips\\japan_culture.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\usa_parks.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/trips/usa_parks#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "og1gsfzi7x",
+      "Integrity": "mKzs3PoVdlWjQQ+aniLco9dUBdJO5CLrO4nxFogjz38=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\trips\\usa_parks.png"
     },
     {
       "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\about_custom.js",
@@ -6203,6 +6497,826 @@
         {
           "Name": "integrity",
           "Value": "sha256-DajSoy+0qfIxbaFgFn1/yAgxSPsmH6HJXVtzl7pwZR8="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/aegean_resort.n2n5a4d2p3.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\aegean_resort.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "82228"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Dy5EE0D5ybdFjEuhhmhZ7IFW97K069qywchDr4SrA9I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:40:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n2n5a4d2p3"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/aegean_resort.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Dy5EE0D5ybdFjEuhhmhZ7IFW97K069qywchDr4SrA9I="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/aegean_resort.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\aegean_resort.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "82228"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Dy5EE0D5ybdFjEuhhmhZ7IFW97K069qywchDr4SrA9I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:40:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Dy5EE0D5ybdFjEuhhmhZ7IFW97K069qywchDr4SrA9I="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/baku_flame_towers_hotel.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\baku_flame_towers_hotel.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "63869"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MoYuEiy0Qe5fMHpMGXegsx3jIklpuGh39zZvSweIZ0c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:29:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MoYuEiy0Qe5fMHpMGXegsx3jIklpuGh39zZvSweIZ0c="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/baku_flame_towers_hotel.uptn4bc9pp.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\baku_flame_towers_hotel.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "63869"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MoYuEiy0Qe5fMHpMGXegsx3jIklpuGh39zZvSweIZ0c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:29:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "uptn4bc9pp"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/baku_flame_towers_hotel.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MoYuEiy0Qe5fMHpMGXegsx3jIklpuGh39zZvSweIZ0c="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/cappadocia_dream_cave_resort.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\cappadocia_dream_cave_resort.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "113714"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NzwSlCggo3nRbsU4x8/faPFIUSKEx0E1VOiFCvrW05M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 11:01:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NzwSlCggo3nRbsU4x8/faPFIUSKEx0E1VOiFCvrW05M="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/cappadocia_dream_cave_resort.po5s0uw2s0.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\cappadocia_dream_cave_resort.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "113714"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NzwSlCggo3nRbsU4x8/faPFIUSKEx0E1VOiFCvrW05M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 11:01:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "po5s0uw2s0"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/cappadocia_dream_cave_resort.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NzwSlCggo3nRbsU4x8/faPFIUSKEx0E1VOiFCvrW05M="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/caspian_resort.79hbxa8fmj.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\caspian_resort.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "249610"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"G5UA01vYREFiE/smpzLOccbQ40agJwfcELRgwtDZZQs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 08:44:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "79hbxa8fmj"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/caspian_resort.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-G5UA01vYREFiE/smpzLOccbQ40agJwfcELRgwtDZZQs="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/caspian_resort.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\caspian_resort.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "249610"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"G5UA01vYREFiE/smpzLOccbQ40agJwfcELRgwtDZZQs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 08:44:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-G5UA01vYREFiE/smpzLOccbQ40agJwfcELRgwtDZZQs="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/grand_baku_hotel.l3qk2r6ywc.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\grand_baku_hotel.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "76964"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IS+wPqJ5Ov11DYqw0ZLEj/b9/PBxjdMbdPKlhtKfn4I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 08:39:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l3qk2r6ywc"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/grand_baku_hotel.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IS+wPqJ5Ov11DYqw0ZLEj/b9/PBxjdMbdPKlhtKfn4I="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/grand_baku_hotel.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\grand_baku_hotel.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "76964"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IS+wPqJ5Ov11DYqw0ZLEj/b9/PBxjdMbdPKlhtKfn4I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 08:39:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IS+wPqJ5Ov11DYqw0ZLEj/b9/PBxjdMbdPKlhtKfn4I="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/grand_castle_hotel.e5gy4z87tu.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\grand_castle_hotel.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "115051"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vkmrqde53NXDcsuMOagN6WjW9tBTOPUnI/0Biybg4Ds=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 08:51:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e5gy4z87tu"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/grand_castle_hotel.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-vkmrqde53NXDcsuMOagN6WjW9tBTOPUnI/0Biybg4Ds="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/grand_castle_hotel.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\grand_castle_hotel.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "115051"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vkmrqde53NXDcsuMOagN6WjW9tBTOPUnI/0Biybg4Ds=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 08:51:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-vkmrqde53NXDcsuMOagN6WjW9tBTOPUnI/0Biybg4Ds="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/lux-le-morne-mauritius-timbuktu-travel.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\lux-le-morne-mauritius-timbuktu-travel.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "255493"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MMTCWVce6mEuNtBcS9wZMOQSZz2F8wvrzB5bHLNuiHQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:45:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MMTCWVce6mEuNtBcS9wZMOQSZz2F8wvrzB5bHLNuiHQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/lux-le-morne-mauritius-timbuktu-travel.s56gt5h3go.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\lux-le-morne-mauritius-timbuktu-travel.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "255493"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MMTCWVce6mEuNtBcS9wZMOQSZz2F8wvrzB5bHLNuiHQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:45:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "s56gt5h3go"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/lux-le-morne-mauritius-timbuktu-travel.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MMTCWVce6mEuNtBcS9wZMOQSZz2F8wvrzB5bHLNuiHQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/royal_scotsman_journey.9kznlmvp72.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\royal_scotsman_journey.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "46943"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yZBL/blkp1trqde11piABWAa8WvDhPs+1US999PZlYc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:32:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9kznlmvp72"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/royal_scotsman_journey.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yZBL/blkp1trqde11piABWAa8WvDhPs+1US999PZlYc="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/royal_scotsman_journey.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\royal_scotsman_journey.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "46943"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yZBL/blkp1trqde11piABWAa8WvDhPs+1US999PZlYc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:32:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yZBL/blkp1trqde11piABWAa8WvDhPs+1US999PZlYc="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/samaxi-palace-platinum.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\samaxi-palace-platinum.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "148469"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"o9784XfTwHbkjoWfZ1GdcoJCXkuHj+KqAKEMTxctnQw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:34:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-o9784XfTwHbkjoWfZ1GdcoJCXkuHj+KqAKEMTxctnQw="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/samaxi-palace-platinum.twols131gg.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\samaxi-palace-platinum.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "148469"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"o9784XfTwHbkjoWfZ1GdcoJCXkuHj+KqAKEMTxctnQw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 10:34:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "twols131gg"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/samaxi-palace-platinum.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-o9784XfTwHbkjoWfZ1GdcoJCXkuHj+KqAKEMTxctnQw="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/urban_retreat_paris.l0mr7ay75n.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\urban_retreat_paris.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "497742"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y6jJVuVJEZCzJIz9esOECx6e4wnd0JKpjgUPoQ8RLJA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 08:56:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l0mr7ay75n"
+        },
+        {
+          "Name": "label",
+          "Value": "images/hotels/urban_retreat_paris.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-y6jJVuVJEZCzJIz9esOECx6e4wnd0JKpjgUPoQ8RLJA="
+        }
+      ]
+    },
+    {
+      "Route": "images/hotels/urban_retreat_paris.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\hotels\\urban_retreat_paris.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "497742"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y6jJVuVJEZCzJIz9esOECx6e4wnd0JKpjgUPoQ8RLJA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 08:56:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-y6jJVuVJEZCzJIz9esOECx6e4wnd0JKpjgUPoQ8RLJA="
         }
       ]
     },
@@ -12111,6 +13225,334 @@
       ]
     },
     {
+      "Route": "images/trips/bali_paradise.d46jza1lze.jpg",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\bali_paradise.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "185577"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Q5+RyslVB9jcUaax5fgC6UAWd7cOLnp4HSoQuwriUpw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 19:10:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d46jza1lze"
+        },
+        {
+          "Name": "label",
+          "Value": "images/trips/bali_paradise.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Q5+RyslVB9jcUaax5fgC6UAWd7cOLnp4HSoQuwriUpw="
+        }
+      ]
+    },
+    {
+      "Route": "images/trips/bali_paradise.jpg",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\bali_paradise.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "185577"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Q5+RyslVB9jcUaax5fgC6UAWd7cOLnp4HSoQuwriUpw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 19:10:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Q5+RyslVB9jcUaax5fgC6UAWd7cOLnp4HSoQuwriUpw="
+        }
+      ]
+    },
+    {
+      "Route": "images/trips/europe_whirl.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\europe_whirl.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15579"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dHIng8XTEaMY50/suRdKuV1hhTrNer5jqC2ZNCMrMeM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 19:09:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dHIng8XTEaMY50/suRdKuV1hhTrNer5jqC2ZNCMrMeM="
+        }
+      ]
+    },
+    {
+      "Route": "images/trips/europe_whirl.s2hc5nrwv7.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\europe_whirl.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15579"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dHIng8XTEaMY50/suRdKuV1hhTrNer5jqC2ZNCMrMeM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 19:09:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "s2hc5nrwv7"
+        },
+        {
+          "Name": "label",
+          "Value": "images/trips/europe_whirl.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-dHIng8XTEaMY50/suRdKuV1hhTrNer5jqC2ZNCMrMeM="
+        }
+      ]
+    },
+    {
+      "Route": "images/trips/japan_culture.e3f434ggf4.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\japan_culture.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "721916"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"apiuq9DzJm4VS7PAmMjJ1sv8vEJ29j3qwvsh8CWnzIw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 19:12:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e3f434ggf4"
+        },
+        {
+          "Name": "label",
+          "Value": "images/trips/japan_culture.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-apiuq9DzJm4VS7PAmMjJ1sv8vEJ29j3qwvsh8CWnzIw="
+        }
+      ]
+    },
+    {
+      "Route": "images/trips/japan_culture.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\japan_culture.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "721916"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"apiuq9DzJm4VS7PAmMjJ1sv8vEJ29j3qwvsh8CWnzIw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 19:12:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-apiuq9DzJm4VS7PAmMjJ1sv8vEJ29j3qwvsh8CWnzIw="
+        }
+      ]
+    },
+    {
+      "Route": "images/trips/usa_parks.og1gsfzi7x.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\usa_parks.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "322589"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mKzs3PoVdlWjQQ+aniLco9dUBdJO5CLrO4nxFogjz38=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 19:11:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "og1gsfzi7x"
+        },
+        {
+          "Name": "label",
+          "Value": "images/trips/usa_parks.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mKzs3PoVdlWjQQ+aniLco9dUBdJO5CLrO4nxFogjz38="
+        }
+      ]
+    },
+    {
+      "Route": "images/trips/usa_parks.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\trips\\usa_parks.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "322589"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mKzs3PoVdlWjQQ+aniLco9dUBdJO5CLrO4nxFogjz38=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 28 May 2025 19:11:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mKzs3PoVdlWjQQ+aniLco9dUBdJO5CLrO4nxFogjz38="
+        }
+      ]
+    },
+    {
       "Route": "js/about_custom.js",
       "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\js\\about_custom.js",
       "Selectors": [],
@@ -16151,7 +17593,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 25 May 2025 16:20:58 GMT"
+          "Value": "Thu, 29 May 2025 08:14:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16196,7 +17638,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 25 May 2025 16:20:58 GMT"
+          "Value": "Thu, 29 May 2025 08:14:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16241,7 +17683,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 25 May 2025 16:20:58 GMT"
+          "Value": "Thu, 29 May 2025 08:14:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16278,7 +17720,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 25 May 2025 16:20:58 GMT"
+          "Value": "Thu, 29 May 2025 08:14:07 GMT"
         },
         {
           "Name": "Cache-Control",
