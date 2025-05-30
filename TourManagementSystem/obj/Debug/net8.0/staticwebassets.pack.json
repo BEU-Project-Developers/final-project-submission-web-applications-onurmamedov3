@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\images\\about_background.jpg"
     },
     {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Venice_Gondola_Ride.png",
+      "PackagePath": "staticwebassets\\images\\activities\\Venice_Gondola_Ride.png"
+    },
+    {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\add.jpg",
       "PackagePath": "staticwebassets\\images\\add.jpg"
     },
@@ -53,6 +57,42 @@
       "PackagePath": "staticwebassets\\images\\carImage.png"
     },
     {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\BMW_3_Series.png",
+      "PackagePath": "staticwebassets\\images\\cars\\BMW_3_Series.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\Jeep_Wrangler.png",
+      "PackagePath": "staticwebassets\\images\\cars\\Jeep_Wrangler.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\Kia_Rio.png",
+      "PackagePath": "staticwebassets\\images\\cars\\Kia_Rio.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\Mercedes-Benz_Sprinter_Van.png",
+      "PackagePath": "staticwebassets\\images\\cars\\Mercedes-Benz_Sprinter_Van.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\Tesla_Model_3.png",
+      "PackagePath": "staticwebassets\\images\\cars\\Tesla_Model_3.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\ford_mustang.png",
+      "PackagePath": "staticwebassets\\images\\cars\\ford_mustang.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\honda_cr-v.png",
+      "PackagePath": "staticwebassets\\images\\cars\\honda_cr-v.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\toyota_samri.png",
+      "PackagePath": "staticwebassets\\images\\cars\\toyota_samri.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cars\\wolkswagen_golf.png",
+      "PackagePath": "staticwebassets\\images\\cars\\wolkswagen_golf.png"
+    },
+    {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\compass.png",
       "PackagePath": "staticwebassets\\images\\compass.png"
     },
@@ -67,6 +107,38 @@
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruise.png",
       "PackagePath": "staticwebassets\\images\\cruise.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruises\\Carnival_Cruise_Line.png",
+      "PackagePath": "staticwebassets\\images\\cruises\\Carnival_Cruise_Line.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruises\\Celebrity_Cruises.png",
+      "PackagePath": "staticwebassets\\images\\cruises\\Celebrity_Cruises.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruises\\Disney_Cruise_Line.png",
+      "PackagePath": "staticwebassets\\images\\cruises\\Disney_Cruise_Line.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruises\\MSC_Cruises.png",
+      "PackagePath": "staticwebassets\\images\\cruises\\MSC_Cruises.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruises\\Norwegian_Cruise_Line.png",
+      "PackagePath": "staticwebassets\\images\\cruises\\Norwegian_Cruise_Line.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruises\\Princess_Cruises.png",
+      "PackagePath": "staticwebassets\\images\\cruises\\Princess_Cruises.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruises\\Royal_Caribbean_Cruise.png",
+      "PackagePath": "staticwebassets\\images\\cruises\\Royal_Caribbean_Cruise.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cruises\\Viking_Ocean_Cruises.png",
+      "PackagePath": "staticwebassets\\images\\cruises\\Viking_Ocean_Cruises.png"
     },
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\cta.jpg",

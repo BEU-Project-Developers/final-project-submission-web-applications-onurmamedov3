@@ -19,13 +19,13 @@ namespace TourManagementSystem.Models
 
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Price { get; set; }
-        public string? AirlineLogoUrl { get; set; }
+        public string? AirlineLogoUrl { get; set; } // This is the correct property for flight images
         public string? FlightNumber { get; set; }
-        public string Duration { get; set; } = string.Empty; // Calculated: ArrivalTime - DepartureTime
+        public string Duration { get; set; } = string.Empty;
 
-        public TripType SearchedTripType { get; set; }
-        public DateTime? SearchedReturnDepartureTime { get; set; }
-        public DateTime? SearchedReturnArrivalTime { get; set; }
-        public decimal? ReturnFlightPrice { get; set; }
+        public TripType SearchedTripType { get; set; } // Related to search context
+        public DateTime? SearchedReturnDepartureTime { get; set; } // Related to search context
+        public DateTime? SearchedReturnArrivalTime { get; set; } // Related to search context
+        public decimal? ReturnFlightPrice { get; set; } // Related to search context
     }
 }

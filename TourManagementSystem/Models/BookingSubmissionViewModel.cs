@@ -13,20 +13,12 @@ namespace TourManagementSystem.Models
 
         [Required(ErrorMessage = "Your name is required.")]
         [StringLength(100)]
-        public string CustomerName { get; set; }
+        public string CustomerName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Your email is required.")]
         [EmailAddress]
-        public string CustomerEmail { get; set; }
+        public string CustomerEmail { get; set; } = string.Empty;
 
-        // Add other fields as needed:
-        // For hotels: NumberOfRooms, SpecialRequests
-        // For flights: PassengerDetails (List<PassengerInfo>)
-        // For generic: NumberOfTravelers (if applicable across types)
-        public int NumberOfAdults { get; set; } = 1;
-        public int NumberOfChildren { get; set; } = 0;
-
-        // You might have specific properties for each offer type if the booking form varies greatly
-        // Or common properties here and fetch specific offer details in the controller
+        // NumberOfAdults and NumberOfChildren are removed for simplicity
     }
 }

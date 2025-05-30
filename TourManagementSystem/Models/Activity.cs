@@ -11,27 +11,25 @@ namespace TourManagementSystem.Models
 
         [Required]
         [StringLength(150)]
-        public string Name { get; set; } // e.g., "City Tour", "Museum Visit", "Hiking Trip" (Searchable)
+        public string Name { get; set; }
 
         [Required]
         [StringLength(150)]
-        public string Location { get; set; } // e.g., "Paris", "Grand Canyon" (Searchable)
+        public string Location { get; set; }
 
         [StringLength(100)]
-        public string? Category { get; set; } // e.g., "Sightseeing", "Adventure", "Cultural" (Searchable)
+        public string? Category { get; set; }
 
-        public int DurationHours { get; set; }
+        public int DurationHours { get; set; } // Changed to int to match ActivityViewModel
 
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Price { get; set; } // Searchable
+        public decimal Price { get; set; }
 
-        
         public string? Description { get; set; }
 
-        //public string? ImageUrl { get; set; }
+        public string? ImageUrl { get; set; } // <<<< UNCOMMENTED/ADDED THIS LINE
 
-        // Optional: Link to a User if activities are added by specific users/admins
-        public int? UserId { get; set; } // Nullable if not always tied to a user
+        public int? UserId { get; set; }
         public virtual User? User { get; set; }
     }
 }
