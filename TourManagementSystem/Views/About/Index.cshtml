@@ -38,9 +38,9 @@
                             or rich cultural immersions, our dedicated team is here to meticulously plan every detail.
                             Our mission is to provide seamless, inspiring, and sustainable travel, ensuring every trip is not just a vacation, but a cherished memory.
                         </p>
-                        <div class="button intro_button">
-                            <div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index">Explore Our Tours<span></span><span></span><span></span></a>
-                        </div>
+                        @* <div class="button intro_button"> *@
+                        @*     <div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index">Explore Our Tours<span></span><span></span><span></span></a> *@
+                        @* </div> *@
                     </div>
                 </div>
             </div>
@@ -184,31 +184,31 @@
     </div>
 
     <!-- Featured Offer Section -->
-    <div class="add">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="add_container">
-                        @{
-                            var featuredOfferName = "Amazing Thailand Adventure"; // Example dynamic data
-                            var featuredOfferPrice = "$999";
-                            var featuredOfferImageUrl = Url.Content("~/images/add.jpg"); // Using original image
-                            var featuredOfferId = 102; // Example ID, link to actual offer later
-                        }
-                        <div class="add_background" style="background-image:url(@featuredOfferImageUrl)"></div>
-                        <div class="add_content">
-                            <h1 class="add_title">@featuredOfferName</h1>
-                            <div class="add_subtitle">From <span>@featuredOfferPrice</span></div>
-                            <div class="button add_button">
-                                <div class="button_bcg"></div>
-                                <a asp-controller="Offers" asp-action="Details" asp-route-id="@featuredOfferId" asp-route-entityType="Hotels">explore now<span></span><span></span><span></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @* <div class="add"> *@
+    @*     <div class="container"> *@
+    @*         <div class="row"> *@
+    @*             <div class="col"> *@
+    @*                 <div class="add_container"> *@
+    @*                     @{ *@
+    @*                         var featuredOfferName = "Amazing Thailand Adventure"; // Example dynamic data *@
+    @*                         var featuredOfferPrice = "$999"; *@
+    @*                         var featuredOfferImageUrl = Url.Content("~/images/add.jpg"); // Using original image *@
+    @*                         var featuredOfferId = 102; // Example ID, link to actual offer later *@
+    @*                     } *@
+    @*                     <div class="add_background" style="background-image:url(@featuredOfferImageUrl)"></div> *@
+    @*                     <div class="add_content"> *@
+    @*                         <h1 class="add_title">@featuredOfferName</h1> *@
+    @*                         <div class="add_subtitle">From <span>@featuredOfferPrice</span></div> *@
+    @*                         <div class="button add_button"> *@
+    @*                             <div class="button_bcg"></div> *@
+    @*                             <a asp-controller="Offers" asp-action="Details" asp-route-id="@featuredOfferId" asp-route-entityType="Hotels">explore now<span></span><span></span><span></span></a> *@
+    @*                         </div> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*         </div> *@
+    @*     </div> *@
+    @* </div> *@
 
     <!-- Milestones Section -->
     <div class="milestones">
