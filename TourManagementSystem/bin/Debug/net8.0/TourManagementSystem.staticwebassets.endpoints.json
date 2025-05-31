@@ -29,7 +29,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 14:50:58 GMT"
+          "Value": "Sat, 31 May 2025 07:06:05 GMT"
         }
       ],
       "EndpointProperties": [
@@ -74,7 +74,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 14:50:58 GMT"
+          "Value": "Sat, 31 May 2025 07:06:05 GMT"
         }
       ],
       "EndpointProperties": [
@@ -331,6 +331,498 @@
       ]
     },
     {
+      "Route": "images/activities/Colosseum_&_Roman_Forum_Tour.png",
+      "AssetFile": "images/activities/Colosseum_&_Roman_Forum_Tour.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12234"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:42:28 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Colosseum_&_Roman_Forum_Tour.xgi0tg0d30.png",
+      "AssetFile": "images/activities/Colosseum_&_Roman_Forum_Tour.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12234"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:42:28 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xgi0tg0d30"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo="
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Colosseum_&_Roman_Forum_Tour.png"
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Eiffel_Tower_Summit_Access.0hc5z49ns3.png",
+      "AssetFile": "images/activities/Eiffel_Tower_Summit_Access.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16199"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:43:39 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0hc5z49ns3"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw="
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Eiffel_Tower_Summit_Access.png"
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Eiffel_Tower_Summit_Access.png",
+      "AssetFile": "images/activities/Eiffel_Tower_Summit_Access.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16199"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:43:39 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Grand_Canyon_Helicopter_Tour.177jxn0jba.png",
+      "AssetFile": "images/activities/Grand_Canyon_Helicopter_Tour.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11015"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:42:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "177jxn0jba"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk="
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Grand_Canyon_Helicopter_Tour.png"
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Grand_Canyon_Helicopter_Tour.png",
+      "AssetFile": "images/activities/Grand_Canyon_Helicopter_Tour.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11015"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:42:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/ParisLouvrepyramidpic.1nx9ji5bkj.png",
+      "AssetFile": "images/activities/ParisLouvrepyramidpic.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "233471"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:40:15 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1nx9ji5bkj"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU="
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/ParisLouvrepyramidpic.png"
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/ParisLouvrepyramidpic.png",
+      "AssetFile": "images/activities/ParisLouvrepyramidpic.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "233471"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:40:15 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Thames_River_Sightseeing_Cruise.9o3ga84eby.png",
+      "AssetFile": "images/activities/Thames_River_Sightseeing_Cruise.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11416"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:40:45 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9o3ga84eby"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA="
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Thames_River_Sightseeing_Cruise.png"
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Thames_River_Sightseeing_Cruise.png",
+      "AssetFile": "images/activities/Thames_River_Sightseeing_Cruise.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11416"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:40:45 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Tokyo_Robot_Restaurant_Show.obugxxpj3p.png",
+      "AssetFile": "images/activities/Tokyo_Robot_Restaurant_Show.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1257875"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:41:46 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "obugxxpj3p"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg="
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Tokyo_Robot_Restaurant_Show.png"
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Tokyo_Robot_Restaurant_Show.png",
+      "AssetFile": "images/activities/Tokyo_Robot_Restaurant_Show.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1257875"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:41:46 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg="
+        }
+      ]
+    },
+    {
       "Route": "images/activities/Venice_Gondola_Ride.am1ktp8uu5.png",
       "AssetFile": "images/activities/Venice_Gondola_Ride.png",
       "Selectors": [],
@@ -409,6 +901,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-znkKBHMHUVHsMqGfvvG2NesEinVDjm1aVkVPsCAnuZw="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/sydney-harbor-bridge-climb.idt0xr4dpy.png",
+      "AssetFile": "images/activities/sydney-harbor-bridge-climb.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "139646"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:39:16 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "idt0xr4dpy"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o="
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/sydney-harbor-bridge-climb.png"
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/sydney-harbor-bridge-climb.png",
+      "AssetFile": "images/activities/sydney-harbor-bridge-climb.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "139646"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:39:16 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o="
         }
       ]
     },

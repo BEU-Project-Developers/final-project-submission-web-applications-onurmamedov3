@@ -1,6 +1,13 @@
 wwwroot\fonts\beyond_the_mountains.otf
 wwwroot\fonts\beyond_the_mountains.ttf
 wwwroot\images\about_background.jpg
+wwwroot\images\activities\Colosseum_&_Roman_Forum_Tour.png
+wwwroot\images\activities\Eiffel_Tower_Summit_Access.png
+wwwroot\images\activities\Grand_Canyon_Helicopter_Tour.png
+wwwroot\images\activities\ParisLouvrepyramidpic.png
+wwwroot\images\activities\sydney-harbor-bridge-climb.png
+wwwroot\images\activities\Thames_River_Sightseeing_Cruise.png
+wwwroot\images\activities\Tokyo_Robot_Restaurant_Show.png
 wwwroot\images\activities\Venice_Gondola_Ride.png
 wwwroot\images\add.jpg
 wwwroot\images\backpack.png

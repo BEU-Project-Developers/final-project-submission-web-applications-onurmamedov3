@@ -64,12 +64,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/Offers/Details_CarRental.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXERldGFpbHNfQ2FyUmVudGFsLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/Offers/Details_Placeholder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXERldGFpbHNfUGxhY2Vob2xkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/Offers/Details_Placeholder_Activity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXERldGFpbHNfUGxhY2Vob2xkZXJfQWN0aXZpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/Offers/Details_Placeholder_CarRental.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXERldGFpbHNfUGxhY2Vob2xkZXJfQ2FyUmVudGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/Offers/Details_Placeholder_Cruise.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXERldGFpbHNfUGxhY2Vob2xkZXJfQ3J1aXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/Offers/Details_Placeholder_Flight.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXERldGFpbHNfUGxhY2Vob2xkZXJfRmxpZ2h0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/Offers/Details_Placeholder_Trip.cshtml]

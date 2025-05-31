@@ -17,8 +17,36 @@
       "PackagePath": "staticwebassets\\images\\about_background.jpg"
     },
     {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png",
+      "PackagePath": "staticwebassets\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Eiffel_Tower_Summit_Access.png",
+      "PackagePath": "staticwebassets\\images\\activities\\Eiffel_Tower_Summit_Access.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Grand_Canyon_Helicopter_Tour.png",
+      "PackagePath": "staticwebassets\\images\\activities\\Grand_Canyon_Helicopter_Tour.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\ParisLouvrepyramidpic.png",
+      "PackagePath": "staticwebassets\\images\\activities\\ParisLouvrepyramidpic.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Thames_River_Sightseeing_Cruise.png",
+      "PackagePath": "staticwebassets\\images\\activities\\Thames_River_Sightseeing_Cruise.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Tokyo_Robot_Restaurant_Show.png",
+      "PackagePath": "staticwebassets\\images\\activities\\Tokyo_Robot_Restaurant_Show.png"
+    },
+    {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Venice_Gondola_Ride.png",
       "PackagePath": "staticwebassets\\images\\activities\\Venice_Gondola_Ride.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\sydney-harbor-bridge-climb.png",
+      "PackagePath": "staticwebassets\\images\\activities\\sydney-harbor-bridge-climb.png"
     },
     {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\add.jpg",

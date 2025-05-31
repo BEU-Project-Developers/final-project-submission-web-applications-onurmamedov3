@@ -1,0 +1,253 @@
+﻿@model TourManagementSystem.Models.CruiseViewModel
+@{
+    ViewData["Title"] = Model?.ItinerarySummary ?? Model?.CruiseLine ?? "Cruise Details";
+    var defaultImage = Url.Content("~/images/single_background.jpg"); // Generic banner
+    var cruiseImage = !string.IsNullOrEmpty(Model?.ImageUrl) ? Url.Content(Model.ImageUrl) : Url.Content("~/images/default_cruise.jpg");
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_styles.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_responsive.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .home {
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .home_background {
+            background-size: cover;
+            background-position: center;
+        }
+
+            .home_background::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                z-index: 1;
+            }
+
+        .home_content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .home_title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-transform: capitalize;
+        }
+
+        .listing {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+
+        .single_listing {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cruise_title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .cruise_info_text h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #721c24;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cruise_info_text p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .cruise_info_text strong {
+            color: #333;
+        }
+
+        .cruise_image img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Enhanced Book Button Styles */
+        .book_button a, .btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #721c24 0%, #a52a2a 100%);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+            .book_button a:hover, .btn:hover {
+                background: linear-gradient(135deg, #a52a2a 0%, #c0392b 100%);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+                transform: translateY(-2px);
+            }
+
+            .book_button a:focus, .btn:focus {
+                outline: 3px solid #721c24;
+                outline-offset: 2px;
+            }
+
+            /* Sliding Arrow Effect */
+            .book_button a::after, .btn::after {
+                content: '\f054'; /* Font Awesome chevron-right */
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                margin-left: 8px;
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+            }
+
+            .book_button a:hover::after, .btn:hover::after {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Icon Styling */
+            .book_button a i, .btn i {
+                margin-right: 8px;
+                font-size: 16px;
+            }
+
+        /* Responsive Adjustments */
+        /*       @*  @media (max-width: 767px) { */ *@
+        /*     .book_button a, .btn */
+
+        /* { */
+        /*     padding: 10px 20px; */
+        /*     font-size: 14px; */
+        /* } */
+
+        /* .home_title { */
+        /*     font-size: 32px; */
+        /* } */
+
+        /* .cruise_title { */
+        /*     font-size: 28px; */
+        /* } */
+
+        /* } */
+    </style>
+}
+
+<div class="super_container">
+    <!-- Hero Banner -->
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="@cruiseImage" data-speed="0.8"></div>
+        <div class="home_content">
+            <div class="home_title">@(Model?.ItinerarySummary ?? Model?.CruiseLine ?? "Cruise Details")</div>
+        </div>
+    </div>
+
+    <!-- Cruise Details -->
+    <div class="listing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    @if (Model != null)
+                    {
+                        <div class="single_listing">
+                            <div class="cruise_info">
+                                <div class="cruise_title_container d-flex flex-lg-row flex-column align-items-lg-center">
+                                    <div class="cruise_title_content flex-grow-1">
+                                        <h1 class="cruise_title">@Model.ItinerarySummary</h1>
+                                        <div class="cruise_line">Operated by: @Model.CruiseLine</div>
+                                    </div>
+                                    <div class="cruise_title_button">
+                                        <div class="book_button">
+                                            <a asp-controller="Booking" asp-action="Create" asp-route-offerId="@Model.Id" asp-route-offerType="Cruise" aria-label="Book @Model.ItinerarySummary">
+                                                <i class="fas fa-anchor"></i> Book Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cruise_image">
+                                    <img src="@cruiseImage" alt="@Model.ItinerarySummary" />
+                                </div>
+
+                                <div class="cruise_info_text">
+                                    <h4>Cruise Itinerary & Details</h4>
+                                    <dl class="row">
+                                        <dt class="col-sm-4">Cruise Line:</dt>
+                                        <dd class="col-sm-8">@Model.CruiseLine</dd>
+                                        <dt class="col-sm-4">Destination Focus:</dt>
+                                        <dd class="col-sm-8">@Model.Destination</dd>
+                                        <dt class="col-sm-4">Sails From:</dt>
+                                        <dd class="col-sm-8">@Model.DeparturePort</dd>
+                                        <dt class="col-sm-4">Duration:</dt>
+                                        <dd class="col-sm-8">@Model.DurationDays days</dd>
+                                        <dt class="col-sm-4">Price Starting From:</dt>
+                                        <dd class="col-sm-8">@Model.Price.ToString("C")</dd>
+                                    </dl>
+                                    @if (!string.IsNullOrEmpty(Model.ItinerarySummary) && Model.ItinerarySummary != $"{Model.DurationDays}-Day {Model.Destination} Cruise")
+                                    {
+                                        <p><strong>Summary:</strong> @Model.ItinerarySummary</p>
+                                    }
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a asp-controller="Offers" asp-action="Index" asp-route-entityType="Cruises" class="btn">
+                                    <i class="fas fa-arrow-left"></i> Back to Cruises
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            Cruise details could not be found.
+                            <a asp-controller="Offers" asp-action="Index" asp-route-entityType="Cruises" class="alert-link">Return to offers.</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/plugins/easing/easing.js" asp-append-version="true"></script>
+    <script src="~/plugins/parallax-js-master/parallax.min.js" asp-append-version="true"></script>
+    <script src="~/js/single_listing_custom.js" asp-append-version="true"></script>
+}

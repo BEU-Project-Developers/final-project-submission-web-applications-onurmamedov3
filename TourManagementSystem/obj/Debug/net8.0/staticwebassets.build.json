@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J5G3X4gfeqi+eWdTgxpRFaOVPo/3HtgHNvLcqF5YQNQ=",
+  "Hash": "zKl3oLi5k36djMFvkX13h/G8/WbLbqLypK3pGbuLzlk=",
   "Source": "TourManagementSystem",
   "BasePath": "_content/TourManagementSystem",
   "Mode": "Default",
@@ -120,6 +120,153 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\about_background.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/activities/Colosseum_&_Roman_Forum_Tour#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xgi0tg0d30",
+      "Integrity": "gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Eiffel_Tower_Summit_Access.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/activities/Eiffel_Tower_Summit_Access#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0hc5z49ns3",
+      "Integrity": "ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\activities\\Eiffel_Tower_Summit_Access.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Grand_Canyon_Helicopter_Tour.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/activities/Grand_Canyon_Helicopter_Tour#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "177jxn0jba",
+      "Integrity": "LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\activities\\Grand_Canyon_Helicopter_Tour.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\ParisLouvrepyramidpic.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/activities/ParisLouvrepyramidpic#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1nx9ji5bkj",
+      "Integrity": "jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\activities\\ParisLouvrepyramidpic.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\sydney-harbor-bridge-climb.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/activities/sydney-harbor-bridge-climb#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "idt0xr4dpy",
+      "Integrity": "St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\activities\\sydney-harbor-bridge-climb.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Thames_River_Sightseeing_Cruise.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/activities/Thames_River_Sightseeing_Cruise#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9o3ga84eby",
+      "Integrity": "Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\activities\\Thames_River_Sightseeing_Cruise.png"
+    },
+    {
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Tokyo_Robot_Restaurant_Show.png",
+      "SourceId": "TourManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
+      "BasePath": "_content/TourManagementSystem",
+      "RelativePath": "images/activities/Tokyo_Robot_Restaurant_Show#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "obugxxpj3p",
+      "Integrity": "fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\activities\\Tokyo_Robot_Restaurant_Show.png"
     },
     {
       "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Venice_Gondola_Ride.png",
@@ -4251,6 +4398,580 @@
         {
           "Name": "integrity",
           "Value": "sha256-NVrkpD28aBSPoNeEOeOnofop4C/37mdcmqVlA+I3yKk="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Colosseum_&_Roman_Forum_Tour.xgi0tg0d30.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12234"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:42:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xgi0tg0d30"
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Colosseum_&_Roman_Forum_Tour.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Colosseum_&_Roman_Forum_Tour.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12234"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:42:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Eiffel_Tower_Summit_Access.0hc5z49ns3.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Eiffel_Tower_Summit_Access.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16199"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:43:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0hc5z49ns3"
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Eiffel_Tower_Summit_Access.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Eiffel_Tower_Summit_Access.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Eiffel_Tower_Summit_Access.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16199"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:43:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZLGGSweu1X1svPfr7cPOeAQ7kYdQVaD75jVnyxnh+Gw="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Grand_Canyon_Helicopter_Tour.177jxn0jba.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Grand_Canyon_Helicopter_Tour.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11015"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:42:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "177jxn0jba"
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Grand_Canyon_Helicopter_Tour.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Grand_Canyon_Helicopter_Tour.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Grand_Canyon_Helicopter_Tour.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11015"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:42:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LegRdp9nngcafmcZv89s/3FtnXZvKrLMi7s1vjcjtQk="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/ParisLouvrepyramidpic.1nx9ji5bkj.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\ParisLouvrepyramidpic.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "233471"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:40:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1nx9ji5bkj"
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/ParisLouvrepyramidpic.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/ParisLouvrepyramidpic.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\ParisLouvrepyramidpic.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "233471"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:40:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jZ31moCExNgqLkx6w3axg1/zco2SSzWo3TJ+Q4yqgUU="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/sydney-harbor-bridge-climb.idt0xr4dpy.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\sydney-harbor-bridge-climb.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "139646"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:39:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "idt0xr4dpy"
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/sydney-harbor-bridge-climb.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/sydney-harbor-bridge-climb.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\sydney-harbor-bridge-climb.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "139646"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:39:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-St6bFbapI+WcBuw/1X/RITUuaZWn+zproCVxIBw2j3o="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Thames_River_Sightseeing_Cruise.9o3ga84eby.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Thames_River_Sightseeing_Cruise.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11416"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:40:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9o3ga84eby"
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Thames_River_Sightseeing_Cruise.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Thames_River_Sightseeing_Cruise.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Thames_River_Sightseeing_Cruise.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11416"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:40:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z19YtxB0AZSFD0lHuKEX4fu3hbR+6EDdG+138lRi6qA="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Tokyo_Robot_Restaurant_Show.obugxxpj3p.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Tokyo_Robot_Restaurant_Show.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1257875"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:41:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "obugxxpj3p"
+        },
+        {
+          "Name": "label",
+          "Value": "images/activities/Tokyo_Robot_Restaurant_Show.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg="
+        }
+      ]
+    },
+    {
+      "Route": "images/activities/Tokyo_Robot_Restaurant_Show.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Tokyo_Robot_Restaurant_Show.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1257875"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 07:41:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fM2IHRHBzAH9zsGqHdVLxpoHzzhZ5stV7fPPaJnROgg="
         }
       ]
     },
@@ -19447,7 +20168,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 14:50:58 GMT"
+          "Value": "Sat, 31 May 2025 07:06:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -19492,7 +20213,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 14:50:58 GMT"
+          "Value": "Sat, 31 May 2025 07:06:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -19537,7 +20258,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 14:50:58 GMT"
+          "Value": "Sat, 31 May 2025 07:06:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -19574,7 +20295,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 14:50:58 GMT"
+          "Value": "Sat, 31 May 2025 07:06:05 GMT"
         },
         {
           "Name": "Cache-Control",

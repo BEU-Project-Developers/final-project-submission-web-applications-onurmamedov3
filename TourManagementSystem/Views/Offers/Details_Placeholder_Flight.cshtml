@@ -1,0 +1,197 @@
+﻿@* File: Views/Offers/Details_Placeholder_Flight.cshtml *@
+@model TourManagementSystem.Models.FlightViewModel
+@{
+    ViewData["Title"] = $"Flight: {Model?.Airline} {Model?.FlightNumber ?? ""}";
+    var defaultImage = Url.Content("~/images/single_background.jpg"); // Generic banner
+    var airlineLogo = !string.IsNullOrEmpty(Model?.AirlineLogoUrl) ? Url.Content(Model.AirlineLogoUrl) : Url.Content("~/images/default_airline_logo.png");
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_styles.css" asp-append-version="true">
+    <link rel="stylesheet" type="text/css" href="~/styles/single_listing_responsive.css" asp-append-version="true">
+            @* Add styles from your Hotel Details View *@
+    <style>
+        .home {
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+        /* Adjusted min-height */
+        .home_background {
+            background-size: cover;
+            background-position: center;
+        }
+
+            .home_background::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+                z-index: 1;
+            }
+
+        .home_content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .home_title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-transform: capitalize;
+        }
+
+        .listing {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+
+        .single_listing {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .flight_title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .flight_info_text h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #721c24;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .flight_info_text p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .flight_info_text strong {
+            color: #333;
+        }
+
+        .flight_image img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        /* For airline logo */
+        .book_button a, .btn {
+            background: #721c24;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+            .book_button a:hover, .btn:hover {
+                background: #a52a2a;
+                transform: scale(1.05);
+                text-decoration: none;
+            }
+    </style>
+}
+
+<div class="super_container">
+    <!-- Hero Banner -->
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="@defaultImage" data-speed="0.8"></div>
+        <div class="home_content">
+            <div class="home_title">@(Model?.Airline ?? "Flight") Details</div>
+        </div>
+    </div>
+
+    <!-- Flight Details -->
+    <div class="listing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    @if (Model != null)
+                    {
+                        <div class="single_listing">
+                            <div class="flight_info">
+                                <div class="flight_title_container d-flex flex-lg-row flex-column align-items-lg-center">
+                                    <div class="flight_title_content flex-grow-1">
+                                        <h1 class="flight_title">@Model.Airline - Flight @Model.FlightNumber</h1>
+                                        <div class="flight_route">@Model.DepartureCity to @Model.ArrivalCity</div>
+                                    </div>
+                                    <div class="flight_title_button">
+                                        <div class="book_button">
+                                            <a asp-controller="Booking" asp-action="Create" asp-route-offerId="@Model.Id" asp-route-offerType="Flight" aria-label="Book Flight @Model.FlightNumber">Book Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flight_image text-center">
+                                    <img src="@airlineLogo" alt="@Model.Airline Logo" />
+                                </div>
+
+                                <div class="flight_info_text">
+                                    <h4>Flight Details</h4>
+                                    <dl class="row">
+                                        <dt class="col-sm-4">Airline:</dt>
+                                        <dd class="col-sm-8">@Model.Airline</dd>
+                                        <dt class="col-sm-4">Flight Number:</dt>
+                                        <dd class="col-sm-8">@Model.FlightNumber</dd>
+                                        <dt class="col-sm-4">From:</dt>
+                                        <dd class="col-sm-8">@Model.DepartureCity</dd>
+                                        <dt class="col-sm-4">To:</dt>
+                                        <dd class="col-sm-8">@Model.ArrivalCity</dd>
+                                        <dt class="col-sm-4">Departure:</dt>
+                                        <dd class="col-sm-8">@Model.DepartureTime.ToString("dd MMM yyyy, HH:mm")</dd>
+                                        <dt class="col-sm-4">Arrival:</dt>
+                                        <dd class="col-sm-8">@Model.ArrivalTime.ToString("dd MMM yyyy, HH:mm")</dd>
+                                        <dt class="col-sm-4">Duration:</dt>
+                                        <dd class="col-sm-8">@Model.Duration</dd>
+                                        <dt class="col-sm-4">Price:</dt>
+                                        <dd class="col-sm-8">@Model.Price.ToString("C")</dd>
+                                        <dt class="col-sm-4">Trip Type (Searched):</dt>
+                                        <dd class="col-sm-8">@Model.SearchedTripType</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a asp-controller="Offers" asp-action="Index" asp-route-entityType="Flights" class="btn">Back to Flights</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            Flight details could not be found.
+                            <a asp-controller="Offers" asp-action="Index" asp-route-entityType="Flights" class="alert-link">Return to offers.</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/plugins/easing/easing.js" asp-append-version="true"></script>
+    <script src="~/plugins/parallax-js-master/parallax.min.js" asp-append-version="true"></script>
+    <script src="~/js/single_listing_custom.js" asp-append-version="true"></script>
+}
