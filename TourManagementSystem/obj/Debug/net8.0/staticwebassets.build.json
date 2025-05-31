@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zKl3oLi5k36djMFvkX13h/G8/WbLbqLypK3pGbuLzlk=",
+  "Hash": "ssY8gf50u23qYq4Jc90xcFu1iAmp8KOZuaJ9xF/H6C4=",
   "Source": "TourManagementSystem",
   "BasePath": "_content/TourManagementSystem",
   "Mode": "Default",
@@ -122,12 +122,12 @@
       "OriginalItemSpec": "wwwroot\\images\\about_background.jpg"
     },
     {
-      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png",
+      "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_Roman_Forum_Tour.png",
       "SourceId": "TourManagementSystem",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\",
       "BasePath": "_content/TourManagementSystem",
-      "RelativePath": "images/activities/Colosseum_&_Roman_Forum_Tour#[.{fingerprint}]?.png",
+      "RelativePath": "images/activities/Colosseum_Roman_Forum_Tour#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -140,7 +140,7 @@
       "Integrity": "gRpe7G81aOsgNbq53FoDifcoMNcPmD7yS+JwN4+vJyo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png"
+      "OriginalItemSpec": "wwwroot\\images\\activities\\Colosseum_Roman_Forum_Tour.png"
     },
     {
       "Identity": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Eiffel_Tower_Summit_Access.png",
@@ -4402,8 +4402,8 @@
       ]
     },
     {
-      "Route": "images/activities/Colosseum_&_Roman_Forum_Tour.xgi0tg0d30.png",
-      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png",
+      "Route": "images/activities/Colosseum_Roman_Forum_Tour.xgi0tg0d30.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_Roman_Forum_Tour.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4438,7 +4438,7 @@
         },
         {
           "Name": "label",
-          "Value": "images/activities/Colosseum_&_Roman_Forum_Tour.png"
+          "Value": "images/activities/Colosseum_Roman_Forum_Tour.png"
         },
         {
           "Name": "integrity",
@@ -4447,8 +4447,8 @@
       ]
     },
     {
-      "Route": "images/activities/Colosseum_&_Roman_Forum_Tour.png",
-      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_&_Roman_Forum_Tour.png",
+      "Route": "images/activities/Colosseum_Roman_Forum_Tour.png",
+      "AssetFile": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\activities\\Colosseum_Roman_Forum_Tour.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -20168,7 +20168,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 07:06:05 GMT"
+          "Value": "Sat, 31 May 2025 10:02:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -20213,7 +20213,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 07:06:05 GMT"
+          "Value": "Sat, 31 May 2025 10:02:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -20258,7 +20258,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 07:06:05 GMT"
+          "Value": "Sat, 31 May 2025 10:02:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -20295,7 +20295,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 07:06:05 GMT"
+          "Value": "Sat, 31 May 2025 10:02:47 GMT"
         },
         {
           "Name": "Cache-Control",

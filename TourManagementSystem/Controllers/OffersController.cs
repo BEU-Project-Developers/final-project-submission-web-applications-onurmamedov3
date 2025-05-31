@@ -187,7 +187,7 @@ namespace TourManagementSystem.Controllers
                     DurationHours = a.DurationHours,
                     Price = a.Price,
                     Description = a.Description,
-                    //ImageUrl = a.ImageUrl ?? "~/images/default_activity.jpg"
+                    ImageUrl = a.ImageUrl ?? "~/images/default_activity.jpg"
                 }).ToList();
                 displayData = vms;
                 SetInfoMessage(vms.Any(), IsSearchAttempt(new object[] { activitySearchTerm, activityCategory, activityDate, maxActivityDuration, maxActivityPrice, participants }), "activity");
@@ -310,7 +310,7 @@ namespace TourManagementSystem.Controllers
                     DurationHours = activity.DurationHours,
                     Price = activity.Price,
                     Description = activity.Description,
-                    //ImageUrl = activity.ImageUrl ?? "~/images/default_activity.jpg"
+                    ImageUrl = activity.ImageUrl ?? "~/images/default_activity.jpg"
                 };
                 return View("Details_Placeholder_Activity", vm);
             }

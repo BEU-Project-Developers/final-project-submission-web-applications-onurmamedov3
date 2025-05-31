@@ -20,14 +20,14 @@ namespace TourManagementSystem.Models
         [StringLength(100)]
         public string? Category { get; set; }
 
-        public int DurationHours { get; set; } // Changed to int to match ActivityViewModel
+        public int DurationHours { get; set; } 
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
         public string? Description { get; set; }
 
-        public string? ImageUrl { get; set; } // <<<< UNCOMMENTED/ADDED THIS LINE
+        public string ImageUrl { get; set; } 
 
         public int? UserId { get; set; }
         public virtual User? User { get; set; }

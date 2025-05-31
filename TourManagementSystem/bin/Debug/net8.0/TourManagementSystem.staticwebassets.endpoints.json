@@ -29,7 +29,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 07:06:05 GMT"
+          "Value": "Sat, 31 May 2025 10:02:47 GMT"
         }
       ],
       "EndpointProperties": [
@@ -74,7 +74,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 07:06:05 GMT"
+          "Value": "Sat, 31 May 2025 10:02:47 GMT"
         }
       ],
       "EndpointProperties": [
@@ -331,8 +331,8 @@
       ]
     },
     {
-      "Route": "images/activities/Colosseum_&_Roman_Forum_Tour.png",
-      "AssetFile": "images/activities/Colosseum_&_Roman_Forum_Tour.png",
+      "Route": "images/activities/Colosseum_Roman_Forum_Tour.png",
+      "AssetFile": "images/activities/Colosseum_Roman_Forum_Tour.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -368,8 +368,8 @@
       ]
     },
     {
-      "Route": "images/activities/Colosseum_&_Roman_Forum_Tour.xgi0tg0d30.png",
-      "AssetFile": "images/activities/Colosseum_&_Roman_Forum_Tour.png",
+      "Route": "images/activities/Colosseum_Roman_Forum_Tour.xgi0tg0d30.png",
+      "AssetFile": "images/activities/Colosseum_Roman_Forum_Tour.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -408,7 +408,7 @@
         },
         {
           "Name": "label",
-          "Value": "images/activities/Colosseum_&_Roman_Forum_Tour.png"
+          "Value": "images/activities/Colosseum_Roman_Forum_Tour.png"
         }
       ]
     },

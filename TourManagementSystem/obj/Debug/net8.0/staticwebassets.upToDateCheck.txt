@@ -1,7 +1,7 @@
 wwwroot\fonts\beyond_the_mountains.otf
 wwwroot\fonts\beyond_the_mountains.ttf
 wwwroot\images\about_background.jpg
-wwwroot\images\activities\Colosseum_&_Roman_Forum_Tour.png
+wwwroot\images\activities\Colosseum_Roman_Forum_Tour.png
 wwwroot\images\activities\Eiffel_Tower_Summit_Access.png
 wwwroot\images\activities\Grand_Canyon_Helicopter_Tour.png
 wwwroot\images\activities\ParisLouvrepyramidpic.png
