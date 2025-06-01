@@ -1,26 +1,35 @@
 ﻿@model TourManagementSystem.Models.AdminTripViewModel
 @{
-    ViewData["Title"] = "Edit Trip";
+    ViewData["Title"] = "Edit Trip Package";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<nav aria-label="breadcrumb" class="breadcrumb-admin">
+
+@* Assuming common styles are global *@
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin-custom">
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
-        <li class="breadcrumb-item"><a asp-action="Index">Manage Trips</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Manage Trip Packages</a></li>
         <li class="breadcrumb-item active" aria-current="page">Edit: @Model.Title</li>
     </ol>
 </nav>
 
 <div class="admin-form-container">
-    <h2><i class="fa fa-pencil-square-o"></i> Edit Trip: @Model.Title</h2>
-    <hr />
-    <form asp-action="Edit" method="post">
+    <h2 class="form-title-custom">
+        <i class="fa fa-pencil-square-o"></i> Edit Trip Package: @Model.Title
+    </h2>
+
+    <form asp-action="Edit" method="post" class="mt-4">
         @Html.AntiForgeryToken()
-        <input type="hidden" asp-for="Id" /> @* Important for edit binding *@
+        <input type="hidden" asp-for="Id" />
+
         <partial name="_TripFormFields" model="Model" />
-        <div class="form-group mt-4">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save Changes</button>
-            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+
+        <div class="form-actions-custom">
+            <a asp-action="Index" class="btn btn-form-action btn-form-secondary">Cancel</a>
+            <button type="submit" class="btn btn-form-action btn-form-primary">
+                <i class="fa fa-save"></i> Save Changes
+            </button>
         </div>
     </form>
 </div>
