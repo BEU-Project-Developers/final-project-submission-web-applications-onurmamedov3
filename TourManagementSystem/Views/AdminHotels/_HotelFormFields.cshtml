@@ -1,5 +1,4 @@
-﻿@* File: Views/AdminHotels/_HotelFormFields.cshtml *@
-@model TourManagementSystem.Models.AdminHotelViewModel
+﻿@model TourManagementSystem.Models.AdminHotelViewModel
 
 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 @if (Model.Id != 0)
@@ -52,14 +51,14 @@
 
 <div class="mb-3">
     <label asp-for="PrimaryImageUrl" class="form-label"></label>
-    <input asp-for="PrimaryImageUrl" class="form-control" placeholder="e.g., ~/images/hotels/image.jpg" />
+    <input asp-for="PrimaryImageUrl" class="form-control" placeholder="e.g., /images/hotels/image.jpg or https://example.com/image.jpg" />
     <span asp-validation-for="PrimaryImageUrl" class="text-danger"></span>
 </div>
 
 <div class="mb-3">
     <label asp-for="UserId" class="form-label">Assigned User ID (Optional)</label>
-    <input asp-for="UserId" type="number" class="form-control" placeholder="Enter User ID or leave blank for system/current admin" />
-    @* If using a dropdown for users:
+    <input asp-for="UserId" type="number" class="form-control" placeholder="Enter User ID or leave blank" />
+    @* If using a dropdown for users (requires ViewBag.UserList to be populated in controller):
     <select asp-for="UserId" class="form-select" asp-items="ViewBag.UserList">
         <option value="">-- Not Assigned / System --</option>
     </select> *@

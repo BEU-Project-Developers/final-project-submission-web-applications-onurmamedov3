@@ -42,7 +42,7 @@ namespace TourManagementSystem.Models // Or TourManagementSystem.ViewModels
 
         [Display(Name = "Primary Image URL (Optional)")]
         [StringLength(255, ErrorMessage = "Image URL is too long.")]
-        [Url(ErrorMessage = "Please enter a valid URL for the image.")]
+        // [Url(ErrorMessage = "Please enter a valid URL for the image.")]
         public string? PrimaryImageUrl { get; set; }
 
         [Display(Name = "User ID (Managed By - Optional)")]

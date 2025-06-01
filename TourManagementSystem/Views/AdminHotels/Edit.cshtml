@@ -1,5 +1,4 @@
-﻿@* File: Views/AdminHotels/Edit.cshtml *@
-@model TourManagementSystem.Models.HotelViewModel
+﻿@model TourManagementSystem.Models.AdminHotelViewModel
 @{
     ViewData["Title"] = "Edit Hotel";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -17,6 +16,7 @@
     <hr />
     <form asp-action="Edit" method="post">
         @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" /> @* Ensure Id is passed for edit *@
         <partial name="_HotelFormFields" model="Model" />
         <div class="form-group mt-4">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save Changes</button>

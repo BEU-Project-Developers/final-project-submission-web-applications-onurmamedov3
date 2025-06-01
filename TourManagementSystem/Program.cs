@@ -1,8 +1,7 @@
-// File: TourManagementSystem/Program.cs
 using Microsoft.EntityFrameworkCore;
 using TourManagementSystem.Data;
-using TourManagementSystem.Services; // Ensure this using directive is present
-// using Microsoft.AspNetCore.Identity; // Uncomment if you plan to use ASP.NET Core Identity features
+using TourManagementSystem.Services;
+using Microsoft.AspNetCore.Authentication.Cookies; // << REQUIRED for Cookie Authentication
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,52 +9,49 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
-// .LogTo(Console.WriteLine, LogLevel.Information) // Uncomment to see EF Core queries in console during development
 );
 
 // 2. Register your custom services for Dependency Injection
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IHotelService, HotelService>();
 builder.Services.AddScoped<IContactService, ContactService>();
-builder.Services.AddScoped<IUserService, UserService>(); 
-
-builder.Services.AddScoped<IHotelService, HotelService>();
 builder.Services.AddScoped<ICarRentalService, CarRentalService>();
 builder.Services.AddScoped<IFlightService, FlightService>();
-builder.Services.AddScoped<ICruiseService, CruiseService>();    
+builder.Services.AddScoped<ICruiseService, CruiseService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<ITripService, TripService>();
 
-// 3. Add Identity services if you're using ASP.NET Core Identity
-//    If your AccountController relies on UserManager<User> or SignInManager<User>,
-//    you MUST configure Identity here.
-//
-//    Example (ensure your User model inherits from IdentityUser if you use this):
-//    using TourManagementSystem.Models; // Assuming User model is here
-//    using Microsoft.AspNetCore.Identity;
-//
-//    builder.Services.AddIdentity<User, IdentityRole>(options => {
-//        options.SignIn.RequireConfirmedAccount = false; // Adjust as needed
-//        options.Password.RequireDigit = true;
-//        options.Password.RequireLowercase = true;
-//        options.Password.RequireUppercase = true;
-//        options.Password.RequireNonAlphanumeric = false;
-//        options.Password.RequiredLength = 6;
-//    })
-//    .AddEntityFrameworkStores<ApplicationDbContext>()
-//    .AddDefaultTokenProviders();
-//
-//    builder.Services.ConfigureApplicationCookie(options =>
-//    {
-//        options.LoginPath = "/Account/Login";       // Your login page
-//        options.LogoutPath = "/Account/Logout";      // Your logout action
-//        options.AccessDeniedPath = "/Account/AccessDenied"; // Your access denied page
-//        options.SlidingExpiration = true;
-//    });
+// 3. Configure Authentication (Cookie based for your custom system)
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // Sets the default scheme
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => // Configure the cookie scheme
+    {
+        options.LoginPath = "/Account/Login";       // Path to redirect for login
+        options.LogoutPath = "/Account/Logout";      // Path for logout action
+        options.AccessDeniedPath = "/Account/AccessDenied"; // Path if authorized but role mismatch
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60); // How long the cookie is valid
+        options.SlidingExpiration = true; // Renews the cookie if user is active
+        // options.Cookie.Name = "YourApp.AuthCookie"; // Optional: customize cookie name
+        options.Cookie.HttpOnly = true; // Recommended for security
+        options.Cookie.IsEssential = true; // Important for GDPR compliance if you don't have cookie consent
+    });
 
+// Authorization services are typically added by AddControllersWithViews or AddIdentity,
+// but explicitly adding it can be done if needed.
+// builder.Services.AddAuthorization();
 
 // 4. Add MVC services
 builder.Services.AddControllersWithViews();
-// builder.Services.AddRazorPages(); // If you use Razor Pages
+
+// Session services are separate from authentication cookies.
+// If you need general session state:
+// builder.Services.AddDistributedMemoryCache();
+// builder.Services.AddSession(options =>
+// {
+//     options.IdleTimeout = TimeSpan.FromMinutes(30);
+//     options.Cookie.HttpOnly = true;
+//     options.Cookie.IsEssential = true;
+// });
+
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -71,22 +67,24 @@ if (!app.Environment.IsDevelopment())
 else
 {
     app.UseDeveloperExceptionPage();
-
-
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+app.UseRouting(); // Defines route matching.
 
-// If you configured ASP.NET Core Identity, you need these:
-// app.UseAuthentication(); // Crucial: Verifies the user's identity
-// app.UseAuthorization();  // Crucial: Checks if the authenticated user has permission
+// --- MIDDLEWARE ORDER IS CRITICAL ---
+// 1. Authentication: Identifies who the user is based on the configured schemes (e.g., reads the cookie).
+app.UseAuthentication(); // << NOW THIS IS ESSENTIAL AND CONFIGURED
+
+// 2. Authorization: Determines if the identified user has permission.
+app.UseAuthorization();  // This processes [Authorize] attributes
+
+// app.UseSession(); // If you added session services above
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-// app.MapRazorPages(); // If using Razor Pages
 
 app.Run();

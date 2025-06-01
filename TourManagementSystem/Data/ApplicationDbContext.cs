@@ -1,98 +1,113 @@
-﻿// File: TourManagementSystem/Data/ApplicationDbContext.cs
-using Microsoft.EntityFrameworkCore;
-using TourManagementSystem.Models; // Make sure this matches your Models namespace
-// using Microsoft.AspNetCore.Identity.EntityFrameworkCore; // If using ASP.NET Core Identity
+﻿using Microsoft.EntityFrameworkCore;
+using TourManagementSystem.Models;
 
 namespace TourManagementSystem.Data
 {
-    // If using ASP.NET Core Identity, inherit from IdentityDbContext<User> or your custom User class
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext // Does NOT inherit from IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
-        public DbSet<User> Users { get; set; } // Assuming User model exists
+        public DbSet<User> Users { get; set; } // Your custom User DbSet
         public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<Flight> Flights { get; set; } // Assuming Flight model exists
-        public DbSet<CarRental> CarRentals { get; set; } // Assuming CarRental model exists
-        public DbSet<Cruise> Cruises { get; set; } // Assuming Cruise model exists
-        public DbSet<Trip> Trips { get; set; } // Assuming Trip model exists
-        public DbSet<Activity> Activities { get; set; } // Assuming Activity model exists
-
+        public DbSet<Flight> Flights { get; set; }
+        public DbSet<CarRental> CarRentals { get; set; }
+        public DbSet<Cruise> Cruises { get; set; }
+        public DbSet<Trip> Trips { get; set; }
+        public DbSet<Activity> Activities { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); // Important if using Identity
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email).IsUnique();
-                // Add other User configurations if needed
+                // Your User.Role property is just a string here.
+                // If you have a separate Roles table, you'd define that relationship.
             });
 
             modelBuilder.Entity<Hotel>(entity =>
             {
                 entity.HasIndex(e => e.Name);
                 entity.Property(p => p.PricePerNight).HasColumnType("decimal(18,2)");
-
-                // Example for UserId foreign key if Hotel.UserId is not nullable
-                // if (entity.Metadata.FindNavigation(nameof(Hotel.User)) != null)
-                // {
-                //     entity.HasOne(h => h.User)
-                //           .WithMany() // Or .WithMany(u => u.Hotels) if User has ICollection<Hotel>
-                //           .HasForeignKey(h => h.UserId)
-                //           .IsRequired() // If UserId is not nullable
-                //           .OnDelete(DeleteBehavior.Restrict); // Choose appropriate delete behavior
-                // }
-            });
-
-            modelBuilder.Entity<Flight>(entity =>
-            {
-                entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+                // Assuming Hotel.UserId is int? and refers to User.Id (int)
+                if (entity.Metadata.FindNavigation(nameof(Hotel.User)) != null)
+                {
+                    entity.HasOne(h => h.User)
+                          .WithMany(u => u.Hotels) // Assumes User has ICollection<Hotel> Hotels
+                          .HasForeignKey(h => h.UserId) // Ensure Hotel.UserId is int or int?
+                          .OnDelete(DeleteBehavior.SetNull); // Or Restrict, Cascade as per your needs
+                }
             });
 
             modelBuilder.Entity<CarRental>(entity =>
             {
                 entity.Property(p => p.PricePerDay).HasColumnType("decimal(18,2)");
+                if (entity.Metadata.FindNavigation(nameof(CarRental.User)) != null)
+                {
+                    entity.HasOne(cr => cr.User)
+                          .WithMany(u => u.CarRentals)
+                          .HasForeignKey(cr => cr.UserId)
+                          .OnDelete(DeleteBehavior.SetNull);
+                }
+            });
+
+            modelBuilder.Entity<Flight>(entity =>
+            {
+                entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+                if (entity.Metadata.FindNavigation(nameof(Flight.User)) != null)
+                {
+                    entity.HasOne(fl => fl.User)
+                          .WithMany(u => u.Flights)
+                          .HasForeignKey(fl => fl.UserId)
+                          .OnDelete(DeleteBehavior.SetNull);
+                }
             });
 
             modelBuilder.Entity<Cruise>(entity =>
             {
                 entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+                if (entity.Metadata.FindNavigation(nameof(Cruise.User)) != null)
+                {
+                    entity.HasOne(c => c.User)
+                          .WithMany(u => u.Cruises)
+                          .HasForeignKey(c => c.UserId)
+                          .OnDelete(DeleteBehavior.SetNull);
+                }
             });
 
             modelBuilder.Entity<Trip>(entity =>
             {
                 entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+                if (entity.Metadata.FindNavigation(nameof(Trip.User)) != null)
+                {
+                    entity.HasOne(t => t.User)
+                          .WithMany(u => u.Trips)
+                          .HasForeignKey(t => t.UserId)
+                          .OnDelete(DeleteBehavior.SetNull);
+                }
             });
 
             modelBuilder.Entity<Activity>(entity =>
             {
                 entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+                if (entity.Metadata.FindNavigation(nameof(Activity.User)) != null)
+                {
+                    entity.HasOne(a => a.User)
+                          .WithMany(u => u.Activities)
+                          .HasForeignKey(a => a.UserId)
+                          .OnDelete(DeleteBehavior.SetNull);
+                }
             });
+
 
             modelBuilder.Entity<ContactMessage>(entity =>
             {
-                // You can add configurations here if needed, e.g., max length for Message
-                // entity.Property(e => e.Message).HasMaxLength(4000); // Example
-                entity.HasIndex(e => e.SubmittedDate); // Good for sorting by date
+                entity.HasIndex(e => e.SubmittedDate);
             });
-
-            // Example Seed Data (Optional, requires a new migration if added/changed)
-            // modelBuilder.Entity<Hotel>().HasData(
-            //     new Hotel {
-            //         Id = 1, Name = "Seed Hotel Paris", Destination = "Paris", Address = "1 Rue de Seed",
-            //         Description = "A lovely seeded hotel in Paris.", PricePerNight = 150.00m, Rating = 4, AvailableRooms = 20,
-            //         PrimaryImageUrl = "~/images/offer_1.jpg" // Ensure image exists
-            //     },
-            //     new Hotel {
-            //         Id = 2, Name = "Seed Hotel London", Destination = "London", Address = "2 Seedling Street",
-            //         Description = "Comfortable seeded accommodation in London.", PricePerNight = 120.50m, Rating = 3, AvailableRooms = 15,
-            //         PrimaryImageUrl = "~/images/offer_4.jpg" // Ensure image exists
-            //     }
-            // );
         }
     }
 }
