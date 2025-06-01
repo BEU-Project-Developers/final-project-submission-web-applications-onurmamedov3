@@ -1,28 +1,39 @@
-﻿@* File: Views/AdminCars/Create.cshtml *@
-@model TourManagementSystem.Models.AdminCarRentalViewModel
+﻿@model TourManagementSystem.Models.AdminCarRentalViewModel
 @{
     ViewData["Title"] = "Add New Car Rental";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<nav aria-label="breadcrumb" class="breadcrumb-admin">
+
+@* Assuming common styles for breadcrumb, form-container, form-title, buttons
+   are defined in _AdminLayout.cshtml or a global admin.css file. *@
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin-custom">
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         <li class="breadcrumb-item"><a asp-action="Index">Manage Car Rentals</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add Car Rental</li>
     </ol>
 </nav>
+
 <div class="admin-form-container">
-    <h2><i class="fa fa-plus-circle"></i> Add New Car Rental</h2>
-    <hr />
-    <form asp-action="Create" method="post">
+    <h2 class="form-title-custom">
+        <i class="fa fa-plus-circle"></i> Add New Car Rental
+    </h2>
+
+    <form asp-action="Create" method="post" class="mt-4">
         @Html.AntiForgeryToken()
+
         <partial name="_CarRentalFormFields" model="Model" />
-        <div class="form-group mt-4">
-            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Create Car Rental</button>
-            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+
+        <div class="form-actions-custom">
+            <a asp-action="Index" class="btn btn-form-action btn-form-secondary">Cancel</a>
+            <button type="submit" class="btn btn-form-action btn-form-primary">
+                <i class="fa fa-save"></i> Create Car Rental
+            </button>
         </div>
     </form>
 </div>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

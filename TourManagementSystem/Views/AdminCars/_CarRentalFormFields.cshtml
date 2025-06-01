@@ -1,45 +1,73 @@
 ﻿@model TourManagementSystem.Models.AdminCarRentalViewModel
 
-<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+<div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4" role="alert"></div>
+
 @if (Model.Id != 0)
 {
     <input type="hidden" asp-for="Id" />
 }
 
-<div class="mb-3">
-    <label asp-for="CarModel" class="form-label"></label>
-    <input asp-for="CarModel" class="form-control" />
-    <span asp-validation-for="CarModel" class="text-danger"></span>
-</div>
-
-<div class="row">
-    <div class="col-md-6 mb-3">
-        <label asp-for="Company" class="form-label"></label>
-        <input asp-for="Company" class="form-control" />
-        <span asp-validation-for="Company" class="text-danger"></span>
+<fieldset class="mb-4">
+    <legend class="form-legend">Car & Company</legend>
+    <div class="row g-3">
+        <div class="col-md-7">
+            <label asp-for="CarModel" class="form-label">Car Model/Name</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                <input asp-for="CarModel" class="form-control admin-form-control" placeholder="e.g., Toyota Camry, SUV Large" />
+            </div>
+            <span asp-validation-for="CarModel" class="text-danger d-block mt-1"></span>
+        </div>
+        <div class="col-md-5">
+            <label asp-for="Company" class="form-label">Rental Company</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+                <input asp-for="Company" class="form-control admin-form-control" placeholder="e.g., Hertz, Avis" />
+            </div>
+            <span asp-validation-for="Company" class="text-danger d-block mt-1"></span>
+        </div>
     </div>
-    <div class="col-md-6 mb-3">
-        <label asp-for="Location" class="form-label"></label>
-        <input asp-for="Location" class="form-control" />
-        <span asp-validation-for="Location" class="text-danger"></span>
+</fieldset>
+
+<fieldset class="mb-4">
+    <legend class="form-legend">Location & Pricing</legend>
+    <div class="row g-3">
+        <div class="col-md-7">
+            <label asp-for="Location" class="form-label">Pickup Location</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+                <input asp-for="Location" class="form-control admin-form-control" placeholder="e.g., Airport, Downtown Cityville" />
+            </div>
+            <span asp-validation-for="Location" class="text-danger d-block mt-1"></span>
+        </div>
+        <div class="col-md-5">
+            <label asp-for="PricePerDay" class="form-label">Price Per Day</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-eur"></i></span> @* Or your currency icon *@
+                <input asp-for="PricePerDay" class="form-control admin-form-control" type="number" step="0.01" min="0" />
+            </div>
+            <span asp-validation-for="PricePerDay" class="text-danger d-block mt-1"></span>
+        </div>
     </div>
-</div>
+</fieldset>
 
-<div class="mb-3">
-    <label asp-for="PricePerDay" class="form-label"></label>
-    <input asp-for="PricePerDay" class="form-control" type="number" step="0.01" min="0" />
-    <span asp-validation-for="PricePerDay" class="text-danger"></span>
-</div>
+<fieldset>
+    <legend class="form-legend">Imagery & Management</legend>
+    <div class="mb-3">
+        <label asp-for="ImageUrl" class="form-label">Image URL</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-image"></i></span>
+            <input asp-for="ImageUrl" class="form-control admin-form-control" placeholder="e.g., /images/cars/car_image.jpg or http://..." />
+        </div>
+        <span asp-validation-for="ImageUrl" class="text-danger d-block mt-1"></span>
+    </div>
 
-<div class="mb-3">
-    <label asp-for="ImageUrl" class="form-label"></label>
-    <input asp-for="ImageUrl" class="form-control" placeholder="e.g., /images/cars/default.jpg or http://..." />
-    <span asp-validation-for="ImageUrl" class="text-danger"></span>
-</div>
-
-<div class="mb-3">
-    <label asp-for="UserId" class="form-label"></label>
-    <input asp-for="UserId" type="number" class="form-control" />
-    <span asp-validation-for="UserId" class="text-danger"></span>
-    <small class="form-text text-muted">ID of the user managing this car rental.</small>
-</div>
+    <div class="mb-3">
+        <label asp-for="UserId" class="form-label">Managed By User ID</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-user-plus"></i></span>
+            <input asp-for="UserId" type="number" class="form-control admin-form-control" placeholder="ID of the managing user" />
+        </div>
+        <span asp-validation-for="UserId" class="text-danger d-block mt-1"></span>
+    </div>
+</fieldset>
