@@ -1,22 +1,29 @@
-﻿// File: TourManagementSystem/Services/IFlightService.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TourManagementSystem.Models; // For Flight and TripType
+using TourManagementSystem.Models;
 
 namespace TourManagementSystem.Services
 {
     public interface IFlightService
     {
+        // Existing search method
         Task<IEnumerable<Flight>> SearchFlightsAsync(
-            string origin, // Ensure this matches the type in FlightService and call from OffersController
-            string destination, // Ensure this matches
-            DateTime departureDate, // Ensure this matches
-            DateTime? returnDate, // Ensure this matches (nullable DateTime)
-            int passengers, // Ensure this matches
-            TripType tripType // Ensure this matches (the enum TripType)
+            string origin,
+            string destination,
+            DateTime departureDate,
+            DateTime? returnDate,
+            int passengers,
+            TripType tripType
         );
-        Task<Flight?> GetFlightByIdAsync(int id);
-        // Add other methods like GetAllFlightsAsync, Create, Update, Delete if needed
+
+        // Methods for Admin CRUD
+        Task<IEnumerable<Flight>> GetAllFlightsAsync(); // For Admin Index page
+        Task<Flight?> GetFlightByIdAsync(int id); // For Admin Details/Edit GET/Delete GET
+
+        Task<(bool Success, Flight? CreatedFlight, string? ErrorMessage)> CreateFlightAsync(AdminFlightViewModel model, int? creatingUserId);
+        Task<(bool Success, string? ErrorMessage)> UpdateFlightAsync(AdminFlightViewModel model);
+        Task<bool> DeleteFlightAsync(int id);
+        Task<int> GetTotalFlightsCountAsync(); // For dashboard
     }
 }

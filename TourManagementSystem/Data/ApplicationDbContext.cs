@@ -78,13 +78,13 @@ namespace TourManagementSystem.Data
 
             modelBuilder.Entity<Flight>(entity =>
             {
-                entity.HasKey(e => e.Id);
-                entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+                entity.Property(e => e.Price).HasColumnType("decimal(18,2)");
+                // Relationship with User
                 entity.HasOne(f => f.User)
-                    .WithMany(u => u.Flights)
-                    .HasForeignKey(f => f.UserId)
-                    .IsRequired(false)
-                    .OnDelete(DeleteBehavior.SetNull);
+                      .WithMany(u => u.Flights) // Assumes User.cs has ICollection<Flight> Flights
+                      .HasForeignKey(f => f.UserId)
+                      .IsRequired(false) // Since Flight.UserId is nullable
+                      .OnDelete(DeleteBehavior.SetNull); // Or your preferred delete behavior
             });
 
             modelBuilder.Entity<Cruise>(entity =>
