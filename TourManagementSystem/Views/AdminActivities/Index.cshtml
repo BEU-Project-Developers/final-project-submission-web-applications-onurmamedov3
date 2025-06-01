@@ -4,36 +4,254 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<nav aria-label="breadcrumb" class="breadcrumb-admin">
+@section Styles {
+    <style>
+        /* === CSS VARIABLES (Copied for self-containment if not global) === */
+        :root {
+            --admin-primary-color: #007bff;
+            --admin-secondary-color: #1A2E44;
+            --admin-accent-color: #0056b3;
+            --admin-text-light: #FFFFFF;
+            --admin-border-radius: 6px;
+            --admin-transition-speed: 0.25s;
+            --admin-card-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            --admin-font-primary: 'Poppins', sans-serif;
+        }
+
+        /* === Breadcrumb Styling === */
+        .breadcrumb-admin-custom {
+            background-color: #ffffff;
+            padding: 0.85rem 1.5rem;
+            border-radius: var(--admin-border-radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--admin-card-shadow);
+            border: 1px solid #e9ecef;
+            font-size: 0.9rem;
+        }
+
+            .breadcrumb-admin-custom .breadcrumb-item {
+                font-family: var(--admin-font-primary);
+            }
+
+                .breadcrumb-admin-custom .breadcrumb-item a {
+                    color: var(--admin-primary-color);
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: color var(--admin-transition-speed) ease;
+                }
+
+                    .breadcrumb-admin-custom .breadcrumb-item a:hover {
+                        color: var(--admin-accent-color);
+                        text-decoration: underline;
+                    }
+
+                .breadcrumb-admin-custom .breadcrumb-item.active {
+                    color: #5a6f82;
+                    font-weight: 500;
+                }
+
+                .breadcrumb-admin-custom .breadcrumb-item + .breadcrumb-item::before {
+                    color: #adb5bd;
+                    content: ">";
+                    padding: 0 0.6rem;
+                }
+
+        /* === Page Header Styling === */
+        .page-header-admin {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+            .page-header-admin h2 {
+                font-family: var(--admin-font-primary);
+                font-size: 1.85rem;
+                font-weight: 600;
+                color: var(--admin-secondary-color);
+                margin-bottom: 0;
+            }
+
+                .page-header-admin h2 i {
+                    color: var(--admin-primary-color);
+                    margin-right: 0.75rem;
+                    font-size: 1.05em;
+                }
+
+        .btn-add-new-header {
+            background-color: var(--admin-primary-color);
+            border-color: var(--admin-primary-color);
+            color: #fff;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            border-radius: var(--admin-border-radius);
+            transition: all var(--admin-transition-speed) ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+            .btn-add-new-header:hover {
+                background-color: var(--admin-accent-color);
+                border-color: var(--admin-accent-color);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+            }
+
+            .btn-add-new-header i {
+                margin-right: 0.5rem;
+            }
+
+        /* === Table Styling === */
+        .admin-table-container {
+            background-color: #fff;
+            padding: 0;
+            border-radius: var(--admin-border-radius);
+            box-shadow: var(--admin-card-shadow);
+            overflow: hidden;
+        }
+
+        .table-admin-custom {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+            .table-admin-custom thead.table-header-custom th {
+                background-color: var(--admin-secondary-color);
+                color: var(--admin-text-light);
+                border-bottom: 3px solid var(--admin-primary-color);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-size: 0.8rem;
+                vertical-align: middle;
+                padding: 0.9rem 1rem;
+                white-space: nowrap;
+            }
+
+                .table-admin-custom thead.table-header-custom th:first-child {
+                    border-top-left-radius: var(--admin-border-radius);
+                }
+
+                .table-admin-custom thead.table-header-custom th:last-child {
+                    border-top-right-radius: var(--admin-border-radius);
+                }
+
+            .table-admin-custom tbody tr {
+                transition: background-color 0.15s ease-in-out;
+            }
+
+                .table-admin-custom tbody tr:hover {
+                    background-color: #f1f7ff;
+                }
+
+                .table-admin-custom tbody tr:last-child td:first-child {
+                    border-bottom-left-radius: var(--admin-border-radius);
+                }
+
+                .table-admin-custom tbody tr:last-child td:last-child {
+                    border-bottom-right-radius: var(--admin-border-radius);
+                }
+
+            .table-admin-custom td {
+                vertical-align: middle;
+                padding: 0.85rem 1rem;
+                color: #495057;
+                border-top: 1px solid #e9ecef;
+            }
+
+        .actions-cell .btn {
+            padding: 0.45rem 0.8rem;
+            font-size: 0.85rem;
+            margin-right: 0.35rem;
+            border-radius: var(--admin-border-radius);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--admin-transition-speed) ease;
+            min-width: 38px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+            .actions-cell .btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 3px 7px rgba(0,0,0,0.1);
+            }
+
+            .actions-cell .btn i {
+                font-size: 0.95em;
+            }
+
+        .actions-cell .btn-outline-primary {
+            border-color: var(--admin-primary-color);
+            color: var(--admin-primary-color);
+        }
+
+            .actions-cell .btn-outline-primary:hover {
+                background-color: var(--admin-primary-color);
+                color: #fff;
+            }
+
+        .actions-cell .btn-outline-info {
+            border-color: #17a2b8;
+            color: #17a2b8;
+        }
+
+            .actions-cell .btn-outline-info:hover {
+                background-color: #17a2b8;
+                color: #fff;
+            }
+
+        .actions-cell .btn-outline-danger {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+            .actions-cell .btn-outline-danger:hover {
+                background-color: #dc3545;
+                color: #fff;
+            }
+
+        .no-entries-message td {
+            font-style: italic;
+            color: #6c757d;
+            padding: 2rem !important;
+        }
+    </style>
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin-custom">
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page">Manage Activities</li>
     </ol>
 </nav>
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center page-header-admin">
     <h2><i class="fa fa-bicycle"></i> Activity Management</h2>
-    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Activity</a>
+    <a asp-action="Create" class="btn btn-add-new-header"><i class="fa fa-plus"></i> Add New Activity</a>
 </div>
-<hr />
 
-<div class="admin-form-container p-0">
+<div class="admin-table-container mt-3">
     <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered">
-            <thead class="table-dark">
+        <table class="table table-hover table-admin-custom">
+            <thead class="table-header-custom">
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.First().Name)</th>
                     <th>@Html.DisplayNameFor(model => model.First().Location)</th>
                     <th>@Html.DisplayNameFor(model => model.First().Category)</th>
                     <th>@Html.DisplayNameFor(model => model.First().DurationHours)</th>
                     <th>@Html.DisplayNameFor(model => model.First().Price)</th>
-                    <th style="width: 220px;">Actions</th>
+                    <th style="width: 225px; text-align:center;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @if (!Model.Any())
                 {
-                    <tr><td colspan="6" class="text-center py-4">No activities found. Start by creating one!</td></tr>
+                    <tr class="no-entries-message">
+                        <td colspan="6" class="text-center">No activities found. Start by creating one!</td>
+                    </tr>
                 }
                 @foreach (var item in Model)
                 {
@@ -41,11 +259,11 @@
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                         <td>@Html.DisplayFor(modelItem => item.Location)</td>
                         <td>@(string.IsNullOrEmpty(item.Category) ? "N/A" : item.Category)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DurationHours) hr(s)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DurationHours) hr(s)</td>
                         <td>@item.Price.ToString("C")</td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1" title="Details"><i class="fa fa-info-circle"></i></a>
+                        <td class="actions-cell text-center">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info" title="Details"><i class="fa fa-info-circle"></i></a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>

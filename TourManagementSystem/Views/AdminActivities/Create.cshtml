@@ -4,7 +4,10 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<nav aria-label="breadcrumb" class="breadcrumb-admin">
+@* Assuming common styles for breadcrumb, form-container, form-title, buttons
+   are defined in _AdminLayout.cshtml or a global admin.css file. *@
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin-custom">
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         <li class="breadcrumb-item"><a asp-action="Index">Manage Activities</a></li>
@@ -13,14 +16,20 @@
 </nav>
 
 <div class="admin-form-container">
-    <h2><i class="fa fa-bicycle"></i> Add New Activity</h2>
-    <hr />
-    <form asp-action="Create" method="post">
+    <h2 class="form-title-custom">
+        <i class="fa fa-plus-circle"></i> Add New Activity
+    </h2>
+
+    <form asp-action="Create" method="post" class="mt-4">
         @Html.AntiForgeryToken()
+
         <partial name="_ActivityFormFields" model="Model" />
-        <div class="form-group mt-4">
-            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Create Activity</button>
-            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+
+        <div class="form-actions-custom">
+            <a asp-action="Index" class="btn btn-form-action btn-form-secondary">Cancel</a>
+            <button type="submit" class="btn btn-form-action btn-form-primary">
+                <i class="fa fa-save"></i> Create Activity
+            </button>
         </div>
     </form>
 </div>
