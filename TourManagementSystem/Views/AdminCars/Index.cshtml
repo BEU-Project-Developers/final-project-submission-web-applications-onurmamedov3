@@ -1,5 +1,4 @@
-﻿@* File: Views/AdminCars/Index.cshtml *@
-@model IEnumerable<TourManagementSystem.Models.CarRental>
+﻿@model IEnumerable<TourManagementSystem.Models.CarRental>
 @{
     ViewData["Title"] = "Manage Car Rentals";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -20,20 +19,22 @@
 
 <div class="admin-form-container p-0">
     <div class="table-responsive">
-        <table class="table table-sCarRentaled table-hover table-bordered">
+        <table class="table table-striped table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th>Car Model</th> @* Changed from Make/Model/Year *@
-                    <th>Company</th>
-                    <th>Location</th>
-                    <th>Price/Day</th>
+                    <th>@Html.DisplayNameFor(model => model.First().CarModel)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Company)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Location)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().PricePerDay)</th>
+                    @* Removed IsAvailable column header *@
                     <th style="width: 220px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @if (!Model.Any())
                 {
-                    <tr><td colspan="5" class="text-center py-4">No car rentals found.</td></tr>
+                    @* Adjusted colspan since one column was removed *@
+                    <tr><td colspan="5" class="text-center py-4">No car rentals found. Start by creating one!</td></tr>
                 }
                 @foreach (var item in Model)
                 {
@@ -42,6 +43,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Company)</td>
                         <td>@Html.DisplayFor(modelItem => item.Location)</td>
                         <td>@item.PricePerDay.ToString("C")</td>
+                        @* Removed IsAvailable column data display *@
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1" title="Edit"><i class="fa fa-pencil"></i></a>
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1" title="Details"><i class="fa fa-info-circle"></i></a>

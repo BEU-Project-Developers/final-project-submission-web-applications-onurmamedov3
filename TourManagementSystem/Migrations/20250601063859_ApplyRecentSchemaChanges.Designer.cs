@@ -12,8 +12,8 @@ using TourManagementSystem.Data;
 namespace TourManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250531163444_MakeTripUserIdNullable")]
-    partial class MakeTripUserIdNullable
+    [Migration("20250601063859_ApplyRecentSchemaChanges")]
+    partial class ApplyRecentSchemaChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,74 +70,7 @@ namespace TourManagementSystem.Migrations
                     b.ToTable("Activities");
                 });
 
-            modelBuilder.Entity("TourManagementSystem.Models.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("BookingDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("CustomerEmail")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("CustomerPhone")
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<int>("NumberOfAdults")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfChildren")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OfferId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OfferType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime?>("ServiceEndDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("ServiceStartDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("SpecialRequests")
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("TourManagementSystem.Models.Trip", b =>
+            modelBuilder.Entity("TourManagementSystem.Models.CarRental", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -147,21 +80,39 @@ namespace TourManagementSystem.Migrations
 
                     b.Property<string>("CarModel")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Company")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Location")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<int?>("PassengerCapacity")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TransmissionType")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -170,7 +121,7 @@ namespace TourManagementSystem.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Trips");
+                    b.ToTable("CarRentals");
                 });
 
             modelBuilder.Entity("TourManagementSystem.Models.ContactMessage", b =>
@@ -191,7 +142,8 @@ namespace TourManagementSystem.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(4000)
+                        .HasColumnType("varchar(4000)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -346,8 +298,6 @@ namespace TourManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Hotels");
@@ -425,9 +375,6 @@ namespace TourManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
                     b.ToTable("Users");
                 });
 
@@ -435,15 +382,46 @@ namespace TourManagementSystem.Migrations
                 {
                     b.HasOne("TourManagementSystem.Models.User", "User")
                         .WithMany("Activities")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TourManagementSystem.Models.Booking", b =>
+            modelBuilder.Entity("TourManagementSystem.Models.CarRental", b =>
                 {
                     b.HasOne("TourManagementSystem.Models.User", "User")
-                        .WithMany()
+                        .WithMany("CarRentals")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TourManagementSystem.Models.Cruise", b =>
+                {
+                    b.HasOne("TourManagementSystem.Models.User", "User")
+                        .WithMany("Cruises")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TourManagementSystem.Models.Flight", b =>
+                {
+                    b.HasOne("TourManagementSystem.Models.User", "User")
+                        .WithMany("Flights")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TourManagementSystem.Models.Hotel", b =>
+                {
+                    b.HasOne("TourManagementSystem.Models.User", "User")
+                        .WithMany("Hotels")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull);
 
@@ -454,47 +432,8 @@ namespace TourManagementSystem.Migrations
                 {
                     b.HasOne("TourManagementSystem.Models.User", "User")
                         .WithMany("Trips")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TourManagementSystem.Models.Cruise", b =>
-                {
-                    b.HasOne("TourManagementSystem.Models.User", "User")
-                        .WithMany("Cruises")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TourManagementSystem.Models.Flight", b =>
-                {
-                    b.HasOne("TourManagementSystem.Models.User", "User")
-                        .WithMany("Flights")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TourManagementSystem.Models.Hotel", b =>
-                {
-                    b.HasOne("TourManagementSystem.Models.User", "User")
-                        .WithMany("Hotels")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TourManagementSystem.Models.Trip", b =>
-                {
-                    b.HasOne("TourManagementSystem.Models.User", "User")
-                        .WithMany("Trips")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });
@@ -503,7 +442,7 @@ namespace TourManagementSystem.Migrations
                 {
                     b.Navigation("Activities");
 
-                    b.Navigation("Trips");
+                    b.Navigation("CarRentals");
 
                     b.Navigation("Cruises");
 

@@ -1,60 +1,48 @@
 using Microsoft.EntityFrameworkCore;
 using TourManagementSystem.Data;
 using TourManagementSystem.Services;
-using Microsoft.AspNetCore.Authentication.Cookies; // << REQUIRED for Cookie Authentication
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Configure DbContext
+// 1. Configure DbContext (MUST be registered before services that depend on it)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
 );
 
-// 2. Register your custom services for Dependency Injection
+// 2. Register ALL your custom services for Dependency Injection
+//    Order of registration for AddScoped/AddTransient/AddSingleton doesn't strictly matter
+//    among themselves, but services that depend on DbContext must be registered AFTER DbContext.
+
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IHotelService, HotelService>();
 builder.Services.AddScoped<IContactService, ContactService>();
-builder.Services.AddScoped<ICarRentalService, CarRentalService>();
+builder.Services.AddScoped<ICarRentalService, CarRentalService>(); // <<--- ENSURE THIS LINE EXISTS AND IS CORRECT
 builder.Services.AddScoped<IFlightService, FlightService>();
 builder.Services.AddScoped<ICruiseService, CruiseService>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<ITripService, TripService>();
+// Add any other services you have
 
 // 3. Configure Authentication (Cookie based for your custom system)
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // Sets the default scheme
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options => // Configure the cookie scheme
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
     {
-        options.LoginPath = "/Account/Login";       // Path to redirect for login
-        options.LogoutPath = "/Account/Logout";      // Path for logout action
-        options.AccessDeniedPath = "/Account/AccessDenied"; // Path if authorized but role mismatch
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(60); // How long the cookie is valid
-        options.SlidingExpiration = true; // Renews the cookie if user is active
-        // options.Cookie.Name = "YourApp.AuthCookie"; // Optional: customize cookie name
-        options.Cookie.HttpOnly = true; // Recommended for security
-        options.Cookie.IsEssential = true; // Important for GDPR compliance if you don't have cookie consent
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+        options.SlidingExpiration = true;
+        options.Cookie.HttpOnly = true;
+        options.Cookie.IsEssential = true;
     });
-
-// Authorization services are typically added by AddControllersWithViews or AddIdentity,
-// but explicitly adding it can be done if needed.
-// builder.Services.AddAuthorization();
 
 // 4. Add MVC services
 builder.Services.AddControllersWithViews();
 
-// Session services are separate from authentication cookies.
-// If you need general session state:
-// builder.Services.AddDistributedMemoryCache();
-// builder.Services.AddSession(options =>
-// {
-//     options.IdleTimeout = TimeSpan.FromMinutes(30);
-//     options.Cookie.HttpOnly = true;
-//     options.Cookie.IsEssential = true;
-// });
-
-
 builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
+builder.Logging.AddConsole(); // Ensures ILogger<T> can be injected
 
 var app = builder.Build();
 
@@ -72,16 +60,10 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting(); // Defines route matching.
+app.UseRouting();
 
-// --- MIDDLEWARE ORDER IS CRITICAL ---
-// 1. Authentication: Identifies who the user is based on the configured schemes (e.g., reads the cookie).
-app.UseAuthentication(); // << NOW THIS IS ESSENTIAL AND CONFIGURED
-
-// 2. Authorization: Determines if the identified user has permission.
-app.UseAuthorization();  // This processes [Authorize] attributes
-
-// app.UseSession(); // If you added session services above
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",

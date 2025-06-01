@@ -41,6 +41,7 @@ namespace TourManagementSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Location")
@@ -76,24 +77,41 @@ namespace TourManagementSystem.Migrations
 
                     b.Property<string>("CarModel")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Company")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Location")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<int?>("PassengerCapacity")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserId")
+                    b.Property<string>("TransmissionType")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -121,7 +139,8 @@ namespace TourManagementSystem.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(4000)
+                        .HasColumnType("varchar(4000)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -276,8 +295,6 @@ namespace TourManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Hotels");
@@ -355,9 +372,6 @@ namespace TourManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
                     b.ToTable("Users");
                 });
 
@@ -365,7 +379,8 @@ namespace TourManagementSystem.Migrations
                 {
                     b.HasOne("TourManagementSystem.Models.User", "User")
                         .WithMany("Activities")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });
@@ -375,8 +390,7 @@ namespace TourManagementSystem.Migrations
                     b.HasOne("TourManagementSystem.Models.User", "User")
                         .WithMany("CarRentals")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });
@@ -386,8 +400,7 @@ namespace TourManagementSystem.Migrations
                     b.HasOne("TourManagementSystem.Models.User", "User")
                         .WithMany("Cruises")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });
@@ -396,7 +409,8 @@ namespace TourManagementSystem.Migrations
                 {
                     b.HasOne("TourManagementSystem.Models.User", "User")
                         .WithMany("Flights")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });
@@ -405,7 +419,8 @@ namespace TourManagementSystem.Migrations
                 {
                     b.HasOne("TourManagementSystem.Models.User", "User")
                         .WithMany("Hotels")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });
@@ -415,8 +430,7 @@ namespace TourManagementSystem.Migrations
                     b.HasOne("TourManagementSystem.Models.User", "User")
                         .WithMany("Trips")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("User");
                 });

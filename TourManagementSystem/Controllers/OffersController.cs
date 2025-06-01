@@ -1,5 +1,4 @@
-﻿// File: TourManagementSystem/Controllers/OffersController.cs
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -41,17 +40,18 @@ namespace TourManagementSystem.Controllers
         public async Task<IActionResult> Index(
             // Hotel specific
             string? destination, string? hotelName, int? minRating, decimal? maxPrice,
-            // Car Rental specific
+            // Car Rental specific - these parameters are still received by the action for the search form
             string? location, string? carModelKeyword,
+            int? carPassengerCapacity, decimal? carMaxPrice,
             // Flight specific
             string? origin, string? flightDestination, string? departureDate, int? passengers,
             // Cruise specific
             string? destinationRegion, string? cruiseDeparturePort, string? cruiseLineName,
-            int? minCruiseDuration, int? maxCruiseDuration, decimal? maxCruisePrice, string? departureMonth, // Kept departureMonth
-                                                                                                             // Activity specific
+            int? minCruiseDuration, int? maxCruiseDuration, decimal? maxCruisePrice, string? departureMonth,
+            // Activity specific
             string? activitySearchTerm, string? activityCategory, string? activityDate,
-            int? maxActivityDuration, decimal? maxActivityPrice, int? participants, // Kept maxActivityDuration
-                                                                                    // Trip specific
+            int? maxActivityDuration, decimal? maxActivityPrice, int? participants,
+            // Trip specific
             string? tripSearchTerm, string? startDate, int? travelers, decimal? maxTripPrice,
             // Common dates that might be aliased
             string? checkInDate, string? checkOutDate,
@@ -66,13 +66,15 @@ namespace TourManagementSystem.Controllers
             ViewData["Title"] = "Our Offers";
             ViewData["EntityType"] = entityType;
 
-            // Pre-fill ViewData for search forms on the Offers page
+            // Pre-fill ViewData for search forms
             ViewData["Destination"] = destination; ViewData["HotelName"] = hotelName; ViewData["CheckInDate"] = checkInDate;
             ViewData["CheckOutDate"] = checkOutDate; ViewData["Adults"] = adults; ViewData["Children"] = children;
             ViewData["MinRating"] = minRating; ViewData["MaxPrice"] = maxPrice; ViewData["SelectedAmenities"] = amenities ?? new List<string>();
 
             ViewData["Location"] = location; ViewData["PickupDate"] = pickupDate; ViewData["ReturnDate_Car"] = returnDate;
             ViewData["CarModelKeyword"] = carModelKeyword;
+            ViewData["CarPassengerCapacity"] = carPassengerCapacity; // Still set ViewData for form repopulation
+            ViewData["CarMaxPrice"] = carMaxPrice;               // Still set ViewData for form repopulation
 
             ViewData["Origin"] = origin; ViewData["FlightDestination"] = flightDestination; ViewData["DepartureDate"] = departureDate;
             ViewData["ReturnDate_Flight"] = returnDate; ViewData["Passengers"] = passengers; ViewData["TripType"] = tripType;
@@ -80,17 +82,17 @@ namespace TourManagementSystem.Controllers
             ViewData["DestinationRegion"] = destinationRegion; ViewData["CruiseDeparturePort"] = cruiseDeparturePort;
             ViewData["CruiseLineName"] = cruiseLineName; ViewData["MinCruiseDuration"] = minCruiseDuration;
             ViewData["MaxCruiseDuration"] = maxCruiseDuration; ViewData["MaxCruisePrice"] = maxCruisePrice;
-            ViewData["DepartureMonth"] = departureMonth; // For Cruise search form
+            ViewData["DepartureMonth"] = departureMonth;
 
             ViewData["ActivitySearchTerm"] = activitySearchTerm; ViewData["ActivityCategory"] = activityCategory;
-            ViewData["ActivityDate"] = activityDate; ViewData["MaxActivityDuration"] = maxActivityDuration; // For Activity search form
+            ViewData["ActivityDate"] = activityDate; ViewData["MaxActivityDuration"] = maxActivityDuration;
             ViewData["MaxActivityPrice"] = maxActivityPrice; ViewData["Participants"] = participants;
 
             ViewData["TripSearchTerm"] = tripSearchTerm; ViewData["StartDate"] = startDate;
             ViewData["Travelers"] = travelers; ViewData["MaxTripPrice"] = maxTripPrice;
 
 
-            object displayData = new List<object>(); // Use object to hold different ViewModel list types
+            object displayData = new List<object>();
             _logger.LogInformation("OffersController/Index. Processing EntityType: {EntityType}", entityType);
 
             if (entityType.Equals("Hotels", StringComparison.OrdinalIgnoreCase))
@@ -98,35 +100,44 @@ namespace TourManagementSystem.Controllers
                 var hotelsData = await _hotelService.SearchHotelsAsync(destination, hotelName, checkInDate, checkOutDate, adults, children, minRating, maxPrice, amenities);
                 var vms = hotelsData.Select(h => new HotelViewModel { Id = h.Id, Name = h.Name, Destination = h.Destination, Address = h.Address, Description = h.Description, PricePerNight = h.PricePerNight, Rating = h.Rating, AvailableRooms = h.AvailableRooms, PrimaryImageUrl = h.PrimaryImageUrl }).ToList();
                 displayData = vms;
-                SetInfoMessage(vms.Any(), IsSearchAttempt(new object[] { destination, hotelName, minRating, maxPrice, checkInDate, amenities, checkOutDate }), "hotel");
+                SetInfoMessage(vms.Any(), IsSearchAttempt(new object?[] { destination, hotelName, minRating, maxPrice, checkInDate, amenities, checkOutDate }), "hotel");
             }
             else if (entityType.Equals("CarRentals", StringComparison.OrdinalIgnoreCase))
             {
                 var actualPickupDate = pickupDate ?? checkInDate;
-                var actualReturnDate = returnDate;
+                var actualReturnDate = (string?)ViewData["ReturnDate_Car"] ?? returnDate;
 
-                var carsData = await _carRentalService.SearchCarRentalsAsync(location, actualPickupDate, actualReturnDate, carModelKeyword);
+                // Corrected call: Only 4 arguments passed to the service method
+                var carsData = await _carRentalService.SearchCarRentalsAsync(
+                    location,
+                    actualPickupDate,
+                    actualReturnDate,
+                    carModelKeyword
+                );
                 var vms = carsData.Select(cr => new CarRentalViewModel
                 {
                     Id = cr.Id,
-                    CarModel = cr.CarModel, // Assuming CarRental entity has 'Model' that maps to CarRentalViewModel.CarModel
+                    CarModel = cr.CarModel,
                     Company = cr.Company,
                     PricePerDay = cr.PricePerDay,
                     Location = cr.Location,
                     ImageUrl = cr.ImageUrl
                 }).ToList();
                 displayData = vms;
-                SetInfoMessage(vms.Any(), IsSearchAttempt(new object[] { location, carModelKeyword, actualPickupDate, actualReturnDate }), "car rental");
+                // Removed carPassengerCapacity and carMaxPrice from this IsSearchAttempt call
+                // as they are not used in the simplified search
+                SetInfoMessage(vms.Any(), IsSearchAttempt(new object?[] { location, carModelKeyword, actualPickupDate, actualReturnDate }), "car rental");
             }
             else if (entityType.Equals("Flights", StringComparison.OrdinalIgnoreCase))
             {
                 DateTime depDateParsed; DateTime? retDateParsed = null;
                 var actualDepartureDate = departureDate ?? checkInDate;
-                var actualReturnDate = returnDate;
+                var actualReturnDate = (string?)ViewData["ReturnDate_Flight"] ?? returnDate;
 
                 if (string.IsNullOrWhiteSpace(origin) || string.IsNullOrWhiteSpace(flightDestination) || !DateTime.TryParse(actualDepartureDate, out depDateParsed))
                 {
                     TempData["InfoMessage"] = "Please provide Origin, Destination, and a valid Departure Date for flight search.";
+                    displayData = new List<FlightViewModel>();
                 }
                 else
                 {
@@ -151,12 +162,11 @@ namespace TourManagementSystem.Controllers
                         SearchedTripType = actualTripType
                     }).ToList();
                     displayData = vms;
-                    SetInfoMessage(vms.Any(), IsSearchAttempt(new object[] { origin, flightDestination, actualDepartureDate, actualReturnDate, passengers, tripType }), "flight");
+                    SetInfoMessage(vms.Any(), IsSearchAttempt(new object?[] { origin, flightDestination, actualDepartureDate, actualReturnDate, passengers, tripType }), "flight");
                 }
             }
             else if (entityType.Equals("Cruises", StringComparison.OrdinalIgnoreCase))
             {
-                // This call now has 7 arguments. Ensure your ICruiseService.SearchCruisesAsync matches.
                 var cruisesData = await _cruiseService.SearchCruisesAsync(destinationRegion, cruiseDeparturePort, cruiseLineName, minCruiseDuration, maxCruiseDuration, maxCruisePrice);
                 var vms = cruisesData.Select(c => new CruiseViewModel
                 {
@@ -167,16 +177,15 @@ namespace TourManagementSystem.Controllers
                     DurationDays = c.DurationDays,
                     Price = c.Price,
                     ImageUrl = c.ImageUrl,
-                    ItinerarySummary = $"{c.DurationDays}-Day {c.Destination} Cruise" // Generated
+                    ItinerarySummary = $"{c.DurationDays}-Day {c.Destination} Cruise"
                 }).ToList();
                 displayData = vms;
-                SetInfoMessage(vms.Any(), IsSearchAttempt(new object[] { destinationRegion, cruiseDeparturePort, cruiseLineName, minCruiseDuration, maxCruiseDuration, maxCruisePrice, departureMonth }), "cruise");
+                SetInfoMessage(vms.Any(), IsSearchAttempt(new object?[] { destinationRegion, cruiseDeparturePort, cruiseLineName, minCruiseDuration, maxCruiseDuration, maxCruisePrice, departureMonth }), "cruise");
             }
             else if (entityType.Equals("Activities", StringComparison.OrdinalIgnoreCase))
             {
                 DateTime? actDateParsed = null;
                 if (!string.IsNullOrEmpty(activityDate) && DateTime.TryParse(activityDate, out DateTime adp)) actDateParsed = adp;
-                // This call now has 6 arguments. Ensure your IActivityService.SearchActivitiesAsync matches.
                 var activitiesData = await _activityService.SearchActivitiesAsync(activitySearchTerm, activityCategory, actDateParsed, maxActivityDuration, maxActivityPrice);
                 var vms = activitiesData.Select(a => new ActivityViewModel
                 {
@@ -190,7 +199,7 @@ namespace TourManagementSystem.Controllers
                     ImageUrl = a.ImageUrl ?? "~/images/default_activity.jpg"
                 }).ToList();
                 displayData = vms;
-                SetInfoMessage(vms.Any(), IsSearchAttempt(new object[] { activitySearchTerm, activityCategory, activityDate, maxActivityDuration, maxActivityPrice, participants }), "activity");
+                SetInfoMessage(vms.Any(), IsSearchAttempt(new object?[] { activitySearchTerm, activityCategory, activityDate, maxActivityDuration, maxActivityPrice, participants }), "activity");
             }
             else if (entityType.Equals("Trips", StringComparison.OrdinalIgnoreCase))
             {
@@ -199,11 +208,12 @@ namespace TourManagementSystem.Controllers
                 var tripsData = await _tripService.SearchTripsAsync(tripSearchTerm, startDate, travelers, maxTripPrice);
                 var vms = tripsData.Select(t => new TripViewModel { Id = t.Id, Title = t.Title, Destination = t.Destination, DurationDays = t.DurationDays, Price = t.Price, Description = t.Description, ImageUrl = t.ImageUrl }).ToList();
                 displayData = vms;
-                SetInfoMessage(vms.Any(), IsSearchAttempt(new object[] { tripSearchTerm, startDate, travelers, maxTripPrice }), "trip package");
+                SetInfoMessage(vms.Any(), IsSearchAttempt(new object?[] { tripSearchTerm, startDate, travelers, maxTripPrice }), "trip package");
             }
             else
             {
                 TempData["InfoMessage"] = $"Offers for '{entityType}' are under construction.";
+                displayData = new List<object>();
             }
             return View(displayData);
         }
@@ -216,27 +226,33 @@ namespace TourManagementSystem.Controllers
             }
             else if (!hasResults)
             {
-                TempData["InfoMessage"] = $"No {itemType} offers currently available.";
+                TempData["InfoMessage"] = $"No {itemType} offers currently available. Please try different criteria or check back later.";
             }
         }
 
-        private bool IsSearchAttempt(object[] criteria)
+        private bool IsSearchAttempt(object?[] criteria)
         {
             foreach (var criterion in criteria)
             {
                 if (criterion == null) continue;
                 if (criterion is string s && !string.IsNullOrWhiteSpace(s)) return true;
-                // Check for non-default value types (int, decimal, DateTime, enum)
-                if (criterion.GetType().IsValueType && !object.Equals(criterion, Activator.CreateInstance(criterion.GetType()))) return true;
-                // Check for nullable value types that have a value
-                var underlyingType = Nullable.GetUnderlyingType(criterion.GetType());
-                if (underlyingType != null && !object.Equals(criterion, null)) return true;
-
                 if (criterion is List<string> l && l.Any()) return true;
+                Type type = criterion.GetType();
+                if (type.IsValueType)
+                {
+                    var underlyingType = Nullable.GetUnderlyingType(type);
+                    if (underlyingType != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        if (!object.Equals(criterion, Activator.CreateInstance(type))) return true;
+                    }
+                }
             }
             return false;
         }
-
 
         public async Task<IActionResult> Details(int? id, string entityType = "Hotels")
         {
@@ -255,7 +271,7 @@ namespace TourManagementSystem.Controllers
                 var vm = new CarRentalViewModel
                 {
                     Id = car.Id,
-                    CarModel = car.CarModel, // Assuming CarRental entity has 'Model' that maps to CarRentalViewModel.CarModel
+                    CarModel = car.CarModel,
                     Company = car.Company,
                     PricePerDay = car.PricePerDay,
                     Location = car.Location,
@@ -278,7 +294,6 @@ namespace TourManagementSystem.Controllers
                     AirlineLogoUrl = flight.AirlineLogoUrl,
                     FlightNumber = flight.FlightNumber,
                     Duration = (flight.ArrivalTime - flight.DepartureTime).ToString(@"hh\h\ mm\m")
-                    // SearchedTripType is intentionally omitted for single flight details
                 };
                 return View("Details_Placeholder_Flight", vm);
             }
@@ -294,7 +309,7 @@ namespace TourManagementSystem.Controllers
                     DurationDays = cruise.DurationDays,
                     Price = cruise.Price,
                     ImageUrl = cruise.ImageUrl,
-                    ItinerarySummary = $"{cruise.DurationDays}-Day {cruise.Destination} Cruise" // Generated
+                    ItinerarySummary = $"{cruise.DurationDays}-Day {cruise.Destination} Cruise"
                 };
                 return View("Details_Placeholder_Cruise", vm);
             }

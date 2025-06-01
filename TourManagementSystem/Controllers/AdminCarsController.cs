@@ -1,174 +1,163 @@
-﻿//// File: TourManagementSystem/Controllers/AdminCarsController.cs
-//using Microsoft.AspNetCore.Authorization;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Mvc.Rendering;
-//using Microsoft.EntityFrameworkCore;
-//using Microsoft.Extensions.Logging;
-//using System.Linq;
-//using System.Security.Claims;
-//using System.Threading.Tasks;
-//using TourManagementSystem.Models;
-//using TourManagementSystem.Services;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using TourManagementSystem.Models;
+using TourManagementSystem.Services;
 
-//namespace TourManagementSystem.Controllers
-//{
-//    [Authorize(Roles = "Admin")]
-//    public class AdminCarsController : Controller
-//    {
-//        private readonly ICarRentalService _CarRentalService;
-//        private readonly IUserService _userService; // Optional
-//        private readonly ILogger<AdminCarsController> _logger;
+namespace TourManagementSystem.Controllers
+{
+    [Authorize(Roles = "Admin")]
+    public class AdminCarsController : Controller
+    {
+        private readonly ICarRentalService _carRentalService;
+        private readonly IUserService _userService; // Kept for GetCurrentUserId, ensure it's registered
+        private readonly ILogger<AdminCarsController> _logger;
 
-//        public AdminCarsController(ICarRentalService CarRentalService, IUserService userService, ILogger<AdminCarsController> logger)
-//        {
-//            _CarRentalService = CarRentalService;
-//            _userService = userService;
-//            _logger = logger;
-//        }
-        
-//        // GET: AdminCars
-//        public async Task<IActionResult> Index()
-//        {
-//            ViewData["AdminPageTitle"] = "Manage Car Rentals";
-//            var CarRentals = await _CarRentalService.GetAllCarRentalsAsync(); // Returns IEnumerable<CarRental>
-//            return View(CarRentals);
-//        }
+        public AdminCarsController(
+            ICarRentalService carRentalService,
+            IUserService userService,
+            ILogger<AdminCarsController> logger)
+        {
+            _carRentalService = carRentalService ?? throw new ArgumentNullException(nameof(carRentalService));
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
 
-//        // GET: AdminCars/Details/5
-//        public async Task<IActionResult> Details(int? id)
-//        {
-//            if (id == null) return NotFound();
-//            var CarRentalEntity = await _CarRentalService.GetCarRentalByIdAsync(id.Value);
-//            if (CarRentalEntity == null) return NotFound();
+        public async Task<IActionResult> Index()
+        {
+            var carRentals = await _carRentalService.GetAllCarRentalsAsync();
+            return View(carRentals); // View expects IEnumerable<CarRental>
+        }
 
-//            // Map to AdminCarRentalViewModel for display, using only fields present in the simple CarRental entity
-//            var model = new AdminCarRentalViewModel
-//            {
-//                Id = CarRentalEntity.Id,
-//                CarModel = CarRentalEntity.CarModel,
-//                Company = CarRentalEntity.Company,
-//                PricePerDay = CarRentalEntity.PricePerDay,
-//                Location = CarRentalEntity.Location,
-//                ImageUrl = CarRentalEntity.ImageUrl,
-//                UserId = CarRentalEntity.UserId
-//                // Fields like Make, Model (separate), Year, Description, PassengerCapacity, IsAvailable
-//                // are not mapped because they are not in your simple CarRental entity.
-//            };
-//            ViewData["AdminPageTitle"] = $"Details: {model.CarModel}";
-//            return View(model);
-//        }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null) return NotFound();
+            var carRentalEntity = await _carRentalService.GetCarRentalByIdAsync(id.Value);
+            if (carRentalEntity == null) return NotFound();
 
-//        // GET: AdminCars/Create
-//        public async Task<IActionResult> Create()
-//        {
-//            ViewData["AdminPageTitle"] = "Add New Car Rental";
-//            // Example if populating User dropdown
-//            // var users = await _userService.GetAllActiveUsersAsync();
-//            // ViewBag.UserList = new SelectList(users, "Id", "FullName");
-//            return View(new AdminCarRentalViewModel()); // Use simplified AdminCarRentalViewModel
-//        }
+            var viewModel = new AdminCarRentalViewModel // Map from simplified entity
+            {
+                Id = carRentalEntity.Id,
+                CarModel = carRentalEntity.CarModel,
+                Company = carRentalEntity.Company,
+                Location = carRentalEntity.Location,
+                PricePerDay = carRentalEntity.PricePerDay,
+                ImageUrl = carRentalEntity.ImageUrl,
+                UserId = carRentalEntity.UserId
+            };
+            return View(viewModel); // View expects AdminCarRentalViewModel
+        }
 
-//        // POST: AdminCars/Create
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> Create(AdminCarRentalViewModel model) // Takes simplified AdminCarRentalViewModel
-//        {
-//            if (ModelState.IsValid)
-//            {
-//                int? currentAdminUserId = null;
-//                var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-//                if (!string.IsNullOrEmpty(userIdClaim) && int.TryParse(userIdClaim, out int adminId))
-//                {
-//                    currentAdminUserId = adminId;
-//                }
+        public IActionResult Create()
+        {
+            // If AdminCarRentalViewModel.UserId is required, you might want to pre-fill it here
+            // with GetCurrentUserId() if that's the desired default, or ensure the form handles it.
+            // For now, the ViewModel itself has UserId as required.
+            var viewModel = new AdminCarRentalViewModel();
+            // Optionally pre-fill UserId if it should default to current admin and not be on form
+            // var currentAdminId = GetCurrentUserId();
+            // if (currentAdminId.HasValue) { viewModel.UserId = currentAdminId.Value; }
+            return View(viewModel);
+        }
 
-//                var (success, createdCar, errorMessage) = await _CarRentalService.CreateCarRentalAsync(model, model.UserId ?? currentAdminUserId);
-//                if (success && createdCar != null)
-//                {
-//                    TempData["SuccessMessage"] = $"Car Rental '{createdCar.CarModel}' created successfully!";
-//                    return RedirectToAction(nameof(Index));
-//                }
-//                ModelState.AddModelError(string.Empty, errorMessage ?? "Creation failed.");
-//            }
-//            // var users = await _userService.GetAllActiveUsersAsync();
-//            // ViewBag.UserList = new SelectList(users, "Id", "FullName", model.UserId);
-//            ViewData["AdminPageTitle"] = "Add New Car Rental - Errors";
-//            return View(model);
-//        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(AdminCarRentalViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Since AdminCarRentalViewModel.UserId is now a required int,
+                // creatingUserId parameter in service is less critical as a fallback unless you change ViewModel
+                var (success, createdCarRental, errorMessage) = await _carRentalService.CreateCarRentalAsync(model, model.UserId);
 
-//        // GET: AdminCars/Edit/5
-//        public async Task<IActionResult> Edit(int? id)
-//        {
-//            if (id == null) return NotFound();
-//            var CarRentalEntity = await _CarRentalService.GetCarRentalByIdAsync(id.Value);
-//            if (CarRentalEntity == null) return NotFound();
+                if (success && createdCarRental != null)
+                {
+                    TempData["SuccessMessage"] = $"Car Rental '{createdCarRental.CarModel}' created successfully!";
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError(string.Empty, errorMessage ?? "Creation failed.");
+            }
+            return View(model);
+        }
 
-//            var model = new AdminCarRentalViewModel // Map from simple CarRental entity
-//            {
-//                Id = CarRentalEntity.Id,
-//                CarModel = CarRentalEntity.CarModel,
-//                Company = CarRentalEntity.Company,
-//                PricePerDay = CarRentalEntity.PricePerDay,
-//                Location = CarRentalEntity.Location,
-//                ImageUrl = CarRentalEntity.ImageUrl,
-//                UserId = CarRentalEntity.UserId
-//            };
-//            ViewData["AdminPageTitle"] = $"Edit Car Rental: {model.CarModel}";
-//            // var users = await _userService.GetAllActiveUsersAsync();
-//            // ViewBag.UserList = new SelectList(users, "Id", "FullName", model.UserId);
-//            return View(model);
-//        }
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            var carRentalEntity = await _carRentalService.GetCarRentalByIdAsync(id.Value);
+            if (carRentalEntity == null) return NotFound();
 
-//        // POST: AdminCars/Edit/5
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> Edit(int id, AdminCarRentalViewModel model) // Takes simplified AdminCarRentalViewModel
-//        {
-//            if (id != model.Id) return NotFound();
+            var viewModel = new AdminCarRentalViewModel // Map from simplified entity
+            {
+                Id = carRentalEntity.Id,
+                CarModel = carRentalEntity.CarModel,
+                Company = carRentalEntity.Company,
+                Location = carRentalEntity.Location,
+                PricePerDay = carRentalEntity.PricePerDay,
+                ImageUrl = carRentalEntity.ImageUrl,
+                UserId = carRentalEntity.UserId
+            };
+            return View(viewModel);
+        }
 
-//            if (ModelState.IsValid)
-//            {
-//                try
-//                {
-//                    var (success, errorMessage) = await _CarRentalService.UpdateCarRentalAsync(model);
-//                    if (success)
-//                    {
-//                        TempData["SuccessMessage"] = "Car Rental updated successfully!";
-//                        return RedirectToAction(nameof(Index));
-//                    }
-//                    ModelState.AddModelError(string.Empty, errorMessage ?? "Update failed.");
-//                }
-//                catch (DbUpdateConcurrencyException)
-//                {
-//                    if (await _CarRentalService.GetCarRentalByIdAsync(model.Id) == null) return NotFound();
-//                    else { ModelState.AddModelError(string.Empty, "The record was modified. Please reload."); }
-//                }
-//            }
-//            ViewData["AdminPageTitle"] = $"Edit Car Rental - Errors: {model.CarModel}";
-//            // var users = await _userService.GetAllActiveUsersAsync();
-//            // ViewBag.UserList = new SelectList(users, "Id", "FullName", model.UserId);
-//            return View(model);
-//        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, AdminCarRentalViewModel model)
+        {
+            if (id != model.Id) return BadRequest("ID mismatch.");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var (success, errorMessage) = await _carRentalService.UpdateCarRentalAsync(model);
+                    if (success)
+                    {
+                        TempData["SuccessMessage"] = "Car Rental updated successfully!";
+                        return RedirectToAction(nameof(Index));
+                    }
+                    ModelState.AddModelError(string.Empty, errorMessage ?? "Update failed.");
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    _logger.LogWarning(ex, "Concurrency error editing Car Rental ID {Id}", model.Id);
+                    if (await _carRentalService.GetCarRentalByIdAsync(model.Id) == null) return NotFound();
+                    else ModelState.AddModelError(string.Empty, "Record modified. Reload and try again.");
+                }
+            }
+            return View(model);
+        }
 
-//        // GET: AdminCars/Delete/5
-//        public async Task<IActionResult> Delete(int? id)
-//        {
-//            if (id == null) return NotFound();
-//            var CarRental = await _CarRentalService.GetCarRentalByIdAsync(id.Value);
-//            if (CarRental == null) return NotFound();
-//            ViewData["AdminPageTitle"] = $"Confirm Delete: {CarRental.CarModel}";
-//            return View(CarRental); // Pass CarRental entity
-//        }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) return NotFound();
+            var carRental = await _carRentalService.GetCarRentalByIdAsync(id.Value);
+            if (carRental == null) return NotFound();
+            return View(carRental); // Delete view expects the CarRental entity
+        }
 
-//        // POST: AdminCars/Delete/5
-//        [HttpPost, ActionName("Delete")]
-//        [ValidateAntiForgeryToken]
-//        public async Task<IActionResult> DeleteConfirmed(int id)
-//        {
-//            var success = await _CarRentalService.DeleteCarRentalAsync(id);
-//            if (success) TempData["SuccessMessage"] = "Car Rental deleted successfully.";
-//            else TempData["ErrorMessage"] = "Error deleting car rental.";
-//            return RedirectToAction(nameof(Index));
-//        }
-//    }
-//}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var success = await _carRentalService.DeleteCarRentalAsync(id);
+            if (success) TempData["SuccessMessage"] = "Car Rental deleted successfully.";
+            else TempData["ErrorMessage"] = "Error deleting car rental.";
+            return RedirectToAction(nameof(Index));
+        }
+
+        // Kept for potential auditing or if UserId logic in ViewModel changes
+        private int? GetCurrentUserId()
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!string.IsNullOrEmpty(userIdClaim) && int.TryParse(userIdClaim, out int userId))
+            {
+                return userId;
+            }
+            return null;
+        }
+    }
+}
