@@ -1,0 +1,67 @@
+﻿@* File: Views/AdminHotels/_HotelFormFields.cshtml *@
+@model TourManagementSystem.Models.AdminHotelViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+@if (Model.Id != 0)
+{
+    <input type="hidden" asp-for="Id" />
+}
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="Destination" class="form-label"></label>
+        <input asp-for="Destination" class="form-control" />
+        <span asp-validation-for="Destination" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Address" class="form-label"></label>
+    <input asp-for="Address" class="form-control" />
+    <span asp-validation-for="Address" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Description" class="form-label"></label>
+    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+    <span asp-validation-for="Description" class="text-danger"></span>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label asp-for="PricePerNight" class="form-label"></label>
+        <input asp-for="PricePerNight" class="form-control" type="number" step="0.01" min="0" />
+        <span asp-validation-for="PricePerNight" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="Rating" class="form-label"></label>
+        <input asp-for="Rating" class="form-control" type="number" min="1" max="5" />
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="AvailableRooms" class="form-label"></label>
+        <input asp-for="AvailableRooms" class="form-control" type="number" min="0" />
+        <span asp-validation-for="AvailableRooms" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label asp-for="PrimaryImageUrl" class="form-label"></label>
+    <input asp-for="PrimaryImageUrl" class="form-control" placeholder="e.g., ~/images/hotels/image.jpg" />
+    <span asp-validation-for="PrimaryImageUrl" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="UserId" class="form-label">Assigned User ID (Optional)</label>
+    <input asp-for="UserId" type="number" class="form-control" placeholder="Enter User ID or leave blank for system/current admin" />
+    @* If using a dropdown for users:
+    <select asp-for="UserId" class="form-select" asp-items="ViewBag.UserList">
+        <option value="">-- Not Assigned / System --</option>
+    </select> *@
+    <span asp-validation-for="UserId" class="text-danger"></span>
+</div>

@@ -1,0 +1,40 @@
+﻿@* File: Views/AdminFlights/Delete.cshtml *@
+@model TourManagementSystem.Models.Flight
+@{
+    ViewData["Title"] = "Confirm Delete Flight";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<nav aria-label="breadcrumb" class="breadcrumb-admin">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Manage Flights</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Delete Confirmation</li>
+    </ol>
+</nav>
+
+<div class="admin-form-container">
+    <h2><i class="fa fa-trash"></i> Delete Flight Confirmation</h2>
+    <hr />
+    <div class="alert alert-danger">
+        <h4 class="alert-heading">Are you sure you want to delete this flight?</h4>
+        <p>This action cannot be undone.</p>
+    </div>
+
+    <div>
+        <h4>@Model.Airline - @Model.FlightNumber</h4>
+        <dl class="row mt-3">
+            <dt class="col-sm-3">Route:</dt>
+            <dd class="col-sm-9">@Model.DepartureCity to @Model.ArrivalCity</dd>
+            <dt class="col-sm-3">Departure:</dt>
+            <dd class="col-sm-9">@Model.DepartureTime.ToString("g")</dd>
+            <dt class="col-sm-3">Price:</dt>
+            <dd class="col-sm-9">@Model.Price.ToString("C")</dd>
+        </dl>
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Confirm Delete</button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+        </form>
+    </div>
+</div>

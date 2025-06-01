@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TourManagementSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e80dd8e8dae873b027e14d2c38fdec216148a0f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+620483751fb8bc3561e46567f0512a628ca19a9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("TourManagementSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TourManagementSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,55 @@
+﻿@* File: Views/AdminCars/Index.cshtml *@
+@model IEnumerable<TourManagementSystem.Models.CarRental>
+@{
+    ViewData["Title"] = "Manage Car Rentals";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Manage Car Rentals</li>
+    </ol>
+</nav>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2><i class="fa fa-car"></i> Car Rental Management</h2>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Car Rental</a>
+</div>
+<hr />
+
+<div class="admin-form-container p-0">
+    <div class="table-responsive">
+        <table class="table table-sCarRentaled table-hover table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Car Model</th> @* Changed from Make/Model/Year *@
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Price/Day</th>
+                    <th style="width: 220px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr><td colspan="5" class="text-center py-4">No car rentals found.</td></tr>
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.CarModel)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Company)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                        <td>@item.PricePerDay.ToString("C")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1" title="Details"><i class="fa fa-info-circle"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

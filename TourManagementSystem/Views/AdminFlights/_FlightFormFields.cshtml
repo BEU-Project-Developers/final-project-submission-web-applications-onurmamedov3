@@ -1,0 +1,60 @@
+﻿@* File: Views/AdminFlights/_FlightFormFields.cshtml *@
+@model TourManagementSystem.Models.AdminFlightViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+@if (Model.Id != 0)
+{
+        <input type="hidden" asp-for="Id" />
+}
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Airline" class="form-label"></label>
+        <input asp-for="Airline" class="form-control" />
+        <span asp-validation-for="Airline" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="FlightNumber" class="form-label"></label>
+        <input asp-for="FlightNumber" class="form-control" />
+        <span asp-validation-for="FlightNumber" class="text-danger"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="DepartureCity" class="form-label"></label>
+        <input asp-for="DepartureCity" class="form-control" />
+        <span asp-validation-for="DepartureCity" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="ArrivalCity" class="form-label"></label>
+        <input asp-for="ArrivalCity" class="form-control" />
+        <span asp-validation-for="ArrivalCity" class="text-danger"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="DepartureTime" class="form-label"></label>
+        <input asp-for="DepartureTime" class="form-control" type="datetime-local" />
+        <span asp-validation-for="DepartureTime" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="ArrivalTime" class="form-label"></label>
+        <input asp-for="ArrivalTime" class="form-control" type="datetime-local" />
+        <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+    </div>
+</div>
+<div class="mb-3">
+    <label asp-for="Price" class="form-label"></label>
+    <input asp-for="Price" class="form-control" type="number" step="0.01" />
+    <span asp-validation-for="Price" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="AirlineLogoUrl" class="form-label"></label>
+    <input asp-for="AirlineLogoUrl" class="form-control" placeholder="e.g., ~/images/airlines/logo.png" />
+    <span asp-validation-for="AirlineLogoUrl" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="UserId" class="form-label">User ID (Managed By)</label>
+    <input asp-for="UserId" type="number" class="form-control" placeholder="Optional User ID" />
+    <span asp-validation-for="UserId" class="text-danger"></span>
+</div>

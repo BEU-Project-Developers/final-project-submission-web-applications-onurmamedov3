@@ -1,0 +1,41 @@
+﻿@* File: Views/AdminCars/_CarRentalFormFields.cshtml *@
+@model TourManagementSystem.Models.AdminCarRentalViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+@if (Model.Id != 0)
+{
+    <input type="hidden" asp-for="Id" />
+}
+
+<div class="mb-3">
+    <label asp-for="CarModel" class="form-label"></label>
+    <input asp-for="CarModel" class="form-control" />
+    <span asp-validation-for="CarModel" class="text-danger"></span>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Company" class="form-label"></label>
+        <input asp-for="Company" class="form-control" />
+        <span asp-validation-for="Company" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="Location" class="form-label"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+</div>
+<div class="mb-3">
+    <label asp-for="PricePerDay" class="form-label"></label>
+    <input asp-for="PricePerDay" class="form-control" type="number" step="0.01" />
+    <span asp-validation-for="PricePerDay" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="ImageUrl" class="form-label"></label>
+    <input asp-for="ImageUrl" class="form-control" placeholder="e.g., ~/images/cars/car_image.jpg" />
+    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="UserId" class="form-label"></label>
+    <input asp-for="UserId" type="number" class="form-control" placeholder="Optional User ID" />
+    <span asp-validation-for="UserId" class="text-danger"></span>
+</div>

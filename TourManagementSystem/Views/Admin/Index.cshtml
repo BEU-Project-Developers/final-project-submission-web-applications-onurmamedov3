@@ -1,0 +1,210 @@
+﻿@* File: Views/Admin/Index.cshtml *@
+@model TourManagementSystem.Models.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Management Console";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Uses the updated admin layout
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+    <h1 class="h2">Management Console</h1>
+</div>
+
+<p>Welcome, @(Model?.UserName ?? User.Identity?.Name ?? "Administrator")! Select a category below to manage its content.</p>
+
+@{
+    // Ensure your AdminDashboardViewModel has properties for each of these counts
+    // e.g., TotalHotelsCount, TotalCarsCount, TotalFlightsCount, etc.
+    // The ControllerName should match the controller you create for managing that entity (e.g., AdminHotelsController -> "AdminHotels")
+    var entityTypes = new List<(string Title, string IconClass, string TargetId, string ControllerName, int Count)>
+    {
+        ("Hotels", "fa-bed", "hotelsSection", "AdminHotels", Model?.TotalHotelsCount ?? 0),
+        ("Car Rentals", "fa-car", "TripsSection", "AdminCars", Model?.TotalCarsCount ?? 0),
+        ("Flights", "fa-plane", "flightsSection", "AdminFlights", Model?.TotalFlightsCount ?? 0),
+        ("Trips", "fa-map-signs", "tripsSection", "AdminTrips", Model?.TotalTripsCount ?? 0),
+        ("Cruises", "fa-ship", "cruisesSection", "AdminCruises", Model?.TotalCruisesCount ?? 0),
+        ("Activities", "fa-bicycle", "activitiesSection", "AdminActivities", Model?.TotalActivitiesCount ?? 0)
+        // Add "Bookings" and "Users" here if you decide to manage them from this page later
+    };
+}
+
+<div class="accordion" id="adminEntityAccordion">
+    @foreach (var entity in entityTypes)
+    {
+        <div class="admin-section-card">
+            <div class="admin-section-header collapsed" @* Start all sections collapsed *@
+                 data-bs-toggle="collapse"
+                 data-bs-target="#@entity.TargetId"
+                 aria-expanded="false" @* Initial state is not expanded *@
+                 aria-controls="@entity.TargetId">
+                <h5>
+                    <i class="fa @entity.IconClass me-2"></i>Manage @entity.Title
+                    <span class="badge rounded-pill bg-light text-dark ms-2">@entity.Count</span>
+                </h5>
+                <span class="toggle-icon"><i class="fa fa-chevron-down"></i></span>
+            </div>
+            <div id="@entity.TargetId" class="collapse admin-section-content" data-bs-parent="#adminEntityAccordion">
+                <div class="p-3">
+                    <p>Manage all @entity.Title. You can view, add, edit, or delete entries.</p>
+                    <div class="btn-toolbar mb-3">
+                        <a asp-controller="@entity.ControllerName" asp-action="Index" class="btn btn-sm btn-outline-primary me-2">
+                            <i class="fa fa-list"></i> View & Manage All @entity.Title (@entity.Count)
+                        </a>
+                        <a asp-controller="@entity.ControllerName" asp-action="Create" class="btn btn-sm btn-primary">
+                            <i class="fa fa-plus"></i> Add New @entity.Title
+                        </a>
+                    </div>
+                    <div class="mt-2" id="content-@entity.TargetId">
+                        @*
+                            This is a placeholder. For a true "show data inside the section" feel
+                            without full page reloads for the *list*, you would typically:
+                            1. Use a Partial View here: @await Html.PartialAsync($"_Summary{entity.Title.Replace(" ", "")}", ModelForThatPartial)
+                            2. OR Use JavaScript/AJAX to fetch and inject the list content when the section expands.
+                            For now, clicking "View All" navigates to the dedicated Index page for that entity type.
+                        *@
+                        <p><em>Click "View All @entity.Title" to see the full list and perform actions.</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<hr class="my-4">
+
+@* Additional Dashboard Widgets/Info (Optional but good for a dashboard feel) *@
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="admin-section-card">
+            <div class="admin-section-header" style="background-color: #4b5f71; cursor:default;">
+                @* Darker, non-interactive header *@
+                <h5 class="mb-0"><i class="fa fa-line-chart me-2"></i>Booking Trends (Last 7 Days)</h5>
+            </div>
+            <div class="admin-section-content">
+                @if (Model != null && Model.BookingTrendsLabels != null && Model.BookingTrendsLabels.Any())
+                {
+                    <div style="height: 250px;">
+                        @* Constrain chart height *@
+                        <canvas id="bookingTrendsChart"></canvas>
+                    </div>
+                }
+                else
+                {
+                    <p>Booking trend data is not available.</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="admin-section-card">
+            <div class="admin-section-header" style="background-color: #4b5f71; cursor:default;">
+                <h5 class="mb-0"><i class="fa fa-bolt me-2"></i>Recent System Activities</h5>
+            </div>
+            <div class="admin-section-content" style="max-height: 270px; overflow-y:auto;">
+                @if (Model != null && Model.RecentActivities != null && Model.RecentActivities.Any())
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var activity in Model.RecentActivities.Take(5)) // Show top 5
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
+                                <div><i class="fa fa-history me-2 text-muted"></i>@activity.Action by <strong>@activity.User</strong></div>
+                                <small class="text-muted">@activity.Timestamp.ToString("MMM dd, HH:mm")</small>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No recent activities logged.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Handle the toggle icon rotation for collapsible sections
+            $('.admin-section-header').on('click', function (e) {
+                // Prevent default if an <a> tag is inside, though not the case here
+                // e.preventDefault();
+
+                var $thisHeader = $(this);
+                var $icon = $thisHeader.find('.toggle-icon i');
+                var targetCollapseId = $thisHeader.data('bs-target'); // e.g., #hotelsSection
+                var $targetCollapse = $(targetCollapseId);
+
+                // Bootstrap's collapse events are preferred for icon toggling
+                // as they fire after the transition completes.
+            });
+
+            // Use Bootstrap collapse events to manage icon state
+            $('.admin-section-content.collapse').on('show.bs.collapse', function () {
+                $(this).prev('.admin-section-header').find('.toggle-icon i')
+                    .removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            }).on('hide.bs.collapse', function () {
+                $(this).prev('.admin-section-header').find('.toggle-icon i')
+                    .removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            });
+
+            // Ensure icons are correct on page load if a section is pre-expanded
+            // (e.g., if you add 'show' class to one of the .collapse divs)
+            $('.admin-section-content.collapse.show').prev('.admin-section-header').find('.toggle-icon i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+
+
+            // Booking Trends Chart
+            const bookingTrendsLabels = @Html.Raw(Json.Serialize(Model?.BookingTrendsLabels ?? new List<string>()));
+            const bookingTrendsData = @Html.Raw(Json.Serialize(Model?.BookingTrendsData ?? new List<int>()));
+            const ctx = document.getElementById('bookingTrendsChart');
+
+            if (ctx && bookingTrendsLabels.length > 0 && bookingTrendsData.length > 0) {
+                new Chart(ctx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: bookingTrendsLabels,
+                        datasets: [{
+                            label: 'Bookings',
+                            data: bookingTrendsData,
+                            borderColor: 'rgb(52, 152, 219)',
+                            backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 4,
+                            pointBackgroundColor: 'rgb(52, 152, 219)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Number of Bookings' },
+                                ticks: { precision: 0 } // Ensure whole numbers on y-axis
+                            },
+                            x: { title: { display: true, text: 'Date' } }
+                        },
+                        plugins: {
+                            legend: { display: true, position: 'top'},
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        }
+                    }
+                });
+            } else if (ctx) {
+                 const p = document.createElement('p');
+                 p.textContent = 'Booking trend data is currently unavailable.';
+                 ctx.parentElement.appendChild(p);
+                 ctx.remove();
+            }
+        });
+    </script>
+}

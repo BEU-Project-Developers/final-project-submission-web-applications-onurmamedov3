@@ -1,0 +1,61 @@
+﻿@* File: Views/AdminFlights/Index.cshtml *@
+@model IEnumerable<TourManagementSystem.Models.Flight>
+@{
+    ViewData["Title"] = "Manage Flights";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Manage Flights</li>
+    </ol>
+</nav>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2><i class="fa fa-plane"></i> Flight Management</h2>
+    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Flight</a>
+</div>
+<hr />
+
+<div class="admin-form-container p-0">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Airline</th>
+                    <th>Flight No.</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departs</th>
+                    <th>Arrives</th>
+                    <th>Price</th>
+                    <th style="width: 220px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr><td colspan="8" class="text-center py-4">No flights found.</td></tr>
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Airline)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FlightNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DepartureCity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ArrivalCity)</td>
+                        <td>@item.DepartureTime.ToString("MMM dd, yyyy HH:mm")</td>
+                        <td>@item.ArrivalTime.ToString("MMM dd, yyyy HH:mm")</td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1" title="Details"><i class="fa fa-info-circle"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

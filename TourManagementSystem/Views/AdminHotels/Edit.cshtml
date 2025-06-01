@@ -1,0 +1,32 @@
+﻿@* File: Views/AdminHotels/Edit.cshtml *@
+@model TourManagementSystem.Models.HotelViewModel
+@{
+    ViewData["Title"] = "Edit Hotel";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<nav aria-label="breadcrumb" class="breadcrumb-admin">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Manage Hotels</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit: @Model.Name</li>
+    </ol>
+</nav>
+
+<div class="admin-form-container">
+    <h2><i class="fa fa-pencil-square-o"></i> Edit Hotel: @Model.Name</h2>
+    <hr />
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+        <partial name="_HotelFormFields" model="Model" />
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save Changes</button>
+            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

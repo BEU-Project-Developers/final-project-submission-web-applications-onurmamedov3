@@ -1,0 +1,76 @@
+﻿@* File: Views/AdminHotels/Details.cshtml *@
+@model TourManagementSystem.Models.AdminHotelViewModel
+@{  
+    ViewData["Title"] = "Hotel Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	var defaultHotelImage = Url.Content("~/images/default_offer.jpg");
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Manage Hotels</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details: @Model.Name</li>
+    </ol>
+</nav>
+
+<div class="admin-form-container">
+    <h2><i class="fa fa-info-circle"></i> Hotel Details: @Model.Name</h2>
+    <hr />
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                @if (!string.IsNullOrEmpty(Model.PrimaryImageUrl))
+                {
+                    <img src="@Url.Content(Model.PrimaryImageUrl)" alt="@Model.Name" class="img-fluid rounded shadow-sm mb-3" />
+                }
+                else
+                {
+                    <img src="@defaultHotelImage" alt="Default Hotel Image" class="img-fluid rounded shadow-sm mb-3" />
+                }
+            </div>
+            <div class="col-md-8">
+                <dl class="row">
+                    <dt class="col-sm-4">Name:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+                    <dt class="col-sm-4">Destination:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Destination)</dd>
+
+                    <dt class="col-sm-4">Address:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Address)</dd>
+
+                    <dt class="col-sm-4">Price per Night:</dt>
+                    <dd class="col-sm-8">@Model.PricePerNight.ToString("C")</dd>
+
+                    <dt class="col-sm-4">Rating:</dt>
+                    <dd class="col-sm-8">@Model.Rating / 5 Stars</dd>
+
+                    <dt class="col-sm-4">Available Rooms:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.AvailableRooms)</dd>
+                    
+                    <dt class="col-sm-4">Assigned User ID:</dt>
+                    <dd class="col-sm-8">@(Model.UserId.HasValue ? Model.UserId.ToString() : "N/A")</dd>
+                </dl>
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <div class="mt-3">
+                <h5>Description:</h5>
+                <p>@Html.Raw(Model.Description.Replace("\n", "<br />"))</p>
+            </div>
+        }
+        <hr />
+        <div class="mt-3">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Back to List</a>
+        </div>
+    }
+    else
+    {
+        <p class="text-danger">Hotel details not found.</p>
+        <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+    }
+</div>
