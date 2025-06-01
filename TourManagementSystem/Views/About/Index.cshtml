@@ -1,313 +1,292 @@
-﻿@model TourManagementSystem.Models.AdminDashboardViewModel
+﻿@* File: TourManagementSystem/Views/About/Index.cshtml *@
 @{
-    ViewData["Title"] = "Admin Management Console";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Assuming this is your admin layout
-
-    // Define entityTypes without the count
-    var entityTypes = new List<(string Title, string IconClass, string TargetId, string ControllerName)>
-    {
-        ("Hotels", "fa-bed", "hotelsSection", "AdminHotels"),
-        ("Car Rentals", "fa-car", "carsSection", "AdminCars"),
-        ("Flights", "fa-plane", "flightsSection", "AdminFlights"),
-        ("Trips", "fa-map-signs", "tripsSection", "AdminTrips"),
-        ("Cruises", "fa-ship", "cruisesSection", "AdminCruises"),
-        ("Activities", "fa-bicycle", "activitiesSection", "AdminActivities")
-    };
-
-    // More distinct gradients, flowing right-to-left
-    var gradientColors = new List<string>
-    {
-        "linear-gradient(to left, #ff9a44, #ff5c4d)", // Orange to Coral
-        "linear-gradient(to left, #a076f9, #6851f6)", // Soft Purple to Vibrant Purple
-        "linear-gradient(to left, #00d2ff, #3a7bd5)", // Light Blue to Deeper Blue
-        "linear-gradient(to left, #f8cdda, #ea8fbc)", // Pinkish
-        "linear-gradient(to left, #43e97b, #38f9d7)", // Green to Teal
-        "linear-gradient(to left, #ffb74d, #ff9800)"  // Amber to Orange
-    };
-    int colorIndex = 0;
+    ViewData["Title"] = "About VoyagePro";
+    // Example: If you were using a ViewModel later
+    // @model TourManagementSystem.Models.AboutUsViewModel
+    var defaultOfferImageUrl = Url.Content("~/images/default_offer.jpg");
 }
 
 @section Styles {
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Copied styles from your last version of Admin/Index.cshtml for consistency */
-        /* and merged with some elements from the "surprise me" version */
-        :root {
-            /* Using one of the gradient sets from your examples */
-            --gradient-start: #fa9e1b; /* Orange */
-            --gradient-end: #8d4fff; /* Purple */
-            --admin-text-dark-dash: #2c3e50;
-            --admin-text-light-dash: #f8f9fa;
-            --admin-card-bg-dash: #ffffff;
-            --admin-card-shadow-dash: 0 5px 20px rgba(0, 0, 0, 0.05);
-            --admin-border-radius-dash: 10px;
-        }
-
-        .admin-dashboard-body .admin-main-container {
-            padding: 1.5rem;
-        }
-
-        .dashboard-header-minimal { /* New class for the simplified header */
-            background: linear-gradient(120deg, #222831 0%, #393e46 100%); /* Dark, sophisticated gradient */
-            padding: 2rem 0; /* Adjusted padding */
-            margin-bottom: 2.5rem;
-            border-radius: var(--admin-border-radius-dash); /* Using dashboard radius */
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-            text-align: center; /* Center the title */
-        }
-
-            .dashboard-header-minimal::before { /* Subtle overlay pattern or texture if desired */
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                /* Example: background-image: url('/images/patterns/subtle-noise.png'); */
-                /* opacity: 0.05; */
-                pointer-events: none;
-            }
-
-        .section-title-main { /* Renamed to avoid conflict if .section-title is used elsewhere */
-            font-family: 'Poppins', sans-serif; /* Using Poppins for main title */
-            font-size: 2.75rem; /* Large and impactful */
-            font-weight: 700;
-            color: #ffffff; /* White text on dark background */
-            text-transform: uppercase;
-            letter-spacing: 2px; /* Wider spacing */
-            margin: 0;
-            position: relative; /* For z-index if ::before is used heavily */
-            z-index: 1;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Subtle text shadow */
-        }
-
-
-        .admin-section-card { /* Reverting to one of your preferred card styles */
-            border-radius: 1rem; /* From your second example */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: none;
-            background: #fff;
-            transition: all 0.3s ease;
-            margin-bottom: 1.5rem;
-            transform: translateY(0);
-        }
-
-            .admin-section-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            }
-
-        .admin-section-header {
-            padding: 1.5rem;
-            /* Gradient applied inline */
-            color: #fff;
-            border-radius: 1rem 1rem 0 0;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
-        }
-
-            .admin-section-header:hover {
-                filter: brightness(1.1);
-            }
-
-
-        .icon-container { /* Using the icon container style from your second version */
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            width: 3.5rem;
-            height: 3.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .admin-section-header:hover .icon-container {
-            transform: scale(1.1);
-        }
-
-        .icon-container i {
-            font-size: 1.5rem;
-            color: #fff;
-        }
-
-        .admin-section-header h5 {
-            margin-bottom: 0;
-            font-size: 1.15rem;
-        }
-
-        .admin-section-content {
-            background: #ffffff; /* Your first version had #f8fafc for content */
-            border-radius: 0 0 1rem 1rem;
-            padding: 2rem;
-            border: 1px solid #eef2f7; /* Lighter border */
-            border-top: none;
-        }
-
-        .btn-view-all, .btn-add-new { /* Using button style from your second version */
-            font-family: 'Poppins', sans-serif; /* Changed to Poppins */
-            font-size: 0.8rem; /* Slightly smaller for a sleeker look */
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 0.7rem 1.4rem;
-            border-radius: 0.75rem; /* Consistent with card roundness */
-            transition: all 0.25s ease-out;
-            min-width: 170px; /* Ensure buttons have a nice width */
-            text-align: center;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .btn-view-all i, .btn-add-new i {
-                margin-right: 0.5rem;
-            }
-
-
-        .btn-view-all { /* From your second version with slight tweaks */
-            background: #fff;
-            color: #5e72e4; /* Primary action color */
-            border: 2px solid #5e72e4;
-            box-shadow: 0 2px 5px rgba(94, 114, 228, 0.1);
-        }
-
-            .btn-view-all:hover {
-                background: #5e72e4;
-                color: #fff;
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(94, 114, 228, 0.3);
-            }
-
-        .btn-add-new { /* From your second version with slight tweaks */
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); /* Green gradient */
-            color: #fff;
-            border: none;
-            box-shadow: 0 2px 5px rgba(56, 249, 215, 0.2);
-        }
-
-            .btn-add-new:hover {
-                background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%);
-                transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(56, 249, 215, 0.4);
-            }
-
-        .section-description { /* From your first version */
-            font-family: 'Open Sans', sans-serif;
-            color: #5a6f82; /* Softer grey */
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem; /* More space before buttons */
-        }
-
-        .toggle-icon i {
-            transition: transform 0.3s ease;
-            font-size: 1rem; /* Standardized toggle icon size */
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="~/styles/about_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/styles/about_responsive.css">
 }
 
-<!-- Dashboard Header - Simplified -->
-<div class="dashboard-header-minimal">
-    <h1 class="section-title-main">Management Console</h1>
-</div>
+<div class="super_container">
 
-@* The welcoming paragraph that was below the old header bar can be removed or kept based on preference. *@
-@* I'm removing it for a cleaner look, as the main title serves as the welcome. *@
-@*
-<p class="section-description text-center mb-4">
-    Welcome, <strong>@(Model?.UserName ?? User.Identity?.Name ?? "Administrator")</strong>!
-    Select a category below to manage its content.
-</p>
-*@
+    <!-- Home Banner -->
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="@Url.Content("~/images/about_background.jpg")"></div>
+        <div class="home_content">
+            <div class="home_title">About VoyagePro</div>
+        </div>
+    </div>
 
-<div class="accordion mt-4" id="adminEntityAccordion">
-    @* Added mt-4 for spacing after header *@
-    @foreach (var entity in entityTypes)
-    {
-        var currentGradient = gradientColors[colorIndex % gradientColors.Count];
-        colorIndex++;
-
-        <div class="admin-section-card">
-            <div class="admin-section-header collapsed"
-                 style="background: @currentGradient;" @* Dynamic gradient from right to left *@
-                 data-bs-toggle="collapse"
-                 data-bs-target="#@entity.TargetId"
-                 aria-expanded="false"
-                 aria-controls="@entity.TargetId">
-                <div class="d-flex align-items-center">
-                    <div class="icon-container">
-                        <i class="fa @entity.IconClass"></i>
-                    </div>
-                    <h5 class="mb-0 text-capitalize">Manage @entity.Title</h5>
-                    @* Removed count display from here *@
+    <!-- Intro Section: Our Story & Mission -->
+    <div class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="intro_image"><img src="@Url.Content("~/images/intro.png")" alt="VoyagePro - Our Journey"></div>
+                    @* Using the original intro.png as per your theme *@
                 </div>
-                <span class="toggle-icon">
-                    <i class="fa fa-chevron-down"></i>
-                </span>
-            </div>
-            <div id="@entity.TargetId"
-                 class="collapse admin-section-content"
-                 data-bs-parent="#adminEntityAccordion">
-                <p class="section-description mb-4">
-                    Manage all <strong>@entity.Title</strong>. View, add, edit, or delete entries with ease.
-                </p>
-                <div class="d-flex gap-3 flex-wrap">
-                    @* Added flex-wrap for responsiveness *@
-                    <a asp-controller="@entity.ControllerName"
-                       asp-action="Index"
-                       class="btn btn-view-all">
-                        <i class="fa fa-list"></i>View All @entity.Title
-                        @* Removed count badge from button *@
-                    </a>
-                    <a asp-controller="@entity.ControllerName"
-                       asp-action="Create"
-                       class="btn btn-add-new">
-                        <i class="fa fa-plus"></i>Add New @entity.Title
-                    </a>
+                <div class="col-lg-5">
+                    <div class="intro_content">
+                        <div class="intro_title">Crafting Your Unforgettable Journeys</div>
+                        <p class="intro_text">
+                            Welcome to VoyagePro, where your dream adventures come to life! Founded with a passion for exploration and a commitment to exceptional service,
+                            we specialize in creating personalized travel experiences that go beyond the ordinary. Whether you seek serene beaches, thrilling mountain expeditions,
+                            or rich cultural immersions, our dedicated team is here to meticulously plan every detail.
+                            Our mission is to provide seamless, inspiring, and sustainable travel, ensuring every trip is not just a vacation, but a cherished memory.
+                        </p>
+                        @* <div class="button intro_button"> *@
+                        @*     <div class="button_bcg"></div><a asp-controller="Offers" asp-action="Index">Explore Our Tours<span></span><span></span><span></span></a> *@
+                        @* </div> *@
+                    </div>
                 </div>
             </div>
         </div>
-    }
-</div>
+    </div>
+
+    <!-- Stats Section: Our Impact -->
+    <div class="stats">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_title">VoyagePro by the Numbers</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 text-center">
+                    <p class="stats_text">
+                        We're incredibly proud of the thousands of travelers we've guided on their adventures and the positive impact we strive to make.
+                        The numbers reflect our dedication to creating exceptional travel experiences and our growing community of explorers.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="stats_years">
+                        <div class="stats_years_last">@(DateTime.Now.Year - 2)</div>
+                        <div class="stats_years_new float-right">@(DateTime.Now.Year - 1)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="stats_contents">
+
+                        <!-- Stats Item: Clients -->
+                        <div class="stats_item d-flex flex-md-row flex-column clearfix">
+                            <div class="stats_last order-md-1 order-3">
+                                <div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_1.png")" alt="Clients">
+                                </div>
+                                <div class="stats_last_content">
+                                    <div class="stats_number">1642</div> @* Placeholder value *@
+                                    <div class="stats_type">Clients</div>
+                                </div>
+                            </div>
+                            <div class="stats_bar order-md-2 order-2" data-x="1642" data-y="3527" data-color="#31124b">
+                                <div class="stats_bar_perc"><div><div class="stats_bar_value"></div></div></div>
+                            </div>
+                            <div class="stats_new order-md-3 order-1 text-right">
+                                <div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_1.png")" alt="Clients">
+                                </div>
+                                <div class="stats_new_content">
+                                    <div class="stats_number">3527</div> @* Placeholder value *@
+                                    <div class="stats_type">Clients</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Item: Returning Clients (originally stats_2.png) -->
+                        <div class="stats_item d-flex flex-md-row flex-column clearfix">
+                            <div class="stats_last order-md-1 order-3">
+                                <div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_2.png")" alt="Returning Clients">
+                                </div>
+                                <div class="stats_last_content">
+                                    <div class="stats_number">768</div> @* Placeholder value *@
+                                    <div class="stats_type">Returning Clients</div>
+                                </div>
+                            </div>
+                            <div class="stats_bar order-md-2 order-2" data-x="768" data-y="1045" data-color="#a95ce4">
+                                @* Adjusted y-value for example *@
+                                <div class="stats_bar_perc"><div><div class="stats_bar_value"></div></div></div>
+                            </div>
+                            <div class="stats_new order-md-3 order-1 text-right">
+                                <div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_2.png")" alt="Returning Clients">
+                                </div>
+                                <div class="stats_new_content">
+                                    <div class="stats_number">1045</div> @* Placeholder value *@
+                                    <div class="stats_type">Returning Clients</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Item: Reach (originally stats_3.png) -->
+                        <div class="stats_item d-flex flex-md-row flex-column clearfix">
+                            <div class="stats_last order-md-1 order-3">
+                                <div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_3.png")" alt="Reach">
+                                </div>
+                                <div class="stats_last_content">
+                                    <div class="stats_number">11546</div>@* Placeholder value *@
+                                    <div class="stats_type">Destinations Offered</div> @* Changed from "Reach" to be more specific *@
+                                </div>
+                            </div>
+                            <div class="stats_bar order-md-2 order-2" data-x="11546" data-y="9321" data-color="#fa6f1b">
+                                <div class="stats_bar_perc"><div><div class="stats_bar_value"></div></div></div>
+                            </div>
+                            <div class="stats_new order-md-3 order-1 text-right">
+                                <div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_3.png")" alt="Reach">
+                                </div>
+                                <div class="stats_new_content">
+                                    <div class="stats_number">9321</div>@* Placeholder value *@
+                                    <div class="stats_type">Destinations Offered</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Item: Items (originally stats_4.png) -->
+                        <div class="stats_item d-flex flex-md-row flex-column clearfix">
+                            <div class="stats_last order-md-1 order-3">
+                                <div class="stats_last_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_4.png")" alt="Items">
+                                </div>
+                                <div class="stats_last_content">
+                                    <div class="stats_number">3729</div>@* Placeholder value *@
+                                    <div class="stats_type">Custom Tours</div> @* Changed from "Items" *@
+                                </div>
+                            </div>
+                            <div class="stats_bar order-md-2 order-2" data-x="3729" data-y="1742" data-color="#fa9e1b">
+                                @* Adjusted y-value for example *@
+                                <div class="stats_bar_perc"><div><div class="stats_bar_value"></div></div></div>
+                            </div>
+                            <div class="stats_new order-md-3 order-1 text-right">
+                                <div class="stats_new_icon d-flex flex-column align-items-center justify-content-end">
+                                    <img src="@Url.Content("~/images/stats_4.png")" alt="Items">
+                                </div>
+                                <div class="stats_new_content">
+                                    <div class="stats_number">1742</div>@* Placeholder value *@
+                                    <div class="stats_type">Custom Tours</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Offer Section -->
+    @* <div class="add"> *@
+    @*     <div class="container"> *@
+    @*         <div class="row"> *@
+    @*             <div class="col"> *@
+    @*                 <div class="add_container"> *@
+    @*                     @{ *@
+    @*                         var featuredOfferName = "Amazing Thailand Adventure"; // Example dynamic data *@
+    @*                         var featuredOfferPrice = "$999"; *@
+    @*                         var featuredOfferImageUrl = Url.Content("~/images/add.jpg"); // Using original image *@
+    @*                         var featuredOfferId = 102; // Example ID, link to actual offer later *@
+    @*                     } *@
+    @*                     <div class="add_background" style="background-image:url(@featuredOfferImageUrl)"></div> *@
+    @*                     <div class="add_content"> *@
+    @*                         <h1 class="add_title">@featuredOfferName</h1> *@
+    @*                         <div class="add_subtitle">From <span>@featuredOfferPrice</span></div> *@
+    @*                         <div class="button add_button"> *@
+    @*                             <div class="button_bcg"></div> *@
+    @*                             <a asp-controller="Offers" asp-action="Details" asp-route-id="@featuredOfferId" asp-route-entityType="Hotels">explore now<span></span><span></span><span></span></a> *@
+    @*                         </div> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*         </div> *@
+    @*     </div> *@
+    @* </div> *@
+
+    <!-- Milestones Section -->
+    <div class="milestones">
+        <div class="container">
+            <div class="row">
+                @{
+                    var milestonesData = new List<(string Text, int Value, string IconPath)> {
+                ("Clients Satisfied", 2550, "~/images/milestone_1.png"),
+                ("Unique Journeys Crafted", 1176, "~/images/milestone_2.png"),
+                ("Countries Explored", 39, "~/images/milestone_3.png"),
+                ("Years Of Expertise", 12, "~/images/milestone_4.png") // Changed "Coffees" to something more relevant
+                };
+                }
+                @foreach (var milestone in milestonesData)
+                {
+                    <div class="col-lg-3 milestone_col">
+                        <div class="milestone text-center">
+                            <div class="milestone_icon"><img src="@Url.Content(milestone.IconPath)" alt="@milestone.Text icon"></div>
+                            <div class="milestone_counter" data-end-value="@milestone.Value">0</div>
+                            <div class="milestone_text">@milestone.Text</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @* <!-- Our Team Section (Example Structure) --> *@
+    @* <div class="team_section intro" style="padding-top: 80px; padding-bottom: 80px; background: #f3f6f9;"> *@
+    @*     <div class="container"> *@
+    @*         <div class="row"> *@
+    @*             <div class="col text-center"> *@
+    @*                 <div class="section_title">Meet Our Travel Experts</div> *@
+    @*                 <p class="stats_text" style="margin-top: 20px;">Our passionate team brings years of travel experience and local knowledge to craft your perfect trip.</p> *@
+    @*             </div> *@
+    @*         </div> *@
+    @*         <div class="row" style="margin-top: 50px;"> *@
+    @*             <!-- Team Member 1 --> *@
+    @*             <div class="col-lg-4 col-md-6 text-center team_member"> *@
+    @*                 <div class="team_image_container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px auto; box-shadow: 0 0 15px rgba(0,0,0,0.1);"> *@
+    @*                     <img src="@Url.Content("~/images/team_member_1.jpg")" alt="Team Member Jane Doe" style="width: 100%; height: 100%; object-fit: cover;"> *@
+    @*                 </div> *@
+    @*                 <h4>Jane Doe</h4> *@
+    @*                 <p><em>Founder & Lead Explorer</em></p> *@
+    @*                 <p class="small">Jane's love for adventure led her to create VoyagePro, ensuring every client experiences the magic of travel.</p> *@
+    @*             </div> *@
+    @*             <!-- Team Member 2 --> *@
+    @*             <div class="col-lg-4 col-md-6 text-center team_member"> *@
+    @*                 <div class="team_image_container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px auto; box-shadow: 0 0 15px rgba(0,0,0,0.1);"> *@
+    @*                     <img src="@Url.Content("~/images/team_member_2.jpg")" alt="Team Member John Smith" style="width: 100%; height: 100%; object-fit: cover;"> *@
+    @*                 </div> *@
+    @*                 <h4>John Smith</h4> *@
+    @*                 <p><em>Senior Travel Consultant</em></p> *@
+    @*                 <p class="small">With expertise in Asian and European destinations, John crafts itineraries that are both exciting and culturally rich.</p> *@
+    @*             </div> *@
+    @*             <!-- Team Member 3 --> *@
+    @*             <div class="col-lg-4 col-md-6 text-center team_member"> *@
+    @*                 <div class="team_image_container" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px auto; box-shadow: 0 0 15px rgba(0,0,0,0.1);"> *@
+    @*                     <img src="@Url.Content("~/images/team_member_3.jpg")" alt="Team Member Alex Lee" style="width: 100%; height: 100%; object-fit: cover;"> *@
+    @*                 </div> *@
+    @*                 <h4>Alex Lee</h4> *@
+    @*                 <p><em>Adventure Specialist</em></p> *@
+    @*                 <p class="small">Alex curates our most thrilling adventures, from mountain treks to wildlife safaris.</p> *@
+    @*             </div> *@
+    @*         </div> *@
+    @*     </div> *@
+    @* </div> *@
+
+
+</div> @* super_container *@
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            // Accordion icon toggle logic (using Bootstrap events for reliability)
-            $('.admin-section-content.collapse').on('show.bs.collapse', function () {
-                $(this).prev('.admin-section-header').find('.toggle-icon i')
-                    .removeClass('fa-chevron-down').addClass('fa-chevron-up');
-            }).on('hide.bs.collapse', function () {
-                $(this).prev('.admin-section-header').find('.toggle-icon i')
-                    .removeClass('fa-chevron-up').addClass('fa-chevron-down');
-            });
-
-            // Ensure icons are correct on page load for any pre-expanded sections
-            $('.admin-section-header:not(.collapsed)[aria-expanded="true"]').find('.toggle-icon i')
-                .removeClass('fa-chevron-down').addClass('fa-chevron-up');
-
-            // Keyboard accessibility for accordion headers
-            $('.admin-section-header').on('keypress', function (e) {
-                if (e.which === 13 || e.which === 32) { // Enter or Space key
-                    e.preventDefault();
-                    $(this).click(); // Trigger the click event which toggles collapse
-                }
-            }).attr({
-                'role': 'button',
-                'tabindex': '0' // Make them focusable
-            });
-        });
-    </script>
+    <script src="~/plugins/greensock/TweenMax.min.js"></script>
+    <script src="~/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="~/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="~/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="~/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="~/plugins/easing/easing.js"></script>
+    <script src="~/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="~/js/about_custom.js"></script>
 }
