@@ -98,13 +98,13 @@ namespace TourManagementSystem.Data
 
             modelBuilder.Entity<Activity>(entity =>
             {
-                entity.HasKey(e => e.Id);
-                entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+                entity.Property(e => e.Price).HasColumnType("decimal(18,2)");
+                // Relationship with User
                 entity.HasOne(a => a.User)
-                    .WithMany(u => u.Activities)
-                    .HasForeignKey(a => a.UserId)
-                    .IsRequired(false)
-                    .OnDelete(DeleteBehavior.SetNull);
+                      .WithMany(u => u.Activities) // Assumes User.cs has ICollection<Activity> Activities
+                      .HasForeignKey(a => a.UserId)
+                      .IsRequired(false) // Since Activity.UserId is nullable
+                      .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<ContactMessage>(entity =>

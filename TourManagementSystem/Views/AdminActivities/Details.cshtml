@@ -1,0 +1,77 @@
+﻿@model TourManagementSystem.Models.AdminActivityViewModel
+@{
+    ViewData["Title"] = "Activity Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var defaultActivityImage = Url.Content("~/images/default_activity.jpg"); // Ensure this image exists
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Manage Activities</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details: @Model.Name</li>
+    </ol>
+</nav>
+
+<div class="admin-form-container">
+    <h2><i class="fa fa-info-circle"></i> Activity Details: @Model.Name</h2>
+    <hr />
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-4">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="img-fluid rounded shadow-sm mb-3"
+                         onerror="this.onerror=null; this.src='@defaultActivityImage';" />
+                }
+                else
+                {
+                    <img src="@defaultActivityImage" alt="Default Activity Image" class="img-fluid rounded shadow-sm mb-3" />
+                }
+            </div>
+            <div class="col-md-8">
+                <dl class="row">
+                    <dt class="col-sm-4">ID:</dt>
+                    <dd class="col-sm-8">@Model.Id</dd>
+
+                    <dt class="col-sm-4">Name:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+                    <dt class="col-sm-4">Location:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Location)</dd>
+
+                    <dt class="col-sm-4">Category:</dt>
+                    <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.Category) ? "N/A" : Model.Category)</dd>
+
+                    <dt class="col-sm-4">Duration (Hours):</dt>
+                    <dd class="col-sm-8">@Model.DurationHours</dd>
+
+                    <dt class="col-sm-4">Price:</dt>
+                    <dd class="col-sm-8">@Model.Price.ToString("C")</dd>
+
+                    <dt class="col-sm-4">User ID:</dt>
+                    <dd class="col-sm-8">@(Model.UserId.HasValue ? Model.UserId.ToString() : "N/A")</dd>
+                </dl>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <div class="mt-3 border-top pt-3">
+                <h5>Description:</h5>
+                <p class="text-break">@Html.Raw(Model.Description.Replace("\n", "<br />"))</p>
+            </div>
+        }
+        <hr />
+        <div class="mt-3">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Back to List</a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">Activity details not found.</div>
+        <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+    }
+</div>

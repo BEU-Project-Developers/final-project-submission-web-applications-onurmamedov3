@@ -1,0 +1,58 @@
+﻿@model TourManagementSystem.Models.AdminCruiseViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+@if (Model.Id != 0)
+{
+    <input type="hidden" asp-for="Id" />
+}
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="CruiseLine" class="form-label"></label>
+        <input asp-for="CruiseLine" class="form-control" />
+        <span asp-validation-for="CruiseLine" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="DeparturePort" class="form-label"></label>
+        <input asp-for="DeparturePort" class="form-control" />
+        <span asp-validation-for="DeparturePort" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Destination" class="form-label"></label>
+    <input asp-for="Destination" class="form-control" placeholder="e.g., Caribbean, Alaska, Mediterranean Ports" />
+    <span asp-validation-for="Destination" class="text-danger"></span>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="DurationDays" class="form-label"></label>
+        <input asp-for="DurationDays" class="form-control" type="number" min="1" />
+        <span asp-validation-for="DurationDays" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" type="number" step="0.01" min="0" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label asp-for="ItinerarySummary" class="form-label"></label>
+    <textarea asp-for="ItinerarySummary" class="form-control" rows="3" placeholder="Brief summary or key selling points..."></textarea>
+    <span asp-validation-for="ItinerarySummary" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="ImageUrl" class="form-label"></label>
+    <input asp-for="ImageUrl" class="form-control" placeholder="e.g., /images/cruises/cruise.jpg or http://..." />
+    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="UserId" class="form-label"></label>
+    <input asp-for="UserId" type="number" class="form-control" />
+    <span asp-validation-for="UserId" class="text-danger"></span>
+    <small class="form-text text-muted">ID of the user managing or creating this cruise.</small>
+</div>

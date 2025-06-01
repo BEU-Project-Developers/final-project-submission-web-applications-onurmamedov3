@@ -40,7 +40,7 @@ namespace TourManagementSystem.Models // Or TourManagementSystem.ViewModels if y
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Image URL is required, even if a placeholder.")] // Entity.ImageUrl is non-nullable
-        [Url(ErrorMessage = "Please enter a valid URL for the image.")]
+        //[Url(ErrorMessage = "Please enter a valid URL for the image.")]
         [StringLength(255)]
         [Display(Name = "Image URL")]
         public string ImageUrl { get; set; } = string.Empty; // Default to empty, form needs a value

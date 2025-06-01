@@ -1,0 +1,32 @@
+﻿@model TourManagementSystem.Models.AdminCruiseViewModel
+@{
+    ViewData["Title"] = "Add New Cruise";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Manage Cruises</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Cruise</li>
+    </ol>
+</nav>
+
+<div class="admin-form-container">
+    <h2><i class="fa fa-ship"></i> Add New Cruise</h2>
+    <hr />
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <partial name="_CruiseFormFields" model="Model" />
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Create Cruise</button>
+            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -36,6 +36,30 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminActivities/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY3Rpdml0aWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminActivities/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY3Rpdml0aWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminActivities/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY3Rpdml0aWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminActivities/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY3Rpdml0aWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminActivities/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY3Rpdml0aWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminActivities/_ActivityFormFields.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5BY3Rpdml0aWVzXF9BY3Rpdml0eUZvcm1GaWVsZHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminCars/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,6 +82,30 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminCars/_CarRentalFormFields.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DYXJzXF9DYXJSZW50YWxGb3JtRmllbGRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminCruises/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcnVpc2VzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminCruises/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcnVpc2VzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminCruises/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcnVpc2VzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminCruises/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcnVpc2VzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminCruises/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcnVpc2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminCruises/_CruiseFormFields.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcnVpc2VzXF9DcnVpc2VGb3JtRmllbGRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/onurm/source/repos/TourManagementSystem/TourManagementSystem/Views/AdminFlights/Create.cshtml]

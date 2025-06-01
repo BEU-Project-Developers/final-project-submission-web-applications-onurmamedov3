@@ -1,0 +1,77 @@
+﻿@model TourManagementSystem.Models.AdminCruiseViewModel
+@{
+    ViewData["Title"] = "Cruise Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var defaultCruiseImage = Url.Content("~/images/default_cruise.jpg"); // Ensure this image exists
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Manage Cruises</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details: @Model.CruiseLine - @Model.Destination</li>
+    </ol>
+</nav>
+
+<div class="admin-form-container">
+    <h2><i class="fa fa-info-circle"></i> Cruise Details: @Model.CruiseLine</h2>
+    <hr />
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-5">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Url.Content(Model.ImageUrl)" alt="@Model.CruiseLine cruise to @Model.Destination" class="img-fluid rounded shadow-sm mb-3"
+                         onerror="this.onerror=null; this.src='@defaultCruiseImage';" />
+                }
+                else
+                {
+                    <img src="@defaultCruiseImage" alt="Default Cruise Image" class="img-fluid rounded shadow-sm mb-3" />
+                }
+            </div>
+            <div class="col-md-7">
+                <dl class="row">
+                    <dt class="col-sm-4">ID:</dt>
+                    <dd class="col-sm-8">@Model.Id</dd>
+
+                    <dt class="col-sm-4">Cruise Line:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.CruiseLine)</dd>
+
+                    <dt class="col-sm-4">Departure Port:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.DeparturePort)</dd>
+
+                    <dt class="col-sm-4">Destination(s):</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Destination)</dd>
+
+                    <dt class="col-sm-4">Duration:</dt>
+                    <dd class="col-sm-8">@Model.DurationDays day(s)</dd>
+
+                    <dt class="col-sm-4">Price:</dt>
+                    <dd class="col-sm-8">@Model.Price.ToString("C")</dd>
+
+                    <dt class="col-sm-4">Managed By User ID:</dt>
+                    <dd class="col-sm-8">@Model.UserId</dd>
+                </dl>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.ItinerarySummary))
+        {
+            <div class="mt-3 pt-3 border-top">
+                <h5>Itinerary Summary / Key Features:</h5>
+                <p class="text-break">@Html.Raw(Model.ItinerarySummary.Replace("\n", "<br />"))</p>
+            </div>
+        }
+        <hr />
+        <div class="mt-3">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Back to List</a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">Cruise details not found.</div>
+        <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+    }
+</div>

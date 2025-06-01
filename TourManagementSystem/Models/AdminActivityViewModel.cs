@@ -34,7 +34,7 @@ namespace TourManagementSystem.Models // Or TourManagementSystem.ViewModels
         public string? Description { get; set; }
 
         [Required(ErrorMessage = "Image URL is required, even if a placeholder.")] // Entity.ImageUrl is non-nullable
-        [Url(ErrorMessage = "Please enter a valid URL.")]
+        //[Url(ErrorMessage = "Please enter a valid URL.")]
         [StringLength(255)]
         [Display(Name = "Image URL")]
         public string ImageUrl { get; set; } = string.Empty;
