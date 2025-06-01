@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TourManagementSystem.Data;
 using TourManagementSystem.Models;
-using TourManagementSystem.ViewModels; // For AdminHotelViewModel
+
 
 namespace TourManagementSystem.Services
 {

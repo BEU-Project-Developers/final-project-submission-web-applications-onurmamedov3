@@ -54,15 +54,13 @@ namespace TourManagementSystem.Data
 
             modelBuilder.Entity<Trip>(entity =>
             {
-                // Your existing configurations for Trip
-                entity.HasKey(e => e.Id);
                 entity.Property(e => e.Price).HasColumnType("decimal(18,2)");
-                // Ensure relationship with User is correctly defined if Trip.UserId exists and is used
+                // Define the required relationship with User
                 entity.HasOne(t => t.User)
-                      .WithMany(u => u.Trips) // Assuming User has ICollection<Trip> Trips
+                      .WithMany(u => u.Trips) // Assumes User.cs has ICollection<Trip> Trips
                       .HasForeignKey(t => t.UserId)
-                      .IsRequired(false) // If Trip.UserId is nullable
-                      .OnDelete(DeleteBehavior.SetNull);
+                      .IsRequired() // Because Trip.UserId is non-nullable
+                      .OnDelete(DeleteBehavior.Cascade); // Or Restrict, consider implications
             });
 
             modelBuilder.Entity<Hotel>(entity =>

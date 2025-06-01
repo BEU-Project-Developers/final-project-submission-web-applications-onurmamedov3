@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using TourManagementSystem.Models;      // For Hotel entity
-using TourManagementSystem.ViewModels; // For AdminHotelViewModel (if it's in ViewModels namespace)
+ // For AdminHotelViewModel (if it's in ViewModels namespace)
                                        // Or using TourManagementSystem.Models; // If AdminHotelViewModel is in Models namespace
 
 namespace TourManagementSystem.Services

@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using TourManagementSystem.Models;    // For Hotel entity
 using TourManagementSystem.Services;   // For IHotelService, IUserService
-using TourManagementSystem.ViewModels; // For AdminHotelViewModel
+
 
 namespace TourManagementSystem.Controllers
 {
