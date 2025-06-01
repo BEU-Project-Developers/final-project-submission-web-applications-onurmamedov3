@@ -1,41 +1,260 @@
-﻿@* File: Views/AdminHotels/Index.cshtml *@
-@model IEnumerable<TourManagementSystem.Models.Hotel>
+﻿@model IEnumerable<TourManagementSystem.Models.Hotel>
 @{
     ViewData["Title"] = "Manage Hotels";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<nav aria-label="breadcrumb" class="breadcrumb-admin">
+@section Styles {
+    <style>
+        /* === Breadcrumb Styling === */
+        .breadcrumb-admin-custom { /* New custom class for breadcrumb */
+            background-color: #ffffff; /* Clean white background */
+            padding: 0.85rem 1.5rem; /* Adjusted padding */
+            border-radius: var(--admin-border-radius, 6px);
+            margin-bottom: 2rem; /* More space below breadcrumb */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            border: 1px solid #e9ecef; /* Light border */
+            font-size: 0.9rem;
+        }
+
+            .breadcrumb-admin-custom .breadcrumb-item {
+                font-family: 'Poppins', sans-serif; /* Assuming Poppins is in _AdminLayout */
+            }
+
+                .breadcrumb-admin-custom .breadcrumb-item a {
+                    color: var(--admin-primary-color, #007bff);
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: color var(--admin-transition-speed, 0.25s) ease;
+                }
+
+                    .breadcrumb-admin-custom .breadcrumb-item a:hover {
+                        color: var(--admin-accent-color, #0056b3); /* Darker on hover */
+                        text-decoration: underline;
+                    }
+
+                .breadcrumb-admin-custom .breadcrumb-item.active {
+                    color: #5a6f82; /* Softer color for active item */
+                    font-weight: 500;
+                }
+
+                .breadcrumb-admin-custom .breadcrumb-item + .breadcrumb-item::before {
+                    color: #adb5bd; /* Lighter separator color */
+                    content: ">"; /* Using '>' as a separator */
+                    padding: 0 0.6rem;
+                }
+
+
+        /* === Page Header Styling === */
+        .page-header-admin {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+            .page-header-admin h2 {
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.85rem; /* Slightly larger */
+                font-weight: 600;
+                color: var(--admin-secondary-color, #1a2e44);
+                margin-bottom: 0;
+            }
+
+                .page-header-admin h2 i { /* Icon styling in header */
+                    color: var(--admin-primary-color, #007bff); /* Make icon match primary color */
+                    margin-right: 0.6rem;
+                }
+
+
+        .btn-add-new-header { /* Specific class for this button */
+            background-color: var(--admin-primary-color, #007bff);
+            border-color: var(--admin-primary-color, #007bff);
+            color: #fff;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem; /* Adjusted padding */
+            font-size: 0.9rem;
+            border-radius: var(--admin-border-radius, 6px);
+            transition: all var(--admin-transition-speed, 0.25s) ease;
+            display: inline-flex; /* For icon alignment */
+            align-items: center;
+        }
+
+            .btn-add-new-header:hover {
+                background-color: var(--admin-accent-color, #0056b3);
+                border-color: var(--admin-accent-color, #0056b3);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+            }
+
+            .btn-add-new-header i {
+                margin-right: 0.5rem;
+            }
+
+        /* === Table Styling === */
+        .admin-table-container {
+            background-color: #fff;
+            padding: 0; /* Let table define its padding if border-collapse is used */
+            border-radius: var(--admin-border-radius, 6px);
+            box-shadow: var(--admin-card-shadow, 0 4px 12px rgba(0,0,0,0.06));
+            overflow: hidden; /* Important for rounded corners on table */
+        }
+
+        .table-admin-custom {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+            border-collapse: separate; /* Allows for rounded corners on table itself if container has overflow:hidden */
+            border-spacing: 0; /* Remove default spacing */
+        }
+
+            .table-admin-custom thead.table-header-custom th {
+                background-color: var(--admin-secondary-color, #1a2e44);
+                color: var(--admin-text-light, #fff);
+                border-bottom: 3px solid var(--admin-primary-color, #007bff);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-size: 0.8rem; /* Slightly smaller header text */
+                vertical-align: middle;
+                padding: 0.9rem 1rem; /* Adjusted padding */
+                white-space: nowrap; /* Prevent headers from wrapping */
+            }
+                /* Apply border radius to first and last th for a rounded table header look */
+                .table-admin-custom thead.table-header-custom th:first-child {
+                    border-top-left-radius: var(--admin-border-radius, 6px);
+                }
+
+                .table-admin-custom thead.table-header-custom th:last-child {
+                    border-top-right-radius: var(--admin-border-radius, 6px);
+                }
+
+
+            .table-admin-custom tbody tr {
+                transition: background-color 0.15s ease-in-out;
+            }
+
+                .table-admin-custom tbody tr:hover {
+                    background-color: #f1f7ff; /* Lighter, bluer hover */
+                }
+
+                .table-admin-custom tbody tr:last-child td:first-child {
+                    border-bottom-left-radius: var(--admin-border-radius, 6px);
+                }
+
+                .table-admin-custom tbody tr:last-child td:last-child {
+                    border-bottom-right-radius: var(--admin-border-radius, 6px);
+                }
+
+
+            .table-admin-custom td {
+                vertical-align: middle;
+                padding: 0.85rem 1rem; /* Adjusted padding */
+                color: #495057;
+                border-top: 1px solid #e9ecef; /* Lighter internal borders */
+            }
+
+                .table-admin-custom td .fa-star,
+                .table-admin-custom td .fa-star-o {
+                    color: #ffc107;
+                    font-size: 0.95em; /* Slightly larger stars */
+                }
+
+
+        .actions-cell .btn {
+            padding: 0.45rem 0.8rem; /* Slightly larger buttons */
+            font-size: 0.85rem; /* Slightly larger font in buttons */
+            margin-right: 0.35rem;
+            border-radius: var(--admin-border-radius, 6px); /* Consistent border radius */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--admin-transition-speed, 0.25s) ease;
+            min-width: 38px; /* Ensure even icon-only buttons have a decent width */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+            .actions-cell .btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 3px 7px rgba(0,0,0,0.1);
+            }
+
+            .actions-cell .btn i {
+                /* margin-right: 0.4rem; /* Add back if you want text */
+                font-size: 0.95em;
+            }
+
+        .actions-cell .btn-outline-primary {
+            border-color: var(--admin-primary-color);
+            color: var(--admin-primary-color);
+        }
+
+            .actions-cell .btn-outline-primary:hover {
+                background-color: var(--admin-primary-color);
+                color: #fff;
+            }
+
+        .actions-cell .btn-outline-info {
+            border-color: #17a2b8;
+            color: #17a2b8;
+        }
+
+            .actions-cell .btn-outline-info:hover {
+                background-color: #17a2b8;
+                color: #fff;
+            }
+
+        .actions-cell .btn-outline-danger {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+            .actions-cell .btn-outline-danger:hover {
+                background-color: #dc3545;
+                color: #fff;
+            }
+
+        .no-entries-message td {
+            font-style: italic;
+            color: #6c757d;
+            padding: 2rem !important;
+        }
+    </style>
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin-custom">
+    @* Changed class *@
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         <li class="breadcrumb-item active" aria-current="page">Manage Hotels</li>
     </ol>
 </nav>
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2><i class="fa fa-bed"></i> Hotel Management</h2>
-    <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus"></i> Add New Hotel</a>
+<div class="d-flex justify-content-between align-items-center page-header-admin">
+    <h2><i class="fa fa-bed"></i>Hotel Management</h2> @* Icon now part of h2 styling via CSS *@
+    @* "Add New Hotel" button is now pushed to the right because its parent is d-flex justify-content-between *@
+    <a asp-action="Create" class="btn btn-add-new-header"><i class="fa fa-plus"></i> Add New Hotel</a>
 </div>
-<hr />
 
-<div class="admin-form-container p-0">
-    @* Using p-0 to let table have its own padding *@
+<div class="admin-table-container mt-3">
+    @* Added mt-3 for spacing from header *@
     <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered">
-            <thead class="table-dark">
+        <table class="table table-hover table-admin-custom">
+            @* Removed table-striped and table-bordered for cleaner look if desired, can add back *@
+            <thead class="table-header-custom">
                 <tr>
                     <th>@Html.DisplayNameFor(model => model.First().Name)</th>
                     <th>@Html.DisplayNameFor(model => model.First().Destination)</th>
                     <th>@Html.DisplayNameFor(model => model.First().PricePerNight)</th>
                     <th>@Html.DisplayNameFor(model => model.First().Rating)</th>
                     <th>@Html.DisplayNameFor(model => model.First().AvailableRooms)</th>
-                    <th style="width: 220px;">Actions</th>
+                    <th style="width: 225px; text-align:center;">Actions</th> @* Adjusted width, centered text *@
                 </tr>
             </thead>
             <tbody>
                 @if (!Model.Any())
                 {
-                    <tr><td colspan="6" class="text-center py-4">No hotels found. Start by creating one!</td></tr>
+                    <tr class="no-entries-message">
+                        <td colspan="6" class="text-center">No hotels found. Start by creating one!</td>
+                    </tr>
                 }
                 @foreach (var item in Model)
                 {
@@ -46,18 +265,18 @@
                         <td>
                             @for (int i = 0; i < item.Rating; i++)
                             {
-                                <i class="fa fa-star" style="color: #ffc107;"></i>
+                                <i class="fa fa-star"></i>
                             }
                             @for (int i = item.Rating; i < 5; i++)
                             {
-                                <i class="fa fa-star-o" style="color: #ffc107;"></i>
+                                <i class="fa fa-star-o"></i>
                             }
-                            (@item.Rating)
+                            <small class="ms-1 text-muted">(@item.Rating)</small>
                         </td>
-                        <td>@Html.DisplayFor(modelItem => item.AvailableRooms)</td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info me-1" title="Details"><i class="fa fa-info-circle"></i></a>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.AvailableRooms)</td>
+                        <td class="actions-cell text-center">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info" title="Details"><i class="fa fa-info-circle"></i></a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>

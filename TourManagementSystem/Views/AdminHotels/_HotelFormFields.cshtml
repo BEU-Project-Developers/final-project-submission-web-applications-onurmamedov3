@@ -1,66 +1,103 @@
 ﻿@model TourManagementSystem.Models.AdminHotelViewModel
+@* Assuming AdminHotelViewModel is in TourManagementSystem.Models based on your previous feedback *@
 
-<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+<div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4" role="alert"></div>
+
 @if (Model.Id != 0)
 {
     <input type="hidden" asp-for="Id" />
 }
 
-<div class="row">
-    <div class="col-md-6 mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+<fieldset class="mb-4">
+    <legend class="form-legend">Basic Information</legend>
+    <div class="row g-3">
+        @* g-3 for consistent gutters *@
+        <div class="col-md-6">
+            <label asp-for="Name" class="form-label visually-hidden">Hotel Name</label> @* Visually hidden if placeholder is enough, or style normally *@
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-building"></i></span>
+                <input asp-for="Name" class="form-control admin-form-control" placeholder="Hotel Name (e.g., Grand Plaza)" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger d-block mt-1"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Destination" class="form-label visually-hidden">Destination</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+                <input asp-for="Destination" class="form-control admin-form-control" placeholder="Destination (e.g., Paris, Downtown Manhattan)" />
+            </div>
+            <span asp-validation-for="Destination" class="text-danger d-block mt-1"></span>
+        </div>
     </div>
-    <div class="col-md-6 mb-3">
-        <label asp-for="Destination" class="form-label"></label>
-        <input asp-for="Destination" class="form-control" />
-        <span asp-validation-for="Destination" class="text-danger"></span>
+
+    <div class="mt-3">
+        @* Spacing for the next field *@
+        <label asp-for="Address" class="form-label visually-hidden">Full Address</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-road"></i></span>
+            <input asp-for="Address" class="form-control admin-form-control" placeholder="Full Address (Optional)" />
+        </div>
+        <span asp-validation-for="Address" class="text-danger d-block mt-1"></span>
     </div>
-</div>
+</fieldset>
 
-<div class="mb-3">
-    <label asp-for="Address" class="form-label"></label>
-    <input asp-for="Address" class="form-control" />
-    <span asp-validation-for="Address" class="text-danger"></span>
-</div>
-
-<div class="mb-3">
-    <label asp-for="Description" class="form-label"></label>
-    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-    <span asp-validation-for="Description" class="text-danger"></span>
-</div>
-
-<div class="row">
-    <div class="col-md-4 mb-3">
-        <label asp-for="PricePerNight" class="form-label"></label>
-        <input asp-for="PricePerNight" class="form-control" type="number" step="0.01" min="0" />
-        <span asp-validation-for="PricePerNight" class="text-danger"></span>
+<fieldset class="mb-4">
+    <legend class="form-legend">Details & Pricing</legend>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control admin-form-control" rows="4" placeholder="Enter a detailed description of the hotel..."></textarea>
+        <span asp-validation-for="Description" class="text-danger d-block mt-1"></span>
     </div>
-    <div class="col-md-4 mb-3">
-        <label asp-for="Rating" class="form-label"></label>
-        <input asp-for="Rating" class="form-control" type="number" min="1" max="5" />
-        <span asp-validation-for="Rating" class="text-danger"></span>
-    </div>
-    <div class="col-md-4 mb-3">
-        <label asp-for="AvailableRooms" class="form-label"></label>
-        <input asp-for="AvailableRooms" class="form-control" type="number" min="0" />
-        <span asp-validation-for="AvailableRooms" class="text-danger"></span>
-    </div>
-</div>
 
-<div class="mb-3">
-    <label asp-for="PrimaryImageUrl" class="form-label"></label>
-    <input asp-for="PrimaryImageUrl" class="form-control" placeholder="e.g., /images/hotels/image.jpg or https://example.com/image.jpg" />
-    <span asp-validation-for="PrimaryImageUrl" class="text-danger"></span>
-</div>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label asp-for="PricePerNight" class="form-label visually-hidden">Price Per Night</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-eur"></i></span> @* Or fa-usd, fa-gbp etc. *@
+                <input asp-for="PricePerNight" class="form-control admin-form-control" type="number" step="0.01" min="0" placeholder="Price/Night" />
+            </div>
+            <span asp-validation-for="PricePerNight" class="text-danger d-block mt-1"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Rating" class="form-label visually-hidden">Star Rating</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-star"></i></span>
+                <input asp-for="Rating" class="form-control admin-form-control" type="number" min="1" max="5" placeholder="Rating (1-5)" />
+            </div>
+            <span asp-validation-for="Rating" class="text-danger d-block mt-1"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="AvailableRooms" class="form-label visually-hidden">Available Rooms</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-bed"></i></span>
+                <input asp-for="AvailableRooms" class="form-control admin-form-control" type="number" min="0" placeholder="Available Rooms" />
+            </div>
+            <span asp-validation-for="AvailableRooms" class="text-danger d-block mt-1"></span>
+        </div>
+    </div>
+</fieldset>
 
-<div class="mb-3">
-    <label asp-for="UserId" class="form-label">Assigned User ID (Optional)</label>
-    <input asp-for="UserId" type="number" class="form-control" placeholder="Enter User ID or leave blank" />
-    @* If using a dropdown for users (requires ViewBag.UserList to be populated in controller):
-    <select asp-for="UserId" class="form-select" asp-items="ViewBag.UserList">
-        <option value="">-- Not Assigned / System --</option>
-    </select> *@
-    <span asp-validation-for="UserId" class="text-danger"></span>
-</div>
+<fieldset>
+    <legend class="form-legend">Imagery & Management</legend>
+    <div class="mb-3">
+        <label asp-for="PrimaryImageUrl" class="form-label visually-hidden">Primary Image URL</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-image"></i></span>
+            <input asp-for="PrimaryImageUrl" class="form-control admin-form-control" placeholder="Primary Image URL (e.g., /images/hotels/image.jpg)" />
+        </div>
+        <span asp-validation-for="PrimaryImageUrl" class="text-danger d-block mt-1"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="UserId" class="form-label">Assigned User ID (Optional)</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-user-plus"></i></span>
+            <input asp-for="UserId" type="number" class="form-control admin-form-control" placeholder="Enter User ID or leave blank" />
+        </div>
+        @* If using a dropdown for users (requires ViewBag.UserList to be populated in controller):
+        <select asp-for="UserId" class="form-select admin-form-control mt-2" asp-items="ViewBag.UserList">
+            <option value="">-- Not Assigned / System --</option>
+        </select> *@
+        <span asp-validation-for="UserId" class="text-danger d-block mt-1"></span>
+    </div>
+</fieldset>

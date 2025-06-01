@@ -2,10 +2,13 @@
 @{
     ViewData["Title"] = "Hotel Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    var defaultHotelImage = Url.Content("~/images/default_offer.jpg"); // Make sure this image exists or provide a fallback
+    var defaultHotelImage = Url.Content("~/images/default_offer.jpg");
 }
 
-<nav aria-label="breadcrumb" class="breadcrumb-admin">
+@* Assuming common styles are in _AdminLayout.cshtml or global admin.css *@
+@* If not, you'd add an @section Styles here for .form-actions-custom, .btn-form-primary, etc. *@
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin-custom">
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         <li class="breadcrumb-item"><a asp-action="Index">Manage Hotels</a></li>
@@ -14,24 +17,26 @@
 </nav>
 
 <div class="admin-form-container">
-    <h2><i class="fa fa-info-circle"></i> Hotel Details: @Model.Name</h2>
-    <hr />
+    <h2 class="form-title-custom"><i class="fa fa-info-circle"></i> Hotel Details: @Model.Name</h2>
+
     @if (Model != null)
     {
-        <div class="row">
-            <div class="col-md-4">
+        <div class="row mt-4">
+            <div class="col-lg-4 col-md-5 mb-4 mb-md-0">
                 @if (!string.IsNullOrEmpty(Model.PrimaryImageUrl))
                 {
-                    <img src="@Url.Content(Model.PrimaryImageUrl)" alt="@Model.Name" class="img-fluid rounded shadow-sm mb-3"
-                         onerror="this.onerror=null; this.src='@defaultHotelImage';" /> @* Fallback if image fails to load *@
+                    <img src="@Url.Content(Model.PrimaryImageUrl)" alt="@Model.Name" class="img-fluid rounded shadow-lg"
+                         onerror="this.onerror=null; this.src='@defaultHotelImage';" />
                 }
                 else
                 {
-                    <img src="@defaultHotelImage" alt="Default Hotel Image" class="img-fluid rounded shadow-sm mb-3" />
+                    <img src="@defaultHotelImage" alt="Default Hotel Image" class="img-fluid rounded shadow-lg" />
                 }
             </div>
-            <div class="col-md-8">
-                <dl class="row">
+            <div class="col-lg-8 col-md-7">
+                <h4 class="mb-3 text-primary">Key Information</h4>
+                <dl class="row dl-horizontal-custom">
+                    @* Custom class for styling definition list *@
                     <dt class="col-sm-4">Hotel ID:</dt>
                     <dd class="col-sm-8">@Html.DisplayFor(model => model.Id)</dd>
 
@@ -45,10 +50,20 @@
                     <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Address) ? "N/A" : Model.Address)</dd>
 
                     <dt class="col-sm-4">Price per Night:</dt>
-                    <dd class="col-sm-8">@Model.PricePerNight.ToString("C")</dd>
+                    <dd class="col-sm-8"><strong>@Model.PricePerNight.ToString("C")</strong></dd>
 
                     <dt class="col-sm-4">Rating:</dt>
-                    <dd class="col-sm-8">@Model.Rating / 5 Stars</dd>
+                    <dd class="col-sm-8">
+                        @for (int i = 0; i < Model.Rating; i++)
+                        {
+                            <i class="fa fa-star text-warning"></i>
+                        }
+                        @for (int i = Model.Rating; i < 5; i++)
+                        {
+                            <i class="fa fa-star-o text-warning"></i>
+                        }
+                        (@Model.Rating / 5 Stars)
+                    </dd>
 
                     <dt class="col-sm-4">Available Rooms:</dt>
                     <dd class="col-sm-8">@Html.DisplayFor(model => model.AvailableRooms)</dd>
@@ -58,24 +73,30 @@
                 </dl>
             </div>
         </div>
+
         @if (!string.IsNullOrEmpty(Model.Description))
         {
-            <div class="mt-3 border-top pt-3">
-                <h5>Description:</h5>
-                <p class="text-break">@Html.Raw(Model.Description.Replace("\n", "<br />"))</p>
+            <div class="mt-4 pt-3 border-top">
+                <h5 class="text-primary">Description:</h5>
+                <p class="text-break details-description">@Html.Raw(Model.Description.Replace("\n", "<br />"))</p>
             </div>
         }
-        <hr />
-        <div class="mt-3">
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</a>
-            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Back to List</a>
+
+        <div class="form-actions-custom mt-4">
+            @* Re-using form-actions for button alignment *@
+            <a asp-action="Index" class="btn btn-form-action btn-form-secondary">Back to List</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-form-action btn-form-primary">
+                <i class="fa fa-pencil"></i> Edit Hotel
+            </a>
         </div>
     }
     else
     {
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-warning mt-4" role="alert">
             Hotel details not found. It may have been removed or the ID is incorrect.
         </div>
-        <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        <div class="mt-3">
+            <a asp-action="Index" class="btn btn-form-action btn-form-secondary">Back to List</a>
+        </div>
     }
 </div>

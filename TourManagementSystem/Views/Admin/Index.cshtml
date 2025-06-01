@@ -1,210 +1,245 @@
-﻿@* File: Views/Admin/Index.cshtml *@
-@model TourManagementSystem.Models.AdminDashboardViewModel
+﻿@model TourManagementSystem.Models.AdminDashboardViewModel
 @{
     ViewData["Title"] = "Admin Management Console";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Uses the updated admin layout
-}
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-    <h1 class="h2">Management Console</h1>
-</div>
-
-<p>Welcome, @(Model?.UserName ?? User.Identity?.Name ?? "Administrator")! Select a category below to manage its content.</p>
-
-@{
-    // Ensure your AdminDashboardViewModel has properties for each of these counts
-    // e.g., TotalHotelsCount, TotalCarsCount, TotalFlightsCount, etc.
-    // The ControllerName should match the controller you create for managing that entity (e.g., AdminHotelsController -> "AdminHotels")
-    var entityTypes = new List<(string Title, string IconClass, string TargetId, string ControllerName, int Count)>
+    var entityTypes = new List<(string Title, string IconClass, string TargetId, string ControllerName)>
     {
-        ("Hotels", "fa-bed", "hotelsSection", "AdminHotels", Model?.TotalHotelsCount ?? 0),
-        ("Car Rentals", "fa-car", "TripsSection", "AdminCars", Model?.TotalCarsCount ?? 0),
-        ("Flights", "fa-plane", "flightsSection", "AdminFlights", Model?.TotalFlightsCount ?? 0),
-        ("Trips", "fa-map-signs", "tripsSection", "AdminTrips", Model?.TotalTripsCount ?? 0),
-        ("Cruises", "fa-ship", "cruisesSection", "AdminCruises", Model?.TotalCruisesCount ?? 0),
-        ("Activities", "fa-bicycle", "activitiesSection", "AdminActivities", Model?.TotalActivitiesCount ?? 0)
-        // Add "Bookings" and "Users" here if you decide to manage them from this page later
+        ("Hotels", "fa-bed", "hotelsSection", "AdminHotels"),
+        ("Car Rentals", "fa-car", "carsSection", "AdminCars"),
+        ("Flights", "fa-plane", "flightsSection", "AdminFlights"),
+        ("Trips", "fa-map-signs", "tripsSection", "AdminTrips"),
+        ("Cruises", "fa-ship", "cruisesSection", "AdminCruises"),
+        ("Activities", "fa-bicycle", "activitiesSection", "AdminActivities")
     };
+
+    // More distinct gradients, flowing right-to-left
+    var gradientColors = new List<string>
+    {
+        "linear-gradient(to left, #ff9a44, #ff5c4d)", // Orange to Coral
+        "linear-gradient(to left, #a076f9, #6851f6)", // Soft Purple to Vibrant Purple
+        "linear-gradient(to left, #00d2ff, #3a7bd5)", // Light Blue to Deeper Blue
+        "linear-gradient(to left, #f8cdda, #ea8fbc)", // Pinkish
+        "linear-gradient(to left, #43e97b, #38f9d7)", // Green to Teal
+        "linear-gradient(to left, #ffb74d, #ff9800)"  // Amber to Orange
+    };
+    int colorIndex = 0;
 }
+
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Ensure body class from _AdminLayout is used or apply directly */
+        .admin-dashboard-body .admin-main-container { /* Target specific container for dashboard */
+            padding: 1.5rem; /* Slightly less padding for the dashboard itself */
+        }
+
+        :root {
+            --admin-primary-color-dash: #007bff; /* Keeping a primary for general UI elements */
+            --admin-text-dark-dash: #2c3e50;
+            --admin-text-light-dash: #f8f9fa;
+            --admin-card-bg-dash: #ffffff;
+            --admin-card-shadow-dash: 0 5px 20px rgba(0, 0, 0, 0.05);
+            --admin-border-radius-dash: 10px;
+        }
+
+        .admin-dashboard-header {
+            text-align: center;
+            margin-bottom: 2.5rem; /* More space after header */
+            padding-top: 1rem; /* Space from top of container */
+        }
+
+            .admin-dashboard-header .management-console-title {
+                font-family: 'Poppins', sans-serif;
+                font-size: 2.75rem; /* Bigger */
+                font-weight: 700;
+                color: var(--admin-text-dark-dash);
+                margin-bottom: 0.5rem;
+                letter-spacing: -0.5px;
+            }
+
+            .admin-dashboard-header .welcome-subtitle {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 1.1rem;
+                color: #5a6f82; /* Softer subtitle color */
+                max-width: 600px;
+                margin: 0 auto 1.5rem auto; /* Centered and spaced */
+            }
+
+        .admin-section-card-dash { /* Specific to dashboard cards */
+            border-radius: var(--admin-border-radius-dash);
+            box-shadow: var(--admin-card-shadow-dash);
+            border: 1px solid #e3e6f0;
+            background: var(--admin-card-bg-dash);
+            transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+            .admin-section-card-dash:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            }
+
+        .admin-section-header-dash {
+            padding: 1.2rem 1.5rem;
+            /* Gradient applied inline */
+            color: var(--admin-text-light-dash);
+            border-radius: var(--admin-border-radius-dash) var(--admin-border-radius-dash) 0 0;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: filter 0.2s ease;
+        }
+
+            .admin-section-header-dash:hover {
+                filter: brightness(1.1);
+            }
+
+            .admin-section-header-dash h5 {
+                font-family: 'Poppins', sans-serif;
+                margin-bottom: 0;
+                font-size: 1.15rem;
+            }
+
+        .header-icon-dash {
+            font-size: 1.1em; /* Relative to h5 */
+            margin-right: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .admin-section-content-dash {
+            padding: 1.5rem;
+        }
+
+        .content-description-dash {
+            font-family: 'Open Sans', sans-serif;
+            color: #495057;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .btn-admin-action-dash {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 6px;
+            padding: 0.65rem 1.3rem;
+            transition: all 0.2s ease-out;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+            .btn-admin-action-dash i {
+                margin-right: 0.4rem;
+            }
+
+        .btn-view-all-dash {
+            background-color: var(--admin-card-bg-dash);
+            color: var(--admin-primary-color-dash);
+            border: 2px solid var(--admin-primary-color-dash);
+        }
+
+            .btn-view-all-dash:hover {
+                background-color: var(--admin-primary-color-dash);
+                color: var(--admin-text-light-dash);
+                transform: scale(1.03);
+            }
+
+        .btn-add-new-dash {
+            background-color: var(--admin-primary-color-dash);
+            color: var(--admin-text-light-dash);
+            border: 2px solid var(--admin-primary-color-dash);
+        }
+
+            .btn-add-new-dash:hover {
+                background-color: #0056b3; /* Darker primary */
+                border-color: #0056b3;
+                transform: scale(1.03);
+            }
+
+        .toggle-icon-dash i {
+            transition: transform 0.25s ease-in-out;
+        }
+    </style>
+}
+
+<div class="admin-dashboard-header">
+    <h1 class="management-console-title">Management Console</h1>
+    <p class="welcome-subtitle">
+        Hello, <strong>@(Model?.UserName ?? User.Identity?.Name ?? "Administrator")</strong>!
+        Manage your platform's core components from this central hub.
+    </p>
+</div>
 
 <div class="accordion" id="adminEntityAccordion">
     @foreach (var entity in entityTypes)
     {
-        <div class="admin-section-card">
-            <div class="admin-section-header collapsed" @* Start all sections collapsed *@
+        var currentGradient = gradientColors[colorIndex % gradientColors.Count];
+        colorIndex++;
+
+        <div class="admin-section-card-dash">
+            <div class="admin-section-header-dash collapsed"
+                 style="background: @currentGradient;"
                  data-bs-toggle="collapse"
                  data-bs-target="#@entity.TargetId"
-                 aria-expanded="false" @* Initial state is not expanded *@
+                 aria-expanded="false"
                  aria-controls="@entity.TargetId">
-                <h5>
-                    <i class="fa @entity.IconClass me-2"></i>Manage @entity.Title
-                    <span class="badge rounded-pill bg-light text-dark ms-2">@entity.Count</span>
-                </h5>
-                <span class="toggle-icon"><i class="fa fa-chevron-down"></i></span>
+                <div class="d-flex align-items-center">
+                    <i class="fa @entity.IconClass header-icon-dash"></i>
+                    <h5 class="mb-0 text-capitalize">Manage @entity.Title</h5>
+                    @* Count removed from here *@
+                </div>
+                <span class="toggle-icon-dash">
+                    <i class="fa fa-chevron-down"></i>
+                </span>
             </div>
-            <div id="@entity.TargetId" class="collapse admin-section-content" data-bs-parent="#adminEntityAccordion">
-                <div class="p-3">
-                    <p>Manage all @entity.Title. You can view, add, edit, or delete entries.</p>
-                    <div class="btn-toolbar mb-3">
-                        <a asp-controller="@entity.ControllerName" asp-action="Index" class="btn btn-sm btn-outline-primary me-2">
-                            <i class="fa fa-list"></i> View & Manage All @entity.Title (@entity.Count)
-                        </a>
-                        <a asp-controller="@entity.ControllerName" asp-action="Create" class="btn btn-sm btn-primary">
-                            <i class="fa fa-plus"></i> Add New @entity.Title
-                        </a>
-                    </div>
-                    <div class="mt-2" id="content-@entity.TargetId">
-                        @*
-                            This is a placeholder. For a true "show data inside the section" feel
-                            without full page reloads for the *list*, you would typically:
-                            1. Use a Partial View here: @await Html.PartialAsync($"_Summary{entity.Title.Replace(" ", "")}", ModelForThatPartial)
-                            2. OR Use JavaScript/AJAX to fetch and inject the list content when the section expands.
-                            For now, clicking "View All" navigates to the dedicated Index page for that entity type.
-                        *@
-                        <p><em>Click "View All @entity.Title" to see the full list and perform actions.</em></p>
-                    </div>
+            <div id="@entity.TargetId"
+                 class="collapse admin-section-content-dash"
+                 data-bs-parent="#adminEntityAccordion">
+                <p class="content-description-dash">
+                    Oversee all <strong>@entity.Title</strong>. View, add new entries, edit existing ones, or remove them as needed.
+                </p>
+                <div class="d-flex gap-2 flex-wrap">
+                    @* Reduced gap slightly *@
+                    <a asp-controller="@entity.ControllerName"
+                       asp-action="Index"
+                       class="btn-admin-action-dash btn-view-all-dash">
+                        <i class="fa fa-list"></i>View All @entity.Title
+                    </a>
+                    <a asp-controller="@entity.ControllerName"
+                       asp-action="Create"
+                       class="btn-admin-action-dash btn-add-new-dash">
+                        <i class="fa fa-plus"></i>Add New @entity.Title
+                    </a>
                 </div>
             </div>
         </div>
     }
 </div>
 
-<hr class="my-4">
-
-@* Additional Dashboard Widgets/Info (Optional but good for a dashboard feel) *@
-<div class="row">
-    <div class="col-md-6 mb-4">
-        <div class="admin-section-card">
-            <div class="admin-section-header" style="background-color: #4b5f71; cursor:default;">
-                @* Darker, non-interactive header *@
-                <h5 class="mb-0"><i class="fa fa-line-chart me-2"></i>Booking Trends (Last 7 Days)</h5>
-            </div>
-            <div class="admin-section-content">
-                @if (Model != null && Model.BookingTrendsLabels != null && Model.BookingTrendsLabels.Any())
-                {
-                    <div style="height: 250px;">
-                        @* Constrain chart height *@
-                        <canvas id="bookingTrendsChart"></canvas>
-                    </div>
-                }
-                else
-                {
-                    <p>Booking trend data is not available.</p>
-                }
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 mb-4">
-        <div class="admin-section-card">
-            <div class="admin-section-header" style="background-color: #4b5f71; cursor:default;">
-                <h5 class="mb-0"><i class="fa fa-bolt me-2"></i>Recent System Activities</h5>
-            </div>
-            <div class="admin-section-content" style="max-height: 270px; overflow-y:auto;">
-                @if (Model != null && Model.RecentActivities != null && Model.RecentActivities.Any())
-                {
-                    <ul class="list-group list-group-flush">
-                        @foreach (var activity in Model.RecentActivities.Take(5)) // Show top 5
-                        {
-                            <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2">
-                                <div><i class="fa fa-history me-2 text-muted"></i>@activity.Action by <strong>@activity.User</strong></div>
-                                <small class="text-muted">@activity.Timestamp.ToString("MMM dd, HH:mm")</small>
-                            </li>
-                        }
-                    </ul>
-                }
-                else
-                {
-                    <p>No recent activities logged.</p>
-                }
-            </div>
-        </div>
-    </div>
-</div>
-
-
 @section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Handle the toggle icon rotation for collapsible sections
-            $('.admin-section-header').on('click', function (e) {
-                // Prevent default if an <a> tag is inside, though not the case here
-                // e.preventDefault();
-
-                var $thisHeader = $(this);
-                var $icon = $thisHeader.find('.toggle-icon i');
-                var targetCollapseId = $thisHeader.data('bs-target'); // e.g., #hotelsSection
-                var $targetCollapse = $(targetCollapseId);
-
-                // Bootstrap's collapse events are preferred for icon toggling
-                // as they fire after the transition completes.
-            });
-
-            // Use Bootstrap collapse events to manage icon state
-            $('.admin-section-content.collapse').on('show.bs.collapse', function () {
-                $(this).prev('.admin-section-header').find('.toggle-icon i')
+            // Accordion icon toggle logic
+            $('.admin-section-content-dash.collapse').on('show.bs.collapse', function () {
+                $(this).prev('.admin-section-header-dash').find('.toggle-icon-dash i')
                     .removeClass('fa-chevron-down').addClass('fa-chevron-up');
             }).on('hide.bs.collapse', function () {
-                $(this).prev('.admin-section-header').find('.toggle-icon i')
+                $(this).prev('.admin-section-header-dash').find('.toggle-icon-dash i')
                     .removeClass('fa-chevron-up').addClass('fa-chevron-down');
             });
 
-            // Ensure icons are correct on page load if a section is pre-expanded
-            // (e.g., if you add 'show' class to one of the .collapse divs)
-            $('.admin-section-content.collapse.show').prev('.admin-section-header').find('.toggle-icon i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            $('.admin-section-header-dash.collapsed[aria-expanded="false"]').find('.toggle-icon-dash i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            $('.admin-section-header-dash:not(.collapsed)[aria-expanded="true"]').find('.toggle-icon-dash i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
 
-
-            // Booking Trends Chart
-            const bookingTrendsLabels = @Html.Raw(Json.Serialize(Model?.BookingTrendsLabels ?? new List<string>()));
-            const bookingTrendsData = @Html.Raw(Json.Serialize(Model?.BookingTrendsData ?? new List<int>()));
-            const ctx = document.getElementById('bookingTrendsChart');
-
-            if (ctx && bookingTrendsLabels.length > 0 && bookingTrendsData.length > 0) {
-                new Chart(ctx.getContext('2d'), {
-                    type: 'line',
-                    data: {
-                        labels: bookingTrendsLabels,
-                        datasets: [{
-                            label: 'Bookings',
-                            data: bookingTrendsData,
-                            borderColor: 'rgb(52, 152, 219)',
-                            backgroundColor: 'rgba(52, 152, 219, 0.2)',
-                            fill: true,
-                            tension: 0.3,
-                            pointRadius: 4,
-                            pointBackgroundColor: 'rgb(52, 152, 219)'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: { display: true, text: 'Number of Bookings' },
-                                ticks: { precision: 0 } // Ensure whole numbers on y-axis
-                            },
-                            x: { title: { display: true, text: 'Date' } }
-                        },
-                        plugins: {
-                            legend: { display: true, position: 'top'},
-                            tooltip: {
-                                mode: 'index',
-                                intersect: false
-                            }
-                        },
-                        hover: {
-                            mode: 'nearest',
-                            intersect: true
-                        }
-                    }
-                });
-            } else if (ctx) {
-                 const p = document.createElement('p');
-                 p.textContent = 'Booking trend data is currently unavailable.';
-                 ctx.parentElement.appendChild(p);
-                 ctx.remove();
-            }
         });
     </script>
 }

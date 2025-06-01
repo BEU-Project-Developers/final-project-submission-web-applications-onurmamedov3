@@ -4,7 +4,16 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<nav aria-label="breadcrumb" class="breadcrumb-admin">
+@*
+    Assuming the CSS for:
+    - .breadcrumb-admin-custom
+    - .admin-form-container
+    - .form-title-custom
+    - AND THE NEW BUTTON STYLES ABOVE (.form-actions-custom, .btn-form-action, .btn-form-primary, .btn-form-secondary)
+    are now defined in _AdminLayout.cshtml or a global admin.css file.
+*@
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin-custom">
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         <li class="breadcrumb-item"><a asp-action="Index">Manage Hotels</a></li>
@@ -13,14 +22,21 @@
 </nav>
 
 <div class="admin-form-container">
-    <h2><i class="fa fa-plus-circle"></i> Create New Hotel</h2>
-    <hr />
-    <form asp-action="Create" method="post">
+    <h2 class="form-title-custom">
+        <i class="fa fa-plus-circle"></i> Create New Hotel
+    </h2>
+
+    <form asp-action="Create" method="post" class="mt-4">
         @Html.AntiForgeryToken()
+
         <partial name="_HotelFormFields" model="Model" />
-        <div class="form-group mt-4">
-            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Create Hotel</button>
-            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+
+        <div class="form-actions-custom">
+            <a asp-action="Index" class="btn btn-form-action btn-form-secondary">Cancel</a> @* Apply new classes *@
+            <button type="submit" class="btn btn-form-action btn-form-primary">
+                @* Apply new classes *@
+                <i class="fa fa-save"></i> Create Hotel
+            </button>
         </div>
     </form>
 </div>
