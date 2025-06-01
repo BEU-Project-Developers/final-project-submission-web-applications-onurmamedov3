@@ -193,6 +193,22 @@
       "PackagePath": "staticwebassets\\images\\dropdown.png"
     },
     {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\flights\\ConnectFly.png",
+      "PackagePath": "staticwebassets\\images\\flights\\ConnectFly.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\flights\\EuroWings.png",
+      "PackagePath": "staticwebassets\\images\\flights\\EuroWings.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\flights\\SkyLink.png",
+      "PackagePath": "staticwebassets\\images\\flights\\SkyLink.png"
+    },
+    {
+      "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\flights\\VoyageAir.png",
+      "PackagePath": "staticwebassets\\images\\flights\\VoyageAir.png"
+    },
+    {
       "Id": "C:\\Users\\onurm\\source\\repos\\TourManagementSystem\\TourManagementSystem\\wwwroot\\images\\footer_blog_1.jpg",
       "PackagePath": "staticwebassets\\images\\footer_blog_1.jpg"
     },

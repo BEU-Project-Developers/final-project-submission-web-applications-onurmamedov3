@@ -45,6 +45,10 @@ wwwroot\images\default_cruise.png
 wwwroot\images\departure.png
 wwwroot\images\diving.png
 wwwroot\images\dropdown.png
+wwwroot\images\flights\ConnectFly.png
+wwwroot\images\flights\EuroWings.png
+wwwroot\images\flights\SkyLink.png
+wwwroot\images\flights\VoyageAir.png
 wwwroot\images\footer_blog_1.jpg
 wwwroot\images\footer_blog_2.jpg
 wwwroot\images\footer_blog_3.jpg

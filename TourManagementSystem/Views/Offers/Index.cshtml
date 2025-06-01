@@ -1,12 +1,12 @@
-﻿@* File: TourManagementSystem/Views/Offers/Index.cshtml *@
-@model object
-@using TourManagementSystem.Models // Required for TripType enum and ViewModels
+﻿@model object
+@using TourManagementSystem.Models
 
 @{
     ViewData["Title"] = "Our Offers";
     var entityType = ViewData["EntityType"] as string ?? "Hotels";
 
-    // Cast the model based on entityType
+    // Casting and ViewData retrieval code remains the same as your last version...
+    // (Keeping it concise here for brevity, but assume it's all present)
     IEnumerable<HotelViewModel> hotelOffers = null;
     IEnumerable<CarRentalViewModel> carRentalOffers = null;
     IEnumerable<FlightViewModel> flightOffers = null;
@@ -21,8 +21,6 @@
     else if (entityType == "Activities" && Model is IEnumerable<ActivityViewModel> activities) { activityOffers = activities; }
     else if (entityType == "Trips" && Model is IEnumerable<TripViewModel> trips) { tripOffers = trips; }
 
-
-    // --- Retrieve search parameters from ViewData for pre-filling forms ---
     var destination_hotel = ViewData["Destination"] as string;
     var hotelName_hotel = ViewData["HotelName"] as string;
     var checkInDate_hotel = ViewData["CheckInDate"] as string;
@@ -51,7 +49,7 @@
     var minCruiseDuration_cruise = ViewData["MinCruiseDuration"] as int?;
     var maxCruiseDuration_cruise = ViewData["MaxCruiseDuration"] as int?;
     var maxCruisePrice_cruise = ViewData["MaxCruisePrice"] as decimal?;
-    var departureMonth_cruise = ViewData["DepartureMonth"] as string;
+    var departureMonth_cruise = ViewData["DepartureMonth"] as string; // This is "yyyy-MM"
 
     var activitySearchTerm_activity = ViewData["ActivitySearchTerm"] as string;
     var activityCategory_activity = ViewData["ActivityCategory"] as string;
@@ -65,13 +63,20 @@
     var travelers_trip = ViewData["Travelers"] as int?;
     var maxTripPrice_trip = ViewData["MaxTripPrice"] as decimal?;
 
-
     string FormatDateForInput(string dateStr)
     {
         if (DateTime.TryParse(dateStr, out DateTime dt)) return dt.ToString("yyyy-MM-dd");
         if (!string.IsNullOrEmpty(dateStr) && dateStr.Length == 10 && dateStr.IndexOf('-') == 4 && dateStr.LastIndexOf('-') == 7) return dateStr;
         return string.Empty;
     }
+    // For month input, ensure it's in "yyyy-MM" format if a value exists
+    string FormatMonthForInput(string monthStr)
+    {
+        if (DateTime.TryParse(monthStr + "-01", out DateTime dt)) return dt.ToString("yyyy-MM"); // Try parsing as first of month
+        if (!string.IsNullOrEmpty(monthStr) && monthStr.Length == 7 && monthStr.IndexOf('-') == 4) return monthStr;
+        return string.Empty;
+    }
+
     var checkInDate_hotelValue = FormatDateForInput(checkInDate_hotel);
     var checkOutDate_hotelValue = FormatDateForInput(checkOutDate_hotel);
     var pickupDate_carValue = FormatDateForInput(pickupDate_car);
@@ -80,6 +85,7 @@
     var returnDate_flightValue = FormatDateForInput(returnDate_flight);
     var activityDate_activityValue = FormatDateForInput(activityDate_activity);
     var startDate_tripValue = FormatDateForInput(startDate_trip);
+    var departureMonth_cruiseValue = FormatMonthForInput(departureMonth_cruise);
 }
 
 @section Styles {
@@ -87,20 +93,22 @@
     <link rel="stylesheet" type="text/css" href="~/styles/offers_responsive.css">
     <style>
         .search_panel_content .search_item {
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Original margin */
             padding-right: 10px;
+            position: relative;
+            padding-bottom: 20px; /* Add space for validation message below */
         }
 
             .search_panel_content .search_item:last-of-type {
-                margin-bottom: 15px;
+                margin-bottom: 15px; /* Ensure consistency */
             }
-            /* Ensure last item in a row also has margin */
+
             .search_panel_content .search_item:last-child {
                 padding-right: 0;
             }
-        /* No right padding for the absolute last item */
+
         .search_panel_content .button.search_button {
-            margin-top: 10px;
+            margin-top: 10px; /* Original margin */
             align-self: flex-end;
         }
 
@@ -115,6 +123,7 @@
                 flex-basis: 100%;
                 min-width: auto;
                 margin-top: 10px;
+                padding-bottom: 0; /* No extra space needed for extras */
             }
 
         .search_panel_content.d-flex.flex-lg-row > .button.search_button {
@@ -122,6 +131,7 @@
             flex-shrink: 0;
             flex-basis: auto;
             margin-left: auto;
+            padding-bottom: 0;
         }
 
         .flight_details p, .car_details p, .cruise_details p, .activity_details p, .trip_details p {
@@ -146,13 +156,35 @@
             font-size: 0.9em;
         }
 
-        .offers_image_container .offer_name a {
-            color: white;
-            text-decoration: none;
+            .offers_image_container .offer_name a {
+                color: white;
+                text-decoration: none;
+            }
+
+                .offers_image_container .offer_name a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Enhanced Validation message styling */
+        .validation-error-message {
+            color: #ffffff; /* White text */
+            font-size: 0.85em;
+            font-weight: 500;
+            position: absolute; /* Position relative to .search_item */
+            bottom: 0px; /* Position it at the bottom of the padding */
+            left: 0;
+            width: calc(100% - 10px); /* Adjust width considering parent's padding-right */
+            padding: 3px 8px;
+            background-color: rgba(220, 53, 69, 0.85); /* Semi-transparent strong red background */
+            border-radius: 3px;
+            margin-top: 3px; /* Small space from input */
+            z-index: 10; /* Ensure it's on top */
+            text-shadow: 0 0 2px rgba(0,0,0,0.5); /* Slight shadow for readability */
         }
 
-        .offers_image_container .offer_name a:hover {
-            text-decoration: underline;
+        .search_input.input-error {
+            border: 2px solid #dc3545 !important; /* Stronger error border */
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
         }
     </style>
 }
@@ -185,34 +217,36 @@
 
                             <!-- Search Panel (Hotels) -->
                             <div class="search_panel @(entityType == "Hotels" ? "active" : "")" id="hotels_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap offer-search-form">
                                     <input type="hidden" name="entityType" value="Hotels" />
                                     <div class="search_item"><div>Destination</div><input type="text" name="destination" value="@destination_hotel" class="destination search_input" placeholder="e.g. Paris"></div>
                                     <div class="search_item"><div>Hotel Name</div><input type="text" name="hotelName" value="@hotelName_hotel" class="hotel_name search_input" placeholder="e.g. Grand Hotel"></div>
-                                    <div class="search_item"><div>Check In</div><input type="date" name="checkInDate" value="@checkInDate_hotelValue" class="check_in search_input"></div>
-                                    <div class="search_item"><div>Check Out</div><input type="date" name="checkOutDate" value="@checkOutDate_hotelValue" class="check_out search_input"></div>
+                                    <div class="search_item"><div>Check In</div><input type="date" name="checkInDate" value="@checkInDate_hotelValue" class="check_in search_input date-start"></div>
+                                    <div class="search_item"><div>Check Out</div><input type="date" name="checkOutDate" value="@checkOutDate_hotelValue" class="check_out search_input date-end"></div>
                                     <div class="search_item"><div>Adults</div><select name="adults" class="dropdown_item_select search_input"><option value="1" selected="@(adults_hotel == 1)">01</option><option value="2" selected="@(adults_hotel == 2)">02</option><option value="3" selected="@(adults_hotel >= 3)">03+</option></select></div>
                                     <div class="search_item"><div>Children</div><select name="children" class="dropdown_item_select search_input"><option value="0" selected="@(children_hotel == 0)">0</option><option value="1" selected="@(children_hotel == 1)">01</option><option value="2" selected="@(children_hotel >= 2)">02+</option></select></div>
                                     <div class="search_item"><div>Min Rating</div><select name="minRating" class="dropdown_item_select search_input"><option value="">Any</option><option value="1" selected="@(minRating_hotel == 1)">1+</option><option value="2" selected="@(minRating_hotel == 2)">2+</option><option value="3" selected="@(minRating_hotel == 3)">3+</option><option value="4" selected="@(minRating_hotel == 4)">4+</option><option value="5" selected="@(minRating_hotel == 5)">5</option></select></div>
-                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxPrice" value="@maxPrice_hotel" class="search_input" placeholder="e.g. 200" step="10"></div>
-                                    <div class="search_item extras" style="width:100%; flex-basis:100%;">
+                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxPrice" value="@maxPrice_hotel" class="search_input price-input" placeholder="e.g. 200" step="10" min="0"></div>
+                                    @*
+                                    <div class="search_item extras">
                                         <ul class="search_extras clearfix">
                                             <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="PetFriendly" id="search_extras_1" class="search_extras_cb" checked="@selectedAmenities_hotel.Contains("PetFriendly")"><label for="search_extras_1">Pet Friendly</label></div></li>
                                             <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="CarParking" id="search_extras_2" class="search_extras_cb" checked="@selectedAmenities_hotel.Contains("CarParking")"><label for="search_extras_2">Car Parking</label></div></li>
                                             <li class="search_extras_item"><div class="clearfix"><input type="checkbox" name="amenities" value="WirelessInternet" id="search_extras_3" class="search_extras_cb" checked="@selectedAmenities_hotel.Contains("WirelessInternet")"><label for="search_extras_3">Wireless Internet</label></div></li>
                                         </ul>
                                     </div>
+                                    *@
                                     <button type="submit" class="button search_button">Search Hotels<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
                             <!-- Search Panel (Car Rentals) -->
                             <div class="search_panel @(entityType == "CarRentals" ? "active" : "")" id="carrentals_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap offer-search-form">
                                     <input type="hidden" name="entityType" value="CarRentals" />
                                     <div class="search_item"><div>Pickup Location</div><input type="text" name="location" value="@location_car" class="destination search_input" placeholder="City, Airport"></div>
-                                    <div class="search_item"><div>Pickup Date</div><input type="date" name="pickupDate" value="@pickupDate_carValue" class="check_in search_input"></div>
-                                    <div class="search_item"><div>Return Date</div><input type="date" name="returnDate" value="@returnDate_carValue" class="check_out search_input"></div>
+                                    <div class="search_item"><div>Pickup Date</div><input type="date" name="pickupDate" value="@pickupDate_carValue" class="check_in search_input date-start"></div>
+                                    <div class="search_item"><div>Return Date</div><input type="date" name="returnDate" value="@returnDate_carValue" class="check_out search_input date-end"></div>
                                     <div class="search_item"><div>Car Model/Type</div><input type="text" name="carModelKeyword" value="@carModelKeyword_car" class="search_input" placeholder="e.g. SUV, Economy"></div>
                                     <button type="submit" class="button search_button">Search Cars<span></span><span></span><span></span></button>
                                 </form>
@@ -220,13 +254,13 @@
 
                             <!-- Search Panel (Flights) -->
                             <div class="search_panel @(entityType == "Flights" ? "active" : "")" id="flights_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap offer-search-form">
                                     <input type="hidden" name="entityType" value="Flights" />
                                     <div class="search_item"><div>Trip Type</div><select name="tripType" class="dropdown_item_select search_input"><option value="@TripType.RoundTrip" selected="@(tripType_flight == TripType.RoundTrip)">Round Trip</option><option value="@TripType.OneWay" selected="@(tripType_flight == TripType.OneWay)">One Way</option></select></div>
                                     <div class="search_item"><div>From</div><input type="text" name="origin" value="@origin_flight" class="search_input" placeholder="Origin City/Airport"></div>
                                     <div class="search_item"><div>To</div><input type="text" name="flightDestination" value="@destination_flight" class="search_input" placeholder="Destination City/Airport"></div>
-                                    <div class="search_item"><div>Departure Date</div><input type="date" name="departureDate" value="@departureDate_flightValue" class="search_input"></div>
-                                    <div class="search_item"><div>Return Date</div><input type="date" name="returnDate" value="@returnDate_flightValue" class="search_input"></div>
+                                    <div class="search_item"><div>Departure Date</div><input type="date" name="departureDate" value="@departureDate_flightValue" class="search_input date-start"></div>
+                                    <div class="search_item"><div>Return Date</div><input type="date" name="returnDate" value="@returnDate_flightValue" class="search_input date-end"></div>
                                     <div class="search_item"><div>Passengers</div><input type="number" name="passengers" value="@passengers_flight" class="search_input" min="1"></div>
                                     <button type="submit" class="button search_button">Search Flights<span></span><span></span><span></span></button>
                                 </form>
@@ -234,57 +268,59 @@
 
                             <!-- Search Panel (Trips) -->
                             <div class="search_panel @(entityType == "Trips" ? "active" : "")" id="trips_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap offer-search-form">
                                     <input type="hidden" name="entityType" value="Trips" />
                                     <div class="search_item"><div>Destination/Keyword</div><input type="text" name="tripSearchTerm" value="@tripSearchTerm_trip" class="search_input" placeholder="e.g., Italy, Adventure Tour"></div>
-                                    <div class="search_item"><div>Start Date (Optional)</div><input type="date" name="startDate" value="@startDate_tripValue" class="search_input"></div>
+                                    <div class="search_item"><div>Start Date (Optional)</div><input type="date" name="startDate" value="@startDate_tripValue" class="search_input date-start"></div>
                                     <div class="search_item"><div>Travelers</div><input type="number" name="travelers" value="@(travelers_trip ?? 1)" class="search_input" min="1"></div>
-                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxTripPrice" value="@maxTripPrice_trip" class="search_input" placeholder="e.g. 3000" step="100"></div>
+                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxTripPrice" value="@maxTripPrice_trip" class="search_input price-input" placeholder="e.g. 3000" step="100" min="0"></div>
                                     <button type="submit" class="button search_button">Search Trips<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
                             <!-- Search Panel (Cruises) -->
                             <div class="search_panel @(entityType == "Cruises" ? "active" : "")" id="cruises_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap offer-search-form">
                                     <input type="hidden" name="entityType" value="Cruises" />
                                     <div class="search_item"><div>Destination Region</div><input type="text" name="destinationRegion" value="@destinationRegion_cruise" class="search_input" placeholder="e.g., Caribbean"></div>
                                     <div class="search_item"><div>Departure Port</div><input type="text" name="cruiseDeparturePort" value="@cruiseDeparturePort_cruise" class="search_input" placeholder="e.g., Miami"></div>
                                     <div class="search_item"><div>Cruise Line</div><input type="text" name="cruiseLineName" value="@cruiseLineName_cruise" class="search_input" placeholder="e.g., Royal Caribbean"></div>
-                                    <div class="search_item"><div>Departure Month</div><input type="month" name="departureMonth" value="@departureMonth_cruise" class="search_input"></div>
-                                    <div class="search_item"><div>Min Duration</div><input type="number" name="minCruiseDuration" value="@minCruiseDuration_cruise" class="search_input" placeholder="Days"></div>
-                                    <div class="search_item"><div>Max Duration</div><input type="number" name="maxCruiseDuration" value="@maxCruiseDuration_cruise" class="search_input" placeholder="Days"></div>
-                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxCruisePrice" value="@maxCruisePrice_cruise" class="search_input" placeholder="e.g., 2000" step="100"></div>
+                                    <div class="search_item"><div>Departure Month</div><input type="month" name="departureMonth" value="@departureMonth_cruiseValue" class="search_input date-start-month"></div> @* Special class for month input *@
+                                    <div class="search_item"><div>Min Duration</div><input type="number" name="minCruiseDuration" value="@minCruiseDuration_cruise" class="search_input" placeholder="Days" min="0"></div>
+                                    <div class="search_item"><div>Max Duration</div><input type="number" name="maxCruiseDuration" value="@maxCruiseDuration_cruise" class="search_input" placeholder="Days" min="0"></div>
+                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxCruisePrice" value="@maxCruisePrice_cruise" class="search_input price-input" placeholder="e.g., 2000" step="100" min="0"></div>
                                     <button type="submit" class="button search_button">Search Cruises<span></span><span></span><span></span></button>
                                 </form>
                             </div>
 
                             <!-- Search Panel (Activities) -->
                             <div class="search_panel @(entityType == "Activities" ? "active" : "")" id="activities_search_panel">
-                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap">
+                                <form asp-action="Index" asp-controller="Offers" method="get" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-stretch align-items-start justify-content-lg-between justify-content-start flex-wrap offer-search-form">
                                     <input type="hidden" name="entityType" value="Activities" />
                                     <div class="search_item"><div>Activity/Location</div><input type="text" name="activitySearchTerm" value="@activitySearchTerm_activity" class="search_input" placeholder="e.g., City Tour, Paris"></div>
                                     <div class="search_item"><div>Category</div><input type="text" name="activityCategory" value="@activityCategory_activity" class="search_input" placeholder="e.g., Sightseeing"></div>
-                                    <div class="search_item"><div>Date</div><input type="date" name="activityDate" value="@activityDate_activityValue" class="search_input"></div>
+                                    <div class="search_item"><div>Date</div><input type="date" name="activityDate" value="@activityDate_activityValue" class="search_input date-start"></div>
                                     <div class="search_item"><div>Participants</div><input type="number" name="participants" value="@(participants_activity ?? 1)" class="search_input" min="1"></div>
-                                    <div class="search_item"><div>Max Duration (hrs)</div><input type="number" name="maxActivityDuration" value="@maxActivityDuration_activity" class="search_input" placeholder="e.g., 3"></div>
-                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxActivityPrice" value="@maxActivityPrice_activity" class="search_input" placeholder="e.g., 100" step="10"></div>
+                                    <div class="search_item"><div>Max Duration (hrs)</div><input type="number" name="maxActivityDuration" value="@maxActivityDuration_activity" class="search_input" placeholder="e.g., 3" min="0"></div>
+                                    <div class="search_item"><div>Max Price</div><input type="number" name="maxActivityPrice" value="@maxActivityPrice_activity" class="search_input price-input" placeholder="e.g., 100" step="10" min="0"></div>
                                     <button type="submit" class="button search_button">Search Activities<span></span><span></span><span></span></button>
                                 </form>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Offers Grid Display Area -->
+        <!-- Offers Grid Display Area (Content remains the same as your last version) -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-1 temp_col"></div>
                 <div class="col-lg-11">
                     <!-- Offers Sorting -->
                     <div class="offers_sorting_container">
+                        @* Sorting UI remains the same *@
                         <ul class="offers_sorting">
                             @if (entityType == "Hotels")
                             {
@@ -306,6 +342,8 @@
 
                 <div class="col-lg-12">
                     <div class="offers_grid">
+                        @* ... Your existing offer display logic for each entity type ... *@
+                        @* (This part remains unchanged from your provided code) *@
                         @if (TempData["InfoMessage"] != null)
                         {
                             <div class="col-12 text-center" style="padding: 40px; min-height: 150px;"><h4>@TempData["InfoMessage"]</h4></div>
@@ -380,14 +418,7 @@
                                                 <p style="margin-top:10px;">
                                                     <strong>Company:</strong> @car.Company<br>
                                                     <strong>Location:</strong> @car.Location
-												</p>
-                                                @*
-                                                *if (!string.IsNullOrEmpty(car.Description)
-                                                {
-                                                    <p class="offers_text">@(car.Description.Length > 100 ? car.Description.Substring(0, 100) + "..." : car.Description)</p>
-                                                }
-												) 
-                                                *@
+                                                </p>
                                                 <div class="button book_button" style="margin-top:15px;"><a asp-controller="Booking" asp-action="Create" asp-route-offerId="@car.Id" asp-route-offerType="CarRental">details<span></span><span></span><span></span></a></div>
                                             </div>
                                         </div>
@@ -538,4 +569,184 @@
     <script src="~/plugins/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="~/plugins/parallax-js-master/parallax.min.js"></script>
     <script src="~/js/offers_custom.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Function to clear validation messages for a given form
+            function clearValidationMessages(form) {
+                $(form).find('.validation-error-message').remove();
+                $(form).find('.input-error').removeClass('input-error');
+            }
+
+            // Function to display a validation message after an input field
+            function showValidationMessage(inputField, message) {
+                clearValidationMessage(inputField);
+                $(inputField).addClass('input-error');
+                // Insert after the input, or after its parent if it's in an input-group or similar
+                var $parentSearchItem = $(inputField).closest('.search_item');
+                if ($parentSearchItem.length) {
+                    $parentSearchItem.append('<span class="validation-error-message">' + message + '</span>');
+                } else {
+                    $(inputField).after('<span class="validation-error-message">' + message + '</span>');
+                }
+            }
+
+            function clearValidationMessage(inputField) {
+                $(inputField).removeClass('input-error');
+                var $parentSearchItem = $(inputField).closest('.search_item');
+                if ($parentSearchItem.length) {
+                    $parentSearchItem.find('.validation-error-message').remove();
+                } else {
+                    $(inputField).next('.validation-error-message').remove();
+                }
+            }
+
+            // Get today's date in YYYY-MM-DD format, ignoring time zone for simple comparison
+            function getTodayDateString() {
+                var today = new Date();
+                var year = today.getFullYear();
+                var month = ('0' + (today.getMonth() + 1)).slice(-2);
+                var day = ('0' + today.getDate()).slice(-2);
+                return year + '-' + month + '-' + day;
+            }
+            var todayDateString = getTodayDateString();
+
+
+            $('.offer-search-form').on('submit', function (e) {
+                var form = this;
+                var isValid = true;
+                clearValidationMessages(form);
+
+                // 1. Date Validation: Start date must be before end date & not in the past
+                var $startDateField = $(form).find('.date-start');
+                var $endDateField = $(form).find('.date-end');
+                var $startMonthField = $(form).find('.date-start-month'); // For cruise departureMonth
+
+                // Validate start date fields (date-start and date-start-month)
+                var $actualStartDateField = $startDateField.length ? $startDateField : ($startMonthField.length ? $startMonthField : null);
+
+                if ($actualStartDateField && $actualStartDateField.length) {
+                    var startDateVal = $actualStartDateField.val();
+                    if (startDateVal) {
+                        var isMonthInput = $actualStartDateField.hasClass('date-start-month');
+                        var startDateToCompare = isMonthInput ? startDateVal + "-01" : startDateVal; // Use first day of month for month inputs
+
+                        if (new Date(startDateToCompare) < new Date(todayDateString)) {
+                             showValidationMessage($actualStartDateField, 'Start date cannot be in the past.');
+                             isValid = false;
+                        }
+
+                        // If there's an end date field, validate the range
+                        if ($endDateField.length && $endDateField.val()) {
+                            var endDateVal = $endDateField.val();
+                            if (new Date(startDateToCompare) >= new Date(endDateVal)) {
+                                showValidationMessage($endDateField, 'End date must be after start date.');
+                                isValid = false;
+                            }
+                        }
+                    }
+                }
+
+
+                // Additional validation for round trip flights
+                if ($(form).closest('#flights_search_panel').length > 0) {
+                    var tripType = $(form).find('select[name="tripType"]').val();
+                    var departureDate = $(form).find('input[name="departureDate"]').val();
+                    var returnDate = $(form).find('input[name="returnDate"]').val();
+
+                    if (tripType === '@TripType.RoundTrip.ToString()') {
+                        if (!returnDate) {
+                            showValidationMessage($(form).find('input[name="returnDate"]'), 'Return date is required for round trips.');
+                            isValid = false;
+                        } else if (departureDate && returnDate && new Date(departureDate) >= new Date(returnDate)) {
+                            // This date range check is already covered above if .date-start and .date-end are used correctly
+                            // but kept here as a specific check for flights form clarity
+                             showValidationMessage($(form).find('input[name="returnDate"]'), 'Return date must be after departure date.');
+                             isValid = false;
+                        }
+                    }
+                }
+
+
+                // 2. Max Price Validation
+                $(form).find('.price-input').each(function () {
+                    var $priceField = $(this);
+                    var priceValue = $priceField.val();
+                    if (priceValue) {
+                        var price = parseFloat(priceValue);
+                        if (isNaN(price) || price < 0) {
+                            showValidationMessage($priceField, 'Price must be a non-negative number.');
+                            isValid = false;
+                        } else if (!/^\d*\.?\d*$/.test(priceValue)) {
+                            showValidationMessage($priceField, 'Please enter a valid price.');
+                            isValid = false;
+                        }
+                    }
+                });
+
+                // 3. General Numeric Input (for type=number, ensure no non-numeric chars somehow slipped in)
+                $(form).find('input[type="number"]').each(function () {
+                    var $numericField = $(this);
+                    var numericValue = $numericField.val();
+                    // HTML5 type="number" should prevent most non-numeric, this is a fallback
+                    if (numericValue && isNaN(parseFloat(numericValue)) && !/^-?\d*\.?\d*$/.test(numericValue)) {
+                         showValidationMessage($numericField, 'Please enter a valid number.');
+                         isValid = false;
+                    }
+                     // For min="0" fields, ensure value is not negative if entered
+                    if (numericValue && $numericField.attr('min') === '0' && parseFloat(numericValue) < 0) {
+                        showValidationMessage($numericField, 'Value cannot be negative.');
+                        isValid = false;
+                    }
+                });
+
+
+                if (!isValid) {
+                    e.preventDefault();
+                }
+            });
+
+            $('.offer-search-form .search_input').on('input change keyup', function() {
+                clearValidationMessage(this); // Clear specific field error on change
+
+                var form = $(this).closest('form');
+                var $startDateField = $(form).find('.date-start');
+                var $endDateField = $(form).find('.date-end');
+                var $startMonthField = $(form).find('.date-start-month');
+                var $actualStartDateField = $startDateField.length ? $startDateField : ($startMonthField.length ? $startMonthField : null);
+
+                // Re-validate related date fields if one changes
+                if (($(this).is($actualStartDateField) || $(this).is($endDateField)) && $actualStartDateField && $endDateField.val()) {
+                    var startDateVal = $actualStartDateField.val();
+                    var endDateVal = $endDateField.val();
+                    var isMonthInput = $actualStartDateField.hasClass('date-start-month');
+                    var startDateToCompare = isMonthInput ? startDateVal + "-01" : startDateVal;
+
+                    if (startDateVal && endDateVal) {
+                        if (new Date(startDateToCompare) < new Date(endDateVal)) {
+                            clearValidationMessage($actualStartDateField);
+                            clearValidationMessage($endDateField);
+                        }
+                    }
+                     if (startDateVal && new Date(startDateToCompare) >= new Date(todayDateString)) {
+                        clearValidationMessage($actualStartDateField);
+                    }
+                }
+                 // Price field re-validation
+                if ($(this).hasClass('price-input')) {
+                    var priceValue = $(this).val();
+                    if (!priceValue || (parseFloat(priceValue) >= 0 && /^\d*\.?\d*$/.test(priceValue))) {
+                         clearValidationMessage(this);
+                    }
+                }
+                 // Numeric fields re-validation (for min attribute)
+                if ($(this).is('input[type="number"]') && $(this).attr('min') === '0') {
+                    var numVal = $(this).val();
+                     if (!numVal || parseFloat(numVal) >= 0) {
+                        clearValidationMessage(this);
+                    }
+                }
+            });
+        });
+    </script>
 }
