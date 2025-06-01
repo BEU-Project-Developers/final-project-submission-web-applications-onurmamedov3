@@ -3,7 +3,10 @@
     ViewData["Title"] = "Confirm Delete Cruise";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<nav aria-label="breadcrumb" class="breadcrumb-admin">
+
+@* Assuming common styles are global *@
+
+<nav aria-label="breadcrumb" class="breadcrumb-admin-custom">
     <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
         <li class="breadcrumb-item"><a asp-action="Index">Manage Cruises</a></li>
@@ -12,28 +15,41 @@
 </nav>
 
 <div class="admin-form-container">
-    <h2><i class="fa fa-trash"></i> Delete Cruise Confirmation</h2>
-    <hr />
-    <div class="alert alert-danger">
-        <h4 class="alert-heading">Are you sure you want to delete this cruise?</h4>
-        <p>This action cannot be undone.</p>
+    <h2 class="form-title-custom"><i class="fa fa-trash text-danger"></i> Delete Cruise Confirmation</h2>
+
+    <div class="alert alert-danger mt-4" role="alert">
+        <h4 class="alert-heading"><i class="fa fa-exclamation-triangle me-2"></i>Are you sure?</h4>
+        <p>You are about to permanently delete the cruise: <strong>@Model.CruiseLine - @Model.Destination</strong>. This action cannot be undone.</p>
     </div>
 
-    <div>
-        <h4>@Model.CruiseLine - @Model.Destination</h4>
-        <dl class="row mt-3">
-            <dt class="col-sm-3">Departure Port:</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.DeparturePort)</dd>
-            <dt class="col-sm-3">Duration (Days):</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.DurationDays)</dd>
-            <dt class="col-sm-3">Price:</dt>
-            <dd class="col-sm-9">@Model.Price.ToString("C")</dd>
+    <div class="mt-4">
+        <h4 class="mb-3">Cruise Details:</h4>
+        <dl class="row dl-horizontal-custom">
+            <dt class="col-sm-4 col-md-3">Cruise Line:</dt>
+            <dd class="col-sm-8 col-md-9">@Html.DisplayFor(model => model.CruiseLine)</dd>
+
+            <dt class="col-sm-4 col-md-3">Destination:</dt>
+            <dd class="col-sm-8 col-md-9">@Html.DisplayFor(model => model.Destination)</dd>
+
+            <dt class="col-sm-4 col-md-3">Departure Port:</dt>
+            <dd class="col-sm-8 col-md-9">@Html.DisplayFor(model => model.DeparturePort)</dd>
+
+            <dt class="col-sm-4 col-md-3">Duration (Days):</dt>
+            <dd class="col-sm-8 col-md-9">@Html.DisplayFor(model => model.DurationDays)</dd>
+
+            <dt class="col-sm-4 col-md-3">Price:</dt>
+            <dd class="col-sm-8 col-md-9">@Model.Price.ToString("C")</dd>
         </dl>
-        <form asp-action="Delete" method="post">
+
+        <form asp-action="Delete" method="post" class="mt-4">
             @Html.AntiForgeryToken()
             <input type="hidden" asp-for="Id" />
-            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Confirm Delete</button>
-            <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+            <div class="form-actions-custom">
+                <a asp-action="Index" class="btn btn-form-action btn-form-secondary">Cancel</a>
+                <button type="submit" class="btn btn-form-action btn-form-danger">
+                    <i class="fa fa-trash"></i> Confirm Delete
+                </button>
+            </div>
         </form>
     </div>
 </div>
